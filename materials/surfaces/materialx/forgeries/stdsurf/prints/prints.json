@@ -1,8 +1,0 @@
-{
- "hash": "a22c596ef857cdc3e1cf4fef8d33977a426a11d8",
- "names": [
-  "coated",
-  "marble"
- ],
- "about": "OpenUSD 26.11 usdrecord renders of each piece alone (matkit.bake_prints); re-rendered when parts/ changes"
-}
