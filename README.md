@@ -14,14 +14,15 @@ kit/py museum/src/export.py composition       # writes ~/git/usd-museum/composit
 
 ## Wings
 
-All ten wings, in tour order:
+Eleven wings, in tour order:
 
 | Wing | Galleries | Exhibits | Forgeries |
 |---|---|---|---|
 | [foundations](foundations/foundations.usda) | files, model, packages, paths, types | 8 | 53 |
 | [composition](composition/composition.usda) | arcs, loading, strength, namespace, edits, errors | 9 | 97 |
 | [instancing](instancing/instancing.usda) | native, points, crowds | 3 | 23 |
-| [animation](animation/animation.usda) | keys, time, splines, clips, blocks, characters, motion, rigging | 9 | 81 |
+| [animation](animation/animation.usda) | keys, time, splines, clips, blocks, characters, motion | 7 | 72 |
+| [rigging](rigging/rigging.usda) | exec | 2 | 9 |
 | [stage](stage/stage.usda) | population, schemas, collections, imageable, meaning | 10 | 53 |
 | [geometry](geometry/geometry.usda) | shapes, meshes, curves, volumes, xforms | 7 | 36 |
 | [materials](materials/materials.usda) | surfaces, textures, binding, primvars, color | 6 | 37 |
@@ -32,8 +33,11 @@ All ten wings, in tour order:
 62 exhibits and 420 forgeries. 410 forgeries are override layers; 10 are edited copies
 because overrides can't express them (relocates, MaterialX and a few others; each says why).
 
-The Animation wing runs with OpenExec on and includes the rigging gallery, which the
-whole-museum tour in usd-tour leaves out. Its `tour.usda` says so in `customLayerData`.
+Rigging is the one wing that runs with OpenExec on (its `tour.usda` says `exec = 1` in
+`customLayerData`). It holds OpenExec's two exhibits, split out of Animation on Nov 9, so
+Animation runs with exec off. The whole-museum tour in usd-tour runs with exec off and leaves
+Rigging out.
+
 The whole museum as one file (`museum.usda`) isn't exported yet.
 
 ## Known problems
@@ -59,11 +63,14 @@ The whole wing on its tour, through usd-tour's usdview kit (load schedule, Tour 
     --unloaded --camera /<wing>/tour/tour_cam --complexity high
 ```
 
-For the Animation wing, add what `view.sh` sets for usd-tour's own museum files: OpenExec on
-(its `tour.usda` says `exec = 1`) and UsdSkel's CPU path for the skinned figures.
+Two wings need what `view.sh` sets for usd-tour's own museum files. Rigging needs OpenExec on;
+Animation needs UsdSkel's CPU path for its skinned figures:
 
 ```sh
-USDIMAGINGGL_ENGINE_ENABLE_EXEC_SCENE_INDEX=1 USDSKELIMAGING_FORCE_CPU_COMPUTE=1 \
+USDIMAGINGGL_ENGINE_ENABLE_EXEC_SCENE_INDEX=1 \
+  ~/git/usd-tour/view.sh ~/git/usd-museum/rigging/tour.usda \
+    --unloaded --camera /rigging/tour/tour_cam --complexity high
+USDSKELIMAGING_FORCE_CPU_COMPUTE=1 \
   ~/git/usd-tour/view.sh ~/git/usd-museum/animation/tour.usda \
     --unloaded --camera /animation/tour/tour_cam --complexity high
 ```
