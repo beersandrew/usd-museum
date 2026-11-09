@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    "hall implied: the asset's Case inherits /_hall_AssetClass (empty there)."
+    defaultPrim = "Case"
+)
+
+over "Case" (
+    prepend inherits = </_hall_AssetClass>
+)
+{
+}
+
+class "_hall_AssetClass"
+{
+}
+

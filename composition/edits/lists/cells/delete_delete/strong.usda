@@ -1,0 +1,13 @@
+#usda 1.0
+(
+    "Cell delete/delete, the stronger layer: prototypes delete [Capsule]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        delete rel prototypes = </Row/Inst/Protos/Capsule>
+    }
+}
+

@@ -1,0 +1,13 @@
+#usda 1.0
+(
+    "Cell prepend/prepend, the weaker layer: prototypes prepend [Prism]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        prepend rel prototypes = </Row/Inst/Protos/Prism>
+    }
+}
+

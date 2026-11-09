@@ -1,0 +1,14 @@
+#usda 1.0
+(
+    "Cell rules/lo27-stack, the stronger layer: prototypes delete [Cube]; append [Sphere]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        delete rel prototypes = </Row/Inst/Protos/Cube>
+        append rel prototypes = </Row/Inst/Protos/Sphere>
+    }
+}
+

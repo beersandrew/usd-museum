@@ -1,0 +1,18 @@
+#usda 1.0
+(
+    "Bench size, the strongest layer (array edits): ('maxsize', 3); ('append', 'T')."
+    defaultPrim = "Bench"
+)
+
+over "Bench"
+{
+    over "Inst"
+    {
+        point3f[] positions = edit [maxsize 3; append (0.87, 0, 0)]
+        color3f[] primvars:displayColor = edit [maxsize 3; append (0.010329823, 0.31398872, 0.08021982)] (
+            interpolation = "vertex"
+        )
+        int[] protoIndices = edit [maxsize 3; append 2]
+    }
+}
+

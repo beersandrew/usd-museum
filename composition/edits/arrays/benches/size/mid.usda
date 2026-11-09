@@ -1,0 +1,18 @@
+#usda 1.0
+(
+    "Bench size, the middle layer (array edits): ('append', 'O'); ('append', 'Y'); ('append', 'G'); ('append', 'X')."
+    defaultPrim = "Bench"
+)
+
+over "Bench"
+{
+    over "Inst"
+    {
+        point3f[] positions = edit [append (0, 0, 0); append (0.29, 0, 0); append (0.58, 0, 0); append (1.16, 0, 0)]
+        color3f[] primvars:displayColor = edit [append (0.91309863, 0.22322796, 0.030713445); append (0.8879231, 0.55201143, 0.0047769533); append (0.2746773, 0.63759685, 0.07818742); append (0.2704978, 0.104616486, 0.67244315)] (
+            interpolation = "vertex"
+        )
+        int[] protoIndices = edit [append 2; append 0; append 1; append 2]
+    }
+}
+

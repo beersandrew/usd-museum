@@ -1,0 +1,11 @@
+#usda 1.0
+(
+    "Cell rules/lo25: sublayers strongest first, the base last. Expected prototypes: ."
+    defaultPrim = "Row"
+    subLayers = [
+        @./strong.usda@,
+        @./weak.usda@,
+        @./base.usda@
+    ]
+)
+

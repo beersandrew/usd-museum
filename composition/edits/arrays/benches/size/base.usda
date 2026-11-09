@@ -1,0 +1,49 @@
+#usda 1.0
+(
+    "Bench size base: the instancer and its prototypes; no arrays (an edit over nothing applies to an empty array)."
+    defaultPrim = "Bench"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Bench" (
+    kind = "component"
+)
+{
+    def PointInstancer "Inst"
+    {
+        float3[] extent = [(-0.11, 0, -0.11), (1.27, 0.22, 0.11)]
+        rel prototypes = [
+            </Bench/Inst/Protos/Cone>,
+            </Bench/Inst/Protos/Sphere>,
+            </Bench/Inst/Protos/Cube>,
+        ]
+
+        def Scope "Protos"
+        {
+            def Xform "Cone" (
+                instanceable = true
+                prepend references = @../../parts/cone.usda@
+            )
+            {
+            }
+
+            def Xform "Sphere" (
+                instanceable = true
+                prepend references = @../../parts/sphere.usda@
+            )
+            {
+            }
+
+            def Xform "Cube" (
+                instanceable = true
+                prepend references = @../../parts/cube.usda@
+            )
+            {
+            }
+        }
+    }
+}
+

@@ -1,0 +1,11 @@
+#usda 1.0
+(
+    "Cell none/prepend: sublayers strongest first, the base last. Expected prototypes: Cone, Prism, Sphere, Cube."
+    defaultPrim = "Row"
+    subLayers = [
+        @./strong.usda@,
+        @./weak.usda@,
+        @./base.usda@
+    ]
+)
+

@@ -1,0 +1,57 @@
+#usda 1.0
+(
+    "composition.namespace.mapping, the inherit asset: its Body inherits </Vase/Classes/Glazed>, a class inside the asset that binds </Vase/Looks/Glaze>: the inherit path and the binding both map."
+    defaultPrim = "Vase"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Vase" (
+    kind = "component"
+)
+{
+    color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)] (
+        interpolation = "constant"
+    )
+
+    def Scope "Looks"
+    {
+        def Material "Glaze"
+        {
+            color3f inputs:glaze = (0.8879231, 0.55201143, 0.0047769533)
+            token outputs:surface.connect = </Vase/Looks/Glaze/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.63075715, 0.000607054, 0.010960094)
+                color3f inputs:diffuseColor.connect = </Vase/Looks/Glaze.inputs:glaze>
+                float inputs:roughness = 0.55
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+    }
+
+    class "Classes"
+    {
+        class "Glazed" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Vase/Looks/Glaze>
+        }
+    }
+
+    def Xform "Body" (
+        prepend inherits = </Vase/Classes/Glazed>
+        instanceable = true
+        prepend references = @./vase.usda@
+    )
+    {
+    }
+}
+

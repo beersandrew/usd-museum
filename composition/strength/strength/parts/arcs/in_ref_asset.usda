@@ -1,0 +1,26 @@
+#usda 1.0
+(
+    "hall in_ref: the asset's Case has its own opinion and a variant fight=on."
+    defaultPrim = "Case"
+)
+
+over "Case" (
+    variants = {
+        string fight = "on"
+    }
+    prepend variantSets = "fight"
+)
+{
+    color3f[] primvars:displayColor = [(0.91309863, 0.22322796, 0.030713445)] (
+        interpolation = "constant"
+    )
+    variantSet "fight" = {
+        "on" {
+            color3f[] primvars:displayColor = [(0.2746773, 0.63759685, 0.07818742)] (
+                interpolation = "constant"
+            )
+
+        }
+    }
+}
+

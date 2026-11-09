@@ -1,0 +1,13 @@
+#usda 1.0
+(
+    "hall ancestral: Case's own source."
+    defaultPrim = "Case"
+)
+
+over "Case"
+{
+    color3f[] primvars:displayColor = [(0.024157632, 0.462077, 0.58407843)] (
+        interpolation = "constant"
+    )
+}
+

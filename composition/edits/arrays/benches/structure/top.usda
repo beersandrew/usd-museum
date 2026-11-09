@@ -1,0 +1,18 @@
+#usda 1.0
+(
+    "Bench structure, the strongest layer (array edits): ('erase', 2); ('prepend', 'O'); ('append', 'C')."
+    defaultPrim = "Bench"
+)
+
+over "Bench"
+{
+    over "Inst"
+    {
+        point3f[] positions = edit [erase [2]; prepend (0, 0, 0); append (1.45, 0, 0)]
+        color3f[] primvars:displayColor = edit [erase [2]; prepend (0.91309863, 0.22322796, 0.030713445); append (0.024157632, 0.462077, 0.58407843)] (
+            interpolation = "vertex"
+        )
+        int[] protoIndices = edit [erase [2]; prepend 0; append 1]
+    }
+}
+

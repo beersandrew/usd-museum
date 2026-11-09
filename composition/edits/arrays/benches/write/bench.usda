@@ -1,0 +1,11 @@
+#usda 1.0
+(
+    "Bench write: sublayers strongest first (top, mid, base). mid writes [1] violet, [2] green, moves [3]; top writes [1] yellow, [-1] blue sphere, [6] (none)."
+    defaultPrim = "Bench"
+    subLayers = [
+        @./top.usda@,
+        @./mid.usda@,
+        @./base.usda@
+    ]
+)
+

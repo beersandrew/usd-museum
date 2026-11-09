@@ -1,0 +1,13 @@
+#usda 1.0
+(
+    "hall variant_payload: the payload's opinion."
+    defaultPrim = "Case"
+)
+
+over "Case"
+{
+    color3f[] primvars:displayColor = [(0.04231141, 0.15896083, 0.6866853)] (
+        interpolation = "constant"
+    )
+}
+

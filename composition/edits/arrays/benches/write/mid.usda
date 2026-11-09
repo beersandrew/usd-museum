@@ -1,0 +1,17 @@
+#usda 1.0
+(
+    "Bench write, the middle layer (array edits): ('write', 'colours', 'arc_specialize', 1); ('write', 'colours', 'arc_variant', 2); ('write', 'positions', 3, 3)."
+    defaultPrim = "Bench"
+)
+
+over "Bench"
+{
+    over "Inst"
+    {
+        point3f[] positions = edit [write (0.87, 0, 0) to [3]]
+        color3f[] primvars:displayColor = edit [write (0.2704978, 0.104616486, 0.67244315) to [1]; write (0.2746773, 0.63759685, 0.07818742) to [2]] (
+            interpolation = "vertex"
+        )
+    }
+}
+

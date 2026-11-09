@@ -1,0 +1,22 @@
+#usda 1.0
+(
+    "hall nested: details' second sublayer (ranks third)."
+    defaultPrim = "Details"
+)
+
+over "Details"
+{
+    over "Cells"
+    {
+        over "nested"
+        {
+            over "Case"
+            {
+                color3f[] primvars:displayColor = [(0.9559733, 0.5301905, 0.31398872)] (
+                    interpolation = "constant"
+                )
+            }
+        }
+    }
+}
+

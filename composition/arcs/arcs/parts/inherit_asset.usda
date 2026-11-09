@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    "composition.arcs.arcs: an asset whose Case inherits /_class_Stamped (empty here)."
+    defaultPrim = "Case"
+)
+
+def Xform "Case" (
+    prepend inherits = </_class_Stamped>
+)
+{
+}
+
+class "_class_Stamped"
+{
+}
+

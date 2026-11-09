@@ -1,0 +1,21 @@
+#usda 1.0
+(
+    "Cell one/both-ends, its one layer: prototypes delete [Sphere]; prepend [Sphere, Cone]; append [Prism, Sphere]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        delete rel prototypes = </Row/Inst/Protos/Sphere>
+        prepend rel prototypes = [
+            </Row/Inst/Protos/Sphere>,
+            </Row/Inst/Protos/Cone>,
+        ]
+        append rel prototypes = [
+            </Row/Inst/Protos/Prism>,
+            </Row/Inst/Protos/Sphere>,
+        ]
+    }
+}
+

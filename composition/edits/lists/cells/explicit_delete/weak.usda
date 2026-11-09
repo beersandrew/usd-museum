@@ -1,0 +1,18 @@
+#usda 1.0
+(
+    "Cell explicit/delete, the weaker layer: prototypes explicit [Cone, Cube, Prism, Sphere]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        rel prototypes = [
+            </Row/Inst/Protos/Cone>,
+            </Row/Inst/Protos/Cube>,
+            </Row/Inst/Protos/Prism>,
+            </Row/Inst/Protos/Sphere>,
+        ]
+    }
+}
+

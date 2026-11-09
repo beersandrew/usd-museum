@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    "Cell rules/lo27-stack, the weaker layer: prototypes prepend [Cube, Cone]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        prepend rel prototypes = [
+            </Row/Inst/Protos/Cube>,
+            </Row/Inst/Protos/Cone>,
+        ]
+    }
+}
+

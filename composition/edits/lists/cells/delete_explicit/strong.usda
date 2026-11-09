@@ -1,0 +1,17 @@
+#usda 1.0
+(
+    "Cell delete/explicit, the stronger layer: prototypes explicit [Cone, Prism, Sphere]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        rel prototypes = [
+            </Row/Inst/Protos/Cone>,
+            </Row/Inst/Protos/Prism>,
+            </Row/Inst/Protos/Sphere>,
+        ]
+    }
+}
+

@@ -1,0 +1,8 @@
+#usda 1.0
+(
+    "hall nested: details' first sublayer; sublayers nest_a1."
+    subLayers = [
+        @./nest_a1.usda@
+    ]
+)
+

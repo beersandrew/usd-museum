@@ -1,0 +1,33 @@
+#usda 1.0
+(
+    "composition.loading.payloads: an asset with a variant set stock: full holds a payload to ./crate.usda, empty holds nothing. Selected: full."
+    defaultPrim = "Stock"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Stock" (
+    kind = "component"
+    variants = {
+        string stock = "full"
+    }
+    prepend variantSets = "stock"
+)
+{
+    def Scope "Looks"
+    {
+    }
+    variantSet "stock" = {
+        "empty" {
+
+        }
+        "full" (
+            prepend payload = @./crate.usda@
+        ) {
+
+        }
+    }
+}
+

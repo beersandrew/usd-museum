@@ -1,0 +1,13 @@
+#usda 1.0
+(
+    "Cell delete/append, the stronger layer: prototypes append [Cube]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        append rel prototypes = </Row/Inst/Protos/Cube>
+    }
+}
+

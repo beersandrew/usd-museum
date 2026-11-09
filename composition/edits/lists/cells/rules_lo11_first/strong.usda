@@ -1,0 +1,17 @@
+#usda 1.0
+(
+    "Cell rules/lo11-first, the stronger layer: prototypes prepend [Cone, Prism, Sphere]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        prepend rel prototypes = [
+            </Row/Inst/Protos/Cone>,
+            </Row/Inst/Protos/Prism>,
+            </Row/Inst/Protos/Sphere>,
+        ]
+    }
+}
+

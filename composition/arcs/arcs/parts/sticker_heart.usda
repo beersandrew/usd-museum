@@ -1,0 +1,72 @@
+#usda 1.0
+(
+    "composition.arcs.arcs: the heart sticker, at its slot on the case front."
+    defaultPrim = "Sticker"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Sticker"
+{
+    def "Looks"
+    {
+        def Material "heart"
+        {
+            token outputs:surface.connect = </Sticker/Looks/heart/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Sticker/Looks/heart/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Sticker/Looks/heart/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/sticker_heart.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Sticker/Looks/heart/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+    }
+
+    def Mesh "Heart" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        float3[] extent = [(-0.128, 0.335, 0.131), (-0.008, 0.455, 0.131)]
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </Sticker/Looks/heart>
+        normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+            interpolation = "vertex"
+        )
+        point3f[] points = [(-0.128, 0.335, 0.131), (-0.008, 0.335, 0.131), (-0.008, 0.455, 0.131), (-0.128, 0.455, 0.131)]
+        color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+        texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+            interpolation = "vertex"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+}
+

@@ -1,0 +1,20 @@
+#usda 1.0
+(
+    "Cell one/first-end, its one layer: prototypes prepend [Cone, Prism]; append [Sphere, Cube]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        prepend rel prototypes = [
+            </Row/Inst/Protos/Cone>,
+            </Row/Inst/Protos/Prism>,
+        ]
+        append rel prototypes = [
+            </Row/Inst/Protos/Sphere>,
+            </Row/Inst/Protos/Cube>,
+        ]
+    }
+}
+

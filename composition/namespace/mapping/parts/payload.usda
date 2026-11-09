@@ -1,0 +1,54 @@
+#usda 1.0
+(
+    "composition.namespace.mapping, the payload asset: the Body binds </Vase/Hub.pick>, a relationship that forwards to </Vase/Hub.next>, which targets </Vase/Looks/Glaze>: forwarded targets, translated, in a payload."
+    defaultPrim = "Vase"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Vase" (
+    kind = "component"
+)
+{
+    color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)] (
+        interpolation = "constant"
+    )
+
+    def Scope "Looks"
+    {
+        def Material "Glaze"
+        {
+            color3f inputs:glaze = (0.04231141, 0.15896083, 0.6866853)
+            token outputs:surface.connect = </Vase/Looks/Glaze/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.63075715, 0.000607054, 0.010960094)
+                color3f inputs:diffuseColor.connect = </Vase/Looks/Glaze.inputs:glaze>
+                float inputs:roughness = 0.55
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+    }
+
+    def Scope "Hub"
+    {
+        rel next = </Vase/Looks/Glaze>
+        rel pick = </Vase/Hub.next>
+    }
+
+    def Xform "Body" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        instanceable = true
+        prepend references = @./vase.usda@
+    )
+    {
+        rel material:binding = </Vase/Hub.pick>
+    }
+}
+

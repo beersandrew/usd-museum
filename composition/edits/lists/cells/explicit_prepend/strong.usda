@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    "Cell explicit/prepend, the stronger layer: prototypes prepend [Cone, Prism]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        prepend rel prototypes = [
+            </Row/Inst/Protos/Cone>,
+            </Row/Inst/Protos/Prism>,
+        ]
+    }
+}
+

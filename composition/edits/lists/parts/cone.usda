@@ -1,0 +1,54 @@
+#usda 1.0
+(
+    "composition.edits.lists: the Cone (an item of every list). Looks/Paint reads primvars:displayColor from the prototype root."
+    defaultPrim = "Shape"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Shape" (
+    kind = "component"
+)
+{
+    def Scope "Looks"
+    {
+        def Material "Paint"
+        {
+            token outputs:surface.connect = </Shape/Looks/Paint/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor.connect = </Shape/Looks/Paint/Colour.outputs:result>
+                float inputs:roughness = 0.45
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "Colour"
+            {
+                uniform token info:id = "UsdPrimvarReader_float3"
+                float3 inputs:fallback = (0.5, 0.5, 0.5)
+                string inputs:varname = "displayColor"
+                float3 outputs:result
+            }
+        }
+    }
+
+    def Cone "Body" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform token axis = "Y"
+        float3[] extent = [(-0.0775, -0.0775, -0.0775), (0.0775, 0.0775, 0.0775)]
+        double height = 0.155
+        rel material:binding = </Shape/Looks/Paint>
+        double radius = 0.0775
+        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.0775, 0, 1) )
+        uniform token[] xformOpOrder = ["xformOp:transform"]
+    }
+}
+

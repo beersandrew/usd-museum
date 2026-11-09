@@ -1,0 +1,17 @@
+#usda 1.0
+(
+    "Bench write, the strongest layer (array edits): ('write', 'colours', 'arc_inherit', 1); ('write', 'colours', 'arc_payload', -1); ('write', 'protos', 'Sphere', -1); ('write', 'colours', 'arc_specialize', 6)."
+    defaultPrim = "Bench"
+)
+
+over "Bench"
+{
+    over "Inst"
+    {
+        color3f[] primvars:displayColor = edit [write (0.8879231, 0.55201143, 0.0047769533) to [1]; write (0.04231141, 0.15896083, 0.6866853) to [-1]; write (0.2704978, 0.104616486, 0.67244315) to [6]] (
+            interpolation = "vertex"
+        )
+        int[] protoIndices = edit [write 1 to [-1]]
+    }
+}
+

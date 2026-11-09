@@ -1,0 +1,26 @@
+#usda 1.0
+(
+    "composition.arcs.arcs: the weaker sublayer: the stickers' references prepend star and X."
+)
+
+over "Exhibit"
+{
+    over "Pieces"
+    {
+        over "stickers"
+        {
+            over "Case"
+            {
+                over "Stickers" (
+                    prepend references = [
+                        @./parts/sticker_x.usda@,
+                        @./parts/sticker_star.usda@
+                    ]
+                )
+                {
+                }
+            }
+        }
+    }
+}
+

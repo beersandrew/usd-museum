@@ -1,0 +1,13 @@
+#usda 1.0
+(
+    "Cell delete/prepend, the stronger layer: prototypes prepend [Cone]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        prepend rel prototypes = </Row/Inst/Protos/Cone>
+    }
+}
+

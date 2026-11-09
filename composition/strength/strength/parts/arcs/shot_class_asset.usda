@@ -1,0 +1,19 @@
+#usda 1.0
+(
+    "hall shot_class: the asset's Case inherits /_hall_ShotClass and has its own opinion."
+    defaultPrim = "Case"
+)
+
+over "Case" (
+    prepend inherits = </_hall_ShotClass>
+)
+{
+    color3f[] primvars:displayColor = [(0.024157632, 0.462077, 0.58407843)] (
+        interpolation = "constant"
+    )
+}
+
+class "_hall_ShotClass"
+{
+}
+

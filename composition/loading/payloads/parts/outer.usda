@@ -1,0 +1,54 @@
+#usda 1.0
+(
+    "composition.loading.payloads: the outer payload asset: a blue stand and a Holder whose own payload is ./crate.usda (a payload inside a payload)."
+    defaultPrim = "Outer"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Outer" (
+    kind = "component"
+)
+{
+    def Scope "Looks"
+    {
+        def Material "stand"
+        {
+            token outputs:surface.connect = </Outer/Looks/stand/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.04231141, 0.15896083, 0.6866853)
+                float inputs:roughness = 0.55
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+    }
+
+    def Cylinder "Stand" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform token axis = "Y"
+        float3[] extent = [(-0.15, -0.035, -0.15), (0.15, 0.035, 0.15)]
+        double height = 0.07
+        rel material:binding = </Outer/Looks/stand>
+        double radius = 0.15
+        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.038000000000000006, 0, 1) )
+        uniform token[] xformOpOrder = ["xformOp:transform"]
+    }
+
+    def Xform "Holder" (
+        prepend payload = @./crate.usda@
+    )
+    {
+        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.07300000000000001, 0, 1) )
+        uniform token[] xformOpOrder = ["xformOp:transform"]
+    }
+}
+

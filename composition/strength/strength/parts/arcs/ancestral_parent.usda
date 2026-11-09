@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    "hall ancestral: the parent cell's source."
+    defaultPrim = "Cell"
+)
+
+over "Cell"
+{
+    over "Case"
+    {
+        color3f[] primvars:displayColor = [(0.30054379, 0.7011019, 0.7758222)] (
+            interpolation = "constant"
+        )
+    }
+}
+

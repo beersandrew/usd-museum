@@ -1,0 +1,18 @@
+#usda 1.0
+(
+    "Cell one/plain, its one layer: prototypes explicit [Cone, Prism, Sphere, Cube]."
+)
+
+over "Row"
+{
+    over "Inst"
+    {
+        rel prototypes = [
+            </Row/Inst/Protos/Cone>,
+            </Row/Inst/Protos/Prism>,
+            </Row/Inst/Protos/Sphere>,
+            </Row/Inst/Protos/Cube>,
+        ]
+    }
+}
+

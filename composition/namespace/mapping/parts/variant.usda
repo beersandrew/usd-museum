@@ -1,0 +1,68 @@
+#usda 1.0
+(
+    "composition.namespace.mapping, the variant asset: the glaze material, its connections and the Body's binding are authored inside the variant glaze=on (selected); their paths carry no variant selection and still map."
+    defaultPrim = "Vase"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Vase" (
+    kind = "component"
+    variants = {
+        string glaze = "on"
+    }
+    prepend variantSets = "glaze"
+)
+{
+    color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)] (
+        interpolation = "constant"
+    )
+
+    def Scope "Looks"
+    {
+    }
+
+    def Xform "Body" (
+        instanceable = true
+        prepend references = @./vase.usda@
+    )
+    {
+    }
+    variantSet "glaze" = {
+        "off" {
+
+        }
+        "on" {
+            over "Looks"
+            {
+                def Material "Glaze"
+                {
+                    color3f inputs:glaze = (0.2746773, 0.63759685, 0.07818742)
+                    token outputs:surface.connect = </Vase/Looks/Glaze/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.63075715, 0.000607054, 0.010960094)
+                        color3f inputs:diffuseColor.connect = </Vase/Looks/Glaze.inputs:glaze>
+                        float inputs:roughness = 0.55
+                        color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+            }
+
+            over "Body" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Vase/Looks/Glaze>
+            }
+
+        }
+    }
+}
+
