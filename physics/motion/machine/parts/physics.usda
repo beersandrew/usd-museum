@@ -1,0 +1,856 @@
+#usda 1.0
+(
+    "Garage Rube Goldberg machine: authored UsdPhysics at rest (bench top at y = 0). Built by rooms/08_garage/build.py; the simulated run is in baked.usdc."
+    defaultPrim = "Machine"
+    endTimeCode = 96
+    framesPerSecond = 24
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    startTimeCode = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Machine" (
+    prepend apiSchemas = ["PhysicsArticulationRootAPI"]
+)
+{
+    def PhysicsScene "PhysicsScene"
+    {
+        vector3f physics:gravityDirection = (0, -1, 0)
+        float physics:gravityMagnitude = 9.81
+    }
+
+    def "PhysicsMaterials"
+    {
+        def Material "Rubber" (
+            prepend apiSchemas = ["PhysicsMaterialAPI"]
+        )
+        {
+            float physics:density = 1100
+            float physics:dynamicFriction = 0.8
+            float physics:restitution = 0.6
+            float physics:staticFriction = 0.9
+        }
+
+        def Material "Wood" (
+            prepend apiSchemas = ["PhysicsMaterialAPI"]
+        )
+        {
+            float physics:density = 700
+            float physics:dynamicFriction = 0.4
+            float physics:restitution = 0.3
+            float physics:staticFriction = 0.5
+        }
+
+        def Material "Steel" (
+            prepend apiSchemas = ["PhysicsMaterialAPI"]
+        )
+        {
+            float physics:density = 7800
+            float physics:dynamicFriction = 0.5
+            float physics:restitution = 0.2
+            float physics:staticFriction = 0.6
+        }
+
+        def Material "Brass" (
+            prepend apiSchemas = ["PhysicsMaterialAPI"]
+        )
+        {
+            float physics:density = 8500
+            float physics:dynamicFriction = 0.4
+            float physics:restitution = 0.45
+            float physics:staticFriction = 0.5
+        }
+    }
+
+    def Xform "Static"
+    {
+        def Xform "Platform"
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.33, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Shape" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                color3f[] primvars:displayColor = [(0.33, 0.34, 0.38)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.25999999046325684, 0, 0, 0), (0, 0.6200000047683716, 0, 0), (0, 0, 0.1599999964237213, 0), (0, 0.31, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Ramp"
+        {
+            def Mesh "Shape" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-1.2, 0.345, -0.07), (-0.26, 0.635, 0.07)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 3, 2, 4, 6, 7, 5, 0, 4, 5, 1, 2, 3, 7, 6, 0, 2, 6, 4, 1, 5, 7, 3]
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                uniform token physics:approximation = "convexHull"
+                bool physics:collisionEnabled = 1
+                point3f[] points = [(-1.2, 0.605, -0.07), (-1.2, 0.605, 0.07), (-1.2, 0.635, -0.07), (-1.2, 0.635, 0.07), (-0.26, 0.345, -0.07), (-0.26, 0.345, 0.07), (-0.26, 0.375, -0.07), (-0.26, 0.375, 0.07)]
+                color3f[] primvars:displayColor = [(0.5, 0.34, 0.18)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Mesh "RailBack"
+            {
+                float3[] extent = [(-1.2, 0.375, -0.09), (-0.26, 0.665, -0.07)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 3, 2, 4, 6, 7, 5, 0, 4, 5, 1, 2, 3, 7, 6, 0, 2, 6, 4, 1, 5, 7, 3]
+                point3f[] points = [(-1.2, 0.635, -0.09), (-1.2, 0.635, -0.07), (-1.2, 0.665, -0.09), (-1.2, 0.665, -0.07), (-0.26, 0.375, -0.09), (-0.26, 0.375, -0.07), (-0.26, 0.405, -0.09), (-0.26, 0.405, -0.07)]
+                color3f[] primvars:displayColor = [(0.33, 0.34, 0.38)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Mesh "RailFront"
+            {
+                float3[] extent = [(-1.2, 0.375, 0.07), (-0.26, 0.665, 0.09)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 3, 2, 4, 6, 7, 5, 0, 4, 5, 1, 2, 3, 7, 6, 0, 2, 6, 4, 1, 5, 7, 3]
+                point3f[] points = [(-1.2, 0.635, 0.07), (-1.2, 0.635, 0.09), (-1.2, 0.665, 0.07), (-1.2, 0.665, 0.09), (-0.26, 0.375, 0.07), (-0.26, 0.375, 0.09), (-0.26, 0.405, 0.07), (-0.26, 0.405, 0.09)]
+                color3f[] primvars:displayColor = [(0.33, 0.34, 0.38)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Cube "LegTop"
+            {
+                color3f[] primvars:displayColor = [(0.33, 0.34, 0.38)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.029999999329447746, 0, 0, 0), (0, 0.6200000047683716, 0, 0), (0, 0, 0.029999999329447746, 0), (-1.2, 0.31, -0.1, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "LegBottom"
+            {
+                color3f[] primvars:displayColor = [(0.33, 0.34, 0.38)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.029999999329447746, 0, 0, 0), (0, 0.36000001430511475, 0, 0), (0, 0, 0.029999999329447746, 0), (-0.26, 0.18, -0.1, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Fulcrum"
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.3, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Mesh "Shape" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.06, 0, -0.08), (0.06, 0.085, 0.08)]
+                int[] faceVertexCounts = [3, 3, 4, 4, 4]
+                int[] faceVertexIndices = [0, 2, 1, 3, 4, 5, 0, 1, 4, 3, 1, 2, 5, 4, 2, 0, 3, 5]
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                uniform token physics:approximation = "convexHull"
+                bool physics:collisionEnabled = 1
+                point3f[] points = [(-0.06, 0, -0.08), (0.06, 0, -0.08), (0, 0.085, -0.08), (-0.06, 0, 0.08), (0.06, 0, 0.08), (0, 0.085, 0.08)]
+                color3f[] primvars:displayColor = [(0.33, 0.34, 0.38)]
+                uniform token subdivisionScheme = "none"
+            }
+        }
+
+        def Xform "Gantry"
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.4024999999999999, 0, -0.16, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Post" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Steel> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                color3f[] primvars:displayColor = [(0.33, 0.34, 0.38)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.03999999910593033, 0, 0, 0), (0, 0.8500000238418579, 0, 0), (0, 0, 0.03999999910593033, 0), (0, 0.42500000000000004, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Arm"
+            {
+                color3f[] primvars:displayColor = [(0.33, 0.34, 0.38)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.029999999329447746, 0, 0, 0), (0, 0.029999999329447746, 0, 0), (0, 0, 0.1899999976158142, 0), (0, 0.8300000000000001, 0.085, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "BellPost"
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.7969000351702824, 0, -0.2, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Post" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Steel> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                color3f[] primvars:displayColor = [(0.33, 0.34, 0.38)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.03999999910593033, 0, 0, 0), (0, 0.36421912908554077, 0, 0), (0, 0, 0.03999999910593033, 0), (0, 0.18210955710267648, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Arm"
+            {
+                color3f[] primvars:displayColor = [(0.33, 0.34, 0.38)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.029999999329447746, 0, 0, 0), (0, 0.029999999329447746, 0, 0), (0, 0, 0.14663399755954742, 0), (0, 0.344219114205353, 0.0733170011523133, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+    }
+
+    def Xform "Bodies"
+    {
+        def Xform "Plunger" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            bool physics:kinematicEnabled = 0
+            float physics:mass = 0.12
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.4, 0.65, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Visual"
+            {
+                color3f[] primvars:displayColor = [(0.25, 0.45, 0.75)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.07999999821186066, 0, 0, 0), (0, 0.05999999865889549, 0, 0), (0, 0, 0.07999999821186066, 0), (0, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Steel> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double size = 1
+                matrix4d xformOp:transform = ( (0.07999999821186066, 0, 0, 0), (0, 0.05999999865889549, 0, 0), (0, 0, 0.07999999821186066, 0), (0, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Ball" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (0, 0, 0)
+            bool physics:kinematicEnabled = 0
+            float physics:mass = 0.15
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.265, 0.67, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Sphere "Visual"
+            {
+                float3[] extent = [(-0.05, -0.05, -0.05), (0.05, 0.05, 0.05)]
+                color3f[] primvars:displayColor = [(1, 0.45, 0.05)]
+                double radius = 0.05
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Sphere "Spot"
+            {
+                float3[] extent = [(-0.016, -0.016, -0.016), (0.016, 0.016, 0.016)]
+                color3f[] primvars:displayColor = [(0.1, 0.1, 0.1)]
+                double radius = 0.016
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.041, 0.022500000000000003, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Sphere "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.05, -0.05, -0.05), (0.05, 0.05, 0.05)]
+                rel material:binding:physics = </Machine/PhysicsMaterials/Rubber> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double radius = 0.05
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Seesaw" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (0, 0, 0)
+            float3 physics:diagonalInertia = (0.00051, 0.021333333, 0.021333333)
+            bool physics:kinematicEnabled = 0
+            float physics:mass = 0.4
+            quatf physics:principalAxes = (1, 0, 0, 0)
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (0.9682458365518543, 0.25, 0, 0), (-0.25, 0.9682458365518543, 0, 0), (0, 0, 1, 0), (-0.3, 0.1, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Visual"
+            {
+                color3f[] primvars:displayColor = [(0.62, 0.43, 0.24)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.800000011920929, 0, 0, 0), (0, 0.029999999329447746, 0, 0), (0, 0, 0.11999999731779099, 0), (0, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cylinder "Axle"
+            {
+                uniform token axis = "Z"
+                double height = 0.16
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.68)]
+                double radius = 0.012
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Mesh "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.4, -0.015, -0.06), (0.4, 0.015, 0.06)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 3, 2, 4, 6, 7, 5, 0, 4, 5, 1, 2, 3, 7, 6, 0, 2, 6, 4, 1, 5, 7, 3]
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                uniform token physics:approximation = "boundingCube"
+                bool physics:collisionEnabled = 1
+                point3f[] points = [(-0.4, -0.015, -0.06), (-0.4, -0.015, 0.06), (-0.4, 0.015, -0.06), (-0.4, 0.015, 0.06), (0.4, -0.015, -0.06), (0.4, -0.015, 0.06), (0.4, 0.015, -0.06), (0.4, 0.015, 0.06)]
+                uniform token purpose = "guide"
+                uniform token subdivisionScheme = "none"
+            }
+        }
+
+        def Xform "Domino01" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (-0.0125, 0.1, 0)
+            float physics:density = 800
+            bool physics:kinematicEnabled = 0
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.35250000000000004, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Visual"
+            {
+                color3f[] primvars:displayColor = [(0.95, 0.93, 0.84)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Domino02" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (-0.0125, 0.1, 0)
+            float physics:density = 800
+            bool physics:kinematicEnabled = 0
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.45250000000000007, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Visual"
+            {
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.15)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Domino03" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (-0.0125, 0.1, 0)
+            float physics:density = 800
+            bool physics:kinematicEnabled = 0
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.5525, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Visual"
+            {
+                color3f[] primvars:displayColor = [(0.95, 0.93, 0.84)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Domino04" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (-0.0125, 0.1, 0)
+            float physics:density = 800
+            bool physics:kinematicEnabled = 0
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.6525000000000001, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Visual"
+            {
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.15)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Domino05" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (-0.0125, 0.1, 0)
+            float physics:density = 800
+            bool physics:kinematicEnabled = 0
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.7525, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Visual"
+            {
+                color3f[] primvars:displayColor = [(0.95, 0.93, 0.84)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Domino06" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (-0.0125, 0.1, 0)
+            float physics:density = 800
+            bool physics:kinematicEnabled = 0
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.8525, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Visual"
+            {
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.15)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Domino07" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (-0.0125, 0.1, 0)
+            float physics:density = 800
+            bool physics:kinematicEnabled = 0
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.9525000000000001, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Visual"
+            {
+                color3f[] primvars:displayColor = [(0.95, 0.93, 0.84)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Domino08" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (-0.0125, 0.1, 0)
+            float physics:density = 800
+            bool physics:kinematicEnabled = 0
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.0525, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Visual"
+            {
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.15)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Domino09" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (-0.0125, 0.1, 0)
+            float physics:density = 800
+            bool physics:kinematicEnabled = 0
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.1525, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Visual"
+            {
+                color3f[] primvars:displayColor = [(0.95, 0.93, 0.84)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Domino10" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (-0.0125, 0.1, 0)
+            float physics:density = 800
+            bool physics:kinematicEnabled = 0
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.2525, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cube "Visual"
+            {
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.15)]
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </Machine/PhysicsMaterials/Wood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double size = 1
+                matrix4d xformOp:transform = ( (0.02500000037252903, 0, 0, 0), (0, 0.20000000298023224, 0, 0), (0, 0, 0.10000000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Bob" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (0, -0.66, 0)
+            bool physics:kinematicEnabled = 0
+            float physics:mass = 0.3
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.4024999999999999, 0.81, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Sphere "Visual"
+            {
+                float3[] extent = [(-0.055, -0.055, -0.055), (0.055, 0.055, 0.055)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.68)]
+                double radius = 0.055
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, -0.66, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cylinder "Rod"
+            {
+                uniform token axis = "Y"
+                double height = 0.66
+                color3f[] primvars:displayColor = [(0.2, 0.2, 0.22)]
+                double radius = 0.006
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, -0.33, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Sphere "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.055, -0.055, -0.055), (0.055, 0.055, 0.055)]
+                rel material:binding:physics = </Machine/PhysicsMaterials/Steel> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double radius = 0.055
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, -0.66, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Bell" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            point3f physics:centerOfMass = (0, -0.096, 0)
+            bool physics:kinematicEnabled = 0
+            float physics:mass = 0.25
+            bool physics:rigidBodyEnabled = 1
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.7969000351702824, 0.324219114205353, -0.07336599769537341, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Cylinder "Hanger"
+            {
+                uniform token axis = "Y"
+                double height = 0.03
+                color3f[] primvars:displayColor = [(0.2, 0.2, 0.22)]
+                double radius = 0.006
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, -0.015, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cone "Visual"
+            {
+                uniform token axis = "Y"
+                double height = 0.11
+                color3f[] primvars:displayColor = [(0.88, 0.68, 0.16)]
+                double radius = 0.07
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, -0.08499999999999999, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Cone "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                double height = 0.11
+                rel material:binding:physics = </Machine/PhysicsMaterials/Brass> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                bool physics:collisionEnabled = 1
+                uniform token purpose = "guide"
+                double radius = 0.07
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, -0.08499999999999999, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+    }
+
+    def Scope "Joints"
+    {
+        def PhysicsPrismaticJoint "PlungerSlide" (
+            prepend apiSchemas = ["PhysicsDriveAPI:linear"]
+        )
+        {
+            float drive:linear:physics:damping = 20.784609
+            float drive:linear:physics:maxForce = 50
+            float drive:linear:physics:stiffness = 900
+            float drive:linear:physics:targetPosition = 0.05
+            uniform token drive:linear:physics:type = "force"
+            uniform token physics:axis = "X"
+            rel physics:body0 = </Machine/Static/Platform>
+            rel physics:body1 = </Machine/Bodies/Plunger>
+            point3f physics:localPos0 = (-0.07, 0.65, 0)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = 0
+            float physics:upperLimit = 0.05
+        }
+
+        def PhysicsRevoluteJoint "SeesawHinge"
+        {
+            uniform token physics:axis = "Z"
+            rel physics:body0 = </Machine/Static/Fulcrum>
+            rel physics:body1 = </Machine/Bodies/Seesaw>
+            point3f physics:localPos0 = (0, 0.1, 0)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -14.477512
+            float physics:upperLimit = 14.477512
+        }
+
+        def PhysicsSphericalJoint "PendulumPivot"
+        {
+            uniform token physics:axis = "Y"
+            rel physics:body0 = </Machine/Static/Gantry>
+            rel physics:body1 = </Machine/Bodies/Bob>
+            float physics:coneAngle0Limit = 60
+            float physics:coneAngle1Limit = 45
+            point3f physics:localPos0 = (0, 0.81, 0.16)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0, 0, 0, 1)
+            quatf physics:localRot1 = (0, 0, 0, 1)
+        }
+
+        def PhysicsRevoluteJoint "BellHinge" (
+            prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 0.02
+            float drive:angular:physics:stiffness = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "X"
+            rel physics:body0 = </Machine/Static/BellPost>
+            rel physics:body1 = </Machine/Bodies/Bell>
+            point3f physics:localPos0 = (0, 0.3242191, 0.126634)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.70710677, 0, -0.70710677, 0)
+            quatf physics:localRot1 = (0.70710677, 0, -0.70710677, 0)
+            float physics:lowerLimit = -35
+            float physics:upperLimit = 35
+        }
+    }
+}
+

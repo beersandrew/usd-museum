@@ -1,0 +1,14 @@
+#usda 1.0
+(
+    defaultPrim = "Holder"
+    doc = "Holder/1st: a prim name may not start with a digit, so this whole layer fails to open."
+)
+
+def Xform "Holder"
+{
+    def "1st" (
+        references = @./bust.usda@
+    )
+    {
+    }
+}

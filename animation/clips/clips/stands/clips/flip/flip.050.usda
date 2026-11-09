@@ -1,0 +1,11 @@
+#usda 1.0
+(
+    "animation.clips.clips: template clip 50 (one frame): no sample (missing)."
+    framesPerSecond = 24
+    timeCodesPerSecond = 24
+)
+
+def "Cart"
+{
+}
+

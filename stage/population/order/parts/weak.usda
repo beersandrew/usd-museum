@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    "stage.population.order weak sublayer: the Strongest row reorders its bindings [gamma, alpha]. The root layer's reorder [beta, alpha] is stronger and alone counts."
+)
+
+over "Exhibit"
+{
+    over "Pieces"
+    {
+        over "Strongest"
+        {
+            reorder properties = ["material:binding:collection:gamma", "material:binding:collection:alpha"]
+        }
+    }
+}
+

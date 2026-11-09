@@ -1,0 +1,133 @@
+#usda 1.0
+(
+    "materials.textures.textures: the bumps piece. Referenced by exhibit.usda."
+    defaultPrim = "Bumps"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Bumps" (
+    kind = "component"
+)
+{
+    def Scope "Looks"
+    {
+        def Material "Bumps"
+        {
+            token outputs:surface.connect = </Bumps/Looks/Bumps/Surface.outputs:surface>
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Transform"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Bumps/Looks/Bumps/St.outputs:result>
+                float inputs:rotation = 0
+                float2 inputs:scale = (8, 4)
+                float2 inputs:translation = (0, 0)
+                float2 outputs:result
+            }
+
+            def Shader "Colour"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/bump_colour.png@
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Bumps/Looks/Bumps/Transform.outputs:result>
+                token inputs:wrapS = "repeat"
+                token inputs:wrapT = "repeat"
+                float3 outputs:rgb
+            }
+
+            def Shader "Normal"
+            {
+                uniform token info:id = "UsdUVTexture"
+                float4 inputs:bias = (-1, -1, 1, 0)
+                asset inputs:file = @./textures/tile_normal.png@
+                float4 inputs:scale = (2, 2, -1, 1)
+                token inputs:sourceColorSpace = "raw"
+                float2 inputs:st.connect = </Bumps/Looks/Bumps/Transform.outputs:result>
+                token inputs:wrapS = "repeat"
+                token inputs:wrapT = "repeat"
+                float3 outputs:rgb
+            }
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.9, 0.05, 0.05)
+                color3f inputs:diffuseColor.connect = </Bumps/Looks/Bumps/Colour.outputs:rgb>
+                normal3f inputs:normal.connect = </Bumps/Looks/Bumps/Normal.outputs:rgb>
+                float inputs:roughness = 0.35
+                token outputs:surface
+            }
+        }
+
+        def Material "Ring"
+        {
+            token outputs:surface.connect = </Bumps/Looks/Ring/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.1, 0.25, 0.7)
+                float inputs:roughness = 0.4
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "Ball" (
+        prepend references = @./ball.usda@
+    )
+    {
+        float3 xformOp:scale = (0.26291078, 0.26291078, 0.26291078)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+
+        over "Sphere"
+        {
+            over "Body" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Bumps/Looks/Bumps>
+            }
+
+            over "Ring" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Bumps/Looks/Ring>
+            }
+        }
+
+        def Material "BaseLook"
+        {
+            token outputs:surface.connect = </Bumps/Ball/BaseLook/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.08, 0.08, 0.09)
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+
+        over "Base" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Bumps/Ball/BaseLook>
+        }
+    }
+}
+

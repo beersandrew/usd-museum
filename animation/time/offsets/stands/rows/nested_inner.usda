@@ -1,0 +1,11 @@
+#usda 1.0
+(
+    "animation.time.offsets: the inner sublayer (offset 20)."
+    defaultPrim = "Cart"
+    framesPerSecond = 24
+    subLayers = [
+        @./ride.usda@ (offset = 20)
+    ]
+    timeCodesPerSecond = 24
+)
+

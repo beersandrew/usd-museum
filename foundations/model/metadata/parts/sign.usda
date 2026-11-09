@@ -1,0 +1,53 @@
+#usda 1.0
+(
+    defaultPrim = "Sign"
+    doc = """foundations.model.metadata: a vase whose glaze is chosen by an expression reading a bool
+under a double-quoted key, an int64 under a single-quoted key and a string under a bare key."""
+    expressionVariables = {
+        bool "LIT" = 1
+        int64 'COUNT' = 3
+        string COLOR = "green"
+    }
+)
+
+def Xform "Sign" (
+    variants = {
+        string glaze = '`if(${LIT}, if(eq(${COUNT}, 3), ${COLOR}, "off"), "off")`'
+    }
+    prepend variantSets = "glaze"
+)
+{
+    def "Body" (
+        instanceable = true
+        references = @./vase.usda@
+    )
+    {
+    }
+    variantSet "glaze" = {
+        "teal" {
+            color3f[] primvars:displayColor = [(0.0103298, 0.313989, 0.0802198)] (
+                interpolation = "constant"
+            )
+        }
+        "red" {
+            color3f[] primvars:displayColor = [(0.630757, 0.000607054, 0.0109601)] (
+                interpolation = "constant"
+            )
+        }
+        "gold" {
+            color3f[] primvars:displayColor = [(0.692071, 0.367246, 0.0219809)] (
+                interpolation = "constant"
+            )
+        }
+        "green" {
+            color3f[] primvars:displayColor = [(0.0331048, 0.342392, 0.073239)] (
+                interpolation = "constant"
+            )
+        }
+        "off" {
+            color3f[] primvars:displayColor = [(0.147319, 0.147319, 0.162647)] (
+                interpolation = "constant"
+            )
+        }
+    }
+}

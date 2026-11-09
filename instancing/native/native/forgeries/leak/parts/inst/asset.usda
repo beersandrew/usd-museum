@@ -1,0 +1,25 @@
+#usda 1.0
+(
+    "instancing.native.native: the instanced asset, one vase glazed teal by its own primvars:displayColor; /Asset inherits /class_Asset."
+    defaultPrim = "Asset"
+)
+
+class "class_Asset"
+{
+}
+
+def Xform "Asset" (
+    prepend inherits = </class_Asset>
+    kind = "component"
+)
+{
+    def Xform "Vase" (
+        prepend references = @../vase.usda@
+    )
+    {
+        color3f[] primvars:displayColor = [(0.010329823, 0.31398872, 0.08021982)] (
+            interpolation = "constant"
+        )
+    }
+}
+

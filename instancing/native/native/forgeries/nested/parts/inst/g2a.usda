@@ -1,0 +1,22 @@
+#usda 1.0
+(
+    "Group layer: an instanceable Asset (references asset.usda) with a red over on its vase (ancestral to the instance: ignored)."
+    defaultPrim = "Group_1"
+)
+
+def Xform "Group_1"
+{
+    def Xform "Asset" (
+        instanceable = true
+        prepend references = @./asset.usda@
+    )
+    {
+        over "Vase"
+        {
+            color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)] (
+                interpolation = "constant"
+            )
+        }
+    }
+}
+

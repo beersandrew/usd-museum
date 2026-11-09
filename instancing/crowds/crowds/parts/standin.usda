@@ -1,0 +1,45 @@
+#usda 1.0
+(
+    "instancing.crowds.crowds: what a back-row card stands in for: a red WRONG box, drawn only if the cards draw mode is ignored."
+    defaultPrim = "Standin"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Standin" (
+    kind = "component"
+)
+{
+    def Scope "Looks"
+    {
+        def Material "Red"
+        {
+            token outputs:surface.connect = </Standin/Looks/Red/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.63075715, 0.000607054, 0.010960094)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+    }
+
+    def Mesh "Box" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(-0.32, 0.3, -0.2), (0.32, 1.28, 0.45)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Standin/Looks/Red>
+        point3f[] points = [(-0.32, 0.3, 0.45), (0.32, 0.3, 0.45), (0.32, 1.28, 0.45), (-0.32, 1.28, 0.45), (0.32, 0.3, -0.2), (-0.32, 0.3, -0.2), (-0.32, 1.28, -0.2), (0.32, 1.28, -0.2), (-0.32, 1.28, 0.45), (0.32, 1.28, 0.45), (0.32, 1.28, -0.2), (-0.32, 1.28, -0.2), (-0.32, 0.3, -0.2), (0.32, 0.3, -0.2), (0.32, 0.3, 0.45), (-0.32, 0.3, 0.45), (0.32, 0.3, 0.45), (0.32, 0.3, -0.2), (0.32, 1.28, -0.2), (0.32, 1.28, 0.45), (-0.32, 0.3, -0.2), (-0.32, 0.3, 0.45), (-0.32, 1.28, 0.45), (-0.32, 1.28, -0.2)]
+        uniform token subdivisionScheme = "none"
+    }
+}
+

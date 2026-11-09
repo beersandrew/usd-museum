@@ -1,0 +1,14 @@
+#usda 1.0
+(
+    doc = "The strong sublayer: only clips.default.active. Merged key by key with the weak layer's clips.default."
+)
+
+over "Holder" (
+    clips = {
+        dictionary default = {
+            double2[] active = [(1, 0)]
+        }
+    }
+)
+{
+}

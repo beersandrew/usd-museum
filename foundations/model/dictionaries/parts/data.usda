@@ -1,0 +1,13 @@
+#usda 1.0
+(
+    doc = "DICT-03, data only: a dictionary holding a double3 and a matrix2d."
+)
+
+def "Holder" (
+    customData = {
+        double3 pivot = (0, 0.5, 1)
+        matrix2d m = ( (1, 2), (3, 4) )
+    }
+)
+{
+}

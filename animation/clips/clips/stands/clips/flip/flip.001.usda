@@ -1,0 +1,14 @@
+#usda 1.0
+(
+    "animation.clips.clips: template clip 1 (one frame)."
+    framesPerSecond = 24
+    timeCodesPerSecond = 24
+)
+
+def "Cart"
+{
+    matrix4d xformOp:transform.timeSamples = {
+        1: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.05249999999999999, 0, 1) ),
+    }
+}
+

@@ -1,0 +1,153 @@
+#usda 1.0
+(
+    "instancing.native.native: a luggage cart of two instanced stacks (./stack.usda). No colour here."
+    defaultPrim = "Cart"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Cart" (
+    kind = "group"
+)
+{
+    def Scope "Looks"
+    {
+        def Material "Steel"
+        {
+            token outputs:surface.connect = </Cart/Looks/Steel/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.10653923, 0.112804785, 0.13286832)
+                float inputs:roughness = 0.45
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "Rubber"
+        {
+            token outputs:surface.connect = </Cart/Looks/Rubber/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.0039359396, 0.0039359396, 0.0039359396)
+                float inputs:roughness = 0.9
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+    }
+
+    def Mesh "Deck" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(-0.62, 0.1, -0.2), (0.62, 0.13, 0.2)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Cart/Looks/Steel>
+        point3f[] points = [(-0.62, 0.1, 0.2), (0.62, 0.1, 0.2), (0.62, 0.13, 0.2), (-0.62, 0.13, 0.2), (0.62, 0.1, -0.2), (-0.62, 0.1, -0.2), (-0.62, 0.13, -0.2), (0.62, 0.13, -0.2), (-0.62, 0.13, 0.2), (0.62, 0.13, 0.2), (0.62, 0.13, -0.2), (-0.62, 0.13, -0.2), (-0.62, 0.1, -0.2), (0.62, 0.1, -0.2), (0.62, 0.1, 0.2), (-0.62, 0.1, 0.2), (0.62, 0.1, 0.2), (0.62, 0.1, -0.2), (0.62, 0.13, -0.2), (0.62, 0.13, 0.2), (-0.62, 0.1, -0.2), (-0.62, 0.1, 0.2), (-0.62, 0.13, 0.2), (-0.62, 0.13, -0.2)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "Handle" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(0.585, 0.13, -0.17), (0.615, 0.75, -0.13)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Cart/Looks/Steel>
+        point3f[] points = [(0.585, 0.13, -0.13), (0.615, 0.13, -0.13), (0.615, 0.75, -0.13), (0.585, 0.75, -0.13), (0.615, 0.13, -0.17), (0.585, 0.13, -0.17), (0.585, 0.75, -0.17), (0.615, 0.75, -0.17), (0.585, 0.75, -0.13), (0.615, 0.75, -0.13), (0.615, 0.75, -0.17), (0.585, 0.75, -0.17), (0.585, 0.13, -0.17), (0.615, 0.13, -0.17), (0.615, 0.13, -0.13), (0.585, 0.13, -0.13), (0.615, 0.13, -0.13), (0.615, 0.13, -0.17), (0.615, 0.75, -0.17), (0.615, 0.75, -0.13), (0.585, 0.13, -0.17), (0.585, 0.13, -0.13), (0.585, 0.75, -0.13), (0.585, 0.75, -0.17)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "Grip" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(0.575, 0.75, -0.18), (0.625, 0.79, -0.12)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Cart/Looks/Steel>
+        point3f[] points = [(0.575, 0.75, -0.12), (0.625, 0.75, -0.12), (0.625, 0.79, -0.12), (0.575, 0.79, -0.12), (0.625, 0.75, -0.18), (0.575, 0.75, -0.18), (0.575, 0.79, -0.18), (0.625, 0.79, -0.18), (0.575, 0.79, -0.12), (0.625, 0.79, -0.12), (0.625, 0.79, -0.18), (0.575, 0.79, -0.18), (0.575, 0.75, -0.18), (0.625, 0.75, -0.18), (0.625, 0.75, -0.12), (0.575, 0.75, -0.12), (0.625, 0.75, -0.12), (0.625, 0.75, -0.18), (0.625, 0.79, -0.18), (0.625, 0.79, -0.12), (0.575, 0.75, -0.18), (0.575, 0.75, -0.12), (0.575, 0.79, -0.12), (0.575, 0.79, -0.18)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def "Wheels"
+    {
+        def Mesh "W0" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            float3[] extent = [(-0.5, -0.004, -0.18), (-0.46, 0.096, -0.08)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+            rel material:binding = </Cart/Looks/Rubber>
+            point3f[] points = [(-0.5, -0.004, -0.08), (-0.46, -0.004, -0.08), (-0.46, 0.096, -0.08), (-0.5, 0.096, -0.08), (-0.46, -0.004, -0.18), (-0.5, -0.004, -0.18), (-0.5, 0.096, -0.18), (-0.46, 0.096, -0.18), (-0.5, 0.096, -0.08), (-0.46, 0.096, -0.08), (-0.46, 0.096, -0.18), (-0.5, 0.096, -0.18), (-0.5, -0.004, -0.18), (-0.46, -0.004, -0.18), (-0.46, -0.004, -0.08), (-0.5, -0.004, -0.08), (-0.46, -0.004, -0.08), (-0.46, -0.004, -0.18), (-0.46, 0.096, -0.18), (-0.46, 0.096, -0.08), (-0.5, -0.004, -0.18), (-0.5, -0.004, -0.08), (-0.5, 0.096, -0.08), (-0.5, 0.096, -0.18)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "W1" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            float3[] extent = [(0.46, -0.004, -0.18), (0.5, 0.096, -0.08)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+            rel material:binding = </Cart/Looks/Rubber>
+            point3f[] points = [(0.46, -0.004, -0.08), (0.5, -0.004, -0.08), (0.5, 0.096, -0.08), (0.46, 0.096, -0.08), (0.5, -0.004, -0.18), (0.46, -0.004, -0.18), (0.46, 0.096, -0.18), (0.5, 0.096, -0.18), (0.46, 0.096, -0.08), (0.5, 0.096, -0.08), (0.5, 0.096, -0.18), (0.46, 0.096, -0.18), (0.46, -0.004, -0.18), (0.5, -0.004, -0.18), (0.5, -0.004, -0.08), (0.46, -0.004, -0.08), (0.5, -0.004, -0.08), (0.5, -0.004, -0.18), (0.5, 0.096, -0.18), (0.5, 0.096, -0.08), (0.46, -0.004, -0.18), (0.46, -0.004, -0.08), (0.46, 0.096, -0.08), (0.46, 0.096, -0.18)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "W2" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            float3[] extent = [(-0.5, -0.004, 0.08), (-0.46, 0.096, 0.18)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+            rel material:binding = </Cart/Looks/Rubber>
+            point3f[] points = [(-0.5, -0.004, 0.18), (-0.46, -0.004, 0.18), (-0.46, 0.096, 0.18), (-0.5, 0.096, 0.18), (-0.46, -0.004, 0.08), (-0.5, -0.004, 0.08), (-0.5, 0.096, 0.08), (-0.46, 0.096, 0.08), (-0.5, 0.096, 0.18), (-0.46, 0.096, 0.18), (-0.46, 0.096, 0.08), (-0.5, 0.096, 0.08), (-0.5, -0.004, 0.08), (-0.46, -0.004, 0.08), (-0.46, -0.004, 0.18), (-0.5, -0.004, 0.18), (-0.46, -0.004, 0.18), (-0.46, -0.004, 0.08), (-0.46, 0.096, 0.08), (-0.46, 0.096, 0.18), (-0.5, -0.004, 0.08), (-0.5, -0.004, 0.18), (-0.5, 0.096, 0.18), (-0.5, 0.096, 0.08)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "W3" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            float3[] extent = [(0.46, -0.004, 0.08), (0.5, 0.096, 0.18)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+            rel material:binding = </Cart/Looks/Rubber>
+            point3f[] points = [(0.46, -0.004, 0.18), (0.5, -0.004, 0.18), (0.5, 0.096, 0.18), (0.46, 0.096, 0.18), (0.5, -0.004, 0.08), (0.46, -0.004, 0.08), (0.46, 0.096, 0.08), (0.5, 0.096, 0.08), (0.46, 0.096, 0.18), (0.5, 0.096, 0.18), (0.5, 0.096, 0.08), (0.46, 0.096, 0.08), (0.46, -0.004, 0.08), (0.5, -0.004, 0.08), (0.5, -0.004, 0.18), (0.46, -0.004, 0.18), (0.5, -0.004, 0.18), (0.5, -0.004, 0.08), (0.5, 0.096, 0.08), (0.5, 0.096, 0.18), (0.46, -0.004, 0.08), (0.46, -0.004, 0.18), (0.46, 0.096, 0.18), (0.46, 0.096, 0.08)]
+            uniform token subdivisionScheme = "none"
+        }
+    }
+
+    def Xform "StackL" (
+        instanceable = true
+        prepend references = @./stack.usda@
+    )
+    {
+        double3 xformOp:translate = (-0.3, 0.13, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "StackR" (
+        instanceable = true
+        prepend references = @./stack.usda@
+    )
+    {
+        double3 xformOp:translate = (0.3, 0.13, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+}
+

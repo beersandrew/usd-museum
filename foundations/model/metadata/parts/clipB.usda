@@ -1,0 +1,10 @@
+#usda 1.0
+(
+    defaultPrim = "Holder"
+    doc = "Vase B: clips merged through a grouped sublayer."
+    subLayers = [
+        @./group.usda@,
+        @./weak.usdc@,
+        @./geo.usda@
+    ]
+)

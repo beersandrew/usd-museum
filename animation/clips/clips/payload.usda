@@ -1,0 +1,42 @@
+#usda 1.0
+(
+    "USD Museum, Animation wing: Value clips, carts riding bent tracks on 2 stands. Every cart's value comes from value clips (stands/clips/). Each track is a rule's answer key, baked at build time; each cart's height is a real attribute's resolved value. Each stand plays frames 1..96 from its hold's start (LayerOffset). Built by src/build.py; do not edit."
+    defaultPrim = "Exhibit"
+    endTimeCode = 312
+    framesPerSecond = 24
+    metersPerUnit = 1
+    startTimeCode = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Exhibit" (
+    kind = "assembly"
+)
+{
+    float3[] extentsHint = [(-4.495, 0, -3.6000001), (4.495, 2.09, -0.032999985)]
+
+    def Scope "Looks"
+    {
+    }
+
+    def "Stands"
+    {
+        def Xform "Which" (
+            prepend references = @./stands/which.usda@
+        )
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-3.295, 0, -0.4, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+
+        def Xform "Strength" (
+            prepend references = @./stands/strength.usda@ (offset = 192)
+        )
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.4749999999999994, 0, -0.4, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+    }
+}
+

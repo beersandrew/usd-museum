@@ -1,0 +1,2092 @@
+#usda 1.0
+(
+    "USD Museum exhibit foundations.files.encodings: six usdc crate versions drop into their slots; hand-written usda grammar pieces. Built by src/build.py (frames 1-96: the crates drop)."
+    defaultPrim = "Exhibit"
+    endTimeCode = 96
+    framesPerSecond = 24
+    metersPerUnit = 1
+    startTimeCode = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Exhibit" (
+    kind = "assembly"
+)
+{
+    float3[] extentsHint = [(-3.15, 0, -1.5), (3.15, 2.55, -0.314)]
+
+    def Scope "Looks"
+    {
+        def Material "pedestal"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/pedestal/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.60382736, 0.58701634, 0.53823555)
+                float inputs:roughness = 0.85
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "board"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/board/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.073238954, 0.07828832, 0.088981524)
+                float inputs:roughness = 0.8
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "placard_back"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/placard_back/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.05087609, 0.046964202, 0.043233637)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "outline"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/outline/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.015325204, 0.015325204, 0.017389102)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "outline_red"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/outline_red/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.63075715, 0.000607054, 0.010960094)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "wood"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/wood/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.4769998, 0.233022, 0.073238954)
+                float inputs:roughness = 0.55
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "ghost"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/ghost/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.44798842, 0.6382832, 0.8900054)
+                float inputs:opacity = 0.22
+                float inputs:roughness = 0.3
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+    }
+
+    def Mesh "Board" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(-3.15, 0, -1.5), (3.15, 2.55, -1.42)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Exhibit/Looks/board>
+        point3f[] points = [(-3.15, 0, -1.42), (3.15, 0, -1.42), (3.15, 2.55, -1.42), (-3.15, 2.55, -1.42), (3.15, 0, -1.5), (-3.15, 0, -1.5), (-3.15, 2.55, -1.5), (3.15, 2.55, -1.5), (-3.15, 2.55, -1.42), (3.15, 2.55, -1.42), (3.15, 2.55, -1.5), (-3.15, 2.55, -1.5), (-3.15, 0, -1.5), (3.15, 0, -1.5), (3.15, 0, -1.42), (-3.15, 0, -1.42), (3.15, 0, -1.42), (3.15, 0, -1.5), (3.15, 2.55, -1.5), (3.15, 2.55, -1.42), (-3.15, 0, -1.5), (-3.15, 0, -1.42), (-3.15, 2.55, -1.42), (-3.15, 2.55, -1.5)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def "Placards"
+    {
+        def Material "Title_Mat"
+        {
+            token outputs:surface.connect = </Exhibit/Placards/Title_Mat/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Title_Mat/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Placards/Title_Mat/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Placards_Title.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Placards/Title_Mat/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Mesh "Title" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-3, 1.95, -1.41), (0, 2.39, -1.41)]
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            rel material:binding = </Exhibit/Placards/Title_Mat>
+            normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "vertex"
+            )
+            point3f[] points = [(-3, 1.95, -1.41), (0, 1.95, -1.41), (0, 2.39, -1.41), (-3, 2.39, -1.41)]
+            color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+            texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                interpolation = "vertex"
+            )
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "Title_Back" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            float3[] extent = [(-3.02, 1.93, -1.44), (0.02, 2.41, -1.414)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+            rel material:binding = </Exhibit/Looks/placard_back>
+            point3f[] points = [(-3.02, 1.93, -1.414), (0.02, 1.93, -1.414), (0.02, 2.41, -1.414), (-3.02, 2.41, -1.414), (0.02, 1.93, -1.44), (-3.02, 1.93, -1.44), (-3.02, 2.41, -1.44), (0.02, 2.41, -1.44), (-3.02, 2.41, -1.414), (0.02, 2.41, -1.414), (0.02, 2.41, -1.44), (-3.02, 2.41, -1.44), (-3.02, 1.93, -1.44), (0.02, 1.93, -1.44), (0.02, 1.93, -1.414), (-3.02, 1.93, -1.414), (0.02, 1.93, -1.414), (0.02, 1.93, -1.44), (0.02, 2.41, -1.44), (0.02, 2.41, -1.414), (-3.02, 1.93, -1.44), (-3.02, 1.93, -1.414), (-3.02, 2.41, -1.414), (-3.02, 2.41, -1.44)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Material "Family0_Mat"
+        {
+            token outputs:surface.connect = </Exhibit/Placards/Family0_Mat/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Family0_Mat/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Placards/Family0_Mat/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Placards_Family0.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Placards/Family0_Mat/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Mesh "Family0" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-2.194286, 1.6511372, -1.412), (-1.0057139, 1.7921628, -1.412)]
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            rel material:binding = </Exhibit/Placards/Family0_Mat>
+            normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "vertex"
+            )
+            point3f[] points = [(-2.194286, 1.6511372, -1.412), (-1.0057139, 1.6511372, -1.412), (-1.0057139, 1.7921628, -1.412), (-2.194286, 1.7921628, -1.412)]
+            color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+            texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                interpolation = "vertex"
+            )
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Material "Family1_Mat"
+        {
+            token outputs:surface.connect = </Exhibit/Placards/Family1_Mat/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Family1_Mat/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Placards/Family1_Mat/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Placards_Family1.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Placards/Family1_Mat/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Mesh "Family1" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(0.9647165, 1.6401372, -1.412), (2.1152835, 1.7811629, -1.412)]
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            rel material:binding = </Exhibit/Placards/Family1_Mat>
+            normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "vertex"
+            )
+            point3f[] points = [(0.9647165, 1.6401372, -1.412), (2.1152835, 1.6401372, -1.412), (2.1152835, 1.7811629, -1.412), (0.9647165, 1.7811629, -1.412)]
+            color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+            texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                interpolation = "vertex"
+            )
+            uniform token subdivisionScheme = "none"
+        }
+    }
+
+    def "Pieces"
+    {
+        def "Crates"
+        {
+            def Xform "C0_8_0"
+            {
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-2.8, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Pedestal" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.2, 0, -0.92), (0.2, 0.74, -0.32)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/pedestal>
+                    point3f[] points = [(-0.2, 0, -0.32), (0.2, 0, -0.32), (0.2, 0.74, -0.32), (-0.2, 0.74, -0.32), (0.2, 0, -0.92), (-0.2, 0, -0.92), (-0.2, 0.74, -0.92), (0.2, 0.74, -0.92), (-0.2, 0.74, -0.32), (0.2, 0.74, -0.32), (0.2, 0.74, -0.92), (-0.2, 0.74, -0.92), (-0.2, 0, -0.92), (0.2, 0, -0.92), (0.2, 0, -0.32), (-0.2, 0, -0.32), (0.2, 0, -0.32), (0.2, 0, -0.92), (0.2, 0.74, -0.92), (0.2, 0.74, -0.32), (-0.2, 0, -0.92), (-0.2, 0, -0.32), (-0.2, 0.74, -0.32), (-0.2, 0.74, -0.92)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Label_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Crates/C0_8_0/Label_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Crates/C0_8_0/Label_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Crates/C0_8_0/Label_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Crates_C0_8_0_Label.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Crates/C0_8_0/Label_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Label" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.17, 0.45549703, -0.314), (0.17, 0.544503, -0.314)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Crates/C0_8_0/Label_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.17, 0.45549703, -0.314), (0.17, 0.45549703, -0.314), (0.17, 0.544503, -0.314), (-0.17, 0.544503, -0.314)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Sub_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Crates/C0_8_0/Sub_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Crates/C0_8_0/Sub_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Crates/C0_8_0/Sub_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Crates_C0_8_0_Sub.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Crates/C0_8_0/Sub_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Sub" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.17, 0.3815474, -0.314), (0.17, 0.43639386, -0.314)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Crates/C0_8_0/Sub_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.17, 0.3815474, -0.314), (0.17, 0.3815474, -0.314), (0.17, 0.43639386, -0.314), (-0.17, 0.43639386, -0.314)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Plinth" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.18, 0.74, -0.8), (0.18, 0.76, -0.44)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/wood>
+                    point3f[] points = [(-0.18, 0.74, -0.44), (0.18, 0.74, -0.44), (0.18, 0.76, -0.44), (-0.18, 0.76, -0.44), (0.18, 0.74, -0.8), (-0.18, 0.74, -0.8), (-0.18, 0.76, -0.8), (0.18, 0.76, -0.8), (-0.18, 0.76, -0.44), (0.18, 0.76, -0.44), (0.18, 0.76, -0.8), (-0.18, 0.76, -0.8), (-0.18, 0.74, -0.8), (0.18, 0.74, -0.8), (0.18, 0.74, -0.44), (-0.18, 0.74, -0.44), (0.18, 0.74, -0.44), (0.18, 0.74, -0.8), (0.18, 0.76, -0.8), (0.18, 0.76, -0.44), (-0.18, 0.74, -0.8), (-0.18, 0.74, -0.44), (-0.18, 0.76, -0.44), (-0.18, 0.76, -0.8)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Slot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.166, 0.764, -0.786), (0.166, 1.076, -0.454)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287]
+                    rel material:binding = </Exhibit/Looks/outline>
+                    normal3f[] normals = [(1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1)] (
+                        interpolation = "faceVarying"
+                    )
+                    point3f[] points = [(0.166, 0.764, -0.786), (0.166, 0.772, -0.786), (0.166, 0.772, -0.778), (0.166, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.772, -0.778), (-0.166, 0.772, -0.786), (-0.166, 0.764, -0.786), (-0.166, 0.772, -0.786), (-0.166, 0.772, -0.778), (0.166, 0.772, -0.778), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.778), (0.166, 0.764, -0.778), (0.166, 0.772, -0.778), (-0.166, 0.772, -0.778), (-0.166, 0.772, -0.786), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (-0.166, 0.764, -0.786), (0.166, 0.764, -0.462), (0.166, 0.772, -0.462), (0.166, 0.772, -0.454), (0.166, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.462), (-0.166, 0.764, -0.462), (-0.166, 0.772, -0.462), (-0.166, 0.772, -0.454), (0.166, 0.772, -0.454), (0.166, 0.772, -0.462), (0.166, 0.764, -0.462), (0.166, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.462), (-0.166, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 0.772, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.462), (0.166, 0.772, -0.462), (0.166, 0.764, -0.462), (-0.166, 0.764, -0.462), (0.166, 1.068, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.778), (0.166, 1.068, -0.778), (-0.166, 1.068, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.166, 1.068, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.778), (0.166, 1.076, -0.778), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.166, 1.068, -0.778), (-0.166, 1.068, -0.778), (-0.166, 1.068, -0.786), (-0.166, 1.068, -0.778), (0.166, 1.068, -0.778), (0.166, 1.076, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (-0.166, 1.068, -0.786), (0.166, 1.068, -0.462), (0.166, 1.076, -0.462), (0.166, 1.076, -0.454), (0.166, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.166, 1.068, -0.462), (-0.166, 1.076, -0.462), (-0.166, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.462), (0.166, 1.068, -0.462), (0.166, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.068, -0.462), (-0.166, 1.068, -0.454), (0.166, 1.068, -0.454), (0.166, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (0.166, 1.076, -0.462), (0.166, 1.068, -0.462), (-0.166, 1.068, -0.462), (-0.158, 0.764, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.076, -0.778), (-0.158, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.166, 0.764, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.778), (-0.158, 1.076, -0.778), (-0.158, 1.076, -0.786), (-0.158, 0.764, -0.786), (-0.158, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.778), (-0.158, 0.764, -0.778), (-0.158, 1.076, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.158, 1.076, -0.786), (-0.158, 0.764, -0.786), (-0.166, 0.764, -0.786), (-0.158, 0.764, -0.462), (-0.158, 1.076, -0.462), (-0.158, 1.076, -0.454), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.166, 0.764, -0.462), (-0.166, 1.076, -0.462), (-0.166, 1.076, -0.454), (-0.158, 1.076, -0.454), (-0.158, 1.076, -0.462), (-0.158, 0.764, -0.462), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.462), (-0.166, 0.764, -0.454), (-0.158, 0.764, -0.454), (-0.158, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.158, 1.076, -0.462), (-0.158, 0.764, -0.462), (-0.166, 0.764, -0.462), (-0.158, 0.764, -0.786), (-0.158, 0.772, -0.786), (-0.158, 0.772, -0.454), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.786), (-0.166, 0.764, -0.786), (-0.166, 0.772, -0.786), (-0.166, 0.772, -0.454), (-0.158, 0.772, -0.454), (-0.158, 0.772, -0.786), (-0.158, 0.764, -0.786), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.454), (-0.158, 0.764, -0.454), (-0.158, 0.772, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.786), (-0.158, 0.772, -0.786), (-0.158, 0.764, -0.786), (-0.166, 0.764, -0.786), (-0.158, 1.068, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.076, -0.454), (-0.158, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.786), (-0.166, 1.068, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.454), (-0.158, 1.076, -0.454), (-0.158, 1.076, -0.786), (-0.158, 1.068, -0.786), (-0.158, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.068, -0.786), (-0.166, 1.068, -0.454), (-0.158, 1.068, -0.454), (-0.158, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.068, -0.786), (-0.166, 1.068, -0.786), (0.166, 0.764, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.778), (0.166, 0.764, -0.778), (0.158, 0.764, -0.778), (0.158, 1.076, -0.778), (0.158, 1.076, -0.786), (0.158, 0.764, -0.786), (0.158, 1.076, -0.786), (0.158, 1.076, -0.778), (0.166, 1.076, -0.778), (0.166, 1.076, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.778), (0.158, 0.764, -0.778), (0.158, 0.764, -0.786), (0.158, 0.764, -0.778), (0.166, 0.764, -0.778), (0.166, 1.076, -0.778), (0.158, 1.076, -0.778), (0.158, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 0.764, -0.786), (0.158, 0.764, -0.786), (0.166, 0.764, -0.462), (0.166, 1.076, -0.462), (0.166, 1.076, -0.454), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.462), (0.158, 0.764, -0.462), (0.158, 1.076, -0.462), (0.158, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.462), (0.166, 0.764, -0.462), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.764, -0.462), (0.158, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 1.076, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.462), (0.166, 1.076, -0.462), (0.166, 0.764, -0.462), (0.158, 0.764, -0.462), (0.166, 0.764, -0.786), (0.166, 0.772, -0.786), (0.166, 0.772, -0.454), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.772, -0.454), (0.158, 0.772, -0.786), (0.158, 0.764, -0.786), (0.158, 0.772, -0.786), (0.158, 0.772, -0.454), (0.166, 0.772, -0.454), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.764, -0.786), (0.158, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 0.772, -0.454), (0.158, 0.772, -0.454), (0.158, 0.772, -0.786), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.158, 0.764, -0.786), (0.166, 1.068, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.454), (0.166, 1.068, -0.454), (0.158, 1.068, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.786), (0.158, 1.068, -0.786), (0.158, 1.076, -0.786), (0.158, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.166, 1.068, -0.454), (0.158, 1.068, -0.454), (0.158, 1.068, -0.786), (0.158, 1.068, -0.454), (0.166, 1.068, -0.454), (0.166, 1.076, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.158, 1.068, -0.786)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Xform "Crate"
+                {
+                    matrix4d xformOp:transform = ( (1.5, 0, 0, 0), (0, 1.5, 0, 0), (0, 0, 1.5, 0), (0, 0.76, -0.62, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                    def "Body" (
+                        prepend references = @./crates/c_0_8_0.usdc@
+                    )
+                    {
+                    }
+                }
+            }
+
+            def Xform "C0_9_0"
+            {
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-2.32, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Pedestal" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.2, 0, -0.92), (0.2, 0.74, -0.32)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/pedestal>
+                    point3f[] points = [(-0.2, 0, -0.32), (0.2, 0, -0.32), (0.2, 0.74, -0.32), (-0.2, 0.74, -0.32), (0.2, 0, -0.92), (-0.2, 0, -0.92), (-0.2, 0.74, -0.92), (0.2, 0.74, -0.92), (-0.2, 0.74, -0.32), (0.2, 0.74, -0.32), (0.2, 0.74, -0.92), (-0.2, 0.74, -0.92), (-0.2, 0, -0.92), (0.2, 0, -0.92), (0.2, 0, -0.32), (-0.2, 0, -0.32), (0.2, 0, -0.32), (0.2, 0, -0.92), (0.2, 0.74, -0.92), (0.2, 0.74, -0.32), (-0.2, 0, -0.92), (-0.2, 0, -0.32), (-0.2, 0.74, -0.32), (-0.2, 0.74, -0.92)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Label_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Crates/C0_9_0/Label_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Crates/C0_9_0/Label_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Crates/C0_9_0/Label_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Crates_C0_9_0_Label.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Crates/C0_9_0/Label_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Label" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.17, 0.45549703, -0.314), (0.17, 0.544503, -0.314)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Crates/C0_9_0/Label_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.17, 0.45549703, -0.314), (0.17, 0.45549703, -0.314), (0.17, 0.544503, -0.314), (-0.17, 0.544503, -0.314)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Sub_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Crates/C0_9_0/Sub_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Crates/C0_9_0/Sub_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Crates/C0_9_0/Sub_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Crates_C0_9_0_Sub.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Crates/C0_9_0/Sub_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Sub" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.17, 0.38728595, -0.314), (0.17, 0.43892232, -0.314)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Crates/C0_9_0/Sub_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.17, 0.38728595, -0.314), (0.17, 0.38728595, -0.314), (0.17, 0.43892232, -0.314), (-0.17, 0.43892232, -0.314)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Plinth" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.18, 0.74, -0.8), (0.18, 0.76, -0.44)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/wood>
+                    point3f[] points = [(-0.18, 0.74, -0.44), (0.18, 0.74, -0.44), (0.18, 0.76, -0.44), (-0.18, 0.76, -0.44), (0.18, 0.74, -0.8), (-0.18, 0.74, -0.8), (-0.18, 0.76, -0.8), (0.18, 0.76, -0.8), (-0.18, 0.76, -0.44), (0.18, 0.76, -0.44), (0.18, 0.76, -0.8), (-0.18, 0.76, -0.8), (-0.18, 0.74, -0.8), (0.18, 0.74, -0.8), (0.18, 0.74, -0.44), (-0.18, 0.74, -0.44), (0.18, 0.74, -0.44), (0.18, 0.74, -0.8), (0.18, 0.76, -0.8), (0.18, 0.76, -0.44), (-0.18, 0.74, -0.8), (-0.18, 0.74, -0.44), (-0.18, 0.76, -0.44), (-0.18, 0.76, -0.8)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Slot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.166, 0.764, -0.786), (0.166, 1.076, -0.454)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287]
+                    rel material:binding = </Exhibit/Looks/outline>
+                    normal3f[] normals = [(1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1)] (
+                        interpolation = "faceVarying"
+                    )
+                    point3f[] points = [(0.166, 0.764, -0.786), (0.166, 0.772, -0.786), (0.166, 0.772, -0.778), (0.166, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.772, -0.778), (-0.166, 0.772, -0.786), (-0.166, 0.764, -0.786), (-0.166, 0.772, -0.786), (-0.166, 0.772, -0.778), (0.166, 0.772, -0.778), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.778), (0.166, 0.764, -0.778), (0.166, 0.772, -0.778), (-0.166, 0.772, -0.778), (-0.166, 0.772, -0.786), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (-0.166, 0.764, -0.786), (0.166, 0.764, -0.462), (0.166, 0.772, -0.462), (0.166, 0.772, -0.454), (0.166, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.462), (-0.166, 0.764, -0.462), (-0.166, 0.772, -0.462), (-0.166, 0.772, -0.454), (0.166, 0.772, -0.454), (0.166, 0.772, -0.462), (0.166, 0.764, -0.462), (0.166, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.462), (-0.166, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 0.772, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.462), (0.166, 0.772, -0.462), (0.166, 0.764, -0.462), (-0.166, 0.764, -0.462), (0.166, 1.068, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.778), (0.166, 1.068, -0.778), (-0.166, 1.068, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.166, 1.068, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.778), (0.166, 1.076, -0.778), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.166, 1.068, -0.778), (-0.166, 1.068, -0.778), (-0.166, 1.068, -0.786), (-0.166, 1.068, -0.778), (0.166, 1.068, -0.778), (0.166, 1.076, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (-0.166, 1.068, -0.786), (0.166, 1.068, -0.462), (0.166, 1.076, -0.462), (0.166, 1.076, -0.454), (0.166, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.166, 1.068, -0.462), (-0.166, 1.076, -0.462), (-0.166, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.462), (0.166, 1.068, -0.462), (0.166, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.068, -0.462), (-0.166, 1.068, -0.454), (0.166, 1.068, -0.454), (0.166, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (0.166, 1.076, -0.462), (0.166, 1.068, -0.462), (-0.166, 1.068, -0.462), (-0.158, 0.764, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.076, -0.778), (-0.158, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.166, 0.764, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.778), (-0.158, 1.076, -0.778), (-0.158, 1.076, -0.786), (-0.158, 0.764, -0.786), (-0.158, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.778), (-0.158, 0.764, -0.778), (-0.158, 1.076, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.158, 1.076, -0.786), (-0.158, 0.764, -0.786), (-0.166, 0.764, -0.786), (-0.158, 0.764, -0.462), (-0.158, 1.076, -0.462), (-0.158, 1.076, -0.454), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.166, 0.764, -0.462), (-0.166, 1.076, -0.462), (-0.166, 1.076, -0.454), (-0.158, 1.076, -0.454), (-0.158, 1.076, -0.462), (-0.158, 0.764, -0.462), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.462), (-0.166, 0.764, -0.454), (-0.158, 0.764, -0.454), (-0.158, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.158, 1.076, -0.462), (-0.158, 0.764, -0.462), (-0.166, 0.764, -0.462), (-0.158, 0.764, -0.786), (-0.158, 0.772, -0.786), (-0.158, 0.772, -0.454), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.786), (-0.166, 0.764, -0.786), (-0.166, 0.772, -0.786), (-0.166, 0.772, -0.454), (-0.158, 0.772, -0.454), (-0.158, 0.772, -0.786), (-0.158, 0.764, -0.786), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.454), (-0.158, 0.764, -0.454), (-0.158, 0.772, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.786), (-0.158, 0.772, -0.786), (-0.158, 0.764, -0.786), (-0.166, 0.764, -0.786), (-0.158, 1.068, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.076, -0.454), (-0.158, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.786), (-0.166, 1.068, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.454), (-0.158, 1.076, -0.454), (-0.158, 1.076, -0.786), (-0.158, 1.068, -0.786), (-0.158, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.068, -0.786), (-0.166, 1.068, -0.454), (-0.158, 1.068, -0.454), (-0.158, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.068, -0.786), (-0.166, 1.068, -0.786), (0.166, 0.764, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.778), (0.166, 0.764, -0.778), (0.158, 0.764, -0.778), (0.158, 1.076, -0.778), (0.158, 1.076, -0.786), (0.158, 0.764, -0.786), (0.158, 1.076, -0.786), (0.158, 1.076, -0.778), (0.166, 1.076, -0.778), (0.166, 1.076, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.778), (0.158, 0.764, -0.778), (0.158, 0.764, -0.786), (0.158, 0.764, -0.778), (0.166, 0.764, -0.778), (0.166, 1.076, -0.778), (0.158, 1.076, -0.778), (0.158, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 0.764, -0.786), (0.158, 0.764, -0.786), (0.166, 0.764, -0.462), (0.166, 1.076, -0.462), (0.166, 1.076, -0.454), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.462), (0.158, 0.764, -0.462), (0.158, 1.076, -0.462), (0.158, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.462), (0.166, 0.764, -0.462), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.764, -0.462), (0.158, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 1.076, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.462), (0.166, 1.076, -0.462), (0.166, 0.764, -0.462), (0.158, 0.764, -0.462), (0.166, 0.764, -0.786), (0.166, 0.772, -0.786), (0.166, 0.772, -0.454), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.772, -0.454), (0.158, 0.772, -0.786), (0.158, 0.764, -0.786), (0.158, 0.772, -0.786), (0.158, 0.772, -0.454), (0.166, 0.772, -0.454), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.764, -0.786), (0.158, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 0.772, -0.454), (0.158, 0.772, -0.454), (0.158, 0.772, -0.786), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.158, 0.764, -0.786), (0.166, 1.068, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.454), (0.166, 1.068, -0.454), (0.158, 1.068, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.786), (0.158, 1.068, -0.786), (0.158, 1.076, -0.786), (0.158, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.166, 1.068, -0.454), (0.158, 1.068, -0.454), (0.158, 1.068, -0.786), (0.158, 1.068, -0.454), (0.166, 1.068, -0.454), (0.166, 1.076, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.158, 1.068, -0.786)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Xform "Crate"
+                {
+                    matrix4d xformOp:transform = ( (1.5, 0, 0, 0), (0, 1.5, 0, 0), (0, 0, 1.5, 0), (0, 0.76, -0.62, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                    def "Body" (
+                        prepend references = @./crates/c_0_9_0.usdc@
+                    )
+                    {
+                    }
+                }
+            }
+
+            def Xform "C0_10_0"
+            {
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.8399999999999999, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Pedestal" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.2, 0, -0.92), (0.2, 0.74, -0.32)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/pedestal>
+                    point3f[] points = [(-0.2, 0, -0.32), (0.2, 0, -0.32), (0.2, 0.74, -0.32), (-0.2, 0.74, -0.32), (0.2, 0, -0.92), (-0.2, 0, -0.92), (-0.2, 0.74, -0.92), (0.2, 0.74, -0.92), (-0.2, 0.74, -0.32), (0.2, 0.74, -0.32), (0.2, 0.74, -0.92), (-0.2, 0.74, -0.92), (-0.2, 0, -0.92), (0.2, 0, -0.92), (0.2, 0, -0.32), (-0.2, 0, -0.32), (0.2, 0, -0.32), (0.2, 0, -0.92), (0.2, 0.74, -0.92), (0.2, 0.74, -0.32), (-0.2, 0, -0.92), (-0.2, 0, -0.32), (-0.2, 0.74, -0.32), (-0.2, 0.74, -0.92)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Label_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Crates/C0_10_0/Label_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Crates/C0_10_0/Label_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Crates/C0_10_0/Label_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Crates_C0_10_0_Label.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Crates/C0_10_0/Label_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Label" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.17, 0.46111238, -0.314), (0.17, 0.5388876, -0.314)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Crates/C0_10_0/Label_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.17, 0.46111238, -0.314), (0.17, 0.46111238, -0.314), (0.17, 0.5388876, -0.314), (-0.17, 0.5388876, -0.314)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Sub_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Crates/C0_10_0/Sub_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Crates/C0_10_0/Sub_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Crates/C0_10_0/Sub_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Crates_C0_10_0_Sub.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Crates/C0_10_0/Sub_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Sub" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.17, 0.38467586, -0.314), (0.17, 0.43397886, -0.314)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Crates/C0_10_0/Sub_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.17, 0.38467586, -0.314), (0.17, 0.38467586, -0.314), (0.17, 0.43397886, -0.314), (-0.17, 0.43397886, -0.314)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Plinth" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.18, 0.74, -0.8), (0.18, 0.76, -0.44)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/wood>
+                    point3f[] points = [(-0.18, 0.74, -0.44), (0.18, 0.74, -0.44), (0.18, 0.76, -0.44), (-0.18, 0.76, -0.44), (0.18, 0.74, -0.8), (-0.18, 0.74, -0.8), (-0.18, 0.76, -0.8), (0.18, 0.76, -0.8), (-0.18, 0.76, -0.44), (0.18, 0.76, -0.44), (0.18, 0.76, -0.8), (-0.18, 0.76, -0.8), (-0.18, 0.74, -0.8), (0.18, 0.74, -0.8), (0.18, 0.74, -0.44), (-0.18, 0.74, -0.44), (0.18, 0.74, -0.44), (0.18, 0.74, -0.8), (0.18, 0.76, -0.8), (0.18, 0.76, -0.44), (-0.18, 0.74, -0.8), (-0.18, 0.74, -0.44), (-0.18, 0.76, -0.44), (-0.18, 0.76, -0.8)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Slot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.166, 0.764, -0.786), (0.166, 1.076, -0.454)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287]
+                    rel material:binding = </Exhibit/Looks/outline>
+                    normal3f[] normals = [(1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1)] (
+                        interpolation = "faceVarying"
+                    )
+                    point3f[] points = [(0.166, 0.764, -0.786), (0.166, 0.772, -0.786), (0.166, 0.772, -0.778), (0.166, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.772, -0.778), (-0.166, 0.772, -0.786), (-0.166, 0.764, -0.786), (-0.166, 0.772, -0.786), (-0.166, 0.772, -0.778), (0.166, 0.772, -0.778), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.778), (0.166, 0.764, -0.778), (0.166, 0.772, -0.778), (-0.166, 0.772, -0.778), (-0.166, 0.772, -0.786), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (-0.166, 0.764, -0.786), (0.166, 0.764, -0.462), (0.166, 0.772, -0.462), (0.166, 0.772, -0.454), (0.166, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.462), (-0.166, 0.764, -0.462), (-0.166, 0.772, -0.462), (-0.166, 0.772, -0.454), (0.166, 0.772, -0.454), (0.166, 0.772, -0.462), (0.166, 0.764, -0.462), (0.166, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.462), (-0.166, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 0.772, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.462), (0.166, 0.772, -0.462), (0.166, 0.764, -0.462), (-0.166, 0.764, -0.462), (0.166, 1.068, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.778), (0.166, 1.068, -0.778), (-0.166, 1.068, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.166, 1.068, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.778), (0.166, 1.076, -0.778), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.166, 1.068, -0.778), (-0.166, 1.068, -0.778), (-0.166, 1.068, -0.786), (-0.166, 1.068, -0.778), (0.166, 1.068, -0.778), (0.166, 1.076, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (-0.166, 1.068, -0.786), (0.166, 1.068, -0.462), (0.166, 1.076, -0.462), (0.166, 1.076, -0.454), (0.166, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.166, 1.068, -0.462), (-0.166, 1.076, -0.462), (-0.166, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.462), (0.166, 1.068, -0.462), (0.166, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.068, -0.462), (-0.166, 1.068, -0.454), (0.166, 1.068, -0.454), (0.166, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (0.166, 1.076, -0.462), (0.166, 1.068, -0.462), (-0.166, 1.068, -0.462), (-0.158, 0.764, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.076, -0.778), (-0.158, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.166, 0.764, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.778), (-0.158, 1.076, -0.778), (-0.158, 1.076, -0.786), (-0.158, 0.764, -0.786), (-0.158, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.778), (-0.158, 0.764, -0.778), (-0.158, 1.076, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.158, 1.076, -0.786), (-0.158, 0.764, -0.786), (-0.166, 0.764, -0.786), (-0.158, 0.764, -0.462), (-0.158, 1.076, -0.462), (-0.158, 1.076, -0.454), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.166, 0.764, -0.462), (-0.166, 1.076, -0.462), (-0.166, 1.076, -0.454), (-0.158, 1.076, -0.454), (-0.158, 1.076, -0.462), (-0.158, 0.764, -0.462), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.462), (-0.166, 0.764, -0.454), (-0.158, 0.764, -0.454), (-0.158, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.158, 1.076, -0.462), (-0.158, 0.764, -0.462), (-0.166, 0.764, -0.462), (-0.158, 0.764, -0.786), (-0.158, 0.772, -0.786), (-0.158, 0.772, -0.454), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.786), (-0.166, 0.764, -0.786), (-0.166, 0.772, -0.786), (-0.166, 0.772, -0.454), (-0.158, 0.772, -0.454), (-0.158, 0.772, -0.786), (-0.158, 0.764, -0.786), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.454), (-0.158, 0.764, -0.454), (-0.158, 0.772, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.786), (-0.158, 0.772, -0.786), (-0.158, 0.764, -0.786), (-0.166, 0.764, -0.786), (-0.158, 1.068, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.076, -0.454), (-0.158, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.786), (-0.166, 1.068, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.454), (-0.158, 1.076, -0.454), (-0.158, 1.076, -0.786), (-0.158, 1.068, -0.786), (-0.158, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.068, -0.786), (-0.166, 1.068, -0.454), (-0.158, 1.068, -0.454), (-0.158, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.068, -0.786), (-0.166, 1.068, -0.786), (0.166, 0.764, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.778), (0.166, 0.764, -0.778), (0.158, 0.764, -0.778), (0.158, 1.076, -0.778), (0.158, 1.076, -0.786), (0.158, 0.764, -0.786), (0.158, 1.076, -0.786), (0.158, 1.076, -0.778), (0.166, 1.076, -0.778), (0.166, 1.076, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.778), (0.158, 0.764, -0.778), (0.158, 0.764, -0.786), (0.158, 0.764, -0.778), (0.166, 0.764, -0.778), (0.166, 1.076, -0.778), (0.158, 1.076, -0.778), (0.158, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 0.764, -0.786), (0.158, 0.764, -0.786), (0.166, 0.764, -0.462), (0.166, 1.076, -0.462), (0.166, 1.076, -0.454), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.462), (0.158, 0.764, -0.462), (0.158, 1.076, -0.462), (0.158, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.462), (0.166, 0.764, -0.462), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.764, -0.462), (0.158, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 1.076, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.462), (0.166, 1.076, -0.462), (0.166, 0.764, -0.462), (0.158, 0.764, -0.462), (0.166, 0.764, -0.786), (0.166, 0.772, -0.786), (0.166, 0.772, -0.454), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.772, -0.454), (0.158, 0.772, -0.786), (0.158, 0.764, -0.786), (0.158, 0.772, -0.786), (0.158, 0.772, -0.454), (0.166, 0.772, -0.454), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.764, -0.786), (0.158, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 0.772, -0.454), (0.158, 0.772, -0.454), (0.158, 0.772, -0.786), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.158, 0.764, -0.786), (0.166, 1.068, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.454), (0.166, 1.068, -0.454), (0.158, 1.068, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.786), (0.158, 1.068, -0.786), (0.158, 1.076, -0.786), (0.158, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.166, 1.068, -0.454), (0.158, 1.068, -0.454), (0.158, 1.068, -0.786), (0.158, 1.068, -0.454), (0.166, 1.068, -0.454), (0.166, 1.076, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.158, 1.068, -0.786)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Xform "Crate"
+                {
+                    matrix4d xformOp:transform = ( (1.5, 0, 0, 0), (0, 1.5, 0, 0), (0, 0, 1.5, 0), (0, 0.76, -0.62, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                    def "Body" (
+                        prepend references = @./crates/c_0_10_0.usdc@
+                    )
+                    {
+                    }
+                }
+            }
+
+            def Xform "C0_11_0"
+            {
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.3599999999999999, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Pedestal" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.2, 0, -0.92), (0.2, 0.74, -0.32)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/pedestal>
+                    point3f[] points = [(-0.2, 0, -0.32), (0.2, 0, -0.32), (0.2, 0.74, -0.32), (-0.2, 0.74, -0.32), (0.2, 0, -0.92), (-0.2, 0, -0.92), (-0.2, 0.74, -0.92), (0.2, 0.74, -0.92), (-0.2, 0.74, -0.32), (0.2, 0.74, -0.32), (0.2, 0.74, -0.92), (-0.2, 0.74, -0.92), (-0.2, 0, -0.92), (0.2, 0, -0.92), (0.2, 0, -0.32), (-0.2, 0, -0.32), (0.2, 0, -0.32), (0.2, 0, -0.92), (0.2, 0.74, -0.92), (0.2, 0.74, -0.32), (-0.2, 0, -0.92), (-0.2, 0, -0.32), (-0.2, 0.74, -0.32), (-0.2, 0.74, -0.92)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Label_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Crates/C0_11_0/Label_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Crates/C0_11_0/Label_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Crates/C0_11_0/Label_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Crates_C0_11_0_Label.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Crates/C0_11_0/Label_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Label" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.17, 0.46111238, -0.314), (0.17, 0.5388876, -0.314)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Crates/C0_11_0/Label_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.17, 0.46111238, -0.314), (0.17, 0.46111238, -0.314), (0.17, 0.5388876, -0.314), (-0.17, 0.5388876, -0.314)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Sub_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Crates/C0_11_0/Sub_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Crates/C0_11_0/Sub_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Crates/C0_11_0/Sub_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Crates_C0_11_0_Sub.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Crates/C0_11_0/Sub_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Sub" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.17, 0.38214698, -0.314), (0.17, 0.4355619, -0.314)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Crates/C0_11_0/Sub_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.17, 0.38214698, -0.314), (0.17, 0.38214698, -0.314), (0.17, 0.4355619, -0.314), (-0.17, 0.4355619, -0.314)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Plinth" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.18, 0.74, -0.8), (0.18, 0.76, -0.44)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/wood>
+                    point3f[] points = [(-0.18, 0.74, -0.44), (0.18, 0.74, -0.44), (0.18, 0.76, -0.44), (-0.18, 0.76, -0.44), (0.18, 0.74, -0.8), (-0.18, 0.74, -0.8), (-0.18, 0.76, -0.8), (0.18, 0.76, -0.8), (-0.18, 0.76, -0.44), (0.18, 0.76, -0.44), (0.18, 0.76, -0.8), (-0.18, 0.76, -0.8), (-0.18, 0.74, -0.8), (0.18, 0.74, -0.8), (0.18, 0.74, -0.44), (-0.18, 0.74, -0.44), (0.18, 0.74, -0.44), (0.18, 0.74, -0.8), (0.18, 0.76, -0.8), (0.18, 0.76, -0.44), (-0.18, 0.74, -0.8), (-0.18, 0.74, -0.44), (-0.18, 0.76, -0.44), (-0.18, 0.76, -0.8)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Slot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.166, 0.764, -0.786), (0.166, 1.076, -0.454)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287]
+                    rel material:binding = </Exhibit/Looks/outline>
+                    normal3f[] normals = [(1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1)] (
+                        interpolation = "faceVarying"
+                    )
+                    point3f[] points = [(0.166, 0.764, -0.786), (0.166, 0.772, -0.786), (0.166, 0.772, -0.778), (0.166, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.772, -0.778), (-0.166, 0.772, -0.786), (-0.166, 0.764, -0.786), (-0.166, 0.772, -0.786), (-0.166, 0.772, -0.778), (0.166, 0.772, -0.778), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.778), (0.166, 0.764, -0.778), (0.166, 0.772, -0.778), (-0.166, 0.772, -0.778), (-0.166, 0.772, -0.786), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (-0.166, 0.764, -0.786), (0.166, 0.764, -0.462), (0.166, 0.772, -0.462), (0.166, 0.772, -0.454), (0.166, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.462), (-0.166, 0.764, -0.462), (-0.166, 0.772, -0.462), (-0.166, 0.772, -0.454), (0.166, 0.772, -0.454), (0.166, 0.772, -0.462), (0.166, 0.764, -0.462), (0.166, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.462), (-0.166, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 0.772, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.462), (0.166, 0.772, -0.462), (0.166, 0.764, -0.462), (-0.166, 0.764, -0.462), (0.166, 1.068, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.778), (0.166, 1.068, -0.778), (-0.166, 1.068, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.166, 1.068, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.778), (0.166, 1.076, -0.778), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.166, 1.068, -0.778), (-0.166, 1.068, -0.778), (-0.166, 1.068, -0.786), (-0.166, 1.068, -0.778), (0.166, 1.068, -0.778), (0.166, 1.076, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (-0.166, 1.068, -0.786), (0.166, 1.068, -0.462), (0.166, 1.076, -0.462), (0.166, 1.076, -0.454), (0.166, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.166, 1.068, -0.462), (-0.166, 1.076, -0.462), (-0.166, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.462), (0.166, 1.068, -0.462), (0.166, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.068, -0.462), (-0.166, 1.068, -0.454), (0.166, 1.068, -0.454), (0.166, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (0.166, 1.076, -0.462), (0.166, 1.068, -0.462), (-0.166, 1.068, -0.462), (-0.158, 0.764, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.076, -0.778), (-0.158, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.166, 0.764, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.778), (-0.158, 1.076, -0.778), (-0.158, 1.076, -0.786), (-0.158, 0.764, -0.786), (-0.158, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.778), (-0.158, 0.764, -0.778), (-0.158, 1.076, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.158, 1.076, -0.786), (-0.158, 0.764, -0.786), (-0.166, 0.764, -0.786), (-0.158, 0.764, -0.462), (-0.158, 1.076, -0.462), (-0.158, 1.076, -0.454), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.166, 0.764, -0.462), (-0.166, 1.076, -0.462), (-0.166, 1.076, -0.454), (-0.158, 1.076, -0.454), (-0.158, 1.076, -0.462), (-0.158, 0.764, -0.462), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.462), (-0.166, 0.764, -0.454), (-0.158, 0.764, -0.454), (-0.158, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.158, 1.076, -0.462), (-0.158, 0.764, -0.462), (-0.166, 0.764, -0.462), (-0.158, 0.764, -0.786), (-0.158, 0.772, -0.786), (-0.158, 0.772, -0.454), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.786), (-0.166, 0.764, -0.786), (-0.166, 0.772, -0.786), (-0.166, 0.772, -0.454), (-0.158, 0.772, -0.454), (-0.158, 0.772, -0.786), (-0.158, 0.764, -0.786), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.454), (-0.158, 0.764, -0.454), (-0.158, 0.772, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.786), (-0.158, 0.772, -0.786), (-0.158, 0.764, -0.786), (-0.166, 0.764, -0.786), (-0.158, 1.068, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.076, -0.454), (-0.158, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.786), (-0.166, 1.068, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.454), (-0.158, 1.076, -0.454), (-0.158, 1.076, -0.786), (-0.158, 1.068, -0.786), (-0.158, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.068, -0.786), (-0.166, 1.068, -0.454), (-0.158, 1.068, -0.454), (-0.158, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.068, -0.786), (-0.166, 1.068, -0.786), (0.166, 0.764, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.778), (0.166, 0.764, -0.778), (0.158, 0.764, -0.778), (0.158, 1.076, -0.778), (0.158, 1.076, -0.786), (0.158, 0.764, -0.786), (0.158, 1.076, -0.786), (0.158, 1.076, -0.778), (0.166, 1.076, -0.778), (0.166, 1.076, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.778), (0.158, 0.764, -0.778), (0.158, 0.764, -0.786), (0.158, 0.764, -0.778), (0.166, 0.764, -0.778), (0.166, 1.076, -0.778), (0.158, 1.076, -0.778), (0.158, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 0.764, -0.786), (0.158, 0.764, -0.786), (0.166, 0.764, -0.462), (0.166, 1.076, -0.462), (0.166, 1.076, -0.454), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.462), (0.158, 0.764, -0.462), (0.158, 1.076, -0.462), (0.158, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.462), (0.166, 0.764, -0.462), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.764, -0.462), (0.158, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 1.076, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.462), (0.166, 1.076, -0.462), (0.166, 0.764, -0.462), (0.158, 0.764, -0.462), (0.166, 0.764, -0.786), (0.166, 0.772, -0.786), (0.166, 0.772, -0.454), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.772, -0.454), (0.158, 0.772, -0.786), (0.158, 0.764, -0.786), (0.158, 0.772, -0.786), (0.158, 0.772, -0.454), (0.166, 0.772, -0.454), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.764, -0.786), (0.158, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 0.772, -0.454), (0.158, 0.772, -0.454), (0.158, 0.772, -0.786), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.158, 0.764, -0.786), (0.166, 1.068, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.454), (0.166, 1.068, -0.454), (0.158, 1.068, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.786), (0.158, 1.068, -0.786), (0.158, 1.076, -0.786), (0.158, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.166, 1.068, -0.454), (0.158, 1.068, -0.454), (0.158, 1.068, -0.786), (0.158, 1.068, -0.454), (0.166, 1.068, -0.454), (0.166, 1.076, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.158, 1.068, -0.786)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Xform "Crate"
+                {
+                    matrix4d xformOp:transform = ( (1.5, 0, 0, 0), (0, 1.5, 0, 0), (0, 0, 1.5, 0), (0, 0.76, -0.62, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                    def "Body" (
+                        prepend references = @./crates/c_0_11_0.usdc@
+                    )
+                    {
+                    }
+                }
+            }
+
+            def Xform "C0_12_0"
+            {
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.8799999999999999, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Pedestal" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.2, 0, -0.92), (0.2, 0.74, -0.32)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/pedestal>
+                    point3f[] points = [(-0.2, 0, -0.32), (0.2, 0, -0.32), (0.2, 0.74, -0.32), (-0.2, 0.74, -0.32), (0.2, 0, -0.92), (-0.2, 0, -0.92), (-0.2, 0.74, -0.92), (0.2, 0.74, -0.92), (-0.2, 0.74, -0.32), (0.2, 0.74, -0.32), (0.2, 0.74, -0.92), (-0.2, 0.74, -0.92), (-0.2, 0, -0.92), (0.2, 0, -0.92), (0.2, 0, -0.32), (-0.2, 0, -0.32), (0.2, 0, -0.32), (0.2, 0, -0.92), (0.2, 0.74, -0.92), (0.2, 0.74, -0.32), (-0.2, 0, -0.92), (-0.2, 0, -0.32), (-0.2, 0.74, -0.32), (-0.2, 0.74, -0.92)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Label_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Crates/C0_12_0/Label_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Crates/C0_12_0/Label_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Crates/C0_12_0/Label_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Crates_C0_12_0_Label.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Crates/C0_12_0/Label_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Label" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.17, 0.46111238, -0.314), (0.17, 0.5388876, -0.314)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Crates/C0_12_0/Label_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.17, 0.46111238, -0.314), (0.17, 0.46111238, -0.314), (0.17, 0.5388876, -0.314), (-0.17, 0.5388876, -0.314)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Sub_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Crates/C0_12_0/Sub_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Crates/C0_12_0/Sub_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Crates/C0_12_0/Sub_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Crates_C0_12_0_Sub.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Crates/C0_12_0/Sub_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Sub" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.09679693, 0.37053552, -0.314), (0.09679693, 0.4448945, -0.314)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Crates/C0_12_0/Sub_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.09679693, 0.37053552, -0.314), (0.09679693, 0.37053552, -0.314), (0.09679693, 0.4448945, -0.314), (-0.09679693, 0.4448945, -0.314)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Plinth" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.18, 0.74, -0.8), (0.18, 0.76, -0.44)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/wood>
+                    point3f[] points = [(-0.18, 0.74, -0.44), (0.18, 0.74, -0.44), (0.18, 0.76, -0.44), (-0.18, 0.76, -0.44), (0.18, 0.74, -0.8), (-0.18, 0.74, -0.8), (-0.18, 0.76, -0.8), (0.18, 0.76, -0.8), (-0.18, 0.76, -0.44), (0.18, 0.76, -0.44), (0.18, 0.76, -0.8), (-0.18, 0.76, -0.8), (-0.18, 0.74, -0.8), (0.18, 0.74, -0.8), (0.18, 0.74, -0.44), (-0.18, 0.74, -0.44), (0.18, 0.74, -0.44), (0.18, 0.74, -0.8), (0.18, 0.76, -0.8), (0.18, 0.76, -0.44), (-0.18, 0.74, -0.8), (-0.18, 0.74, -0.44), (-0.18, 0.76, -0.44), (-0.18, 0.76, -0.8)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Slot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.166, 0.764, -0.786), (0.166, 1.076, -0.454)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287]
+                    rel material:binding = </Exhibit/Looks/outline>
+                    normal3f[] normals = [(1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1)] (
+                        interpolation = "faceVarying"
+                    )
+                    point3f[] points = [(0.166, 0.764, -0.786), (0.166, 0.772, -0.786), (0.166, 0.772, -0.778), (0.166, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.772, -0.778), (-0.166, 0.772, -0.786), (-0.166, 0.764, -0.786), (-0.166, 0.772, -0.786), (-0.166, 0.772, -0.778), (0.166, 0.772, -0.778), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.778), (0.166, 0.764, -0.778), (0.166, 0.772, -0.778), (-0.166, 0.772, -0.778), (-0.166, 0.772, -0.786), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (-0.166, 0.764, -0.786), (0.166, 0.764, -0.462), (0.166, 0.772, -0.462), (0.166, 0.772, -0.454), (0.166, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.462), (-0.166, 0.764, -0.462), (-0.166, 0.772, -0.462), (-0.166, 0.772, -0.454), (0.166, 0.772, -0.454), (0.166, 0.772, -0.462), (0.166, 0.764, -0.462), (0.166, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.462), (-0.166, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 0.772, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.462), (0.166, 0.772, -0.462), (0.166, 0.764, -0.462), (-0.166, 0.764, -0.462), (0.166, 1.068, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.778), (0.166, 1.068, -0.778), (-0.166, 1.068, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.166, 1.068, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.778), (0.166, 1.076, -0.778), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.166, 1.068, -0.778), (-0.166, 1.068, -0.778), (-0.166, 1.068, -0.786), (-0.166, 1.068, -0.778), (0.166, 1.068, -0.778), (0.166, 1.076, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (-0.166, 1.068, -0.786), (0.166, 1.068, -0.462), (0.166, 1.076, -0.462), (0.166, 1.076, -0.454), (0.166, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.166, 1.068, -0.462), (-0.166, 1.076, -0.462), (-0.166, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.462), (0.166, 1.068, -0.462), (0.166, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.068, -0.462), (-0.166, 1.068, -0.454), (0.166, 1.068, -0.454), (0.166, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (0.166, 1.076, -0.462), (0.166, 1.068, -0.462), (-0.166, 1.068, -0.462), (-0.158, 0.764, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.076, -0.778), (-0.158, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.166, 0.764, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.778), (-0.158, 1.076, -0.778), (-0.158, 1.076, -0.786), (-0.158, 0.764, -0.786), (-0.158, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.778), (-0.158, 0.764, -0.778), (-0.158, 1.076, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.158, 1.076, -0.786), (-0.158, 0.764, -0.786), (-0.166, 0.764, -0.786), (-0.158, 0.764, -0.462), (-0.158, 1.076, -0.462), (-0.158, 1.076, -0.454), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.166, 0.764, -0.462), (-0.166, 1.076, -0.462), (-0.166, 1.076, -0.454), (-0.158, 1.076, -0.454), (-0.158, 1.076, -0.462), (-0.158, 0.764, -0.462), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.462), (-0.166, 0.764, -0.454), (-0.158, 0.764, -0.454), (-0.158, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.158, 1.076, -0.462), (-0.158, 0.764, -0.462), (-0.166, 0.764, -0.462), (-0.158, 0.764, -0.786), (-0.158, 0.772, -0.786), (-0.158, 0.772, -0.454), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.786), (-0.166, 0.764, -0.786), (-0.166, 0.772, -0.786), (-0.166, 0.772, -0.454), (-0.158, 0.772, -0.454), (-0.158, 0.772, -0.786), (-0.158, 0.764, -0.786), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.454), (-0.158, 0.764, -0.454), (-0.158, 0.772, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.786), (-0.158, 0.772, -0.786), (-0.158, 0.764, -0.786), (-0.166, 0.764, -0.786), (-0.158, 1.068, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.076, -0.454), (-0.158, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.786), (-0.166, 1.068, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.454), (-0.158, 1.076, -0.454), (-0.158, 1.076, -0.786), (-0.158, 1.068, -0.786), (-0.158, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.068, -0.786), (-0.166, 1.068, -0.454), (-0.158, 1.068, -0.454), (-0.158, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.068, -0.786), (-0.166, 1.068, -0.786), (0.166, 0.764, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.778), (0.166, 0.764, -0.778), (0.158, 0.764, -0.778), (0.158, 1.076, -0.778), (0.158, 1.076, -0.786), (0.158, 0.764, -0.786), (0.158, 1.076, -0.786), (0.158, 1.076, -0.778), (0.166, 1.076, -0.778), (0.166, 1.076, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.778), (0.158, 0.764, -0.778), (0.158, 0.764, -0.786), (0.158, 0.764, -0.778), (0.166, 0.764, -0.778), (0.166, 1.076, -0.778), (0.158, 1.076, -0.778), (0.158, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 0.764, -0.786), (0.158, 0.764, -0.786), (0.166, 0.764, -0.462), (0.166, 1.076, -0.462), (0.166, 1.076, -0.454), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.462), (0.158, 0.764, -0.462), (0.158, 1.076, -0.462), (0.158, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.462), (0.166, 0.764, -0.462), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.764, -0.462), (0.158, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 1.076, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.462), (0.166, 1.076, -0.462), (0.166, 0.764, -0.462), (0.158, 0.764, -0.462), (0.166, 0.764, -0.786), (0.166, 0.772, -0.786), (0.166, 0.772, -0.454), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.772, -0.454), (0.158, 0.772, -0.786), (0.158, 0.764, -0.786), (0.158, 0.772, -0.786), (0.158, 0.772, -0.454), (0.166, 0.772, -0.454), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.764, -0.786), (0.158, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 0.772, -0.454), (0.158, 0.772, -0.454), (0.158, 0.772, -0.786), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.158, 0.764, -0.786), (0.166, 1.068, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.454), (0.166, 1.068, -0.454), (0.158, 1.068, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.786), (0.158, 1.068, -0.786), (0.158, 1.076, -0.786), (0.158, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.166, 1.068, -0.454), (0.158, 1.068, -0.454), (0.158, 1.068, -0.786), (0.158, 1.068, -0.454), (0.166, 1.068, -0.454), (0.166, 1.076, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.158, 1.068, -0.786)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Xform "Crate"
+                {
+                    matrix4d xformOp:transform = ( (1.5, 0, 0, 0), (0, 1.5, 0, 0), (0, 0, 1.5, 0), (0, 0.76, -0.62, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                    def "Body" (
+                        prepend references = @./crates/c_0_12_0.usdc@
+                    )
+                    {
+                    }
+                }
+            }
+
+            def Xform "C0_13_0"
+            {
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.3999999999999999, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Pedestal" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.2, 0, -0.92), (0.2, 0.74, -0.32)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/pedestal>
+                    point3f[] points = [(-0.2, 0, -0.32), (0.2, 0, -0.32), (0.2, 0.74, -0.32), (-0.2, 0.74, -0.32), (0.2, 0, -0.92), (-0.2, 0, -0.92), (-0.2, 0.74, -0.92), (0.2, 0.74, -0.92), (-0.2, 0.74, -0.32), (0.2, 0.74, -0.32), (0.2, 0.74, -0.92), (-0.2, 0.74, -0.92), (-0.2, 0, -0.92), (0.2, 0, -0.92), (0.2, 0, -0.32), (-0.2, 0, -0.32), (0.2, 0, -0.32), (0.2, 0, -0.92), (0.2, 0.74, -0.92), (0.2, 0.74, -0.32), (-0.2, 0, -0.92), (-0.2, 0, -0.32), (-0.2, 0.74, -0.32), (-0.2, 0.74, -0.92)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Label_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Crates/C0_13_0/Label_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Crates/C0_13_0/Label_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Crates/C0_13_0/Label_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Crates_C0_13_0_Label.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Crates/C0_13_0/Label_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Label" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.17, 0.46111238, -0.314), (0.17, 0.5388876, -0.314)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Crates/C0_13_0/Label_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.17, 0.46111238, -0.314), (0.17, 0.46111238, -0.314), (0.17, 0.5388876, -0.314), (-0.17, 0.5388876, -0.314)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Sub_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Crates/C0_13_0/Sub_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Crates/C0_13_0/Sub_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Crates/C0_13_0/Sub_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Crates_C0_13_0_Sub.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Crates/C0_13_0/Sub_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Sub" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.17, 0.3843698, -0.314), (0.17, 0.43421513, -0.314)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Crates/C0_13_0/Sub_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.17, 0.3843698, -0.314), (0.17, 0.3843698, -0.314), (0.17, 0.43421513, -0.314), (-0.17, 0.43421513, -0.314)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Plinth" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.18, 0.74, -0.8), (0.18, 0.76, -0.44)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/wood>
+                    point3f[] points = [(-0.18, 0.74, -0.44), (0.18, 0.74, -0.44), (0.18, 0.76, -0.44), (-0.18, 0.76, -0.44), (0.18, 0.74, -0.8), (-0.18, 0.74, -0.8), (-0.18, 0.76, -0.8), (0.18, 0.76, -0.8), (-0.18, 0.76, -0.44), (0.18, 0.76, -0.44), (0.18, 0.76, -0.8), (-0.18, 0.76, -0.8), (-0.18, 0.74, -0.8), (0.18, 0.74, -0.8), (0.18, 0.74, -0.44), (-0.18, 0.74, -0.44), (0.18, 0.74, -0.44), (0.18, 0.74, -0.8), (0.18, 0.76, -0.8), (0.18, 0.76, -0.44), (-0.18, 0.74, -0.8), (-0.18, 0.74, -0.44), (-0.18, 0.76, -0.44), (-0.18, 0.76, -0.8)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Slot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.166, 0.764, -0.786), (0.166, 1.076, -0.454)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287]
+                    rel material:binding = </Exhibit/Looks/outline>
+                    normal3f[] normals = [(1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1)] (
+                        interpolation = "faceVarying"
+                    )
+                    point3f[] points = [(0.166, 0.764, -0.786), (0.166, 0.772, -0.786), (0.166, 0.772, -0.778), (0.166, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.772, -0.778), (-0.166, 0.772, -0.786), (-0.166, 0.764, -0.786), (-0.166, 0.772, -0.786), (-0.166, 0.772, -0.778), (0.166, 0.772, -0.778), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.778), (0.166, 0.764, -0.778), (0.166, 0.772, -0.778), (-0.166, 0.772, -0.778), (-0.166, 0.772, -0.786), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (-0.166, 0.764, -0.786), (0.166, 0.764, -0.462), (0.166, 0.772, -0.462), (0.166, 0.772, -0.454), (0.166, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.462), (-0.166, 0.764, -0.462), (-0.166, 0.772, -0.462), (-0.166, 0.772, -0.454), (0.166, 0.772, -0.454), (0.166, 0.772, -0.462), (0.166, 0.764, -0.462), (0.166, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.462), (-0.166, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 0.772, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.462), (0.166, 0.772, -0.462), (0.166, 0.764, -0.462), (-0.166, 0.764, -0.462), (0.166, 1.068, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.778), (0.166, 1.068, -0.778), (-0.166, 1.068, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.166, 1.068, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.778), (0.166, 1.076, -0.778), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.166, 1.068, -0.778), (-0.166, 1.068, -0.778), (-0.166, 1.068, -0.786), (-0.166, 1.068, -0.778), (0.166, 1.068, -0.778), (0.166, 1.076, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (-0.166, 1.068, -0.786), (0.166, 1.068, -0.462), (0.166, 1.076, -0.462), (0.166, 1.076, -0.454), (0.166, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.166, 1.068, -0.462), (-0.166, 1.076, -0.462), (-0.166, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.462), (0.166, 1.068, -0.462), (0.166, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.068, -0.462), (-0.166, 1.068, -0.454), (0.166, 1.068, -0.454), (0.166, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (0.166, 1.076, -0.462), (0.166, 1.068, -0.462), (-0.166, 1.068, -0.462), (-0.158, 0.764, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.076, -0.778), (-0.158, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.166, 0.764, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.778), (-0.158, 1.076, -0.778), (-0.158, 1.076, -0.786), (-0.158, 0.764, -0.786), (-0.158, 0.764, -0.778), (-0.166, 0.764, -0.778), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.778), (-0.158, 0.764, -0.778), (-0.158, 1.076, -0.778), (-0.166, 1.076, -0.778), (-0.166, 1.076, -0.786), (-0.158, 1.076, -0.786), (-0.158, 0.764, -0.786), (-0.166, 0.764, -0.786), (-0.158, 0.764, -0.462), (-0.158, 1.076, -0.462), (-0.158, 1.076, -0.454), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.166, 0.764, -0.462), (-0.166, 1.076, -0.462), (-0.166, 1.076, -0.454), (-0.158, 1.076, -0.454), (-0.158, 1.076, -0.462), (-0.158, 0.764, -0.462), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.462), (-0.166, 0.764, -0.454), (-0.158, 0.764, -0.454), (-0.158, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.462), (-0.158, 1.076, -0.462), (-0.158, 0.764, -0.462), (-0.166, 0.764, -0.462), (-0.158, 0.764, -0.786), (-0.158, 0.772, -0.786), (-0.158, 0.772, -0.454), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.786), (-0.166, 0.764, -0.786), (-0.166, 0.772, -0.786), (-0.166, 0.772, -0.454), (-0.158, 0.772, -0.454), (-0.158, 0.772, -0.786), (-0.158, 0.764, -0.786), (-0.158, 0.764, -0.454), (-0.166, 0.764, -0.454), (-0.166, 0.764, -0.786), (-0.166, 0.764, -0.454), (-0.158, 0.764, -0.454), (-0.158, 0.772, -0.454), (-0.166, 0.772, -0.454), (-0.166, 0.772, -0.786), (-0.158, 0.772, -0.786), (-0.158, 0.764, -0.786), (-0.166, 0.764, -0.786), (-0.158, 1.068, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.076, -0.454), (-0.158, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.786), (-0.166, 1.068, -0.786), (-0.166, 1.076, -0.786), (-0.166, 1.076, -0.454), (-0.158, 1.076, -0.454), (-0.158, 1.076, -0.786), (-0.158, 1.068, -0.786), (-0.158, 1.068, -0.454), (-0.166, 1.068, -0.454), (-0.166, 1.068, -0.786), (-0.166, 1.068, -0.454), (-0.158, 1.068, -0.454), (-0.158, 1.076, -0.454), (-0.166, 1.076, -0.454), (-0.166, 1.076, -0.786), (-0.158, 1.076, -0.786), (-0.158, 1.068, -0.786), (-0.166, 1.068, -0.786), (0.166, 0.764, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.778), (0.166, 0.764, -0.778), (0.158, 0.764, -0.778), (0.158, 1.076, -0.778), (0.158, 1.076, -0.786), (0.158, 0.764, -0.786), (0.158, 1.076, -0.786), (0.158, 1.076, -0.778), (0.166, 1.076, -0.778), (0.166, 1.076, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.778), (0.158, 0.764, -0.778), (0.158, 0.764, -0.786), (0.158, 0.764, -0.778), (0.166, 0.764, -0.778), (0.166, 1.076, -0.778), (0.158, 1.076, -0.778), (0.158, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 0.764, -0.786), (0.158, 0.764, -0.786), (0.166, 0.764, -0.462), (0.166, 1.076, -0.462), (0.166, 1.076, -0.454), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.462), (0.158, 0.764, -0.462), (0.158, 1.076, -0.462), (0.158, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.462), (0.166, 0.764, -0.462), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.764, -0.462), (0.158, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 1.076, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.462), (0.166, 1.076, -0.462), (0.166, 0.764, -0.462), (0.158, 0.764, -0.462), (0.166, 0.764, -0.786), (0.166, 0.772, -0.786), (0.166, 0.772, -0.454), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.772, -0.454), (0.158, 0.772, -0.786), (0.158, 0.764, -0.786), (0.158, 0.772, -0.786), (0.158, 0.772, -0.454), (0.166, 0.772, -0.454), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.166, 0.764, -0.454), (0.158, 0.764, -0.454), (0.158, 0.764, -0.786), (0.158, 0.764, -0.454), (0.166, 0.764, -0.454), (0.166, 0.772, -0.454), (0.158, 0.772, -0.454), (0.158, 0.772, -0.786), (0.166, 0.772, -0.786), (0.166, 0.764, -0.786), (0.158, 0.764, -0.786), (0.166, 1.068, -0.786), (0.166, 1.076, -0.786), (0.166, 1.076, -0.454), (0.166, 1.068, -0.454), (0.158, 1.068, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.786), (0.158, 1.068, -0.786), (0.158, 1.076, -0.786), (0.158, 1.076, -0.454), (0.166, 1.076, -0.454), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.166, 1.068, -0.454), (0.158, 1.068, -0.454), (0.158, 1.068, -0.786), (0.158, 1.068, -0.454), (0.166, 1.068, -0.454), (0.166, 1.076, -0.454), (0.158, 1.076, -0.454), (0.158, 1.076, -0.786), (0.166, 1.076, -0.786), (0.166, 1.068, -0.786), (0.158, 1.068, -0.786)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Xform "Crate"
+                {
+                    matrix4d xformOp:transform = ( (1.5, 0, 0, 0), (0, 1.5, 0, 0), (0, 0, 1.5, 0), (0, 0.76, -0.62, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                    def "Body" (
+                        prepend references = @./crates/c_0_13_0.usdc@
+                    )
+                    {
+                    }
+                }
+            }
+        }
+
+        def "Grammar"
+        {
+            def Xform "comments"
+            {
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.3, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Pedestal" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.27, 0, -0.9), (0.27, 0.74, -0.34)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/pedestal>
+                    point3f[] points = [(-0.27, 0, -0.34), (0.27, 0, -0.34), (0.27, 0.74, -0.34), (-0.27, 0.74, -0.34), (0.27, 0, -0.9), (-0.27, 0, -0.9), (-0.27, 0.74, -0.9), (0.27, 0.74, -0.9), (-0.27, 0.74, -0.34), (0.27, 0.74, -0.34), (0.27, 0.74, -0.9), (-0.27, 0.74, -0.9), (-0.27, 0, -0.9), (0.27, 0, -0.9), (0.27, 0, -0.34), (-0.27, 0, -0.34), (0.27, 0, -0.34), (0.27, 0, -0.9), (0.27, 0.74, -0.9), (0.27, 0.74, -0.34), (-0.27, 0, -0.9), (-0.27, 0, -0.34), (-0.27, 0.74, -0.34), (-0.27, 0.74, -0.9)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Label_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Grammar/comments/Label_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Grammar/comments/Label_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Grammar/comments/Label_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Grammar_comments_Label.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Grammar/comments/Label_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Label" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.24, 0.4506856, -0.334), (0.24, 0.548551, -0.334)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Grammar/comments/Label_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.24, 0.4506856, -0.334), (0.24, 0.4506856, -0.334), (0.24, 0.548551, -0.334), (-0.24, 0.548551, -0.334)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Sub_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Grammar/comments/Sub_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Grammar/comments/Sub_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Grammar/comments/Sub_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Grammar_comments_Sub.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Grammar/comments/Sub_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Sub" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.22446232, 0.3574405, -0.334), (0.22446232, 0.4317995, -0.334)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Grammar/comments/Sub_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.22446232, 0.3574405, -0.334), (0.22446232, 0.3574405, -0.334), (0.22446232, 0.4317995, -0.334), (-0.22446232, 0.4317995, -0.334)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Cube "Ghost" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.13, -0.13, -0.13), (0.13, 0.13, 0.13)]
+                    rel material:binding = </Exhibit/Looks/ghost>
+                    double size = 0.26
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.872, -0.62, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Mesh "StaysEmpty" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.151, 1.004, -0.684), (0.151, 1.13, -0.556)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287]
+                    rel material:binding = </Exhibit/Looks/outline_red>
+                    normal3f[] normals = [(1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1)] (
+                        interpolation = "faceVarying"
+                    )
+                    point3f[] points = [(0.151, 1.004, -0.684), (0.151, 1.016, -0.684), (0.151, 1.016, -0.672), (0.151, 1.004, -0.672), (-0.151, 1.004, -0.672), (-0.151, 1.016, -0.672), (-0.151, 1.016, -0.684), (-0.151, 1.004, -0.684), (-0.151, 1.016, -0.684), (-0.151, 1.016, -0.672), (0.151, 1.016, -0.672), (0.151, 1.016, -0.684), (0.151, 1.004, -0.684), (0.151, 1.004, -0.672), (-0.151, 1.004, -0.672), (-0.151, 1.004, -0.684), (-0.151, 1.004, -0.672), (0.151, 1.004, -0.672), (0.151, 1.016, -0.672), (-0.151, 1.016, -0.672), (-0.151, 1.016, -0.684), (0.151, 1.016, -0.684), (0.151, 1.004, -0.684), (-0.151, 1.004, -0.684), (0.151, 1.004, -0.568), (0.151, 1.016, -0.568), (0.151, 1.016, -0.556), (0.151, 1.004, -0.556), (-0.151, 1.004, -0.556), (-0.151, 1.016, -0.556), (-0.151, 1.016, -0.568), (-0.151, 1.004, -0.568), (-0.151, 1.016, -0.568), (-0.151, 1.016, -0.556), (0.151, 1.016, -0.556), (0.151, 1.016, -0.568), (0.151, 1.004, -0.568), (0.151, 1.004, -0.556), (-0.151, 1.004, -0.556), (-0.151, 1.004, -0.568), (-0.151, 1.004, -0.556), (0.151, 1.004, -0.556), (0.151, 1.016, -0.556), (-0.151, 1.016, -0.556), (-0.151, 1.016, -0.568), (0.151, 1.016, -0.568), (0.151, 1.004, -0.568), (-0.151, 1.004, -0.568), (0.151, 1.118, -0.684), (0.151, 1.13, -0.684), (0.151, 1.13, -0.672), (0.151, 1.118, -0.672), (-0.151, 1.118, -0.672), (-0.151, 1.13, -0.672), (-0.151, 1.13, -0.684), (-0.151, 1.118, -0.684), (-0.151, 1.13, -0.684), (-0.151, 1.13, -0.672), (0.151, 1.13, -0.672), (0.151, 1.13, -0.684), (0.151, 1.118, -0.684), (0.151, 1.118, -0.672), (-0.151, 1.118, -0.672), (-0.151, 1.118, -0.684), (-0.151, 1.118, -0.672), (0.151, 1.118, -0.672), (0.151, 1.13, -0.672), (-0.151, 1.13, -0.672), (-0.151, 1.13, -0.684), (0.151, 1.13, -0.684), (0.151, 1.118, -0.684), (-0.151, 1.118, -0.684), (0.151, 1.118, -0.568), (0.151, 1.13, -0.568), (0.151, 1.13, -0.556), (0.151, 1.118, -0.556), (-0.151, 1.118, -0.556), (-0.151, 1.13, -0.556), (-0.151, 1.13, -0.568), (-0.151, 1.118, -0.568), (-0.151, 1.13, -0.568), (-0.151, 1.13, -0.556), (0.151, 1.13, -0.556), (0.151, 1.13, -0.568), (0.151, 1.118, -0.568), (0.151, 1.118, -0.556), (-0.151, 1.118, -0.556), (-0.151, 1.118, -0.568), (-0.151, 1.118, -0.556), (0.151, 1.118, -0.556), (0.151, 1.13, -0.556), (-0.151, 1.13, -0.556), (-0.151, 1.13, -0.568), (0.151, 1.13, -0.568), (0.151, 1.118, -0.568), (-0.151, 1.118, -0.568), (-0.139, 1.004, -0.684), (-0.139, 1.13, -0.684), (-0.139, 1.13, -0.672), (-0.139, 1.004, -0.672), (-0.151, 1.004, -0.672), (-0.151, 1.13, -0.672), (-0.151, 1.13, -0.684), (-0.151, 1.004, -0.684), (-0.151, 1.13, -0.684), (-0.151, 1.13, -0.672), (-0.139, 1.13, -0.672), (-0.139, 1.13, -0.684), (-0.139, 1.004, -0.684), (-0.139, 1.004, -0.672), (-0.151, 1.004, -0.672), (-0.151, 1.004, -0.684), (-0.151, 1.004, -0.672), (-0.139, 1.004, -0.672), (-0.139, 1.13, -0.672), (-0.151, 1.13, -0.672), (-0.151, 1.13, -0.684), (-0.139, 1.13, -0.684), (-0.139, 1.004, -0.684), (-0.151, 1.004, -0.684), (-0.139, 1.004, -0.568), (-0.139, 1.13, -0.568), (-0.139, 1.13, -0.556), (-0.139, 1.004, -0.556), (-0.151, 1.004, -0.556), (-0.151, 1.13, -0.556), (-0.151, 1.13, -0.568), (-0.151, 1.004, -0.568), (-0.151, 1.13, -0.568), (-0.151, 1.13, -0.556), (-0.139, 1.13, -0.556), (-0.139, 1.13, -0.568), (-0.139, 1.004, -0.568), (-0.139, 1.004, -0.556), (-0.151, 1.004, -0.556), (-0.151, 1.004, -0.568), (-0.151, 1.004, -0.556), (-0.139, 1.004, -0.556), (-0.139, 1.13, -0.556), (-0.151, 1.13, -0.556), (-0.151, 1.13, -0.568), (-0.139, 1.13, -0.568), (-0.139, 1.004, -0.568), (-0.151, 1.004, -0.568), (-0.139, 1.004, -0.684), (-0.139, 1.016, -0.684), (-0.139, 1.016, -0.556), (-0.139, 1.004, -0.556), (-0.151, 1.004, -0.556), (-0.151, 1.016, -0.556), (-0.151, 1.016, -0.684), (-0.151, 1.004, -0.684), (-0.151, 1.016, -0.684), (-0.151, 1.016, -0.556), (-0.139, 1.016, -0.556), (-0.139, 1.016, -0.684), (-0.139, 1.004, -0.684), (-0.139, 1.004, -0.556), (-0.151, 1.004, -0.556), (-0.151, 1.004, -0.684), (-0.151, 1.004, -0.556), (-0.139, 1.004, -0.556), (-0.139, 1.016, -0.556), (-0.151, 1.016, -0.556), (-0.151, 1.016, -0.684), (-0.139, 1.016, -0.684), (-0.139, 1.004, -0.684), (-0.151, 1.004, -0.684), (-0.139, 1.118, -0.684), (-0.139, 1.13, -0.684), (-0.139, 1.13, -0.556), (-0.139, 1.118, -0.556), (-0.151, 1.118, -0.556), (-0.151, 1.13, -0.556), (-0.151, 1.13, -0.684), (-0.151, 1.118, -0.684), (-0.151, 1.13, -0.684), (-0.151, 1.13, -0.556), (-0.139, 1.13, -0.556), (-0.139, 1.13, -0.684), (-0.139, 1.118, -0.684), (-0.139, 1.118, -0.556), (-0.151, 1.118, -0.556), (-0.151, 1.118, -0.684), (-0.151, 1.118, -0.556), (-0.139, 1.118, -0.556), (-0.139, 1.13, -0.556), (-0.151, 1.13, -0.556), (-0.151, 1.13, -0.684), (-0.139, 1.13, -0.684), (-0.139, 1.118, -0.684), (-0.151, 1.118, -0.684), (0.151, 1.004, -0.684), (0.151, 1.13, -0.684), (0.151, 1.13, -0.672), (0.151, 1.004, -0.672), (0.139, 1.004, -0.672), (0.139, 1.13, -0.672), (0.139, 1.13, -0.684), (0.139, 1.004, -0.684), (0.139, 1.13, -0.684), (0.139, 1.13, -0.672), (0.151, 1.13, -0.672), (0.151, 1.13, -0.684), (0.151, 1.004, -0.684), (0.151, 1.004, -0.672), (0.139, 1.004, -0.672), (0.139, 1.004, -0.684), (0.139, 1.004, -0.672), (0.151, 1.004, -0.672), (0.151, 1.13, -0.672), (0.139, 1.13, -0.672), (0.139, 1.13, -0.684), (0.151, 1.13, -0.684), (0.151, 1.004, -0.684), (0.139, 1.004, -0.684), (0.151, 1.004, -0.568), (0.151, 1.13, -0.568), (0.151, 1.13, -0.556), (0.151, 1.004, -0.556), (0.139, 1.004, -0.556), (0.139, 1.13, -0.556), (0.139, 1.13, -0.568), (0.139, 1.004, -0.568), (0.139, 1.13, -0.568), (0.139, 1.13, -0.556), (0.151, 1.13, -0.556), (0.151, 1.13, -0.568), (0.151, 1.004, -0.568), (0.151, 1.004, -0.556), (0.139, 1.004, -0.556), (0.139, 1.004, -0.568), (0.139, 1.004, -0.556), (0.151, 1.004, -0.556), (0.151, 1.13, -0.556), (0.139, 1.13, -0.556), (0.139, 1.13, -0.568), (0.151, 1.13, -0.568), (0.151, 1.004, -0.568), (0.139, 1.004, -0.568), (0.151, 1.004, -0.684), (0.151, 1.016, -0.684), (0.151, 1.016, -0.556), (0.151, 1.004, -0.556), (0.139, 1.004, -0.556), (0.139, 1.016, -0.556), (0.139, 1.016, -0.684), (0.139, 1.004, -0.684), (0.139, 1.016, -0.684), (0.139, 1.016, -0.556), (0.151, 1.016, -0.556), (0.151, 1.016, -0.684), (0.151, 1.004, -0.684), (0.151, 1.004, -0.556), (0.139, 1.004, -0.556), (0.139, 1.004, -0.684), (0.139, 1.004, -0.556), (0.151, 1.004, -0.556), (0.151, 1.016, -0.556), (0.139, 1.016, -0.556), (0.139, 1.016, -0.684), (0.151, 1.016, -0.684), (0.151, 1.004, -0.684), (0.139, 1.004, -0.684), (0.151, 1.118, -0.684), (0.151, 1.13, -0.684), (0.151, 1.13, -0.556), (0.151, 1.118, -0.556), (0.139, 1.118, -0.556), (0.139, 1.13, -0.556), (0.139, 1.13, -0.684), (0.139, 1.118, -0.684), (0.139, 1.13, -0.684), (0.139, 1.13, -0.556), (0.151, 1.13, -0.556), (0.151, 1.13, -0.684), (0.151, 1.118, -0.684), (0.151, 1.118, -0.556), (0.139, 1.118, -0.556), (0.139, 1.118, -0.684), (0.139, 1.118, -0.556), (0.151, 1.118, -0.556), (0.151, 1.13, -0.556), (0.139, 1.13, -0.556), (0.139, 1.13, -0.684), (0.151, 1.13, -0.684), (0.151, 1.118, -0.684), (0.139, 1.118, -0.684)]
+                    uniform token subdivisionScheme = "none"
+                }
+            }
+
+            def Xform "atpath"
+            {
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.92, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Pedestal" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.27, 0, -0.9), (0.27, 0.74, -0.34)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/pedestal>
+                    point3f[] points = [(-0.27, 0, -0.34), (0.27, 0, -0.34), (0.27, 0.74, -0.34), (-0.27, 0.74, -0.34), (0.27, 0, -0.9), (-0.27, 0, -0.9), (-0.27, 0.74, -0.9), (0.27, 0.74, -0.9), (-0.27, 0.74, -0.34), (0.27, 0.74, -0.34), (0.27, 0.74, -0.9), (-0.27, 0.74, -0.9), (-0.27, 0, -0.9), (0.27, 0, -0.9), (0.27, 0, -0.34), (-0.27, 0, -0.34), (0.27, 0, -0.34), (0.27, 0, -0.9), (0.27, 0.74, -0.9), (0.27, 0.74, -0.34), (-0.27, 0, -0.9), (-0.27, 0, -0.34), (-0.27, 0.74, -0.34), (-0.27, 0.74, -0.9)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Label_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Grammar/atpath/Label_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Grammar/atpath/Label_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Grammar/atpath/Label_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Grammar_atpath_Label.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Grammar/atpath/Label_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Label" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.24, 0.44226256, -0.334), (0.24, 0.5435208, -0.334)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Grammar/atpath/Label_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.24, 0.44226256, -0.334), (0.24, 0.44226256, -0.334), (0.24, 0.5435208, -0.334), (-0.24, 0.5435208, -0.334)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Sub_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Grammar/atpath/Sub_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Grammar/atpath/Sub_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Grammar/atpath/Sub_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Grammar_atpath_Sub.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Grammar/atpath/Sub_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Sub" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.23683037, 0.35135052, -0.334), (0.23683037, 0.4257095, -0.334)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Grammar/atpath/Sub_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.23683037, 0.35135052, -0.334), (0.23683037, 0.35135052, -0.334), (0.23683037, 0.4257095, -0.334), (-0.23683037, 0.4257095, -0.334)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Cone "Ghost" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.14, -0.16, -0.14), (0.14, 0.16, 0.14)]
+                    double height = 0.32
+                    rel material:binding = </Exhibit/Looks/ghost>
+                    double radius = 0.14
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.902, -0.62, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+            }
+
+            def Xform "escape"
+            {
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.54, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Pedestal" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.27, 0, -0.9), (0.27, 0.62, -0.34)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/pedestal>
+                    point3f[] points = [(-0.27, 0, -0.34), (0.27, 0, -0.34), (0.27, 0.62, -0.34), (-0.27, 0.62, -0.34), (0.27, 0, -0.9), (-0.27, 0, -0.9), (-0.27, 0.62, -0.9), (0.27, 0.62, -0.9), (-0.27, 0.62, -0.34), (0.27, 0.62, -0.34), (0.27, 0.62, -0.9), (-0.27, 0.62, -0.9), (-0.27, 0, -0.9), (0.27, 0, -0.9), (0.27, 0, -0.34), (-0.27, 0, -0.34), (0.27, 0, -0.34), (0.27, 0, -0.9), (0.27, 0.62, -0.9), (0.27, 0.62, -0.34), (-0.27, 0, -0.9), (-0.27, 0, -0.34), (-0.27, 0.62, -0.34), (-0.27, 0.62, -0.9)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "PlinthMat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Grammar/escape/PlinthMat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.033104766, 0.34239164, 0.073238954)
+                        float inputs:roughness = 0.55
+                        color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+
+                def Mesh "Plinth" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.23, 0.62, -0.86), (0.23, 0.74, -0.38)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Pieces/Grammar/escape/PlinthMat>
+                    point3f[] points = [(-0.23, 0.62, -0.38), (0.23, 0.62, -0.38), (0.23, 0.74, -0.38), (-0.23, 0.74, -0.38), (0.23, 0.62, -0.86), (-0.23, 0.62, -0.86), (-0.23, 0.74, -0.86), (0.23, 0.74, -0.86), (-0.23, 0.74, -0.38), (0.23, 0.74, -0.38), (0.23, 0.74, -0.86), (-0.23, 0.74, -0.86), (-0.23, 0.62, -0.86), (0.23, 0.62, -0.86), (0.23, 0.62, -0.38), (-0.23, 0.62, -0.38), (0.23, 0.62, -0.38), (0.23, 0.62, -0.86), (0.23, 0.74, -0.86), (0.23, 0.74, -0.38), (-0.23, 0.62, -0.86), (-0.23, 0.62, -0.38), (-0.23, 0.74, -0.38), (-0.23, 0.74, -0.86)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Label_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Grammar/escape/Label_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Grammar/escape/Label_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Grammar/escape/Label_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Grammar_escape_Label.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Grammar/escape/Label_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Label" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.20721036, 0.4446628, -0.334), (0.20721036, 0.5536372, -0.334)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Grammar/escape/Label_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.20721036, 0.4446628, -0.334), (0.20721036, 0.4446628, -0.334), (0.20721036, 0.5536372, -0.334), (-0.20721036, 0.5536372, -0.334)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Sub_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Grammar/escape/Sub_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Grammar/escape/Sub_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Grammar/escape/Sub_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Grammar_escape_Sub.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Grammar/escape/Sub_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Sub" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.20206635, 0.3558455, -0.334), (0.20206635, 0.43020448, -0.334)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Grammar/escape/Sub_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.20206635, 0.3558455, -0.334), (0.20206635, 0.3558455, -0.334), (0.20206635, 0.43020448, -0.334), (-0.20206635, 0.43020448, -0.334)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+            }
+
+            def Xform "exponent"
+            {
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (2.16, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Pedestal" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.27, 0, -0.9), (0.27, 0.74, -0.34)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/pedestal>
+                    point3f[] points = [(-0.27, 0, -0.34), (0.27, 0, -0.34), (0.27, 0.74, -0.34), (-0.27, 0.74, -0.34), (0.27, 0, -0.9), (-0.27, 0, -0.9), (-0.27, 0.74, -0.9), (0.27, 0.74, -0.9), (-0.27, 0.74, -0.34), (0.27, 0.74, -0.34), (0.27, 0.74, -0.9), (-0.27, 0.74, -0.9), (-0.27, 0, -0.9), (0.27, 0, -0.9), (0.27, 0, -0.34), (-0.27, 0, -0.34), (0.27, 0, -0.34), (0.27, 0, -0.9), (0.27, 0.74, -0.9), (0.27, 0.74, -0.34), (-0.27, 0, -0.9), (-0.27, 0, -0.34), (-0.27, 0.74, -0.34), (-0.27, 0.74, -0.9)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Label_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Grammar/exponent/Label_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Grammar/exponent/Label_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Grammar/exponent/Label_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Grammar_exponent_Label.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Grammar/exponent/Label_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Label" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.15401223, 0.44508782, -0.334), (0.15401223, 0.5540622, -0.334)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Grammar/exponent/Label_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.15401223, 0.44508782, -0.334), (0.15401223, 0.44508782, -0.334), (0.15401223, 0.5540622, -0.334), (-0.15401223, 0.5540622, -0.334)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Sub_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Grammar/exponent/Sub_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Grammar/exponent/Sub_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Grammar/exponent/Sub_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Grammar_exponent_Sub.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Grammar/exponent/Sub_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Sub" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.24, 0.35901624, -0.334), (0.24, 0.43014824, -0.334)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Grammar/exponent/Sub_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.24, 0.35901624, -0.334), (0.24, 0.35901624, -0.334), (0.24, 0.43014824, -0.334), (-0.24, 0.43014824, -0.334)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Sphere "Ghost" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.16, -0.16, -0.16), (0.16, 0.16, 0.16)]
+                    rel material:binding = </Exhibit/Looks/ghost>
+                    double radius = 0.16
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.902, -0.62, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+            }
+
+            def Xform "legacy"
+            {
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (2.78, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Pedestal" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.27, 0, -0.9), (0.27, 0.74, -0.34)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Looks/pedestal>
+                    point3f[] points = [(-0.27, 0, -0.34), (0.27, 0, -0.34), (0.27, 0.74, -0.34), (-0.27, 0.74, -0.34), (0.27, 0, -0.9), (-0.27, 0, -0.9), (-0.27, 0.74, -0.9), (0.27, 0.74, -0.9), (-0.27, 0.74, -0.34), (0.27, 0.74, -0.34), (0.27, 0.74, -0.9), (-0.27, 0.74, -0.9), (-0.27, 0, -0.9), (0.27, 0, -0.9), (0.27, 0, -0.34), (-0.27, 0, -0.34), (0.27, 0, -0.34), (0.27, 0, -0.9), (0.27, 0.74, -0.9), (0.27, 0.74, -0.34), (-0.27, 0, -0.9), (-0.27, 0, -0.34), (-0.27, 0.74, -0.34), (-0.27, 0.74, -0.9)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Label_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Grammar/legacy/Label_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Grammar/legacy/Label_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Grammar/legacy/Label_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Grammar_legacy_Label.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Grammar/legacy/Label_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Label" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.24, 0.46405244, -0.334), (0.24, 0.5382629, -0.334)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Grammar/legacy/Label_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.24, 0.46405244, -0.334), (0.24, 0.46405244, -0.334), (0.24, 0.5382629, -0.334), (-0.24, 0.5382629, -0.334)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Material "Sub_Mat"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Grammar/legacy/Sub_Mat/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0)
+                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Grammar/legacy/Sub_Mat/Tex.outputs:rgb>
+                        float inputs:opacity.connect = </Exhibit/Pieces/Grammar/legacy/Sub_Mat/Tex.outputs:a>
+                        float inputs:opacityThreshold = 0.5
+                        float inputs:roughness = 1
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+
+                    def Shader "St"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "Tex"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @./textures/Exhibit_Pieces_Grammar_legacy_Sub.png@
+                        float4 inputs:scale = (1, 1, 1, 1)
+                        token inputs:sourceColorSpace = "sRGB"
+                        float2 inputs:st.connect = </Exhibit/Pieces/Grammar/legacy/Sub_Mat/St.outputs:result>
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Mesh "Sub" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-0.21249919, 0.3514955, -0.334), (0.21249919, 0.42585447, -0.334)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </Exhibit/Pieces/Grammar/legacy/Sub_Mat>
+                    normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-0.21249919, 0.3514955, -0.334), (0.21249919, 0.3514955, -0.334), (0.21249919, 0.42585447, -0.334), (-0.21249919, 0.42585447, -0.334)]
+                    color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                    texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Capsule "Ghost" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.1, -0.17, -0.1), (0.1, 0.17, 0.1)]
+                    double height = 0.14
+                    rel material:binding = </Exhibit/Looks/ghost>
+                    double radius = 0.09999999999999999
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.9119999999999999, -0.62, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+            }
+
+            def "Text" (
+                prepend references = @./text/text.usda@
+            )
+            {
+            }
+        }
+    }
+}
+

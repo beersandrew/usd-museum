@@ -1,0 +1,11 @@
+#usda 1.0
+(
+    "animation.time.offsets: the outer sublayer (scale 1.5) of nested_inner."
+    defaultPrim = "Cart"
+    framesPerSecond = 24
+    subLayers = [
+        @./nested_inner.usda@ (scale = 1.5)
+    ]
+    timeCodesPerSecond = 24
+)
+

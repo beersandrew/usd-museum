@@ -1,0 +1,36 @@
+#usda 1.0
+(
+    defaultPrim = "Holder"
+    doc = """foundations.model.dictionaries: this layer's expressionVariables hold the empty key "".
+The glaze variant is `if(defined(""), "violet", "red")`: violet while the key is kept."""
+    expressionVariables = {
+        string "" = "allowed"
+    }
+)
+
+def Xform "Holder" (
+    variants = {
+        string glaze = '`if(defined(""), "violet", "red")`'
+    }
+    prepend variantSets = "glaze"
+)
+{
+    def "Body" (
+        instanceable = true
+        references = @./vase.usda@
+    )
+    {
+    }
+    variantSet "glaze" = {
+        "violet" {
+            color3f[] primvars:displayColor = [(0.270498, 0.104616, 0.672443)] (
+                interpolation = "constant"
+            )
+        }
+        "red" {
+            color3f[] primvars:displayColor = [(0.630757, 0.000607054, 0.0109601)] (
+                interpolation = "constant"
+            )
+        }
+    }
+}

@@ -1,0 +1,11 @@
+#usda 1.0
+(
+    "animation.time.offsets: scale: ride.usda as a sublayer, offset (0.0, 2.4)."
+    defaultPrim = "Cart"
+    framesPerSecond = 24
+    subLayers = [
+        @./ride.usda@ (scale = 2.4)
+    ]
+    timeCodesPerSecond = 24
+)
+

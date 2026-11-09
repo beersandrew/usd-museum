@@ -1,0 +1,21 @@
+#usda 1.0
+(
+    "animation.clips.clips: the strength clip: value 2 (A) and 6 (B)."
+    framesPerSecond = 24
+    timeCodesPerSecond = 24
+)
+
+def "A"
+{
+    matrix4d xformOp:transform.timeSamples = {
+        0: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.10499999999999998, 0, 1) ),
+    }
+}
+
+def "B"
+{
+    matrix4d xformOp:transform.timeSamples = {
+        0: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.315, 0, 1) ),
+    }
+}
+

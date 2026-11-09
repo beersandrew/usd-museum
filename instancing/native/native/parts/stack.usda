@@ -1,0 +1,41 @@
+#usda 1.0
+(
+    "instancing.native.native: a stack of two instanced cases lying on their sides (./case.usda). No colour here: it comes from an instance root above."
+    defaultPrim = "Stack"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Stack" (
+    kind = "group"
+)
+{
+    def Scope "Looks"
+    {
+    }
+
+    def Xform "Low" (
+        instanceable = true
+        prepend references = @./case.usda@
+    )
+    {
+        float xformOp:rotateZ = 90
+        double3 xformOp:translate = (0, 0.203, 0)
+        double3 xformOp:translate:centre = (0, -0.259, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateZ", "xformOp:translate:centre"]
+    }
+
+    def Xform "High" (
+        instanceable = true
+        prepend references = @./case.usda@
+    )
+    {
+        float xformOp:rotateZ = 90
+        double3 xformOp:translate = (0, 0.639, 0)
+        double3 xformOp:translate:centre = (0, -0.259, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateZ", "xformOp:translate:centre"]
+    }
+}
+

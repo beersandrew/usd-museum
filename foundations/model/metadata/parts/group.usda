@@ -1,0 +1,9 @@
+#usda 1.0
+(
+    defaultPrim = "Holder"
+    doc = "Vase B's group: empty and strong, grouped."
+    subLayers = [
+        @./empty.usdc@,
+        @./strong.usda@
+    ]
+)

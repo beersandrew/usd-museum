@@ -1,0 +1,78 @@
+#usda 1.0
+(
+    "The soliloquy as spatial audio. Times are authored 8 frames early (189-245): the hero exhibit references this layer with a +8 layer offset, so startTime/endTime compose to 197-253. The speaker icon is visible 189-245 here, so 197-253 after the same offset."
+    defaultPrim = "Voice"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def SpatialAudio "Voice"
+{
+    uniform token auralMode = "spatial"
+    uniform timecode endTime = 245
+    uniform asset filePath = @./soliloquy.wav@
+    double gain = 1
+    uniform double mediaOffset = 0
+    uniform token playbackMode = "onceFromStartToEnd"
+    uniform timecode startTime = 189
+
+    def Mesh "SpeakerIcon" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        float3[] extent = [(-0.13, -0.13, 0), (0.13, 0.13, 0)]
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </Voice/SpeakerIcon/Mat>
+        point3f[] points = [(-0.13, -0.13, 0), (0.13, -0.13, 0), (0.13, 0.13, 0), (-0.13, 0.13, 0)]
+        texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+            interpolation = "vertex"
+        )
+        uniform token subdivisionScheme = "none"
+        token visibility.timeSamples = {
+            1: "invisible",
+            189: "inherited",
+            246: "invisible",
+        }
+
+        def Material "Mat"
+        {
+            token outputs:surface.connect = </Voice/SpeakerIcon/Mat/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Voice/SpeakerIcon/Mat/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Voice/SpeakerIcon/Mat/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @../textures/speaker.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Voice/SpeakerIcon/Mat/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+    }
+}
+

@@ -1,0 +1,191 @@
+#usda 1.0
+(
+    "A performer: the hero rig, her prop table and the 'prop' variant set. Layer relocates move the prop from the table into her right hand."
+    defaultPrim = "Performer"
+    endTimeCode = 96
+    framesPerSecond = 24
+    metersPerUnit = 1
+    startTimeCode = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+    relocates = {
+        </Performer/PropTable/Props/Skull>: </Performer/RightHand/Skull>, 
+        </Performer/PropTable/Props/Book>: </Performer/RightHand/Book>
+    }
+)
+
+def SkelRoot "Performer" (
+    prepend references = @./hero.usdc@</Hero>
+    variants = {
+        string prop = "skull"
+    }
+    prepend variantSets = "prop"
+)
+{
+    def SkelAnimation "Anim_Soliloquy" (
+        prepend references = @./hero_anim.usda@</Soliloquy>
+    )
+    {
+    }
+
+    def SkelAnimation "Anim_SoliloquyInPlace" (
+        prepend references = @./hero_anim.usda@</SoliloquyInPlace>
+    )
+    {
+    }
+
+    def SkelAnimation "Anim_HoldPose" (
+        prepend references = @./hero_anim.usda@</HoldPose>
+    )
+    {
+    }
+
+    over "Skel" (
+        prepend apiSchemas = ["SkelBindingAPI"]
+    )
+    {
+        rel skel:animationSource = </Performer/Anim_Soliloquy>
+    }
+
+    def Xform "PropTable"
+    {
+        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1, 0, 0, 1) )
+        uniform token[] xformOpOrder = ["xformOp:transform"]
+
+        def Mesh "Table"
+        {
+            float3[] extent = [(-0.38, 0, -0.25), (0.38, 0.82, 0.25)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 2, 3, 1, 4, 5, 7, 6, 0, 1, 5, 4, 2, 6, 7, 3, 0, 4, 6, 2, 1, 3, 7, 5, 8, 10, 11, 9, 12, 13, 15, 14, 8, 9, 13, 12, 10, 14, 15, 11, 8, 12, 14, 10, 9, 11, 15, 13, 16, 18, 19, 17, 20, 21, 23, 22, 16, 17, 21, 20, 18, 22, 23, 19, 16, 20, 22, 18, 17, 19, 23, 21, 24, 26, 27, 25, 28, 29, 31, 30, 24, 25, 29, 28, 26, 30, 31, 27, 24, 28, 30, 26, 25, 27, 31, 29, 32, 34, 35, 33, 36, 37, 39, 38, 32, 33, 37, 36, 34, 38, 39, 35, 32, 36, 38, 34, 33, 35, 39, 37]
+            point3f[] points = [(-0.38, 0.78, -0.25), (0.38, 0.78, -0.25), (-0.38, 0.82, -0.25), (0.38, 0.82, -0.25), (-0.38, 0.78, 0.25), (0.38, 0.78, 0.25), (-0.38, 0.82, 0.25), (0.38, 0.82, 0.25), (-0.355, 0, -0.225), (-0.305, 0, -0.225), (-0.355, 0.78, -0.225), (-0.305, 0.78, -0.225), (-0.355, 0, -0.175), (-0.305, 0, -0.175), (-0.355, 0.78, -0.175), (-0.305, 0.78, -0.175), (-0.355, 0, 0.175), (-0.305, 0, 0.175), (-0.355, 0.78, 0.175), (-0.305, 0.78, 0.175), (-0.355, 0, 0.225), (-0.305, 0, 0.225), (-0.355, 0.78, 0.225), (-0.305, 0.78, 0.225), (0.305, 0, -0.225), (0.355, 0, -0.225), (0.305, 0.78, -0.225), (0.355, 0.78, -0.225), (0.305, 0, -0.175), (0.355, 0, -0.175), (0.305, 0.78, -0.175), (0.355, 0.78, -0.175), (0.305, 0, 0.175), (0.355, 0, 0.175), (0.305, 0.78, 0.175), (0.355, 0.78, 0.175), (0.305, 0, 0.225), (0.355, 0, 0.225), (0.305, 0.78, 0.225), (0.355, 0.78, 0.225)]
+            color3f[] primvars:displayColor = [(0.35, 0.22, 0.12), (0.35, 0.22, 0.12), (0.35, 0.22, 0.12), (0.35, 0.22, 0.12), (0.35, 0.22, 0.12), (0.35, 0.22, 0.12), (0.35, 0.22, 0.12), (0.35, 0.22, 0.12), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1), (0.3, 0.18, 0.1)] (
+                interpolation = "vertex"
+            )
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "Cloth" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.38, -0.19, 0), (0.38, 0.19, 0)]
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            rel material:binding = </Performer/PropTable/Cloth/Mat>
+            normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "vertex"
+            )
+            point3f[] points = [(-0.38, -0.19, 0), (0.38, -0.19, 0), (0.38, 0.19, 0), (-0.38, 0.19, 0)]
+            texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                interpolation = "vertex"
+            )
+            uniform token subdivisionScheme = "none"
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.6199999999999999, 0.26, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Material "Mat"
+            {
+                token outputs:surface.connect = </Performer/PropTable/Cloth/Mat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor.connect = </Performer/PropTable/Cloth/Mat/Tex.outputs:rgb>
+                    color3f inputs:emissiveColor.connect = </Performer/PropTable/Cloth/Mat/Tex.outputs:rgb>
+                    float inputs:roughness = 1
+                    token outputs:surface
+                }
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @../textures/sign_proptable_cloth.png@
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Performer/PropTable/Cloth/Mat/St.outputs:result>
+                    float3 outputs:rgb
+                }
+            }
+        }
+    }
+
+    def Xform "RightHand"
+    {
+    }
+    variantSet "prop" = {
+        "book" {
+            over "PropTable"
+            {
+                def Xform "Props" (
+                    prepend references = @../props/props.usda@</BookProps>
+                )
+                {
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.82, 0, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+            }
+
+            over "RightHand"
+            {
+                over "Book" (
+                    prepend apiSchemas = ["SkelBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.18084092, -0.02, -0.135), (3.4204872, 1.8203421, 0.45258987)]
+                    matrix4d primvars:skel:geomBindTransform = ( (-0.738585163750127, -0.6737663300519391, 0.02304103175731037, 0), (-0.6450648282212372, 0.6963642498300663, -0.31459211396143394, 0), (0.19591662328680504, -0.24721602708350096, -0.9489472654941552, 0), (-0.8171770494660612, 1.4601308709418055, 0.10581837034589418, 0.9999999999999999) )
+                    int[] primvars:skel:jointIndices = [0] (
+                        elementSize = 1
+                        interpolation = "constant"
+                    )
+                    float[] primvars:skel:jointWeights = [1] (
+                        elementSize = 1
+                        interpolation = "constant"
+                    )
+                    uniform token[] skel:joints = ["Hips/Spine/Chest/RShoulder/RElbow/RWrist"]
+                }
+            }
+
+        }
+        "skull" {
+            over "PropTable"
+            {
+                def Xform "Props" (
+                    prepend references = @../props/props.usda@</SkullProps>
+                )
+                {
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.82, 0, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+            }
+
+            over "RightHand"
+            {
+                over "Skull" (
+                    prepend apiSchemas = ["SkelBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.2785084, -0.02, -0.120000005), (3.442536, 1.7888536, 0.45016855)]
+                    matrix4d primvars:skel:geomBindTransform = ( (-0.738585163750127, -0.6737663300519391, 0.02304103175731037, 0), (-0.19591662328680517, 0.24721602708350113, 0.9489472654941551, 0), (-0.6450648282212372, 0.6963642498300663, -0.31459211396143416, 0), (-0.8014593398419717, 1.4254162028408879, 0.028534184236078473, 0.9999999999999999) )
+                    int[] primvars:skel:jointIndices = [0] (
+                        elementSize = 1
+                        interpolation = "constant"
+                    )
+                    float[] primvars:skel:jointWeights = [1] (
+                        elementSize = 1
+                        interpolation = "constant"
+                    )
+                    uniform token[] skel:joints = ["Hips/Spine/Chest/RShoulder/RElbow/RWrist"]
+                }
+            }
+
+        }
+    }
+}
+

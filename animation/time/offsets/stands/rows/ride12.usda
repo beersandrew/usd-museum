@@ -1,0 +1,18 @@
+#usda 1.0
+(
+    "animation.time.offsets: the journey keyed in 12 time codes a second (framesPerSecond 12; no timeCodesPerSecond), brought in as a SUBLAYER of sub12.usda."
+    defaultPrim = "Cart"
+    framesPerSecond = 12
+)
+
+def Xform "Cart"
+{
+    matrix4d xformOp:transform.timeSamples = {
+        15: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.1225, 0, 1) ),
+        22: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.4375, 0, 1) ),
+        26: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.4375, 0, 1) ),
+        33: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.175, 0, 1) ),
+    }
+    uniform token[] xformOpOrder = ["xformOp:transform"]
+}
+

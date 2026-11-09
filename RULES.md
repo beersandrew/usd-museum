@@ -43,6 +43,7 @@ on its own. `tour.usda` adds what only a guided tour needs (camera, frame range,
   payload.usda         the contents, behind the entry's payload
   parts/               further layers the contents compose (references, sublayers, variants)
   textures/            images
+  data/                non-USD files the asset uses from elsewhere (e.g. VDB volumes), copied in
   forgeries/           exhibits only: one override layer per planted mistake
 ```
 
@@ -50,9 +51,13 @@ on its own. `tour.usda` adds what only a guided tour needs (camera, frame range,
   `kind`, `assetInfo`, `customData["museum"]`, and `payload = @./payload.usda@`. Notes on
   pieces are `over`s with `doc` and `customData` only, never geometry. Assemblies
   *reference* entries; they never point past them into `payload.usda` or `parts/`.
-- **The names don't vary:** `payload.usda`, `parts/`, `textures/`, `forgeries/`. Other files
-  in the asset folder (an exhibit's `weak.usda` sublayer, the lists exhibit's `cells/`) are
-  part of what that exhibit demonstrates. They are composed from `payload.usda`.
+- **The names don't vary:** `payload.usda`, `parts/`, `textures/`, `data/`, `forgeries/`.
+  Other files in the asset folder (an exhibit's `weak.usda` sublayer, the lists exhibit's
+  `cells/`) are part of what that exhibit demonstrates. They are composed from `payload.usda`.
+  If one of them would take the entry's name, it becomes `<name>_layer.usda` (the names
+  exhibit's own `names.usda` is `names_layer.usda`).
+- **Some layers are invalid on purpose** (the names exhibit's `parts/illegal.usda` uses `1st`
+  as a prim name). They are copied as they are and say so in their exhibit.
 - **Paths are relative and stay inside the asset.** They start with `./`, or `../` only to
   climb back to the asset's own root. No asset reaches into a sibling. Copy any asset folder
   anywhere and it still opens. The only paths that cross folders are the wing's references
@@ -100,11 +105,15 @@ USD with the wrong picture in it. Next to the correct exhibit, the difference mu
 ## 7. Valid USD
 
 - **Every entry passes `usdchecker`.** Exceptions are exhibits that break USD on purpose
-  (for example `composition/errors/cycles`). Each one says so in
+  (for example `composition/errors/cycles`, `foundations/paths/names`). Each one says so in
   `customData["museum"]["expected_errors"]`, and a wing or tour that contains one inherits
   only those errors.
 - **Every exported exhibit composes the same as the one it was built from.** The tour matches
   the built wing in each exhibit's world bounds across its window, the camera and the hall.
   The exporter checks both and fails on any difference.
+- **Root-layer metadata goes on every file that can root a stage.** OpenUSD reads some
+  metadata only from the root layer (`fallbackPrimTypes`, which the stage wing's types exhibit
+  shows). Each exhibit entry, forgery, wing and tour that needs it carries it. Metadata an
+  exhibit authors in `payload.usda` instead is ignored there on purpose, as in the tour.
 - **Nested payloads are normal:** wing → exhibit entry → `payload.usda`. Viewers must handle
   them the way OpenUSD does.

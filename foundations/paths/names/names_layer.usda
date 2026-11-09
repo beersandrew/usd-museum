@@ -1,0 +1,200 @@
+#usda 1.0
+(
+    doc = """foundations.paths.names: the paths under test, written by hand (src/build.py). Relative
+target and connection paths, a UTF-8 name, two spellings of one name and a namespaced primvar."""
+)
+
+over "Exhibit"
+{
+    over "Pieces"
+    {
+        over "Utf8"
+        {
+            over "Spot"
+            {
+                def "Item" (
+                    references = </Exhibit/_Lib/日本>
+                )
+                {
+                }
+            }
+        }
+
+        over "Nfc"
+        {
+            over "Spot"
+            {
+                def "Item" (
+                    references = </Exhibit/_Lib/Café>
+                )
+                {
+                }
+            }
+        }
+
+        over "Binding"
+        {
+            def Scope "Looks"
+            {
+                def Material "Gold"
+                {
+                    token outputs:surface.connect = <Surface.outputs:surface>
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.655931, 0.342392, 0.0272118)
+                        float inputs:roughness = 0.55
+                        color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+            }
+
+            over "Spot"
+            {
+                def Scope "Looks"
+                {
+                    def Material "Gold"
+                    {
+                        token outputs:surface.connect = <Surface.outputs:surface>
+                        def Shader "Surface"
+                        {
+                            uniform token info:id = "UsdPreviewSurface"
+                            color3f inputs:diffuseColor = (0.630757, 0.000607054, 0.0109601)
+                            float inputs:roughness = 0.55
+                            color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                            int inputs:useSpecularWorkflow = 1
+                            token outputs:surface
+                        }
+                    }
+                }
+
+                def "Item" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    references = @./parts/bust.usda@
+                )
+                {
+                    rel material:binding = <../../Looks/Gold>
+                }
+            }
+        }
+
+        over "Connection"
+        {
+            def Scope "Looks"
+            {
+                def Material "Tinted"
+                {
+                    color3f inputs:tint = (0.214041, 0.0637238, 0.420033)
+                    token outputs:surface.connect = <Surface.outputs:surface>
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = <../.inputs:tint>
+                        float inputs:roughness = 0.55
+                        color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                        color3f inputs:tint = (0.630757, 0.000607054, 0.0109601)
+                    }
+                }
+            }
+
+            over "Spot"
+            {
+                def "Item" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    references = @./parts/bust.usda@
+                )
+                {
+                    rel material:binding = <../../Looks/Tinted>
+                }
+            }
+        }
+
+        over "Primvar"
+        {
+            def Scope "Looks"
+            {
+                def Material "Painted"
+                {
+                    token outputs:surface.connect = <Surface.outputs:surface>
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = <../Reader.outputs:result>
+                        float inputs:roughness = 0.55
+                        color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                    def Shader "Reader"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float3"
+                        string inputs:varname = "paint:base"
+                        float3 inputs:fallback = (0.630757, 0.000607054, 0.0109601)
+                        float3 outputs:result
+                    }
+                }
+            }
+
+            over "Spot"
+            {
+                def "Item" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    references = @./parts/bust.usda@
+                )
+                {
+                    color3f primvars:paint:base = (0.0100228, 0.393123, 0.507079) (
+                        interpolation = "constant"
+                    )
+                    color3f primvars:base = (0.630757, 0.000607054, 0.0109601) (
+                        interpolation = "constant"
+                    )
+                    rel material:binding = <../../Looks/Painted>
+                }
+            }
+        }
+
+        over "Illegal"
+        {
+            over "Spot"
+            {
+                def "Item" (
+                    references = @./parts/illegal.usda@
+                )
+                {
+                }
+            }
+        }
+    }
+
+    class "_Lib"
+    {
+        class "日本" (
+            references = @./parts/bust.usda@
+        )
+        {
+        }
+
+        class "Café" (
+            references = @./parts/bust.usda@
+        )
+        {
+            double3 xformOp:translate = (-0.17, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        class "Café" (
+            references = @./parts/bust.usda@
+        )
+        {
+            color3f[] primvars:displayColor = [(0.630757, 0.000607054, 0.0109601)] (
+                interpolation = "constant"
+            )
+            double3 xformOp:translate = (0.17, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+}

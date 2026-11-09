@@ -1,0 +1,109 @@
+#usda 1.0
+(
+    "materials.surfaces.preview: the roughness ball. Referenced by exhibit.usda."
+    defaultPrim = "Roughness"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Roughness" (
+    kind = "component"
+)
+{
+    def Scope "Looks"
+    {
+        def Material "Ring"
+        {
+            token outputs:surface.connect = </Roughness/Looks/Ring/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.1, 0.1, 0.11)
+                float inputs:roughness = 0.4
+                token outputs:surface
+            }
+        }
+
+        def Material "Steel"
+        {
+            token outputs:surface.connect = </Roughness/Looks/Steel/Surface.outputs:surface>
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Roughness"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/roughness_bands.png@
+                token inputs:sourceColorSpace = "raw"
+                float2 inputs:st.connect = </Roughness/Looks/Steel/St.outputs:result>
+                token inputs:wrapS = "repeat"
+                token inputs:wrapT = "repeat"
+                float outputs:r
+            }
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.92, 0.92, 0.94)
+                float inputs:metallic = 1
+                float inputs:roughness.connect = </Roughness/Looks/Steel/Roughness.outputs:r>
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "Ball" (
+        prepend references = @./ball.usda@
+    )
+    {
+        float3 xformOp:scale = (0.26291078, 0.26291078, 0.26291078)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+
+        over "Sphere"
+        {
+            over "Body" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Roughness/Looks/Steel>
+            }
+
+            over "Ring" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Roughness/Looks/Ring>
+            }
+        }
+
+        def Material "BaseLook"
+        {
+            token outputs:surface.connect = </Roughness/Ball/BaseLook/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.08, 0.08, 0.09)
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+
+        over "Base" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Roughness/Ball/BaseLook>
+        }
+    }
+}
+

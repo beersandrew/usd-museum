@@ -1,0 +1,141 @@
+#usda 1.0
+(
+    "materials.surfaces.preview: the opacity ball. Referenced by exhibit.usda."
+    defaultPrim = "Opacity"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Opacity" (
+    kind = "component"
+)
+{
+    def Scope "Looks"
+    {
+        def Material "Ring"
+        {
+            token outputs:surface.connect = </Opacity/Looks/Ring/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.1, 0.1, 0.11)
+                float inputs:roughness = 0.4
+                token outputs:surface
+            }
+        }
+
+        def Material "Glass"
+        {
+            token outputs:surface.connect = </Opacity/Looks/Glass/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.2, 0.65, 0.95)
+                float inputs:opacity = 0.3
+                float inputs:roughness = 0.05
+                token outputs:surface
+            }
+        }
+
+        def Material "Stripes"
+        {
+            token outputs:surface.connect = </Opacity/Looks/Stripes/Surface.outputs:surface>
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/stripes.png@
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Opacity/Looks/Stripes/St.outputs:result>
+                token inputs:wrapS = "repeat"
+                token inputs:wrapT = "repeat"
+                float3 outputs:rgb
+            }
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor.connect = </Opacity/Looks/Stripes/Tex.outputs:rgb>
+                float inputs:roughness = 0.9
+                token outputs:surface
+            }
+        }
+    }
+
+    def Mesh "Stripes" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        float3[] extent = [(-0.31, 0, -0.3), (0.31, 0.56, -0.3)]
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 3, 2]
+        rel material:binding = </Opacity/Looks/Stripes>
+        normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+            interpolation = "vertex"
+        )
+        point3f[] points = [(-0.31, 0, -0.3), (0.31, 0, -0.3), (-0.31, 0.56, -0.3), (0.31, 0.56, -0.3)]
+        texCoord2f[] primvars:st = [(0, 0), (1, 0), (0, 1), (1, 1)] (
+            interpolation = "vertex"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Xform "Ball" (
+        prepend references = @./ball.usda@
+    )
+    {
+        float3 xformOp:scale = (0.26291078, 0.26291078, 0.26291078)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+
+        over "Sphere"
+        {
+            over "Body" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Opacity/Looks/Glass>
+            }
+
+            over "Ring" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Opacity/Looks/Glass>
+            }
+        }
+
+        def Material "BaseLook"
+        {
+            token outputs:surface.connect = </Opacity/Ball/BaseLook/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.08, 0.08, 0.09)
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+
+        over "Base" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Opacity/Ball/BaseLook>
+        }
+    }
+}
+

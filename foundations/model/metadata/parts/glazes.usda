@@ -1,0 +1,98 @@
+#usda 1.0
+(
+    defaultPrim = "Glazes"
+    doc = """foundations.model.metadata: two vases whose glaze variant is chosen by an expression.
+This layer's expressionVariables say GLAZE = red and RIM = gold; a layer that references this one
+may say otherwise, key by key."""
+    expressionVariables = {
+        string GLAZE = "red"
+        string RIM = "gold"
+    }
+)
+
+def Xform "Glazes"
+{
+    def Xform "Stronger" (
+        variants = {
+            string glaze = "`${GLAZE}`"
+        }
+        prepend variantSets = "glaze"
+    )
+    {
+        def "Body" (
+            instanceable = true
+            references = @./vase.usda@
+        )
+        {
+        }
+        variantSet "glaze" = {
+            "teal" {
+                color3f[] primvars:displayColor = [(0.0103298, 0.313989, 0.0802198)] (
+                    interpolation = "constant"
+                )
+            }
+            "red" {
+                color3f[] primvars:displayColor = [(0.630757, 0.000607054, 0.0109601)] (
+                    interpolation = "constant"
+                )
+            }
+            "gold" {
+                color3f[] primvars:displayColor = [(0.692071, 0.367246, 0.0219809)] (
+                    interpolation = "constant"
+                )
+            }
+            "green" {
+                color3f[] primvars:displayColor = [(0.0331048, 0.342392, 0.073239)] (
+                    interpolation = "constant"
+                )
+            }
+            "off" {
+                color3f[] primvars:displayColor = [(0.147319, 0.147319, 0.162647)] (
+                    interpolation = "constant"
+                )
+            }
+        }
+    }
+
+    def Xform "Weaker" (
+        variants = {
+            string glaze = "`${RIM}`"
+        }
+        prepend variantSets = "glaze"
+    )
+    {
+        def "Body" (
+            instanceable = true
+            references = @./vase.usda@
+        )
+        {
+        }
+        variantSet "glaze" = {
+            "teal" {
+                color3f[] primvars:displayColor = [(0.0103298, 0.313989, 0.0802198)] (
+                    interpolation = "constant"
+                )
+            }
+            "red" {
+                color3f[] primvars:displayColor = [(0.630757, 0.000607054, 0.0109601)] (
+                    interpolation = "constant"
+                )
+            }
+            "gold" {
+                color3f[] primvars:displayColor = [(0.692071, 0.367246, 0.0219809)] (
+                    interpolation = "constant"
+                )
+            }
+            "green" {
+                color3f[] primvars:displayColor = [(0.0331048, 0.342392, 0.073239)] (
+                    interpolation = "constant"
+                )
+            }
+            "off" {
+                color3f[] primvars:displayColor = [(0.147319, 0.147319, 0.162647)] (
+                    interpolation = "constant"
+                )
+            }
+        }
+    }
+}

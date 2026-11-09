@@ -1,0 +1,91 @@
+#usda 1.0
+(
+    "materials.surfaces.materialx: a ball whose MaterialX network is authored in USD: ND_standard_surface, copper under a clear coat."
+    defaultPrim = "Coated"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Coated" (
+    kind = "component"
+)
+{
+    def Scope "Looks"
+    {
+        def Material "Copper"
+        {
+            token outputs:mtlx:surface.connect = </Coated/Looks/Copper/Surface.outputs:out>
+            token outputs:surface.connect = </Coated/Looks/Copper/PreviewFallback.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "ND_standard_surface_surfaceshader"
+                float inputs:base = 1
+                color3f inputs:base_color = (0.95, 0.52, 0.34)
+                float inputs:coat = 1
+                color3f inputs:coat_color = (1, 1, 1)
+                float inputs:coat_roughness = 0.04
+                float inputs:metalness = 1
+                float inputs:specular_roughness = 0.38
+                token outputs:out
+            }
+
+            def Shader "PreviewFallback"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.1, 0.95, 0.1)
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "Ball" (
+        prepend references = @./ball.usda@
+    )
+    {
+        float3 xformOp:scale = (0.26291078, 0.26291078, 0.26291078)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+
+        over "Sphere"
+        {
+            over "Body" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Coated/Looks/Copper>
+            }
+
+            over "Ring" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Coated/Looks/Copper>
+            }
+        }
+
+        def Material "BaseLook"
+        {
+            token outputs:surface.connect = </Coated/Ball/BaseLook/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.08, 0.08, 0.09)
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+
+        over "Base" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Coated/Ball/BaseLook>
+        }
+    }
+}
+

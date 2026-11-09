@@ -1,0 +1,98 @@
+#usda 1.0
+(
+    defaultPrim = "Text"
+    doc = "foundations.files.encodings: hand-written usda grammar, one object per pedestal. Comment: three red cubes (the lid) hidden in #, // and /* */ comments. AtPath: a reference whose path is triple-at quoted (the file name holds an @). Escape: a primvar reader whose varname is a hex escape for tint. Exponent: a sphere whose radius is 1.5e-1, placed by exponent literals and a leading dot. Legacy: an add references list op. rootPrims is reordered twice: the last statement wins (no imaging consumer)."
+)
+
+reorder rootPrims = ["Looks"]
+
+def Xform "Text" (
+    kind = "group"
+)
+{
+    def Xform "Comment"
+    {
+        def Cube "Block"
+        {
+            double size = 0.24
+            float3[] extent = [(-0.12, -0.12, -0.12), (0.12, 0.12, 0.12)]
+            color3f[] primvars:displayColor = [(0.0100228, 0.318547, 0.380056)]
+            matrix4d xformOp:transform = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.3, 0.872, -0.62, 1))
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+
+        def Xform "Lid"
+        {
+            # def Cube "Hash" { double size = 0.088; float3[] extent = [(-0.044, -0.044, -0.044), (0.044, 0.044, 0.044)]; color3f[] primvars:displayColor = [(0.85, 0.1, 0.1)]; matrix4d xformOp:transform = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.208, 1.071, -0.62, 1)); uniform token[] xformOpOrder = ["xformOp:transform"]; }
+            // def Cube "Slash" { double size = 0.088; float3[] extent = [(-0.044, -0.044, -0.044), (0.044, 0.044, 0.044)]; color3f[] primvars:displayColor = [(0.85, 0.1, 0.1)]; matrix4d xformOp:transform = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.3, 1.071, -0.62, 1)); uniform token[] xformOpOrder = ["xformOp:transform"]; }
+            /* def Cube "Star" { double size = 0.088; float3[] extent = [(-0.044, -0.044, -0.044), (0.044, 0.044, 0.044)]; color3f[] primvars:displayColor = [(0.85, 0.1, 0.1)]; matrix4d xformOp:transform = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.392, 1.071, -0.62, 1)); uniform token[] xformOpOrder = ["xformOp:transform"]; } */
+        }
+    }
+
+    def Xform "AtPath" (
+        references = @@@./cone@v2.usda@@@
+    )
+    {
+        matrix4d xformOp:transform = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.92, 0.902, -0.62, 1))
+        uniform token[] xformOpOrder = ["xformOp:transform"]
+    }
+
+    def Cylinder "Escape" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        double radius = 0.12
+        double height = 0.26
+        uniform token axis = "Y"
+        float3[] extent = [(-0.12, -0.13, -0.12), (0.12, 0.13, 0.12)]
+        color3f primvars:tint = (0.0331048, 0.342392, 0.073239) (
+            interpolation = "constant"
+        )
+        rel material:binding = </Text/Looks/Can>
+        matrix4d xformOp:transform = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.54, 0.882, -0.62, 1))
+        uniform token[] xformOpOrder = ["xformOp:transform"]
+    }
+
+    def Sphere "Exponent"
+    {
+        double radius = 1.5e-1
+        float3[] extent = [(-1.5e-1, -1.5e-1, -1.5e-1), (1.5e-1, 1.5e-1, 1.5e-1)]
+        color3f[] primvars:displayColor = [(0.0100228, 0.318547, 0.380056)]
+        matrix4d xformOp:transform = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (2.16e0, 9.02E-1, -.62, 1))
+        uniform token[] xformOpOrder = ["xformOp:transform"]
+    }
+
+    def Xform "Legacy" (
+        add references = @./capsule.usda@
+    )
+    {
+        matrix4d xformOp:transform = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (2.78, 0.9119999999999999, -0.62, 1))
+        uniform token[] xformOpOrder = ["xformOp:transform"]
+    }
+
+    def Scope "Looks"
+    {
+        def Material "Can"
+        {
+            token outputs:surface.connect = </Text/Looks/Can/Surface.outputs:surface>
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor.connect = </Text/Looks/Can/Tint.outputs:result>
+                float inputs:roughness = 0.55
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+            def Shader "Tint"
+            {
+                uniform token info:id = "UsdPrimvarReader_float3"
+                string inputs:varname = "t\x69nt"
+                float3 inputs:fallback = (0.631, 0.001, 0.011)
+                float3 outputs:result
+            }
+        }
+    }
+}
+
+reorder rootPrims = ["Text"]

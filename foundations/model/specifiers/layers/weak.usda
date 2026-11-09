@@ -1,0 +1,61 @@
+#usda 1.0
+(
+    "foundations.model.specifiers: the weaker sublayer's specifier and typeName opinions."
+)
+
+over "Exhibit"
+{
+    over "Pieces"
+    {
+        over "OverOnDef"
+        {
+            over "Spot"
+            {
+                def "Item" (
+                    prepend references = @../parts/bust.usda@
+                )
+                {
+                }
+            }
+        }
+
+        over "ClassOnDef"
+        {
+            over "Spot"
+            {
+                def "Item" (
+                    prepend references = @../parts/bust.usda@
+                )
+                {
+                }
+            }
+        }
+
+        over "DefOnClass"
+        {
+            over "Spot"
+            {
+                class "Item" (
+                    prepend references = @../parts/bust.usda@
+                )
+                {
+                }
+            }
+        }
+
+        over "TypeName"
+        {
+            over "Spot"
+            {
+                over "Item"
+                {
+                    def Cube "Head"
+                    {
+                        double size = 0.32
+                    }
+                }
+            }
+        }
+    }
+}
+

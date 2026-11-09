@@ -1,0 +1,14 @@
+#usda 1.0
+(
+    doc = "The value clip: red, except at its frame 24: orange."
+)
+
+over "Holder"
+{
+    color3f[] primvars:displayColor.timeSamples = {
+        1: [(0.630757, 0.000607054, 0.0109601)],
+        23: [(0.630757, 0.000607054, 0.0109601)],
+        24: [(0.775822, 0.254152, 0.0137021)],
+        25: [(0.630757, 0.000607054, 0.0109601)],
+    }
+}

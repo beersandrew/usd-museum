@@ -14,19 +14,58 @@ kit/py museum/src/export.py composition       # writes ~/git/usd-museum/composit
 
 ## Wings
 
+All ten wings, in tour order:
+
 | Wing | Galleries | Exhibits | Forgeries |
 |---|---|---|---|
+| [foundations](foundations/foundations.usda) | files, model, packages, paths, types | 8 | 53 |
 | [composition](composition/composition.usda) | arcs, loading, strength, namespace, edits, errors | 9 | 97 |
+| [instancing](instancing/instancing.usda) | native, points, crowds | 3 | 23 |
+| [animation](animation/animation.usda) | keys, time, splines, clips, blocks, characters, motion, rigging | 9 | 81 |
+| [stage](stage/stage.usda) | population, schemas, collections, imageable, meaning | 10 | 53 |
+| [geometry](geometry/geometry.usda) | shapes, meshes, curves, volumes, xforms | 7 | 36 |
+| [materials](materials/materials.usda) | surfaces, textures, binding, primvars, color | 6 | 37 |
+| [lights](lights/lights.usda) | emission, shaping, environment | 4 | 11 |
+| [cameras](cameras/cameras.usda) | lenses, render | 4 | 22 |
+| [physics](physics/physics.usda) | motion | 2 | 7 |
 
-The other nine wings are still only in usd-tour.
+62 exhibits and 420 forgeries. 410 forgeries are override layers; 10 are edited copies
+because overrides can't express them (relocates, MaterialX and a few others; each says why).
+
+The Animation wing runs with OpenExec on and includes the rigging gallery, which the
+whole-museum tour in usd-tour leaves out. Its `tour.usda` says so in `customLayerData`.
+The whole museum as one file (`museum.usda`) isn't exported yet.
+
+## Known problems
+
+Each of these is in the usd-tour build, not the export. The exported files match the
+originals exactly.
+
+- `instancing/crowds/crowds`: references `textures/sign_crowd_wrongcard.png`, which doesn't exist.
+- `instancing/points/points`: material bindings in the prototypes target `/Books/Looks/...`,
+  outside the referenced prim, so they don't resolve.
+- `materials/color/spaces`: the label mesh `/spaces/Dais/Label` sits under the dais mesh;
+  gprims can't nest.
+
+`usdchecker` fails on these three, and on their wings and tours. It also fails, on purpose,
+on the five exhibits whose `customData["museum"]["expected_errors"]` says why.
 
 ## Viewing
 
 The whole wing on its tour, through usd-tour's usdview kit (load schedule, Tour menu):
 
 ```sh
-~/git/usd-tour/view.sh ~/git/usd-museum/composition/tour.usda \
-    --unloaded --camera /composition/tour/tour_cam --complexity high
+~/git/usd-tour/view.sh ~/git/usd-museum/<wing>/tour.usda \
+    --unloaded --camera /<wing>/tour/tour_cam --complexity high
+```
+
+For the Animation wing, add what `view.sh` sets for usd-tour's own museum files: OpenExec on
+(its `tour.usda` says `exec = 1`) and UsdSkel's CPU path for the skinned figures.
+
+```sh
+USDIMAGINGGL_ENGINE_ENABLE_EXEC_SCENE_INDEX=1 USDSKELIMAGING_FORCE_CPU_COMPUTE=1 \
+  ~/git/usd-tour/view.sh ~/git/usd-museum/animation/tour.usda \
+    --unloaded --camera /animation/tour/tour_cam --complexity high
 ```
 
 Plain usdview works too, on anything:

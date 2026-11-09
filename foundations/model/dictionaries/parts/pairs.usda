@@ -1,0 +1,22 @@
+#usda 1.0
+(
+    defaultPrim = "Holder"
+    doc = """foundations.model.dictionaries: clips.default.times holds double2 pairs (stage frame, clip
+frame). Both numbers of each pair are read: every stage frame shows clip frame 24, orange."""
+    subLayers = [
+        @./geo.usda@
+    ]
+)
+
+over "Holder" (
+    clips = {
+        dictionary default = {
+            double2[] active = [(1, 0)]
+            asset[] assetPaths = [@./clip.usda@]
+            string primPath = "/Holder"
+            double2[] times = [(1, 24), (96, 24)]
+        }
+    }
+)
+{
+}

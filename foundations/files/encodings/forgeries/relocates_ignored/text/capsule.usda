@@ -1,0 +1,17 @@
+#usda 1.0
+(
+    defaultPrim = "Capsule"
+    doc = "foundations.files.encodings: the capsule an add references list op (legacy grammar) brings in."
+)
+
+def Xform "Capsule"
+{
+    def Capsule "Geom"
+    {
+        double radius = 0.09
+        double height = 0.14
+        uniform token axis = "Y"
+        float3[] extent = [(-0.09, -0.16, -0.09), (0.09, 0.16, 0.09)]
+        color3f[] primvars:displayColor = [(0.0100228, 0.318547, 0.380056)]
+    }
+}

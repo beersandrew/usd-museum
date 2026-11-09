@@ -1,0 +1,50 @@
+#usda 1.0
+(
+    "USD Museum, Animation wing, Keys gallery: carts riding bent tracks on three stands. Each track is a rule's answer key, baked at build time; each cart's height is a real attribute's resolved value. Correct: every cart stays on its track. Each stand plays frames 1..96 from its hold's start (LayerOffset). Built by src/build.py; do not edit."
+    defaultPrim = "Exhibit"
+    endTimeCode = 504
+    framesPerSecond = 24
+    metersPerUnit = 1
+    startTimeCode = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Exhibit" (
+    kind = "assembly"
+)
+{
+    float3[] extentsHint = [(-6.88, 0, -3.6000001), (6.88, 2.35, -0.032999985)]
+
+    def Scope "Looks"
+    {
+    }
+
+    def "Stands"
+    {
+        def Xform "Samples" (
+            prepend references = @./stands/samples.usda@
+        )
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-5.68, 0, -0.4, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+
+        def Xform "Layers" (
+            prepend references = @./stands/layers.usda@ (offset = 192)
+        )
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.9100000000000004, 0, -0.4, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+
+        def Xform "Types" (
+            prepend references = @./stands/types.usda@ (offset = 384)
+        )
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (3.8599999999999994, 0, -0.4, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+    }
+}
+

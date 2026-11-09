@@ -1,0 +1,49 @@
+#usda 1.0
+(
+    "animation.keys.keys: the stronger sublayer of stands/layers.usda (its carts' opinions)."
+    framesPerSecond = 24
+    timeCodesPerSecond = 24
+)
+
+over "Stand"
+{
+    over "Pieces"
+    {
+        over "Strongest"
+        {
+            over "Ride"
+            {
+                over "Cart"
+                {
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.385, 0, 1) )
+                }
+            }
+        }
+
+        over "Declared"
+        {
+            over "Ride"
+            {
+                over "Cart"
+                {
+                    matrix4d xformOp:transform
+                }
+            }
+        }
+
+        over "Replace"
+        {
+            over "Ride"
+            {
+                over "Cart"
+                {
+                    matrix4d xformOp:transform.timeSamples = {
+                        36: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.3325, 0, 1) ),
+                        60: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.2275, 0, 1) ),
+                    }
+                }
+            }
+        }
+    }
+}
+

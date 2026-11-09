@@ -1,0 +1,733 @@
+#usda 1.0
+(
+    "USD Museum exhibit foundations.model.dictionaries: dictionary values and keys read while composing (clips' number pairs, an empty expression-variable key) and assetInfo that loads nothing. Built by src/build.py."
+    defaultPrim = "Exhibit"
+    endTimeCode = 1
+    framesPerSecond = 24
+    metersPerUnit = 1
+    startTimeCode = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Exhibit" (
+    kind = "assembly"
+)
+{
+    float3[] extentsHint = [(-1.5, 0, -1.5), (1.5, 2.55, -0.294)]
+
+    def Scope "Looks"
+    {
+        def Material "pedestal"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/pedestal/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.60382736, 0.58701634, 0.53823555)
+                float inputs:roughness = 0.85
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "board"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/board/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.073238954, 0.07828832, 0.088981524)
+                float inputs:roughness = 0.8
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "placard_back"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/placard_back/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.05087609, 0.046964202, 0.043233637)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "outline"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/outline/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.015325204, 0.015325204, 0.017389102)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "outline_red"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/outline_red/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.63075715, 0.000607054, 0.010960094)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+    }
+
+    def Mesh "Board" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(-1.5, 0, -1.5), (1.5, 2.55, -1.42)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Exhibit/Looks/board>
+        point3f[] points = [(-1.5, 0, -1.42), (1.5, 0, -1.42), (1.5, 2.55, -1.42), (-1.5, 2.55, -1.42), (1.5, 0, -1.5), (-1.5, 0, -1.5), (-1.5, 2.55, -1.5), (1.5, 2.55, -1.5), (-1.5, 2.55, -1.42), (1.5, 2.55, -1.42), (1.5, 2.55, -1.5), (-1.5, 2.55, -1.5), (-1.5, 0, -1.5), (1.5, 0, -1.5), (1.5, 0, -1.42), (-1.5, 0, -1.42), (1.5, 0, -1.42), (1.5, 0, -1.5), (1.5, 2.55, -1.5), (1.5, 2.55, -1.42), (-1.5, 0, -1.5), (-1.5, 0, -1.42), (-1.5, 2.55, -1.42), (-1.5, 2.55, -1.5)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def "Placards"
+    {
+        def Material "Title_Mat"
+        {
+            token outputs:surface.connect = </Exhibit/Placards/Title_Mat/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Title_Mat/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Placards/Title_Mat/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Placards_Title.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Placards/Title_Mat/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Mesh "Title" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-1.35, 1.95, -1.41), (1.35, 2.39, -1.41)]
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            rel material:binding = </Exhibit/Placards/Title_Mat>
+            normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "vertex"
+            )
+            point3f[] points = [(-1.35, 1.95, -1.41), (1.35, 1.95, -1.41), (1.35, 2.39, -1.41), (-1.35, 2.39, -1.41)]
+            color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+            texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                interpolation = "vertex"
+            )
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "Title_Back" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            float3[] extent = [(-1.37, 1.93, -1.44), (1.37, 2.41, -1.414)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+            rel material:binding = </Exhibit/Looks/placard_back>
+            point3f[] points = [(-1.37, 1.93, -1.414), (1.37, 1.93, -1.414), (1.37, 2.41, -1.414), (-1.37, 2.41, -1.414), (1.37, 1.93, -1.44), (-1.37, 1.93, -1.44), (-1.37, 2.41, -1.44), (1.37, 2.41, -1.44), (-1.37, 2.41, -1.414), (1.37, 2.41, -1.414), (1.37, 2.41, -1.44), (-1.37, 2.41, -1.44), (-1.37, 1.93, -1.44), (1.37, 1.93, -1.44), (1.37, 1.93, -1.414), (-1.37, 1.93, -1.414), (1.37, 1.93, -1.414), (1.37, 1.93, -1.44), (1.37, 2.41, -1.44), (1.37, 2.41, -1.414), (-1.37, 1.93, -1.44), (-1.37, 1.93, -1.414), (-1.37, 2.41, -1.414), (-1.37, 2.41, -1.44)]
+            uniform token subdivisionScheme = "none"
+        }
+    }
+
+    def "Pieces"
+    {
+        def Xform "Pairs"
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.95, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Mesh "Pedestal" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.33, 0, -0.94), (0.33, 0.58, -0.3)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Exhibit/Looks/pedestal>
+                point3f[] points = [(-0.33, 0, -0.3), (0.33, 0, -0.3), (0.33, 0.58, -0.3), (-0.33, 0.58, -0.3), (0.33, 0, -0.94), (-0.33, 0, -0.94), (-0.33, 0.58, -0.94), (0.33, 0.58, -0.94), (-0.33, 0.58, -0.3), (0.33, 0.58, -0.3), (0.33, 0.58, -0.94), (-0.33, 0.58, -0.94), (-0.33, 0, -0.94), (0.33, 0, -0.94), (0.33, 0, -0.3), (-0.33, 0, -0.3), (0.33, 0, -0.3), (0.33, 0, -0.94), (0.33, 0.58, -0.94), (0.33, 0.58, -0.3), (-0.33, 0, -0.94), (-0.33, 0, -0.3), (-0.33, 0.58, -0.3), (-0.33, 0.58, -0.94)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Material "PlinthMat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/Pairs/PlinthMat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.7758222, 0.2541521, 0.013702083)
+                    float inputs:roughness = 0.55
+                    color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+            }
+
+            def Mesh "Plinth" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.29, 0.58, -0.9), (0.29, 0.7, -0.34)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Exhibit/Pieces/Pairs/PlinthMat>
+                point3f[] points = [(-0.29, 0.58, -0.34), (0.29, 0.58, -0.34), (0.29, 0.7, -0.34), (-0.29, 0.7, -0.34), (0.29, 0.58, -0.9), (-0.29, 0.58, -0.9), (-0.29, 0.7, -0.9), (0.29, 0.7, -0.9), (-0.29, 0.7, -0.34), (0.29, 0.7, -0.34), (0.29, 0.7, -0.9), (-0.29, 0.7, -0.9), (-0.29, 0.58, -0.9), (0.29, 0.58, -0.9), (0.29, 0.58, -0.34), (-0.29, 0.58, -0.34), (0.29, 0.58, -0.34), (0.29, 0.58, -0.9), (0.29, 0.7, -0.9), (0.29, 0.7, -0.34), (-0.29, 0.58, -0.9), (-0.29, 0.58, -0.34), (-0.29, 0.7, -0.34), (-0.29, 0.7, -0.9)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Material "Label_Mat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/Pairs/Label_Mat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0, 0, 0)
+                    color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Pairs/Label_Mat/Tex.outputs:rgb>
+                    float inputs:opacity.connect = </Exhibit/Pieces/Pairs/Label_Mat/Tex.outputs:a>
+                    float inputs:opacityThreshold = 0.5
+                    float inputs:roughness = 1
+                    color3f inputs:specularColor = (0, 0, 0)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/Exhibit_Pieces_Pairs_Label.png@
+                    float4 inputs:scale = (1, 1, 1, 1)
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Exhibit/Pieces/Pairs/Label_Mat/St.outputs:result>
+                    float outputs:a
+                    float3 outputs:rgb
+                }
+            }
+
+            def Mesh "Label" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 1
+                float3[] extent = [(-0.29314855, 0.44211796, -0.294), (0.29314855, 0.544682, -0.294)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                rel material:binding = </Exhibit/Pieces/Pairs/Label_Mat>
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                    interpolation = "vertex"
+                )
+                point3f[] points = [(-0.29314855, 0.44211796, -0.294), (0.29314855, 0.44211796, -0.294), (0.29314855, 0.544682, -0.294), (-0.29314855, 0.544682, -0.294)]
+                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                    interpolation = "vertex"
+                )
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Material "Sub_Mat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/Pairs/Sub_Mat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0, 0, 0)
+                    color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Pairs/Sub_Mat/Tex.outputs:rgb>
+                    float inputs:opacity.connect = </Exhibit/Pieces/Pairs/Sub_Mat/Tex.outputs:a>
+                    float inputs:opacityThreshold = 0.5
+                    float inputs:roughness = 1
+                    color3f inputs:specularColor = (0, 0, 0)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/Exhibit_Pieces_Pairs_Sub.png@
+                    float4 inputs:scale = (1, 1, 1, 1)
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Exhibit/Pieces/Pairs/Sub_Mat/St.outputs:result>
+                    float outputs:a
+                    float3 outputs:rgb
+                }
+            }
+
+            def Mesh "Sub" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 1
+                float3[] extent = [(-0.3, 0.37128493, -0.294), (0.3, 0.4230611, -0.294)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                rel material:binding = </Exhibit/Pieces/Pairs/Sub_Mat>
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                    interpolation = "vertex"
+                )
+                point3f[] points = [(-0.3, 0.37128493, -0.294), (0.3, 0.37128493, -0.294), (0.3, 0.4230611, -0.294), (-0.3, 0.4230611, -0.294)]
+                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                    interpolation = "vertex"
+                )
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Xform "Vase" (
+                prepend references = @./parts/pairs.usda@
+            )
+            {
+                matrix4d xformOp:transform = ( (1.5, 0, 0, 0), (0, 1.5, 0, 0), (0, 0, 1.5, 0), (0, 0.7, -0.62, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Blank"
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Mesh "Pedestal" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.33, 0, -0.94), (0.33, 0.58, -0.3)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Exhibit/Looks/pedestal>
+                point3f[] points = [(-0.33, 0, -0.3), (0.33, 0, -0.3), (0.33, 0.58, -0.3), (-0.33, 0.58, -0.3), (0.33, 0, -0.94), (-0.33, 0, -0.94), (-0.33, 0.58, -0.94), (0.33, 0.58, -0.94), (-0.33, 0.58, -0.3), (0.33, 0.58, -0.3), (0.33, 0.58, -0.94), (-0.33, 0.58, -0.94), (-0.33, 0, -0.94), (0.33, 0, -0.94), (0.33, 0, -0.3), (-0.33, 0, -0.3), (0.33, 0, -0.3), (0.33, 0, -0.94), (0.33, 0.58, -0.94), (0.33, 0.58, -0.3), (-0.33, 0, -0.94), (-0.33, 0, -0.3), (-0.33, 0.58, -0.3), (-0.33, 0.58, -0.94)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Material "PlinthMat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/Blank/PlinthMat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.2704978, 0.104616486, 0.67244315)
+                    float inputs:roughness = 0.55
+                    color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+            }
+
+            def Mesh "Plinth" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.29, 0.58, -0.9), (0.29, 0.7, -0.34)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Exhibit/Pieces/Blank/PlinthMat>
+                point3f[] points = [(-0.29, 0.58, -0.34), (0.29, 0.58, -0.34), (0.29, 0.7, -0.34), (-0.29, 0.7, -0.34), (0.29, 0.58, -0.9), (-0.29, 0.58, -0.9), (-0.29, 0.7, -0.9), (0.29, 0.7, -0.9), (-0.29, 0.7, -0.34), (0.29, 0.7, -0.34), (0.29, 0.7, -0.9), (-0.29, 0.7, -0.9), (-0.29, 0.58, -0.9), (0.29, 0.58, -0.9), (0.29, 0.58, -0.34), (-0.29, 0.58, -0.34), (0.29, 0.58, -0.34), (0.29, 0.58, -0.9), (0.29, 0.7, -0.9), (0.29, 0.7, -0.34), (-0.29, 0.58, -0.9), (-0.29, 0.58, -0.34), (-0.29, 0.7, -0.34), (-0.29, 0.7, -0.9)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Material "Label_Mat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/Blank/Label_Mat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0, 0, 0)
+                    color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Blank/Label_Mat/Tex.outputs:rgb>
+                    float inputs:opacity.connect = </Exhibit/Pieces/Blank/Label_Mat/Tex.outputs:a>
+                    float inputs:opacityThreshold = 0.5
+                    float inputs:roughness = 1
+                    color3f inputs:specularColor = (0, 0, 0)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/Exhibit_Pieces_Blank_Label.png@
+                    float4 inputs:scale = (1, 1, 1, 1)
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Exhibit/Pieces/Blank/Label_Mat/St.outputs:result>
+                    float outputs:a
+                    float3 outputs:rgb
+                }
+            }
+
+            def Mesh "Label" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 1
+                float3[] extent = [(-0.27073523, 0.44171795, -0.294), (0.27073523, 0.5442821, -0.294)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                rel material:binding = </Exhibit/Pieces/Blank/Label_Mat>
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                    interpolation = "vertex"
+                )
+                point3f[] points = [(-0.27073523, 0.44171795, -0.294), (0.27073523, 0.44171795, -0.294), (0.27073523, 0.5442821, -0.294), (-0.27073523, 0.5442821, -0.294)]
+                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                    interpolation = "vertex"
+                )
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Material "Sub_Mat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/Blank/Sub_Mat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0, 0, 0)
+                    color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Blank/Sub_Mat/Tex.outputs:rgb>
+                    float inputs:opacity.connect = </Exhibit/Pieces/Blank/Sub_Mat/Tex.outputs:a>
+                    float inputs:opacityThreshold = 0.5
+                    float inputs:roughness = 1
+                    color3f inputs:specularColor = (0, 0, 0)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/Exhibit_Pieces_Blank_Sub.png@
+                    float4 inputs:scale = (1, 1, 1, 1)
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Exhibit/Pieces/Blank/Sub_Mat/St.outputs:result>
+                    float outputs:a
+                    float3 outputs:rgb
+                }
+            }
+
+            def Mesh "Sub" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 1
+                float3[] extent = [(-0.3, 0.36913517, -0.294), (0.3, 0.42498395, -0.294)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                rel material:binding = </Exhibit/Pieces/Blank/Sub_Mat>
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                    interpolation = "vertex"
+                )
+                point3f[] points = [(-0.3, 0.36913517, -0.294), (0.3, 0.36913517, -0.294), (0.3, 0.42498395, -0.294), (-0.3, 0.42498395, -0.294)]
+                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                    interpolation = "vertex"
+                )
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Xform "Vase" (
+                prepend references = @./parts/blank.usda@
+            )
+            {
+                matrix4d xformOp:transform = ( (1.5, 0, 0, 0), (0, 1.5, 0, 0), (0, 0, 1.5, 0), (0, 0.7, -0.62, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "AssetInfo"
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.95, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Mesh "Pedestal" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.33, 0, -0.94), (0.33, 0.7, -0.3)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Exhibit/Looks/pedestal>
+                point3f[] points = [(-0.33, 0, -0.3), (0.33, 0, -0.3), (0.33, 0.7, -0.3), (-0.33, 0.7, -0.3), (0.33, 0, -0.94), (-0.33, 0, -0.94), (-0.33, 0.7, -0.94), (0.33, 0.7, -0.94), (-0.33, 0.7, -0.3), (0.33, 0.7, -0.3), (0.33, 0.7, -0.94), (-0.33, 0.7, -0.94), (-0.33, 0, -0.94), (0.33, 0, -0.94), (0.33, 0, -0.3), (-0.33, 0, -0.3), (0.33, 0, -0.3), (0.33, 0, -0.94), (0.33, 0.7, -0.94), (0.33, 0.7, -0.3), (-0.33, 0, -0.94), (-0.33, 0, -0.3), (-0.33, 0.7, -0.3), (-0.33, 0.7, -0.94)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Material "Label_Mat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/AssetInfo/Label_Mat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0, 0, 0)
+                    color3f inputs:emissiveColor.connect = </Exhibit/Pieces/AssetInfo/Label_Mat/Tex.outputs:rgb>
+                    float inputs:opacity.connect = </Exhibit/Pieces/AssetInfo/Label_Mat/Tex.outputs:a>
+                    float inputs:opacityThreshold = 0.5
+                    float inputs:roughness = 1
+                    color3f inputs:specularColor = (0, 0, 0)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/Exhibit_Pieces_AssetInfo_Label.png@
+                    float4 inputs:scale = (1, 1, 1, 1)
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Exhibit/Pieces/AssetInfo/Label_Mat/St.outputs:result>
+                    float outputs:a
+                    float3 outputs:rgb
+                }
+            }
+
+            def Mesh "Label" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 1
+                float3[] extent = [(-0.20797493, 0.45031795, -0.294), (0.20797493, 0.5528821, -0.294)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                rel material:binding = </Exhibit/Pieces/AssetInfo/Label_Mat>
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                    interpolation = "vertex"
+                )
+                point3f[] points = [(-0.20797493, 0.45031795, -0.294), (0.20797493, 0.45031795, -0.294), (0.20797493, 0.5528821, -0.294), (-0.20797493, 0.5528821, -0.294)]
+                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                    interpolation = "vertex"
+                )
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Material "Sub_Mat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/AssetInfo/Sub_Mat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0, 0, 0)
+                    color3f inputs:emissiveColor.connect = </Exhibit/Pieces/AssetInfo/Sub_Mat/Tex.outputs:rgb>
+                    float inputs:opacity.connect = </Exhibit/Pieces/AssetInfo/Sub_Mat/Tex.outputs:a>
+                    float inputs:opacityThreshold = 0.5
+                    float inputs:roughness = 1
+                    color3f inputs:specularColor = (0, 0, 0)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/Exhibit_Pieces_AssetInfo_Sub.png@
+                    float4 inputs:scale = (1, 1, 1, 1)
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Exhibit/Pieces/AssetInfo/Sub_Mat/St.outputs:result>
+                    float outputs:a
+                    float3 outputs:rgb
+                }
+            }
+
+            def Mesh "Sub" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 1
+                float3[] extent = [(-0.3, 0.35846007, -0.294), (0.3, 0.4318133, -0.294)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                rel material:binding = </Exhibit/Pieces/AssetInfo/Sub_Mat>
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                    interpolation = "vertex"
+                )
+                point3f[] points = [(-0.3, 0.35846007, -0.294), (0.3, 0.35846007, -0.294), (0.3, 0.4318133, -0.294), (-0.3, 0.4318133, -0.294)]
+                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                    interpolation = "vertex"
+                )
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Xform "Stool" (
+                prepend references = @./parts/stool.usda@
+            )
+            {
+                matrix4d xformOp:transform = ( (1.5, 0, 0, 0), (0, 1.5, 0, 0), (0, 0, 1.5, 0), (0, 0.7, -0.62, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            def Material "GhostMat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/AssetInfo/GhostMat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.44798842, 0.6382832, 0.8900054)
+                    float inputs:opacity = 0.22
+                    float inputs:roughness = 0.3
+                    color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+            }
+
+            def Xform "Ghost"
+            {
+                matrix4d xformOp:transform = ( (1.5, 0, 0, 0), (0, 1.5, 0, 0), (0, 0, 1.5, 0), (0, 0.7, -0.62, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Seat" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.174, 0.296, -0.124), (0.174, 0.354, 0.124)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Pieces/AssetInfo/GhostMat>
+                    point3f[] points = [(-0.174, 0.296, 0.124), (0.174, 0.296, 0.124), (0.174, 0.354, 0.124), (-0.174, 0.354, 0.124), (0.174, 0.296, -0.124), (-0.174, 0.296, -0.124), (-0.174, 0.354, -0.124), (0.174, 0.354, -0.124), (-0.174, 0.354, 0.124), (0.174, 0.354, 0.124), (0.174, 0.354, -0.124), (-0.174, 0.354, -0.124), (-0.174, 0.296, -0.124), (0.174, 0.296, -0.124), (0.174, 0.296, 0.124), (-0.174, 0.296, 0.124), (0.174, 0.296, 0.124), (0.174, 0.296, -0.124), (0.174, 0.354, -0.124), (0.174, 0.354, 0.124), (-0.174, 0.296, -0.124), (-0.174, 0.296, 0.124), (-0.174, 0.354, 0.124), (-0.174, 0.354, -0.124)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Leg0" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.161, -0.004, -0.111), (-0.119, 0.304, -0.069)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Pieces/AssetInfo/GhostMat>
+                    point3f[] points = [(-0.161, -0.004, -0.069), (-0.119, -0.004, -0.069), (-0.119, 0.304, -0.069), (-0.161, 0.304, -0.069), (-0.119, -0.004, -0.111), (-0.161, -0.004, -0.111), (-0.161, 0.304, -0.111), (-0.119, 0.304, -0.111), (-0.161, 0.304, -0.069), (-0.119, 0.304, -0.069), (-0.119, 0.304, -0.111), (-0.161, 0.304, -0.111), (-0.161, -0.004, -0.111), (-0.119, -0.004, -0.111), (-0.119, -0.004, -0.069), (-0.161, -0.004, -0.069), (-0.119, -0.004, -0.069), (-0.119, -0.004, -0.111), (-0.119, 0.304, -0.111), (-0.119, 0.304, -0.069), (-0.161, -0.004, -0.111), (-0.161, -0.004, -0.069), (-0.161, 0.304, -0.069), (-0.161, 0.304, -0.111)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Leg1" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(0.119, -0.004, -0.111), (0.161, 0.304, -0.069)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Pieces/AssetInfo/GhostMat>
+                    point3f[] points = [(0.119, -0.004, -0.069), (0.161, -0.004, -0.069), (0.161, 0.304, -0.069), (0.119, 0.304, -0.069), (0.161, -0.004, -0.111), (0.119, -0.004, -0.111), (0.119, 0.304, -0.111), (0.161, 0.304, -0.111), (0.119, 0.304, -0.069), (0.161, 0.304, -0.069), (0.161, 0.304, -0.111), (0.119, 0.304, -0.111), (0.119, -0.004, -0.111), (0.161, -0.004, -0.111), (0.161, -0.004, -0.069), (0.119, -0.004, -0.069), (0.161, -0.004, -0.069), (0.161, -0.004, -0.111), (0.161, 0.304, -0.111), (0.161, 0.304, -0.069), (0.119, -0.004, -0.111), (0.119, -0.004, -0.069), (0.119, 0.304, -0.069), (0.119, 0.304, -0.111)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Leg2" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.161, -0.004, 0.069), (-0.119, 0.304, 0.111)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Pieces/AssetInfo/GhostMat>
+                    point3f[] points = [(-0.161, -0.004, 0.111), (-0.119, -0.004, 0.111), (-0.119, 0.304, 0.111), (-0.161, 0.304, 0.111), (-0.119, -0.004, 0.069), (-0.161, -0.004, 0.069), (-0.161, 0.304, 0.069), (-0.119, 0.304, 0.069), (-0.161, 0.304, 0.111), (-0.119, 0.304, 0.111), (-0.119, 0.304, 0.069), (-0.161, 0.304, 0.069), (-0.161, -0.004, 0.069), (-0.119, -0.004, 0.069), (-0.119, -0.004, 0.111), (-0.161, -0.004, 0.111), (-0.119, -0.004, 0.111), (-0.119, -0.004, 0.069), (-0.119, 0.304, 0.069), (-0.119, 0.304, 0.111), (-0.161, -0.004, 0.069), (-0.161, -0.004, 0.111), (-0.161, 0.304, 0.111), (-0.161, 0.304, 0.069)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Leg3" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(0.119, -0.004, 0.069), (0.161, 0.304, 0.111)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    rel material:binding = </Exhibit/Pieces/AssetInfo/GhostMat>
+                    point3f[] points = [(0.119, -0.004, 0.111), (0.161, -0.004, 0.111), (0.161, 0.304, 0.111), (0.119, 0.304, 0.111), (0.161, -0.004, 0.069), (0.119, -0.004, 0.069), (0.119, 0.304, 0.069), (0.161, 0.304, 0.069), (0.119, 0.304, 0.111), (0.161, 0.304, 0.111), (0.161, 0.304, 0.069), (0.119, 0.304, 0.069), (0.119, -0.004, 0.069), (0.161, -0.004, 0.069), (0.161, -0.004, 0.111), (0.119, -0.004, 0.111), (0.161, -0.004, 0.111), (0.161, -0.004, 0.069), (0.161, 0.304, 0.069), (0.161, 0.304, 0.111), (0.119, -0.004, 0.069), (0.119, -0.004, 0.111), (0.119, 0.304, 0.111), (0.119, 0.304, 0.069)]
+                    uniform token subdivisionScheme = "none"
+                }
+            }
+        }
+    }
+}
+

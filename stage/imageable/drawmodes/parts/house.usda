@@ -1,0 +1,73 @@
+#usda 1.0
+(
+    "stage.imageable.drawmodes: one little house (belt 07.Street's), in units of 1/16 m."
+    defaultPrim = "Home"
+    framesPerSecond = 24
+    metersPerUnit = 0.0625
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Home" (
+    kind = "component"
+)
+{
+    def Xform "Geom"
+    {
+        def Cube "Body"
+        {
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            color3f[] primvars:displayColor = [(0.92, 0.85, 0.7)]
+            double size = 1
+            matrix4d xformOp:transform = ( (11.2, 0, 0, 0), (0, 8, 0, 0), (0, 0, 8.8, 0), (0, 4, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+
+        def Mesh "Roof"
+        {
+            float3[] extent = [(-6.72, 8, -5.12), (6.72, 12.8, 5.12)]
+            int[] faceVertexCounts = [3, 3, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 4, 3, 5, 1, 4, 5, 2, 3, 0, 2, 5, 0, 3, 4, 1]
+            point3f[] points = [(-6.72, 8, 5.12), (6.72, 8, 5.12), (0, 12.8, 5.12), (-6.72, 8, -5.12), (6.72, 8, -5.12), (0, 12.8, -5.12)]
+            color3f[] primvars:displayColor = [(0.7, 0.2, 0.15)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Cube "Door"
+        {
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            color3f[] primvars:displayColor = [(0.4, 0.22, 0.1)]
+            double size = 1
+            matrix4d xformOp:transform = ( (2.24, 0, 0, 0), (0, 4.16, 0, 0), (0, 0, 0.32, 0), (0, 2.08, 4.56, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+
+        def Cube "WinL"
+        {
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            color3f[] primvars:displayColor = [(0.55, 0.75, 0.95)]
+            double size = 1
+            matrix4d xformOp:transform = ( (2.24, 0, 0, 0), (0, 1.92, 0, 0), (0, 0, 0.32, 0), (-3.2, 5.12, 4.56, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+
+        def Cube "WinR"
+        {
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            color3f[] primvars:displayColor = [(0.55, 0.75, 0.95)]
+            double size = 1
+            matrix4d xformOp:transform = ( (2.24, 0, 0, 0), (0, 1.92, 0, 0), (0, 0, 0.32, 0), (3.2, 5.12, 4.56, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+
+        def Cube "Chimney"
+        {
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            color3f[] primvars:displayColor = [(0.45, 0.15, 0.12)]
+            double size = 1
+            matrix4d xformOp:transform = ( (1.28, 0, 0, 0), (0, 3.2, 0, 0), (0, 0, 1.28, 0), (3.52, 12, -1.6, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+    }
+}
+

@@ -1,0 +1,135 @@
+#usda 1.0
+(
+    "Baked view volumes (museum/wings/cameras/src/ck.py bake): written from the exhibit's cameras as they compose; do not edit."
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def "Exhibit"
+{
+    def "Pieces"
+    {
+        def "Set"
+        {
+            def "Prop"
+            {
+                def "MonitorSettings"
+                {
+                    def "Baked"
+                    {
+                        def Material "PictureMat"
+                        {
+                            token outputs:surface.connect = </Exhibit/Pieces/Set/Prop/MonitorSettings/Baked/PictureMat/Surface.outputs:surface>
+
+                            def Shader "Surface"
+                            {
+                                uniform token info:id = "UsdPreviewSurface"
+                                color3f inputs:diffuseColor = (0, 0, 0)
+                                color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Set/Prop/MonitorSettings/Baked/PictureMat/Tex.outputs:rgb>
+                                float inputs:roughness = 1
+                                color3f inputs:specularColor = (0, 0, 0)
+                                int inputs:useSpecularWorkflow = 1
+                                token outputs:surface
+                            }
+
+                            def Shader "St"
+                            {
+                                uniform token info:id = "UsdPrimvarReader_float2"
+                                string inputs:varname = "st"
+                                float2 outputs:result
+                            }
+
+                            def Shader "Tex"
+                            {
+                                uniform token info:id = "UsdUVTexture"
+                                asset inputs:file = @../textures/screen_Settings.png@
+                                token inputs:sourceColorSpace = "sRGB"
+                                float2 inputs:st.connect = </Exhibit/Pieces/Set/Prop/MonitorSettings/Baked/PictureMat/St.outputs:result>
+                                float3 outputs:rgb
+                            }
+                        }
+
+                        def Mesh "Picture" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            uniform bool doubleSided = 1
+                            float3[] extent = [(-0.02, 1.27475, -1.49), (1.02, 1.71025, -1.49)]
+                            int[] faceVertexCounts = [4]
+                            int[] faceVertexIndices = [0, 1, 2, 3]
+                            rel material:binding = </Exhibit/Pieces/Set/Prop/MonitorSettings/Baked/PictureMat>
+                            normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                                interpolation = "vertex"
+                            )
+                            point3f[] points = [(-0.02, 1.27475, -1.49), (1.02, 1.27475, -1.49), (1.02, 1.71025, -1.49), (-0.02, 1.71025, -1.49)]
+                            texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                                interpolation = "vertex"
+                            )
+                            uniform token subdivisionScheme = "none"
+                        }
+                    }
+                }
+
+                def "MonitorPass"
+                {
+                    def "Baked"
+                    {
+                        def Material "PictureMat"
+                        {
+                            token outputs:surface.connect = </Exhibit/Pieces/Set/Prop/MonitorPass/Baked/PictureMat/Surface.outputs:surface>
+
+                            def Shader "Surface"
+                            {
+                                uniform token info:id = "UsdPreviewSurface"
+                                color3f inputs:diffuseColor = (0, 0, 0)
+                                color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Set/Prop/MonitorPass/Baked/PictureMat/Tex.outputs:rgb>
+                                float inputs:roughness = 1
+                                color3f inputs:specularColor = (0, 0, 0)
+                                int inputs:useSpecularWorkflow = 1
+                                token outputs:surface
+                            }
+
+                            def Shader "St"
+                            {
+                                uniform token info:id = "UsdPrimvarReader_float2"
+                                string inputs:varname = "st"
+                                float2 outputs:result
+                            }
+
+                            def Shader "Tex"
+                            {
+                                uniform token info:id = "UsdUVTexture"
+                                asset inputs:file = @../textures/screen_Pass.png@
+                                token inputs:sourceColorSpace = "sRGB"
+                                float2 inputs:st.connect = </Exhibit/Pieces/Set/Prop/MonitorPass/Baked/PictureMat/St.outputs:result>
+                                float3 outputs:rgb
+                            }
+                        }
+
+                        def Mesh "Picture" (
+                            prepend apiSchemas = ["MaterialBindingAPI"]
+                        )
+                        {
+                            uniform bool doubleSided = 1
+                            float3[] extent = [(1.2, 1.27475, -1.49), (2.24, 1.71025, -1.49)]
+                            int[] faceVertexCounts = [4]
+                            int[] faceVertexIndices = [0, 1, 2, 3]
+                            rel material:binding = </Exhibit/Pieces/Set/Prop/MonitorPass/Baked/PictureMat>
+                            normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                                interpolation = "vertex"
+                            )
+                            point3f[] points = [(1.2, 1.27475, -1.49), (2.24, 1.27475, -1.49), (2.24, 1.71025, -1.49), (1.2, 1.71025, -1.49)]
+                            texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                                interpolation = "vertex"
+                            )
+                            uniform token subdivisionScheme = "none"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

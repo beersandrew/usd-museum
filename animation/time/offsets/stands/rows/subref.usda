@@ -1,0 +1,11 @@
+#usda 1.0
+(
+    "animation.time.offsets: subref_inner.usda as a sublayer, scale 2."
+    defaultPrim = "Cart"
+    framesPerSecond = 24
+    subLayers = [
+        @./subref_inner.usda@ (scale = 2)
+    ]
+    timeCodesPerSecond = 24
+)
+

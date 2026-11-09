@@ -1,0 +1,15 @@
+#usda 1.0
+(
+    "animation.clips.clips: the ramp clip."
+    framesPerSecond = 24
+    timeCodesPerSecond = 24
+)
+
+def "Cart"
+{
+    matrix4d xformOp:transform.timeSamples = {
+        0: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.026249999999999996, 0, 1) ),
+        36: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.39375, 0, 1) ),
+    }
+}
+

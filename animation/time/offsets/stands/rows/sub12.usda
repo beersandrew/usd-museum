@@ -1,0 +1,11 @@
+#usda 1.0
+(
+    "animation.time.offsets: a 24 fps layer; ride12.usda as a sublayer, offset 12."
+    defaultPrim = "Cart"
+    framesPerSecond = 24
+    subLayers = [
+        @./ride12.usda@ (offset = 12)
+    ]
+    timeCodesPerSecond = 24
+)
+

@@ -1,0 +1,21 @@
+#usda 1.0
+(
+    "animation.blocks.blocks: the weaker opinions on a cart: still value 5, keys {1: 2.0, 24: 7.0, 48: 3.0, 72: 7.0, 96: 2.0}."
+    defaultPrim = "Cart"
+    framesPerSecond = 24
+    timeCodesPerSecond = 24
+)
+
+def Xform "Cart"
+{
+    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.2625, 0, 1) )
+    matrix4d xformOp:transform.timeSamples = {
+        1: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.10499999999999998, 0, 1) ),
+        24: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.3675, 0, 1) ),
+        48: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.1575, 0, 1) ),
+        72: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.3675, 0, 1) ),
+        96: ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.10499999999999998, 0, 1) ),
+    }
+    uniform token[] xformOpOrder = ["xformOp:transform"]
+}
+

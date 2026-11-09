@@ -1,0 +1,91 @@
+#usda 1.0
+(
+    "materials.surfaces.preview: the emissive ball. Referenced by exhibit.usda."
+    defaultPrim = "Emissive"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Emissive" (
+    kind = "component"
+)
+{
+    def Scope "Looks"
+    {
+        def Material "Ring"
+        {
+            token outputs:surface.connect = </Emissive/Looks/Ring/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.1, 0.1, 0.11)
+                float inputs:roughness = 0.4
+                token outputs:surface
+            }
+        }
+
+        def Material "Glow"
+        {
+            token outputs:surface.connect = </Emissive/Looks/Glow/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.75, 0.04, 0.03)
+                color3f inputs:emissiveColor = (1, 0.42, 0.05)
+                float inputs:roughness = 0.8
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "Ball" (
+        prepend references = @./ball.usda@
+    )
+    {
+        float3 xformOp:scale = (0.26291078, 0.26291078, 0.26291078)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+
+        over "Sphere"
+        {
+            over "Body" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Emissive/Looks/Glow>
+            }
+
+            over "Ring" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Emissive/Looks/Ring>
+            }
+        }
+
+        def Material "BaseLook"
+        {
+            token outputs:surface.connect = </Emissive/Ball/BaseLook/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.08, 0.08, 0.09)
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+
+        over "Base" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Emissive/Ball/BaseLook>
+        }
+    }
+}
+

@@ -1,0 +1,355 @@
+#usda 1.0
+(
+    "materials.binding.binding: /Bowl binds orange to its collection 'fruit' (includes ./Fruit, expandPrims) strongerThanDescendants; Fruit/Apple2 binds red itself and is orange too. /Bowl/Control binds red outside the collection: red. The orange plinth and the red saucer are the answer key."
+    defaultPrim = "Bowl"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Bowl" (
+    prepend apiSchemas = ["CollectionAPI:fruit", "MaterialBindingAPI"]
+    kind = "component"
+)
+{
+    uniform token collection:fruit:expansionRule = "expandPrims"
+    prepend rel collection:fruit:includes = </Bowl/Group/Fruit>
+    rel material:binding:collection:fruit = [
+        </Bowl.collection:fruit>,
+        </Bowl/Looks/Orange>,
+    ] (
+        bindMaterialAs = "strongerThanDescendants"
+    )
+
+    def Scope "Looks"
+    {
+        def Material "Red"
+        {
+            token outputs:surface.connect = </Bowl/Looks/Red/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.85, 0.08, 0.06)
+                float inputs:roughness = 0.45
+                token outputs:surface
+            }
+        }
+
+        def Material "Orange"
+        {
+            token outputs:surface.connect = </Bowl/Looks/Orange/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 0.45, 0.02)
+                float inputs:roughness = 0.45
+                token outputs:surface
+            }
+        }
+
+        def Material "Dish"
+        {
+            token outputs:surface.connect = </Bowl/Looks/Dish/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.92, 0.92, 0.9)
+                float inputs:roughness = 0.3
+                token outputs:surface
+            }
+        }
+    }
+
+    def Mesh "Plinth" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(-0.98, 0, -0.26), (0.58, 0.06, 0.26)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Bowl/Looks/Orange>
+        point3f[] points = [(-0.98, 0, 0.26), (0.58, 0, 0.26), (0.58, 0.06, 0.26), (-0.98, 0.06, 0.26), (0.58, 0, -0.26), (-0.98, 0, -0.26), (-0.98, 0.06, -0.26), (0.58, 0.06, -0.26), (-0.98, 0.06, 0.26), (0.58, 0.06, 0.26), (0.58, 0.06, -0.26), (-0.98, 0.06, -0.26), (-0.98, 0, -0.26), (0.58, 0, -0.26), (0.58, 0, 0.26), (-0.98, 0, 0.26), (0.58, 0, 0.26), (0.58, 0, -0.26), (0.58, 0.06, -0.26), (0.58, 0.06, 0.26), (-0.98, 0, -0.26), (-0.98, 0, 0.26), (-0.98, 0.06, 0.26), (-0.98, 0.06, -0.26)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "Saucer" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(0.72, 0, -0.16), (1, 0.06, 0.16)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Bowl/Looks/Red>
+        point3f[] points = [(0.72, 0, 0.16), (1, 0, 0.16), (1, 0.06, 0.16), (0.72, 0.06, 0.16), (1, 0, -0.16), (0.72, 0, -0.16), (0.72, 0.06, -0.16), (1, 0.06, -0.16), (0.72, 0.06, 0.16), (1, 0.06, 0.16), (1, 0.06, -0.16), (0.72, 0.06, -0.16), (0.72, 0, -0.16), (1, 0, -0.16), (1, 0, 0.16), (0.72, 0, 0.16), (1, 0, 0.16), (1, 0, -0.16), (1, 0.06, -0.16), (1, 0.06, 0.16), (0.72, 0, -0.16), (0.72, 0, 0.16), (0.72, 0.06, 0.16), (0.72, 0.06, -0.16)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Xform "Group"
+    {
+        float3 xformOp:scale = (0.85, 0.85, 0.85)
+        double3 xformOp:translate = (-0.2, 0.06, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+
+        def Sphere "Dish" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            float3[] extent = [(-1, -1, -1), (1, 1, 1)]
+            rel material:binding = </Bowl/Looks/Dish>
+            color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+            double radius = 1
+            float3 xformOp:scale = (0.98, 0.12, 0.26)
+            double3 xformOp:translate = (0, 0.08, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Xform "Fruit"
+        {
+            double3 xformOp:translate = (0, 0.04, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "Orange1"
+            {
+                double3 xformOp:translate = (-0.62, 0.17, -0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Sphere "Body"
+                {
+                    float3[] extent = [(-0.15, -0.15, -0.15), (0.15, 0.15, 0.15)]
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.15
+                    float3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                }
+            }
+
+            def Xform "Apple1"
+            {
+                double3 xformOp:translate = (-0.34, 0.16, 0.06)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Sphere "Body"
+                {
+                    float3[] extent = [(-0.14, -0.14, -0.14), (0.14, 0.14, 0.14)]
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.14
+                    float3 xformOp:scale = (1, 0.9, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                }
+
+                def Cylinder "Stem"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.012, -0.035, -0.012), (0.012, 0.035, 0.012)]
+                    double height = 0.07
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.012
+                    double3 xformOp:translate = (0, 0.14600000000000002, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+            }
+
+            def Xform "Plum1"
+            {
+                double3 xformOp:translate = (-0.14, 0.14, -0.08)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Sphere "Body"
+                {
+                    float3[] extent = [(-0.11, -0.11, -0.11), (0.11, 0.11, 0.11)]
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.11
+                    float3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                }
+            }
+
+            def Xform "Orange2"
+            {
+                double3 xformOp:translate = (0.12, 0.17, -0.04)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Sphere "Body"
+                {
+                    float3[] extent = [(-0.155, -0.155, -0.155), (0.155, 0.155, 0.155)]
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.155
+                    float3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                }
+            }
+
+            def Xform "Apple2" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Bowl/Looks/Red>
+                double3 xformOp:translate = (0, 0.17, 0.12)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Sphere "Body"
+                {
+                    float3[] extent = [(-0.145, -0.145, -0.145), (0.145, 0.145, 0.145)]
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.145
+                    float3 xformOp:scale = (1, 0.9, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                }
+
+                def Cylinder "Stem"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.012, -0.035, -0.012), (0.012, 0.035, 0.012)]
+                    double height = 0.07
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.012
+                    double3 xformOp:translate = (0, 0.1505, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+            }
+
+            def Xform "Apple3"
+            {
+                double3 xformOp:translate = (0.42, 0.16, 0.04)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Sphere "Body"
+                {
+                    float3[] extent = [(-0.14, -0.14, -0.14), (0.14, 0.14, 0.14)]
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.14
+                    float3 xformOp:scale = (1, 0.9, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                }
+
+                def Cylinder "Stem"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.012, -0.035, -0.012), (0.012, 0.035, 0.012)]
+                    double height = 0.07
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.012
+                    double3 xformOp:translate = (0, 0.14600000000000002, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+            }
+
+            def Xform "Plum2"
+            {
+                double3 xformOp:translate = (0.66, 0.14, -0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Sphere "Body"
+                {
+                    float3[] extent = [(-0.11, -0.11, -0.11), (0.11, 0.11, 0.11)]
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.11
+                    float3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                }
+            }
+
+            def Xform "Orange3"
+            {
+                double3 xformOp:translate = (-0.46, 0.38, -0.04)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Sphere "Body"
+                {
+                    float3[] extent = [(-0.145, -0.145, -0.145), (0.145, 0.145, 0.145)]
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.145
+                    float3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                }
+            }
+
+            def Xform "Apple4"
+            {
+                double3 xformOp:translate = (0.24, 0.38, -0.04)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Sphere "Body"
+                {
+                    float3[] extent = [(-0.135, -0.135, -0.135), (0.135, 0.135, 0.135)]
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.135
+                    float3 xformOp:scale = (1, 0.9, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                }
+
+                def Cylinder "Stem"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.012, -0.035, -0.012), (0.012, 0.035, 0.012)]
+                    double height = 0.07
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.012
+                    double3 xformOp:translate = (0, 0.14150000000000001, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+            }
+
+            def Xform "Plum3"
+            {
+                double3 xformOp:translate = (-0.12, 0.38, -0.06)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Sphere "Body"
+                {
+                    float3[] extent = [(-0.105, -0.105, -0.105), (0.105, 0.105, 0.105)]
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.105
+                    float3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                }
+            }
+        }
+    }
+
+    def Xform "Control" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Bowl/Looks/Red>
+        float3 xformOp:scale = (0.85, 0.85, 0.85)
+        double3 xformOp:translate = (0.86, 0.16144999999999998, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+
+        def Sphere "Body"
+        {
+            float3[] extent = [(-0.145, -0.145, -0.145), (0.145, 0.145, 0.145)]
+            color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+            double radius = 0.145
+            float3 xformOp:scale = (1, 0.9, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cylinder "Stem"
+        {
+            uniform token axis = "Y"
+            float3[] extent = [(-0.012, -0.035, -0.012), (0.012, 0.035, 0.012)]
+            double height = 0.07
+            color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+            double radius = 0.012
+            double3 xformOp:translate = (0, 0.15, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+}
+

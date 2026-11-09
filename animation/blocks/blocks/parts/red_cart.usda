@@ -1,0 +1,19 @@
+#usda 1.0
+(
+    "animation.blocks.blocks: the cart asset, red (its root's displayColor): the weaker colour the colour block discards."
+    defaultPrim = "Cart"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Cart" (
+    prepend references = @./cart.usda@
+)
+{
+    color3f[] primvars:displayColor = [(0.6382832, 0.010022826, 0.013411749)] (
+        interpolation = "constant"
+    )
+}
+

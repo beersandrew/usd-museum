@@ -1,0 +1,79 @@
+#usda 1.0
+(
+    "materials.surfaces.materialx: a ball bound to Blue_Marble from marble.mtlx, with a green UsdPreviewSurface on the universal output."
+    defaultPrim = "Marble"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Marble" (
+    kind = "component"
+)
+{
+    def Scope "Looks"
+    {
+        def Material "Marble" (
+            prepend references = @./marble.mtlx@</MaterialX/Materials/Blue_Marble>
+        )
+        {
+            token outputs:surface.connect = </Marble/Looks/Marble/PreviewFallback.outputs:surface>
+
+            def Shader "PreviewFallback"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.1, 0.95, 0.1)
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "Ball" (
+        prepend references = @./ball.usda@
+    )
+    {
+        float3 xformOp:scale = (0.26291078, 0.26291078, 0.26291078)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+
+        over "Sphere"
+        {
+            over "Body" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Marble/Looks/Marble>
+            }
+
+            over "Ring" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Marble/Looks/Marble>
+            }
+        }
+
+        def Material "BaseLook"
+        {
+            token outputs:surface.connect = </Marble/Ball/BaseLook/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.08, 0.08, 0.09)
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+
+        over "Base" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Marble/Ball/BaseLook>
+        }
+    }
+}
+

@@ -1,0 +1,448 @@
+#usda 1.0
+(
+    "materials.color.spaces: six vases on plinths. Each plinth is the colour in linear Rec.709 (its material says so); each vase holds the colour encoded in the space its resolution should find."
+    defaultPrim = "Spaces"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Spaces" (
+    kind = "group"
+)
+{
+    def Scope "Looks"
+    {
+    }
+
+    def Xform "Plain" (
+        kind = "group"
+    )
+    {
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Xform "Default" (
+            kind = "component"
+        )
+        {
+            double3 xformOp:translate = (-2.45, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Scope "Looks"
+            {
+                def Material "Reference" (
+                    prepend apiSchemas = ["ColorSpaceAPI"]
+                )
+                {
+                    uniform token colorSpace:name = "lin_rec709_scene"
+                    token outputs:mtlx:surface.connect = </Spaces/Plain/Default/Looks/Reference/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                        color3f inputs:diffuseColor = (0.6, 0.2, 0.05)
+                        float inputs:roughness = 0.6
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+
+                def Material "Value"
+                {
+                    token outputs:mtlx:surface.connect = </Spaces/Plain/Default/Looks/Value/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                        color3f inputs:diffuseColor = (0.6, 0.19999997, 0.049999997)
+                        float inputs:roughness = 0.6
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Mesh "Plinth" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.17, 0, -0.17), (0.17, 0.07, 0.17)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Spaces/Plain/Default/Looks/Reference>
+                point3f[] points = [(-0.17, 0, 0.17), (0.17, 0, 0.17), (0.17, 0.07, 0.17), (-0.17, 0.07, 0.17), (0.17, 0, -0.17), (-0.17, 0, -0.17), (-0.17, 0.07, -0.17), (0.17, 0.07, -0.17), (-0.17, 0.07, 0.17), (0.17, 0.07, 0.17), (0.17, 0.07, -0.17), (-0.17, 0.07, -0.17), (-0.17, 0, -0.17), (0.17, 0, -0.17), (0.17, 0, 0.17), (-0.17, 0, 0.17), (0.17, 0, 0.17), (0.17, 0, -0.17), (0.17, 0.07, -0.17), (0.17, 0.07, 0.17), (-0.17, 0, -0.17), (-0.17, 0, 0.17), (-0.17, 0.07, 0.17), (-0.17, 0.07, -0.17)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Xform "Vase" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                prepend references = @./vase.usda@
+            )
+            {
+                rel material:binding = </Spaces/Plain/Default/Looks/Value>
+                float3 xformOp:scale = (1.35, 1.35, 1.35)
+                double3 xformOp:translate = (0, 0.07200000000000001, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def Xform "Api" (
+            kind = "component"
+        )
+        {
+            double3 xformOp:translate = (-1.55, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Scope "Looks"
+            {
+                def Material "Reference" (
+                    prepend apiSchemas = ["ColorSpaceAPI"]
+                )
+                {
+                    uniform token colorSpace:name = "lin_rec709_scene"
+                    token outputs:mtlx:surface.connect = </Spaces/Plain/Api/Looks/Reference/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                        color3f inputs:diffuseColor = (0.1, 0.45, 0.6)
+                        float inputs:roughness = 0.6
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+
+                def Material "Value" (
+                    prepend apiSchemas = ["ColorSpaceAPI"]
+                )
+                {
+                    uniform token colorSpace:name = "srgb_rec709_scene"
+                    token outputs:mtlx:surface.connect = </Spaces/Plain/Api/Looks/Value/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                        color3f inputs:diffuseColor = (0.34919018, 0.70141065, 0.7977377)
+                        float inputs:roughness = 0.6
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Mesh "Plinth" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.17, 0, -0.17), (0.17, 0.07, 0.17)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Spaces/Plain/Api/Looks/Reference>
+                point3f[] points = [(-0.17, 0, 0.17), (0.17, 0, 0.17), (0.17, 0.07, 0.17), (-0.17, 0.07, 0.17), (0.17, 0, -0.17), (-0.17, 0, -0.17), (-0.17, 0.07, -0.17), (0.17, 0.07, -0.17), (-0.17, 0.07, 0.17), (0.17, 0.07, 0.17), (0.17, 0.07, -0.17), (-0.17, 0.07, -0.17), (-0.17, 0, -0.17), (0.17, 0, -0.17), (0.17, 0, 0.17), (-0.17, 0, 0.17), (0.17, 0, 0.17), (0.17, 0, -0.17), (0.17, 0.07, -0.17), (0.17, 0.07, 0.17), (-0.17, 0, -0.17), (-0.17, 0, 0.17), (-0.17, 0.07, 0.17), (-0.17, 0.07, -0.17)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Xform "Vase" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                prepend references = @./vase.usda@
+            )
+            {
+                rel material:binding = </Spaces/Plain/Api/Looks/Value>
+                float3 xformOp:scale = (1.35, 1.35, 1.35)
+                double3 xformOp:translate = (0, 0.07200000000000001, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+    }
+
+    def Xform "Root" (
+        prepend apiSchemas = ["ColorSpaceAPI"]
+        kind = "group"
+    )
+    {
+        uniform token colorSpace:name = "srgb_rec709_scene"
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Xform "Inherited" (
+            kind = "component"
+        )
+        {
+            double3 xformOp:translate = (-0.35, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Scope "Looks"
+            {
+                def Material "Reference" (
+                    prepend apiSchemas = ["ColorSpaceAPI"]
+                )
+                {
+                    uniform token colorSpace:name = "lin_rec709_scene"
+                    token outputs:mtlx:surface.connect = </Spaces/Root/Inherited/Looks/Reference/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                        color3f inputs:diffuseColor = (0.5, 0.15, 0.45)
+                        float inputs:roughness = 0.6
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+
+                def Material "Value"
+                {
+                    token outputs:mtlx:surface.connect = </Spaces/Root/Inherited/Looks/Value/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                        color3f inputs:diffuseColor = (0.735357, 0.42358282, 0.7014107)
+                        float inputs:roughness = 0.6
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Mesh "Plinth" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.17, 0, -0.17), (0.17, 0.07, 0.17)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Spaces/Root/Inherited/Looks/Reference>
+                point3f[] points = [(-0.17, 0, 0.17), (0.17, 0, 0.17), (0.17, 0.07, 0.17), (-0.17, 0.07, 0.17), (0.17, 0, -0.17), (-0.17, 0, -0.17), (-0.17, 0.07, -0.17), (0.17, 0.07, -0.17), (-0.17, 0.07, 0.17), (0.17, 0.07, 0.17), (0.17, 0.07, -0.17), (-0.17, 0.07, -0.17), (-0.17, 0, -0.17), (0.17, 0, -0.17), (0.17, 0, 0.17), (-0.17, 0, 0.17), (0.17, 0, 0.17), (0.17, 0, -0.17), (0.17, 0.07, -0.17), (0.17, 0.07, 0.17), (-0.17, 0, -0.17), (-0.17, 0, 0.17), (-0.17, 0.07, 0.17), (-0.17, 0.07, -0.17)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Xform "Vase" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                prepend references = @./vase.usda@
+            )
+            {
+                rel material:binding = </Spaces/Root/Inherited/Looks/Value>
+                float3 xformOp:scale = (1.35, 1.35, 1.35)
+                double3 xformOp:translate = (0, 0.07200000000000001, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def Xform "Nearest" (
+            kind = "component"
+        )
+        {
+            double3 xformOp:translate = (0.55, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Scope "Looks"
+            {
+                def Material "Reference" (
+                    prepend apiSchemas = ["ColorSpaceAPI"]
+                )
+                {
+                    uniform token colorSpace:name = "lin_rec709_scene"
+                    token outputs:mtlx:surface.connect = </Spaces/Root/Nearest/Looks/Reference/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                        color3f inputs:diffuseColor = (0.65, 0.4, 0.05)
+                        float inputs:roughness = 0.6
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+
+                def Material "Value" (
+                    prepend apiSchemas = ["ColorSpaceAPI"]
+                )
+                {
+                    uniform token colorSpace:name = "lin_ap1_scene"
+                    token outputs:mtlx:surface.connect = </Spaces/Root/Nearest/Looks/Value/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                        color3f inputs:diffuseColor = (0.5366916, 0.41284004, 0.100718744)
+                        float inputs:roughness = 0.6
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Mesh "Plinth" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.17, 0, -0.17), (0.17, 0.07, 0.17)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Spaces/Root/Nearest/Looks/Reference>
+                point3f[] points = [(-0.17, 0, 0.17), (0.17, 0, 0.17), (0.17, 0.07, 0.17), (-0.17, 0.07, 0.17), (0.17, 0, -0.17), (-0.17, 0, -0.17), (-0.17, 0.07, -0.17), (0.17, 0.07, -0.17), (-0.17, 0.07, 0.17), (0.17, 0.07, 0.17), (0.17, 0.07, -0.17), (-0.17, 0.07, -0.17), (-0.17, 0, -0.17), (0.17, 0, -0.17), (0.17, 0, 0.17), (-0.17, 0, 0.17), (0.17, 0, 0.17), (0.17, 0, -0.17), (0.17, 0.07, -0.17), (0.17, 0.07, 0.17), (-0.17, 0, -0.17), (-0.17, 0, 0.17), (-0.17, 0.07, 0.17), (-0.17, 0.07, -0.17)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Xform "Vase" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                prepend references = @./vase.usda@
+            )
+            {
+                rel material:binding = </Spaces/Root/Nearest/Looks/Value>
+                float3 xformOp:scale = (1.35, 1.35, 1.35)
+                double3 xformOp:translate = (0, 0.07200000000000001, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def Xform "Attribute" (
+            kind = "component"
+        )
+        {
+            double3 xformOp:translate = (1.45, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Scope "Looks"
+            {
+                def Material "Reference" (
+                    prepend apiSchemas = ["ColorSpaceAPI"]
+                )
+                {
+                    uniform token colorSpace:name = "lin_rec709_scene"
+                    token outputs:mtlx:surface.connect = </Spaces/Root/Attribute/Looks/Reference/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                        color3f inputs:diffuseColor = (0.15, 0.5, 0.2)
+                        float inputs:roughness = 0.6
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+
+                def Material "Value"
+                {
+                    token outputs:mtlx:surface.connect = </Spaces/Root/Attribute/Looks/Value/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                        color3f inputs:diffuseColor = (0.14999999, 0.49999994, 0.2) (
+                            colorSpace = "lin_rec709_scene"
+                        )
+                        float inputs:roughness = 0.6
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Mesh "Plinth" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.17, 0, -0.17), (0.17, 0.07, 0.17)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Spaces/Root/Attribute/Looks/Reference>
+                point3f[] points = [(-0.17, 0, 0.17), (0.17, 0, 0.17), (0.17, 0.07, 0.17), (-0.17, 0.07, 0.17), (0.17, 0, -0.17), (-0.17, 0, -0.17), (-0.17, 0.07, -0.17), (0.17, 0.07, -0.17), (-0.17, 0.07, 0.17), (0.17, 0.07, 0.17), (0.17, 0.07, -0.17), (-0.17, 0.07, -0.17), (-0.17, 0, -0.17), (0.17, 0, -0.17), (0.17, 0, 0.17), (-0.17, 0, 0.17), (0.17, 0, 0.17), (0.17, 0, -0.17), (0.17, 0.07, -0.17), (0.17, 0.07, 0.17), (-0.17, 0, -0.17), (-0.17, 0, 0.17), (-0.17, 0.07, 0.17), (-0.17, 0.07, -0.17)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Xform "Vase" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                prepend references = @./vase.usda@
+            )
+            {
+                rel material:binding = </Spaces/Root/Attribute/Looks/Value>
+                float3 xformOp:scale = (1.35, 1.35, 1.35)
+                double3 xformOp:translate = (0, 0.07200000000000001, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def Xform "Unapplied" (
+            kind = "component"
+        )
+        {
+            double3 xformOp:translate = (2.35, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Scope "Looks"
+            {
+                def Material "Reference" (
+                    prepend apiSchemas = ["ColorSpaceAPI"]
+                )
+                {
+                    uniform token colorSpace:name = "lin_rec709_scene"
+                    token outputs:mtlx:surface.connect = </Spaces/Root/Unapplied/Looks/Reference/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                        color3f inputs:diffuseColor = (0.55, 0.55, 0.15)
+                        float inputs:roughness = 0.6
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+
+                def Material "Value"
+                {
+                    uniform token colorSpace:name = "lin_ap1_scene"
+                    token outputs:mtlx:surface.connect = </Spaces/Root/Unapplied/Looks/Value/Surface.outputs:surface>
+
+                    def Shader "Surface"
+                    {
+                        uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                        color3f inputs:diffuseColor = (0.7673756, 0.7673756, 0.42358285)
+                        float inputs:roughness = 0.6
+                        color3f inputs:specularColor = (0, 0, 0)
+                        int inputs:useSpecularWorkflow = 1
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Mesh "Plinth" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.17, 0, -0.17), (0.17, 0.07, 0.17)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Spaces/Root/Unapplied/Looks/Reference>
+                point3f[] points = [(-0.17, 0, 0.17), (0.17, 0, 0.17), (0.17, 0.07, 0.17), (-0.17, 0.07, 0.17), (0.17, 0, -0.17), (-0.17, 0, -0.17), (-0.17, 0.07, -0.17), (0.17, 0.07, -0.17), (-0.17, 0.07, 0.17), (0.17, 0.07, 0.17), (0.17, 0.07, -0.17), (-0.17, 0.07, -0.17), (-0.17, 0, -0.17), (0.17, 0, -0.17), (0.17, 0, 0.17), (-0.17, 0, 0.17), (0.17, 0, 0.17), (0.17, 0, -0.17), (0.17, 0.07, -0.17), (0.17, 0.07, 0.17), (-0.17, 0, -0.17), (-0.17, 0, 0.17), (-0.17, 0.07, 0.17), (-0.17, 0.07, -0.17)]
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Xform "Vase" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                prepend references = @./vase.usda@
+            )
+            {
+                rel material:binding = </Spaces/Root/Unapplied/Looks/Value>
+                float3 xformOp:scale = (1.35, 1.35, 1.35)
+                double3 xformOp:translate = (0, 0.07200000000000001, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+    }
+}
+

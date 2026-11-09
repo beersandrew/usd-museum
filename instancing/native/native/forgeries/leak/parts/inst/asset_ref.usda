@@ -1,0 +1,18 @@
+#usda 1.0
+(
+    "Example 1's asset_ref.usda: references asset.usda and glazes its vase gold."
+    defaultPrim = "Asset"
+)
+
+def Xform "Asset" (
+    prepend references = @./asset.usda@
+)
+{
+    over "Vase"
+    {
+        color3f[] primvars:displayColor = [(0.2704978, 0.104616486, 0.67244315)] (
+            interpolation = "constant"
+        )
+    }
+}
+

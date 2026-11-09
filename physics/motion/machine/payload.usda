@@ -1,0 +1,1255 @@
+#usda 1.0
+(
+    "USD Museum exhibit physics.motion.machine: the garage machine as authored UsdPhysics, then its baked run, on one plinth. At rest (frames 1-95): colliders are guides (painted red here: drawn only if guides are drawn), physics materials carry red surfaces (drawn only if the physics binding is used for rendering), brass pins at the joint frames, targets at the centres of mass. From 96 the ghosts show; the run (unit frames 1-96, referenced 108 frames late) fills them at 195. Built by src/build.py."
+    defaultPrim = "Exhibit"
+    endTimeCode = 234
+    framesPerSecond = 24
+    metersPerUnit = 1
+    startTimeCode = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Exhibit" (
+    kind = "assembly"
+)
+{
+    float3[] extentsHint = [(-1.85, 0, -1.35), (1.85, 1.95, -0.377)]
+
+    def Scope "Looks"
+    {
+        def Material "board"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/board/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.073238954, 0.07828832, 0.088981524)
+                float inputs:roughness = 0.8
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "placard_back"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/placard_back/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.05087609, 0.046964202, 0.043233637)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "wood"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/wood/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.17064494, 0.07828832, 0.030074105)
+                float inputs:roughness = 0.7
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "brass"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/brass/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.60382736, 0.31854677, 0.039681908)
+                float inputs:roughness = 0.4
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "ink"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/ink/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.015325204, 0.015325204, 0.017389102)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "target"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/target/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.9551046, 0.60382736, 0.010022826)
+                float inputs:roughness = 0.5
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "ghost"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/ghost/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.92, 0.94, 1)
+                color3f inputs:emissiveColor = (0.12, 0.13, 0.14)
+                float inputs:opacity = 0.28
+                float inputs:roughness = 0.7
+                color3f inputs:specularColor = (0.02, 0.02, 0.02)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "red"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/red/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.63075715, 0.000607054, 0.010960094)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+    }
+
+    def Mesh "Board" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(-1.85, 0, -1.35), (1.85, 1.95, -1.27)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Exhibit/Looks/board>
+        point3f[] points = [(-1.85, 0, -1.27), (1.85, 0, -1.27), (1.85, 1.95, -1.27), (-1.85, 1.95, -1.27), (1.85, 0, -1.35), (-1.85, 0, -1.35), (-1.85, 1.95, -1.35), (1.85, 1.95, -1.35), (-1.85, 1.95, -1.27), (1.85, 1.95, -1.27), (1.85, 1.95, -1.35), (-1.85, 1.95, -1.35), (-1.85, 0, -1.35), (1.85, 0, -1.35), (1.85, 0, -1.27), (-1.85, 0, -1.27), (1.85, 0, -1.27), (1.85, 0, -1.35), (1.85, 1.95, -1.35), (1.85, 1.95, -1.27), (-1.85, 0, -1.35), (-1.85, 0, -1.27), (-1.85, 1.95, -1.27), (-1.85, 1.95, -1.35)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def "Placards"
+    {
+        def Material "Title_Mat"
+        {
+            token outputs:surface.connect = </Exhibit/Placards/Title_Mat/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Title_Mat/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Placards/Title_Mat/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Placards_Title.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Placards/Title_Mat/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Mesh "Title" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-1.7, 1.37, -1.23), (1.2, 1.81, -1.23)]
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            rel material:binding = </Exhibit/Placards/Title_Mat>
+            normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "vertex"
+            )
+            point3f[] points = [(-1.7, 1.37, -1.23), (1.2, 1.37, -1.23), (1.2, 1.81, -1.23), (-1.7, 1.81, -1.23)]
+            color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+            texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                interpolation = "vertex"
+            )
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "Title_Back" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            float3[] extent = [(-1.72, 1.35, -1.26), (1.22, 1.83, -1.234)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+            rel material:binding = </Exhibit/Looks/placard_back>
+            point3f[] points = [(-1.72, 1.35, -1.234), (1.22, 1.35, -1.234), (1.22, 1.83, -1.234), (-1.72, 1.83, -1.234), (1.22, 1.35, -1.26), (-1.72, 1.35, -1.26), (-1.72, 1.83, -1.26), (1.22, 1.83, -1.26), (-1.72, 1.83, -1.234), (1.22, 1.83, -1.234), (1.22, 1.83, -1.26), (-1.72, 1.83, -1.26), (-1.72, 1.35, -1.26), (1.22, 1.35, -1.26), (1.22, 1.35, -1.234), (-1.72, 1.35, -1.234), (1.22, 1.35, -1.234), (1.22, 1.35, -1.26), (1.22, 1.83, -1.26), (1.22, 1.83, -1.234), (-1.72, 1.35, -1.26), (-1.72, 1.35, -1.234), (-1.72, 1.83, -1.234), (-1.72, 1.83, -1.26)]
+            uniform token subdivisionScheme = "none"
+        }
+    }
+
+    def Mesh "Plinth" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(-1.73, 0, -0.905), (1.73, 0.4, -0.415)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Exhibit/Looks/wood>
+        point3f[] points = [(-1.73, 0, -0.415), (1.73, 0, -0.415), (1.73, 0.4, -0.415), (-1.73, 0.4, -0.415), (1.73, 0, -0.905), (-1.73, 0, -0.905), (-1.73, 0.4, -0.905), (1.73, 0.4, -0.905), (-1.73, 0.4, -0.415), (1.73, 0.4, -0.415), (1.73, 0.4, -0.905), (-1.73, 0.4, -0.905), (-1.73, 0, -0.905), (1.73, 0, -0.905), (1.73, 0, -0.415), (-1.73, 0, -0.415), (1.73, 0, -0.415), (1.73, 0, -0.905), (1.73, 0.4, -0.905), (1.73, 0.4, -0.415), (-1.73, 0, -0.905), (-1.73, 0, -0.415), (-1.73, 0.4, -0.415), (-1.73, 0.4, -0.905)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def "Pieces"
+    {
+        def Xform "Rig" (
+            prepend references = @./parts/baked.usdc@</Machine> (offset = 108)
+        )
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.21999999999999997, 0.4, -0.595, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Bodies"
+            {
+                over "Plunger"
+                {
+                    over "Collider"
+                    {
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        matrix4d xformOp:transform = ( (0.08399999821186066, 0, 0, 0), (0, 0.0639999986588955, 0, 0), (0, 0, 0.08399999821186066, 0), (0, 0, 0, 1) )
+                    }
+                }
+
+                over "Ball"
+                {
+                    over "Collider"
+                    {
+                        float3[] extent = [(-0.052, -0.052, -0.052), (0.052, 0.052, 0.052)]
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        double radius = 0.052000000000000005
+                    }
+                }
+
+                over "Seesaw"
+                {
+                    over "Collider"
+                    {
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                    }
+                }
+
+                over "Domino01"
+                {
+                    over "Collider"
+                    {
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        matrix4d xformOp:transform = ( (0.02900000037252903, 0, 0, 0), (0, 0.20400000298023224, 0, 0), (0, 0, 0.10400000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                    }
+                }
+
+                over "Domino02"
+                {
+                    over "Collider"
+                    {
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        matrix4d xformOp:transform = ( (0.02900000037252903, 0, 0, 0), (0, 0.20400000298023224, 0, 0), (0, 0, 0.10400000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                    }
+                }
+
+                over "Domino03"
+                {
+                    over "Collider"
+                    {
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        matrix4d xformOp:transform = ( (0.02900000037252903, 0, 0, 0), (0, 0.20400000298023224, 0, 0), (0, 0, 0.10400000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                    }
+                }
+
+                over "Domino04"
+                {
+                    over "Collider"
+                    {
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        matrix4d xformOp:transform = ( (0.02900000037252903, 0, 0, 0), (0, 0.20400000298023224, 0, 0), (0, 0, 0.10400000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                    }
+                }
+
+                over "Domino05"
+                {
+                    over "Collider"
+                    {
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        matrix4d xformOp:transform = ( (0.02900000037252903, 0, 0, 0), (0, 0.20400000298023224, 0, 0), (0, 0, 0.10400000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                    }
+                }
+
+                over "Domino06"
+                {
+                    over "Collider"
+                    {
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        matrix4d xformOp:transform = ( (0.02900000037252903, 0, 0, 0), (0, 0.20400000298023224, 0, 0), (0, 0, 0.10400000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                    }
+                }
+
+                over "Domino07"
+                {
+                    over "Collider"
+                    {
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        matrix4d xformOp:transform = ( (0.02900000037252903, 0, 0, 0), (0, 0.20400000298023224, 0, 0), (0, 0, 0.10400000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                    }
+                }
+
+                over "Domino08"
+                {
+                    over "Collider"
+                    {
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        matrix4d xformOp:transform = ( (0.02900000037252903, 0, 0, 0), (0, 0.20400000298023224, 0, 0), (0, 0, 0.10400000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                    }
+                }
+
+                over "Domino09"
+                {
+                    over "Collider"
+                    {
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        matrix4d xformOp:transform = ( (0.02900000037252903, 0, 0, 0), (0, 0.20400000298023224, 0, 0), (0, 0, 0.10400000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                    }
+                }
+
+                over "Domino10"
+                {
+                    over "Collider"
+                    {
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        matrix4d xformOp:transform = ( (0.02900000037252903, 0, 0, 0), (0, 0.20400000298023224, 0, 0), (0, 0, 0.10400000149011612, 0), (-0.0125, 0.1, 0, 1) )
+                    }
+                }
+
+                over "Bob"
+                {
+                    over "Collider"
+                    {
+                        float3[] extent = [(-0.057, -0.057, -0.057), (0.057, 0.057, 0.057)]
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        double radius = 0.057
+                    }
+                }
+
+                over "Bell"
+                {
+                    over "Collider"
+                    {
+                        double height = 0.114
+                        color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)]
+                        double radius = 0.07200000000000001
+                    }
+                }
+            }
+
+            over "PhysicsMaterials"
+            {
+                over "Rubber"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Rig/PhysicsMaterials/Rubber/RenderSurface.outputs:surface>
+
+                    def Shader "RenderSurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.63075715, 0.000607054, 0.010960094)
+                        float inputs:roughness = 0.6
+                        token outputs:surface
+                    }
+                }
+
+                over "Wood"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Rig/PhysicsMaterials/Wood/RenderSurface.outputs:surface>
+
+                    def Shader "RenderSurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.63075715, 0.000607054, 0.010960094)
+                        float inputs:roughness = 0.6
+                        token outputs:surface
+                    }
+                }
+
+                over "Steel"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Rig/PhysicsMaterials/Steel/RenderSurface.outputs:surface>
+
+                    def Shader "RenderSurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.63075715, 0.000607054, 0.010960094)
+                        float inputs:roughness = 0.6
+                        token outputs:surface
+                    }
+                }
+
+                over "Brass"
+                {
+                    token outputs:surface.connect = </Exhibit/Pieces/Rig/PhysicsMaterials/Brass/RenderSurface.outputs:surface>
+
+                    def Shader "RenderSurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.63075715, 0.000607054, 0.010960094)
+                        float inputs:roughness = 0.6
+                        token outputs:surface
+                    }
+                }
+            }
+        }
+
+        def Xform "Rest"
+        {
+            token visibility.timeSamples = {
+                1: "inherited",
+                96: "invisible",
+            }
+
+            def Material "Legend0_Mat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/Rest/Legend0_Mat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0, 0, 0)
+                    color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Rest/Legend0_Mat/Tex.outputs:rgb>
+                    float inputs:opacity.connect = </Exhibit/Pieces/Rest/Legend0_Mat/Tex.outputs:a>
+                    float inputs:opacityThreshold = 0.5
+                    float inputs:roughness = 1
+                    color3f inputs:specularColor = (0, 0, 0)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/Exhibit_Pieces_Rest_Legend0.png@
+                    float4 inputs:scale = (1, 1, 1, 1)
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Exhibit/Pieces/Rest/Legend0_Mat/St.outputs:result>
+                    float outputs:a
+                    float3 outputs:rgb
+                }
+            }
+
+            def Mesh "Legend0" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 1
+                float3[] extent = [(-1.63, 0.17280833, -0.409), (-0.6871816, 0.25614166, -0.409)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                rel material:binding = </Exhibit/Pieces/Rest/Legend0_Mat>
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                    interpolation = "vertex"
+                )
+                point3f[] points = [(-1.63, 0.17280833, -0.409), (-0.6871816, 0.17280833, -0.409), (-0.6871816, 0.25614166, -0.409), (-1.63, 0.25614166, -0.409)]
+                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                    interpolation = "vertex"
+                )
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Material "Legend1_Mat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/Rest/Legend1_Mat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0, 0, 0)
+                    color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Rest/Legend1_Mat/Tex.outputs:rgb>
+                    float inputs:opacity.connect = </Exhibit/Pieces/Rest/Legend1_Mat/Tex.outputs:a>
+                    float inputs:opacityThreshold = 0.5
+                    float inputs:roughness = 1
+                    color3f inputs:specularColor = (0, 0, 0)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/Exhibit_Pieces_Rest_Legend1.png@
+                    float4 inputs:scale = (1, 1, 1, 1)
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Exhibit/Pieces/Rest/Legend1_Mat/St.outputs:result>
+                    float outputs:a
+                    float3 outputs:rgb
+                }
+            }
+
+            def Mesh "Legend1" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 1
+                float3[] extent = [(-0.5485336, 0.17264584, -0.409), (0.5485336, 0.25597918, -0.409)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                rel material:binding = </Exhibit/Pieces/Rest/Legend1_Mat>
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                    interpolation = "vertex"
+                )
+                point3f[] points = [(-0.5485336, 0.17264584, -0.409), (0.5485336, 0.17264584, -0.409), (0.5485336, 0.25597918, -0.409), (-0.5485336, 0.25597918, -0.409)]
+                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                    interpolation = "vertex"
+                )
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Material "Legend2_Mat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/Rest/Legend2_Mat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0, 0, 0)
+                    color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Rest/Legend2_Mat/Tex.outputs:rgb>
+                    float inputs:opacity.connect = </Exhibit/Pieces/Rest/Legend2_Mat/Tex.outputs:a>
+                    float inputs:opacityThreshold = 0.5
+                    float inputs:roughness = 1
+                    color3f inputs:specularColor = (0, 0, 0)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/Exhibit_Pieces_Rest_Legend2.png@
+                    float4 inputs:scale = (1, 1, 1, 1)
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Exhibit/Pieces/Rest/Legend2_Mat/St.outputs:result>
+                    float outputs:a
+                    float3 outputs:rgb
+                }
+            }
+
+            def Mesh "Legend2" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 1
+                float3[] extent = [(0.5178859, 0.17313333, -0.409), (1.63, 0.25646666, -0.409)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                rel material:binding = </Exhibit/Pieces/Rest/Legend2_Mat>
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                    interpolation = "vertex"
+                )
+                point3f[] points = [(0.5178859, 0.17313333, -0.409), (1.63, 0.17313333, -0.409), (1.63, 0.25646666, -0.409), (0.5178859, 0.25646666, -0.409)]
+                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                    interpolation = "vertex"
+                )
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Xform "Joints"
+            {
+                def "PlungerSlide"
+                {
+                    def Cylinder "Rail" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        uniform token axis = "X"
+                        double height = 0.15000000074505815
+                        rel material:binding = </Exhibit/Looks/brass>
+                        double radius = 0.006
+                        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.5949999999254942, 1.049999976158142, -0.46499999999999997, 1) )
+                        uniform token[] xformOpOrder = ["xformOp:transform"]
+                    }
+
+                    def Mesh "StopLo" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        float3[] extent = [(-1.624, 1.02, -0.475), (-1.616, 1.0799999, -0.455)]
+                        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                        rel material:binding = </Exhibit/Looks/ink>
+                        point3f[] points = [(-1.624, 1.02, -0.455), (-1.616, 1.02, -0.455), (-1.616, 1.0799999, -0.455), (-1.624, 1.0799999, -0.455), (-1.616, 1.02, -0.475), (-1.624, 1.02, -0.475), (-1.624, 1.0799999, -0.475), (-1.616, 1.0799999, -0.475), (-1.624, 1.0799999, -0.455), (-1.616, 1.0799999, -0.455), (-1.616, 1.0799999, -0.475), (-1.624, 1.0799999, -0.475), (-1.624, 1.02, -0.475), (-1.616, 1.02, -0.475), (-1.616, 1.02, -0.455), (-1.624, 1.02, -0.455), (-1.616, 1.02, -0.455), (-1.616, 1.02, -0.475), (-1.616, 1.0799999, -0.475), (-1.616, 1.0799999, -0.455), (-1.624, 1.02, -0.475), (-1.624, 1.02, -0.455), (-1.624, 1.0799999, -0.455), (-1.624, 1.0799999, -0.475)]
+                        uniform token subdivisionScheme = "none"
+                    }
+
+                    def Mesh "StopHi" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        float3[] extent = [(-1.574, 1.02, -0.475), (-1.566, 1.0799999, -0.455)]
+                        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                        rel material:binding = </Exhibit/Looks/ink>
+                        point3f[] points = [(-1.574, 1.02, -0.455), (-1.566, 1.02, -0.455), (-1.566, 1.0799999, -0.455), (-1.574, 1.0799999, -0.455), (-1.566, 1.02, -0.475), (-1.574, 1.02, -0.475), (-1.574, 1.0799999, -0.475), (-1.566, 1.0799999, -0.475), (-1.574, 1.0799999, -0.455), (-1.566, 1.0799999, -0.455), (-1.566, 1.0799999, -0.475), (-1.574, 1.0799999, -0.475), (-1.574, 1.02, -0.475), (-1.566, 1.02, -0.475), (-1.566, 1.02, -0.455), (-1.574, 1.02, -0.455), (-1.566, 1.02, -0.455), (-1.566, 1.02, -0.475), (-1.566, 1.0799999, -0.475), (-1.566, 1.0799999, -0.455), (-1.574, 1.02, -0.475), (-1.574, 1.02, -0.455), (-1.574, 1.0799999, -0.455), (-1.574, 1.0799999, -0.475)]
+                        uniform token subdivisionScheme = "none"
+                    }
+
+                    def Mesh "Arrow" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        float3[] extent = [(-1.52, 1.035, -0.469), (-1.49, 1.0649999, -0.461)]
+                        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                        rel material:binding = </Exhibit/Looks/brass>
+                        point3f[] points = [(-1.52, 1.035, -0.461), (-1.49, 1.035, -0.461), (-1.49, 1.0649999, -0.461), (-1.52, 1.0649999, -0.461), (-1.49, 1.035, -0.469), (-1.52, 1.035, -0.469), (-1.52, 1.0649999, -0.469), (-1.49, 1.0649999, -0.469), (-1.52, 1.0649999, -0.461), (-1.49, 1.0649999, -0.461), (-1.49, 1.0649999, -0.469), (-1.52, 1.0649999, -0.469), (-1.52, 1.035, -0.469), (-1.49, 1.035, -0.469), (-1.49, 1.035, -0.461), (-1.52, 1.035, -0.461), (-1.49, 1.035, -0.461), (-1.49, 1.035, -0.469), (-1.49, 1.0649999, -0.469), (-1.49, 1.0649999, -0.461), (-1.52, 1.035, -0.469), (-1.52, 1.035, -0.461), (-1.52, 1.0649999, -0.461), (-1.52, 1.0649999, -0.469)]
+                        uniform token subdivisionScheme = "none"
+                    }
+                }
+
+                def "SeesawHinge"
+                {
+                    def Cylinder "Pin" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        uniform token axis = "Z"
+                        double height = 0.42
+                        rel material:binding = </Exhibit/Looks/brass>
+                        double radius = 0.009
+                        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.52, 0.5000000014901161, -0.595, 1) )
+                        uniform token[] xformOpOrder = ["xformOp:transform"]
+                    }
+
+                    def Cylinder "Cap" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        uniform token axis = "Z"
+                        double height = 0.016
+                        rel material:binding = </Exhibit/Looks/brass>
+                        double radius = 0.022
+                        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.52, 0.5000000014901161, -0.385, 1) )
+                        uniform token[] xformOpOrder = ["xformOp:transform"]
+                    }
+                }
+
+                def "PendulumPivot"
+                {
+                    def Sphere "Ball" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        float3[] extent = [(-0.026, -0.026, -0.026), (0.026, 0.026, 0.026)]
+                        rel material:binding = </Exhibit/Looks/brass>
+                        double radius = 0.026
+                        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.1824999999999999, 1.2100000023841857, -0.5950000035762787, 1) )
+                        uniform token[] xformOpOrder = ["xformOp:transform"]
+                    }
+                }
+
+                def "BellHinge"
+                {
+                    def Cylinder "Pin" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        uniform token axis = "Z"
+                        double height = 0.42
+                        rel material:binding = </Exhibit/Looks/brass>
+                        double radius = 0.009
+                        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.5769000351702824, 0.7242191076278687, -0.6683659982681274, 1) )
+                        uniform token[] xformOpOrder = ["xformOp:transform"]
+                    }
+
+                    def Cylinder "Cap" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        uniform token axis = "Z"
+                        double height = 0.016
+                        rel material:binding = </Exhibit/Looks/brass>
+                        double radius = 0.022
+                        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.5769000351702824, 0.7242191076278687, -0.4583659982681274, 1) )
+                        uniform token[] xformOpOrder = ["xformOp:transform"]
+                    }
+                }
+            }
+
+            def Xform "Mass"
+            {
+                def Cylinder "Ball_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.016
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.4849999999999999, 1.07, -0.5389999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Ball_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.0088
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.4849999999999999, 1.07, -0.5349999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Seesaw_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.016
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.52, 0.5, -0.5290000013411045, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Seesaw_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.0088
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.52, 0.5, -0.5250000013411045, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino01_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.010500000156462186
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.11999999981373555, 0.5000000014901161, -0.5389999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino01_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.005775000086054203
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.11999999981373555, 0.5000000014901161, -0.5349999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino02_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.010500000156462193
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.21999999981373558, 0.5000000014901161, -0.5389999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino02_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.005775000086054207
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.21999999981373558, 0.5000000014901161, -0.5349999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino03_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.010500000156462193
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.3199999998137355, 0.5000000014901161, -0.5389999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino03_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.005775000086054207
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.3199999998137355, 0.5000000014901161, -0.5349999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino04_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.010500000156462193
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.4199999998137356, 0.5000000014901161, -0.5389999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino04_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.005775000086054207
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.4199999998137356, 0.5000000014901161, -0.5349999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino05_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.010500000156462193
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.5199999998137355, 0.5000000014901161, -0.5389999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino05_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.005775000086054207
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.5199999998137355, 0.5000000014901161, -0.5349999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino06_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.010500000156462193
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.6199999998137355, 0.5000000014901161, -0.5389999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino06_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.005775000086054207
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.6199999998137355, 0.5000000014901161, -0.5349999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino07_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.010500000156462193
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.7199999998137356, 0.5000000014901161, -0.5389999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino07_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.005775000086054207
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.7199999998137356, 0.5000000014901161, -0.5349999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino08_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.010500000156462193
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.8199999998137355, 0.5000000014901161, -0.5389999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino08_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.005775000086054207
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.8199999998137355, 0.5000000014901161, -0.5349999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino09_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.010500000156462193
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.9199999998137356, 0.5000000014901161, -0.5389999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino09_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.005775000086054207
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.9199999998137356, 0.5000000014901161, -0.5349999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino10_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.010500000156462193
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.0199999998137355, 0.5000000014901161, -0.5389999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Domino10_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.005775000086054207
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.0199999998137355, 0.5000000014901161, -0.5349999992549419, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Bob_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.016
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.1824999999999999, 0.5499999737739563, -0.5340000002980232, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Bob_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.0088
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.1824999999999999, 0.5499999737739563, -0.5300000002980232, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Bell_Ring" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/ink>
+                    double radius = 0.016
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.5769000351702824, 0.628219113370888, -0.5923659973973502, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Cylinder "Bell_Dot" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform token axis = "Z"
+                    double height = 0.004
+                    rel material:binding = </Exhibit/Looks/target>
+                    double radius = 0.0088
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.5769000351702824, 0.628219113370888, -0.5883659973973502, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+            }
+        }
+
+        def Xform "Run"
+        {
+            token visibility.timeSamples = {
+                1: "invisible",
+                96: "inherited",
+            }
+
+            def Material "Legend0_Mat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/Run/Legend0_Mat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0, 0, 0)
+                    color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Run/Legend0_Mat/Tex.outputs:rgb>
+                    float inputs:opacity.connect = </Exhibit/Pieces/Run/Legend0_Mat/Tex.outputs:a>
+                    float inputs:opacityThreshold = 0.5
+                    float inputs:roughness = 1
+                    color3f inputs:specularColor = (0, 0, 0)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/Exhibit_Pieces_Run_Legend0.png@
+                    float4 inputs:scale = (1, 1, 1, 1)
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Exhibit/Pieces/Run/Legend0_Mat/St.outputs:result>
+                    float outputs:a
+                    float3 outputs:rgb
+                }
+            }
+
+            def Mesh "Legend0" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 1
+                float3[] extent = [(-1.63, 0.17297083, -0.409), (-0.49924636, 0.25630417, -0.409)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                rel material:binding = </Exhibit/Pieces/Run/Legend0_Mat>
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                    interpolation = "vertex"
+                )
+                point3f[] points = [(-1.63, 0.17297083, -0.409), (-0.49924636, 0.17297083, -0.409), (-0.49924636, 0.25630417, -0.409), (-1.63, 0.25630417, -0.409)]
+                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                    interpolation = "vertex"
+                )
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Material "Legend1_Mat"
+            {
+                token outputs:surface.connect = </Exhibit/Pieces/Run/Legend1_Mat/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0, 0, 0)
+                    color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Run/Legend1_Mat/Tex.outputs:rgb>
+                    float inputs:opacity.connect = </Exhibit/Pieces/Run/Legend1_Mat/Tex.outputs:a>
+                    float inputs:opacityThreshold = 0.5
+                    float inputs:roughness = 1
+                    color3f inputs:specularColor = (0, 0, 0)
+                    int inputs:useSpecularWorkflow = 1
+                    token outputs:surface
+                }
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/Exhibit_Pieces_Run_Legend1.png@
+                    float4 inputs:scale = (1, 1, 1, 1)
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Exhibit/Pieces/Run/Legend1_Mat/St.outputs:result>
+                    float outputs:a
+                    float3 outputs:rgb
+                }
+            }
+
+            def Mesh "Legend1" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform bool doubleSided = 1
+                float3[] extent = [(0.38326553, 0.17280833, -0.409), (1.63, 0.25614166, -0.409)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                rel material:binding = </Exhibit/Pieces/Run/Legend1_Mat>
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                    interpolation = "vertex"
+                )
+                point3f[] points = [(0.38326553, 0.17280833, -0.409), (1.63, 0.17280833, -0.409), (1.63, 0.25614166, -0.409), (0.38326553, 0.25614166, -0.409)]
+                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+                    interpolation = "vertex"
+                )
+                uniform token subdivisionScheme = "none"
+            }
+
+            def Xform "Reference"
+            {
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.21999999999999997, 0.4, -0.595, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+
+                def Mesh "Dominoes87" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(0.34139383, -0.0048712, -0.054), (1.4565, 0.07896103, 0.054)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 3, 7, 6, 2, 0, 1, 5, 4, 1, 2, 6, 5, 0, 4, 7, 3, 8, 11, 10, 9, 12, 13, 14, 15, 11, 15, 14, 10, 8, 9, 13, 12, 9, 10, 14, 13, 8, 12, 15, 11, 16, 19, 18, 17, 20, 21, 22, 23, 19, 23, 22, 18, 16, 17, 21, 20, 17, 18, 22, 21, 16, 20, 23, 19, 24, 27, 26, 25, 28, 29, 30, 31, 27, 31, 30, 26, 24, 25, 29, 28, 25, 26, 30, 29, 24, 28, 31, 27, 32, 35, 34, 33, 36, 37, 38, 39, 35, 39, 38, 34, 32, 33, 37, 36, 33, 34, 38, 37, 32, 36, 39, 35, 40, 43, 42, 41, 44, 45, 46, 47, 43, 47, 46, 42, 40, 41, 45, 44, 41, 42, 46, 45, 40, 44, 47, 43, 48, 51, 50, 49, 52, 53, 54, 55, 51, 55, 54, 50, 48, 49, 53, 52, 49, 50, 54, 53, 48, 52, 55, 51, 56, 59, 58, 57, 60, 61, 62, 63, 59, 63, 62, 58, 56, 57, 61, 60, 57, 58, 62, 61, 56, 60, 63, 59, 64, 67, 66, 65, 68, 69, 70, 71, 67, 71, 70, 66, 64, 65, 69, 68, 65, 66, 70, 69, 64, 68, 71, 67, 72, 75, 74, 73, 76, 77, 78, 79, 75, 79, 78, 74, 72, 73, 77, 76, 73, 74, 78, 77, 72, 76, 79, 75]
+                    rel material:binding = </Exhibit/Looks/ghost>
+                    point3f[] points = [(0.34139383, 0.027086027, -0.054), (0.34962398, -0.0048712, -0.054), (0.34962398, -0.0048712, 0.054), (0.34139383, 0.027086027, 0.054), (0.54282117, 0.07896103, -0.054), (0.5510514, 0.047003802, -0.054), (0.5510514, 0.047003802, 0.054), (0.54282117, 0.07896103, 0.054), (0.44140962, 0.027092492, -0.054), (0.44962114, -0.0048695235, -0.054), (0.44962114, -0.0048695235, 0.054), (0.44140962, 0.027092492, 0.054), (0.64286715, 0.07885014, -0.054), (0.6510787, 0.046888124, -0.054), (0.6510787, 0.046888124, 0.054), (0.64286715, 0.07885014, 0.054), (0.54144025, 0.027105005, -0.054), (0.5496157, -0.004866268, -0.054), (0.5496157, -0.004866268, 0.054), (0.54144025, 0.027105005, 0.054), (0.7429561, 0.078635015, -0.054), (0.75113153, 0.046663743, -0.054), (0.75113153, 0.046663743, 0.054), (0.7429561, 0.078635015, 0.054), (0.64149964, 0.02712918, -0.054), (0.649605, -0.0048599346, -0.054), (0.649605, -0.0048599346, 0.054), (0.64149964, 0.02712918, 0.054), (0.843128, 0.07821738, -0.054), (0.85123336, 0.046228264, -0.054), (0.85123336, 0.046228264, 0.054), (0.843128, 0.07821738, 0.054), (0.7416152, 0.027175749, -0.054), (0.7495843, -0.0048475703, -0.054), (0.7495843, -0.0048475703, 0.054), (0.7416152, 0.027175749, 0.054), (0.94345915, 0.077405445, -0.054), (0.9514283, 0.045382127, -0.054), (0.9514283, 0.045382127, 0.054), (0.94345915, 0.077405445, 0.054), (0.84184045, 0.027264884, -0.054), (0.84954435, -0.004823279, -0.054), (0.84954435, -0.004823279, 0.054), (0.84184045, 0.027264884, 0.054), (1.0440931, 0.07582271, -0.054), (1.051797, 0.04373455, -0.054), (1.051797, 0.04373455, 0.054), (1.0440931, 0.07582271, 0.054), (0.9422817, 0.02743331, -0.054), (0.9494669, -0.004774966, -0.054), (0.9494669, -0.004774966, 0.054), (0.9422817, 0.02743331, 0.054), (1.1452914, 0.07272178, -0.054), (1.1524767, 0.0405135, -0.054), (1.1524767, 0.0405135, 0.054), (1.1452914, 0.07272178, 0.054), (1.0431542, 0.027742669, -0.054), (1.0493175, -0.00467668, -0.054), (1.0493175, -0.00467668, 0.054), (1.0431542, 0.027742669, 0.054), (1.2474943, 0.06658988, -0.054), (1.2536576, 0.034170527, -0.054), (1.2536576, 0.034170527, 0.054), (1.2474943, 0.06658988, 0.054), (1.1449064, 0.028272545, -0.054), (1.1490314, -0.0044686273, -0.054), (1.1490314, -0.0044686273, 0.054), (1.1449064, 0.028272545, 0.054), (1.351275, 0.054272547, -0.054), (1.3554, 0.021531373, -0.054), (1.3554, 0.021531373, 0.054), (1.351275, 0.054272547, 0.054), (1.2485, 0.029000001, -0.054), (1.2485, -0.004, -0.054), (1.2485, -0.004, 0.054), (1.2485, 0.029000001, 0.054), (1.4565, 0.029000001, -0.054), (1.4565, -0.004, -0.054), (1.4565, -0.004, 0.054), (1.4565, 0.029000001, 0.054)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Sphere "Ball87" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    float3[] extent = [(-0.056, -0.056, -0.056), (0.056, 0.056, 0.056)]
+                    rel material:binding = </Exhibit/Looks/ghost>
+                    double radius = 0.056
+                    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.2775, 0.05000000000000002, 0, 1) )
+                    uniform token[] xformOpOrder = ["xformOp:transform"]
+                }
+
+                def Xform "StaysEmpty"
+                {
+                    token visibility.timeSamples = {
+                        1: "invisible",
+                        188: "inherited",
+                    }
+
+                    def Mesh "Frame" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        float3[] extent = [(0.2975, 0.12, -0.07), (1.2875, 0.23, 0.07)]
+                        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+                        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287]
+                        rel material:binding = </Exhibit/Looks/red>
+                        normal3f[] normals = [(1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1)] (
+                            interpolation = "faceVarying"
+                        )
+                        point3f[] points = [(1.2875, 0.12, -0.07), (1.2875, 0.13, -0.07), (1.2875, 0.13, -0.06), (1.2875, 0.12, -0.06), (0.2975, 0.12, -0.06), (0.2975, 0.13, -0.06), (0.2975, 0.13, -0.07), (0.2975, 0.12, -0.07), (0.2975, 0.13, -0.07), (0.2975, 0.13, -0.06), (1.2875, 0.13, -0.06), (1.2875, 0.13, -0.07), (1.2875, 0.12, -0.07), (1.2875, 0.12, -0.06), (0.2975, 0.12, -0.06), (0.2975, 0.12, -0.07), (0.2975, 0.12, -0.06), (1.2875, 0.12, -0.06), (1.2875, 0.13, -0.06), (0.2975, 0.13, -0.06), (0.2975, 0.13, -0.07), (1.2875, 0.13, -0.07), (1.2875, 0.12, -0.07), (0.2975, 0.12, -0.07), (1.2875, 0.12, 0.06), (1.2875, 0.13, 0.06), (1.2875, 0.13, 0.07), (1.2875, 0.12, 0.07), (0.2975, 0.12, 0.07), (0.2975, 0.13, 0.07), (0.2975, 0.13, 0.06), (0.2975, 0.12, 0.06), (0.2975, 0.13, 0.06), (0.2975, 0.13, 0.07), (1.2875, 0.13, 0.07), (1.2875, 0.13, 0.06), (1.2875, 0.12, 0.06), (1.2875, 0.12, 0.07), (0.2975, 0.12, 0.07), (0.2975, 0.12, 0.06), (0.2975, 0.12, 0.07), (1.2875, 0.12, 0.07), (1.2875, 0.13, 0.07), (0.2975, 0.13, 0.07), (0.2975, 0.13, 0.06), (1.2875, 0.13, 0.06), (1.2875, 0.12, 0.06), (0.2975, 0.12, 0.06), (1.2875, 0.22, -0.07), (1.2875, 0.23, -0.07), (1.2875, 0.23, -0.06), (1.2875, 0.22, -0.06), (0.2975, 0.22, -0.06), (0.2975, 0.23, -0.06), (0.2975, 0.23, -0.07), (0.2975, 0.22, -0.07), (0.2975, 0.23, -0.07), (0.2975, 0.23, -0.06), (1.2875, 0.23, -0.06), (1.2875, 0.23, -0.07), (1.2875, 0.22, -0.07), (1.2875, 0.22, -0.06), (0.2975, 0.22, -0.06), (0.2975, 0.22, -0.07), (0.2975, 0.22, -0.06), (1.2875, 0.22, -0.06), (1.2875, 0.23, -0.06), (0.2975, 0.23, -0.06), (0.2975, 0.23, -0.07), (1.2875, 0.23, -0.07), (1.2875, 0.22, -0.07), (0.2975, 0.22, -0.07), (1.2875, 0.22, 0.06), (1.2875, 0.23, 0.06), (1.2875, 0.23, 0.07), (1.2875, 0.22, 0.07), (0.2975, 0.22, 0.07), (0.2975, 0.23, 0.07), (0.2975, 0.23, 0.06), (0.2975, 0.22, 0.06), (0.2975, 0.23, 0.06), (0.2975, 0.23, 0.07), (1.2875, 0.23, 0.07), (1.2875, 0.23, 0.06), (1.2875, 0.22, 0.06), (1.2875, 0.22, 0.07), (0.2975, 0.22, 0.07), (0.2975, 0.22, 0.06), (0.2975, 0.22, 0.07), (1.2875, 0.22, 0.07), (1.2875, 0.23, 0.07), (0.2975, 0.23, 0.07), (0.2975, 0.23, 0.06), (1.2875, 0.23, 0.06), (1.2875, 0.22, 0.06), (0.2975, 0.22, 0.06), (0.3075, 0.12, -0.07), (0.3075, 0.23, -0.07), (0.3075, 0.23, -0.06), (0.3075, 0.12, -0.06), (0.2975, 0.12, -0.06), (0.2975, 0.23, -0.06), (0.2975, 0.23, -0.07), (0.2975, 0.12, -0.07), (0.2975, 0.23, -0.07), (0.2975, 0.23, -0.06), (0.3075, 0.23, -0.06), (0.3075, 0.23, -0.07), (0.3075, 0.12, -0.07), (0.3075, 0.12, -0.06), (0.2975, 0.12, -0.06), (0.2975, 0.12, -0.07), (0.2975, 0.12, -0.06), (0.3075, 0.12, -0.06), (0.3075, 0.23, -0.06), (0.2975, 0.23, -0.06), (0.2975, 0.23, -0.07), (0.3075, 0.23, -0.07), (0.3075, 0.12, -0.07), (0.2975, 0.12, -0.07), (0.3075, 0.12, 0.06), (0.3075, 0.23, 0.06), (0.3075, 0.23, 0.07), (0.3075, 0.12, 0.07), (0.2975, 0.12, 0.07), (0.2975, 0.23, 0.07), (0.2975, 0.23, 0.06), (0.2975, 0.12, 0.06), (0.2975, 0.23, 0.06), (0.2975, 0.23, 0.07), (0.3075, 0.23, 0.07), (0.3075, 0.23, 0.06), (0.3075, 0.12, 0.06), (0.3075, 0.12, 0.07), (0.2975, 0.12, 0.07), (0.2975, 0.12, 0.06), (0.2975, 0.12, 0.07), (0.3075, 0.12, 0.07), (0.3075, 0.23, 0.07), (0.2975, 0.23, 0.07), (0.2975, 0.23, 0.06), (0.3075, 0.23, 0.06), (0.3075, 0.12, 0.06), (0.2975, 0.12, 0.06), (0.3075, 0.12, -0.07), (0.3075, 0.13, -0.07), (0.3075, 0.13, 0.07), (0.3075, 0.12, 0.07), (0.2975, 0.12, 0.07), (0.2975, 0.13, 0.07), (0.2975, 0.13, -0.07), (0.2975, 0.12, -0.07), (0.2975, 0.13, -0.07), (0.2975, 0.13, 0.07), (0.3075, 0.13, 0.07), (0.3075, 0.13, -0.07), (0.3075, 0.12, -0.07), (0.3075, 0.12, 0.07), (0.2975, 0.12, 0.07), (0.2975, 0.12, -0.07), (0.2975, 0.12, 0.07), (0.3075, 0.12, 0.07), (0.3075, 0.13, 0.07), (0.2975, 0.13, 0.07), (0.2975, 0.13, -0.07), (0.3075, 0.13, -0.07), (0.3075, 0.12, -0.07), (0.2975, 0.12, -0.07), (0.3075, 0.22, -0.07), (0.3075, 0.23, -0.07), (0.3075, 0.23, 0.07), (0.3075, 0.22, 0.07), (0.2975, 0.22, 0.07), (0.2975, 0.23, 0.07), (0.2975, 0.23, -0.07), (0.2975, 0.22, -0.07), (0.2975, 0.23, -0.07), (0.2975, 0.23, 0.07), (0.3075, 0.23, 0.07), (0.3075, 0.23, -0.07), (0.3075, 0.22, -0.07), (0.3075, 0.22, 0.07), (0.2975, 0.22, 0.07), (0.2975, 0.22, -0.07), (0.2975, 0.22, 0.07), (0.3075, 0.22, 0.07), (0.3075, 0.23, 0.07), (0.2975, 0.23, 0.07), (0.2975, 0.23, -0.07), (0.3075, 0.23, -0.07), (0.3075, 0.22, -0.07), (0.2975, 0.22, -0.07), (1.2875, 0.12, -0.07), (1.2875, 0.23, -0.07), (1.2875, 0.23, -0.06), (1.2875, 0.12, -0.06), (1.2775, 0.12, -0.06), (1.2775, 0.23, -0.06), (1.2775, 0.23, -0.07), (1.2775, 0.12, -0.07), (1.2775, 0.23, -0.07), (1.2775, 0.23, -0.06), (1.2875, 0.23, -0.06), (1.2875, 0.23, -0.07), (1.2875, 0.12, -0.07), (1.2875, 0.12, -0.06), (1.2775, 0.12, -0.06), (1.2775, 0.12, -0.07), (1.2775, 0.12, -0.06), (1.2875, 0.12, -0.06), (1.2875, 0.23, -0.06), (1.2775, 0.23, -0.06), (1.2775, 0.23, -0.07), (1.2875, 0.23, -0.07), (1.2875, 0.12, -0.07), (1.2775, 0.12, -0.07), (1.2875, 0.12, 0.06), (1.2875, 0.23, 0.06), (1.2875, 0.23, 0.07), (1.2875, 0.12, 0.07), (1.2775, 0.12, 0.07), (1.2775, 0.23, 0.07), (1.2775, 0.23, 0.06), (1.2775, 0.12, 0.06), (1.2775, 0.23, 0.06), (1.2775, 0.23, 0.07), (1.2875, 0.23, 0.07), (1.2875, 0.23, 0.06), (1.2875, 0.12, 0.06), (1.2875, 0.12, 0.07), (1.2775, 0.12, 0.07), (1.2775, 0.12, 0.06), (1.2775, 0.12, 0.07), (1.2875, 0.12, 0.07), (1.2875, 0.23, 0.07), (1.2775, 0.23, 0.07), (1.2775, 0.23, 0.06), (1.2875, 0.23, 0.06), (1.2875, 0.12, 0.06), (1.2775, 0.12, 0.06), (1.2875, 0.12, -0.07), (1.2875, 0.13, -0.07), (1.2875, 0.13, 0.07), (1.2875, 0.12, 0.07), (1.2775, 0.12, 0.07), (1.2775, 0.13, 0.07), (1.2775, 0.13, -0.07), (1.2775, 0.12, -0.07), (1.2775, 0.13, -0.07), (1.2775, 0.13, 0.07), (1.2875, 0.13, 0.07), (1.2875, 0.13, -0.07), (1.2875, 0.12, -0.07), (1.2875, 0.12, 0.07), (1.2775, 0.12, 0.07), (1.2775, 0.12, -0.07), (1.2775, 0.12, 0.07), (1.2875, 0.12, 0.07), (1.2875, 0.13, 0.07), (1.2775, 0.13, 0.07), (1.2775, 0.13, -0.07), (1.2875, 0.13, -0.07), (1.2875, 0.12, -0.07), (1.2775, 0.12, -0.07), (1.2875, 0.22, -0.07), (1.2875, 0.23, -0.07), (1.2875, 0.23, 0.07), (1.2875, 0.22, 0.07), (1.2775, 0.22, 0.07), (1.2775, 0.23, 0.07), (1.2775, 0.23, -0.07), (1.2775, 0.22, -0.07), (1.2775, 0.23, -0.07), (1.2775, 0.23, 0.07), (1.2875, 0.23, 0.07), (1.2875, 0.23, -0.07), (1.2875, 0.22, -0.07), (1.2875, 0.22, 0.07), (1.2775, 0.22, 0.07), (1.2775, 0.22, -0.07), (1.2775, 0.22, 0.07), (1.2875, 0.22, 0.07), (1.2875, 0.23, 0.07), (1.2775, 0.23, 0.07), (1.2775, 0.23, -0.07), (1.2875, 0.23, -0.07), (1.2875, 0.22, -0.07), (1.2775, 0.22, -0.07)]
+                        uniform token subdivisionScheme = "none"
+                    }
+                }
+            }
+        }
+    }
+}
+

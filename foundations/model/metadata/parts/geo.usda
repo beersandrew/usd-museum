@@ -1,0 +1,18 @@
+#usda 1.0
+(
+    defaultPrim = "Holder"
+    doc = "The clipped vase's geometry (the weakest sublayer): glazed red by default."
+)
+
+def Xform "Holder"
+{
+    color3f[] primvars:displayColor = [(0.630757, 0.000607054, 0.0109601)] (
+        interpolation = "constant"
+    )
+    def "Body" (
+        instanceable = true
+        references = @./vase.usda@
+    )
+    {
+    }
+}

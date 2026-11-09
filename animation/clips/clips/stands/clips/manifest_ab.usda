@@ -1,0 +1,17 @@
+#usda 1.0
+(
+    "animation.clips.clips: the strength clip's manifest."
+    framesPerSecond = 24
+    timeCodesPerSecond = 24
+)
+
+def "A"
+{
+    matrix4d xformOp:transform
+}
+
+def "B"
+{
+    matrix4d xformOp:transform
+}
+

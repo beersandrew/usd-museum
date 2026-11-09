@@ -1,0 +1,25 @@
+#usda 1.0
+(
+    "The stool: its reference is ./right.usda; its assetInfo names ./wrong.usda. assetInfo is information only (DICT-22)."
+    defaultPrim = "Stool"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Stool" (
+    assetInfo = {
+        asset identifier = @./wrong.usda@
+        string name = "stool"
+        string version = "2"
+    }
+    kind = "component"
+    prepend references = @./right.usda@
+)
+{
+    def Scope "Looks"
+    {
+    }
+}
+

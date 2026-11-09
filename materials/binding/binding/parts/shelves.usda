@@ -1,0 +1,666 @@
+#usda 1.0
+(
+    "materials.binding.binding: two shelves of jars. Green: the Jars group binds green, jar 2 binds red itself. Blue: the Jars group binds blue strongerThanDescendants; jar 2 binds red; jar 4 binds yellow for preview and WRONG for full. Each jar's coaster (outside Jars) is the colour it must resolve to."
+    defaultPrim = "Shelves"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Shelves" (
+    kind = "group"
+)
+{
+    def Scope "Looks"
+    {
+    }
+
+    def Xform "Green" (
+        kind = "component"
+    )
+    {
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Scope "Looks"
+        {
+            def Material "Green"
+            {
+                token outputs:surface.connect = </Shelves/Green/Looks/Green/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.1, 0.7, 0.15)
+                    float inputs:roughness = 0.45
+                    token outputs:surface
+                }
+            }
+
+            def Material "Red"
+            {
+                token outputs:surface.connect = </Shelves/Green/Looks/Red/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.85, 0.08, 0.06)
+                    float inputs:roughness = 0.45
+                    token outputs:surface
+                }
+            }
+
+            def Material "Blue"
+            {
+                token outputs:surface.connect = </Shelves/Green/Looks/Blue/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.1, 0.25, 0.85)
+                    float inputs:roughness = 0.45
+                    token outputs:surface
+                }
+            }
+
+            def Material "Yellow"
+            {
+                token outputs:surface.connect = </Shelves/Green/Looks/Yellow/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.95, 0.85, 0.05)
+                    float inputs:roughness = 0.45
+                    token outputs:surface
+                }
+            }
+
+            def Material "Wrong"
+            {
+                token outputs:surface.connect = </Shelves/Green/Looks/Wrong/Surface.outputs:surface>
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/jar_wrong.png@
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Shelves/Green/Looks/Wrong/St.outputs:result>
+                    token inputs:wrapS = "clamp"
+                    token inputs:wrapT = "clamp"
+                    float3 outputs:rgb
+                }
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor.connect = </Shelves/Green/Looks/Wrong/Tex.outputs:rgb>
+                    float inputs:roughness = 0.45
+                    token outputs:surface
+                }
+            }
+
+            def Material "Wood"
+            {
+                token outputs:surface.connect = </Shelves/Green/Looks/Wood/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.55, 0.4, 0.22)
+                    float inputs:roughness = 0.7
+                    token outputs:surface
+                }
+            }
+        }
+
+        def Mesh "Plank" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            float3[] extent = [(-0.65, 0, -0.2), (0.65, 0.05, 0.2)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+            rel material:binding = </Shelves/Green/Looks/Wood>
+            point3f[] points = [(-0.65, 0, 0.2), (0.65, 0, 0.2), (0.65, 0.05, 0.2), (-0.65, 0.05, 0.2), (0.65, 0, -0.2), (-0.65, 0, -0.2), (-0.65, 0.05, -0.2), (0.65, 0.05, -0.2), (-0.65, 0.05, 0.2), (0.65, 0.05, 0.2), (0.65, 0.05, -0.2), (-0.65, 0.05, -0.2), (-0.65, 0, -0.2), (0.65, 0, -0.2), (0.65, 0, 0.2), (-0.65, 0, 0.2), (0.65, 0, 0.2), (0.65, 0, -0.2), (0.65, 0.05, -0.2), (0.65, 0.05, 0.2), (-0.65, 0, -0.2), (-0.65, 0, 0.2), (-0.65, 0.05, 0.2), (-0.65, 0.05, -0.2)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "Back" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            float3[] extent = [(-0.645, 0.04, -0.195), (0.645, 0.66, -0.165)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+            rel material:binding = </Shelves/Green/Looks/Wood>
+            point3f[] points = [(-0.645, 0.04, -0.165), (0.645, 0.04, -0.165), (0.645, 0.66, -0.165), (-0.645, 0.66, -0.165), (0.645, 0.04, -0.195), (-0.645, 0.04, -0.195), (-0.645, 0.66, -0.195), (0.645, 0.66, -0.195), (-0.645, 0.66, -0.165), (0.645, 0.66, -0.165), (0.645, 0.66, -0.195), (-0.645, 0.66, -0.195), (-0.645, 0.04, -0.195), (0.645, 0.04, -0.195), (0.645, 0.04, -0.165), (-0.645, 0.04, -0.165), (0.645, 0.04, -0.165), (0.645, 0.04, -0.195), (0.645, 0.66, -0.195), (0.645, 0.66, -0.165), (-0.645, 0.04, -0.195), (-0.645, 0.04, -0.165), (-0.645, 0.66, -0.165), (-0.645, 0.66, -0.195)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Xform "Jars" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Shelves/Green/Looks/Green>
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "Jar1"
+            {
+                double3 xformOp:translate = (-0.46987951807228917, 0.07400000000000001, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Cylinder "Body"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.11, -0.24, -0.11), (0.11, 0.24, 0.11)]
+                    double height = 0.48
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.11
+                    double3 xformOp:translate = (0, 0.24, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+
+                def Cylinder "Lid"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.1188, -0.0275, -0.1188), (0.1188, 0.0275, 0.1188)]
+                    double height = 0.055
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.1188
+                    double3 xformOp:translate = (0, 0.5075, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+            }
+
+            def Xform "Jar2" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Shelves/Green/Looks/Red>
+                double3 xformOp:translate = (-0.1566265060240964, 0.07400000000000001, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Cylinder "Body"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.11, -0.24, -0.11), (0.11, 0.24, 0.11)]
+                    double height = 0.48
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.11
+                    double3 xformOp:translate = (0, 0.24, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+
+                def Cylinder "Lid"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.1188, -0.0275, -0.1188), (0.1188, 0.0275, 0.1188)]
+                    double height = 0.055
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.1188
+                    double3 xformOp:translate = (0, 0.5075, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+            }
+
+            def Xform "Jar3"
+            {
+                double3 xformOp:translate = (0.1566265060240964, 0.07400000000000001, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Cylinder "Body"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.11, -0.24, -0.11), (0.11, 0.24, 0.11)]
+                    double height = 0.48
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.11
+                    double3 xformOp:translate = (0, 0.24, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+
+                def Cylinder "Lid"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.1188, -0.0275, -0.1188), (0.1188, 0.0275, 0.1188)]
+                    double height = 0.055
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.1188
+                    double3 xformOp:translate = (0, 0.5075, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+            }
+
+            def Xform "Jar4"
+            {
+                double3 xformOp:translate = (0.46987951807228917, 0.07400000000000001, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Cylinder "Body"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.11, -0.24, -0.11), (0.11, 0.24, 0.11)]
+                    double height = 0.48
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.11
+                    double3 xformOp:translate = (0, 0.24, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+
+                def Cylinder "Lid"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.1188, -0.0275, -0.1188), (0.1188, 0.0275, 0.1188)]
+                    double height = 0.055
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.1188
+                    double3 xformOp:translate = (0, 0.5075, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+            }
+        }
+
+        def "Coasters"
+        {
+            def Cylinder "C1" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                float3[] extent = [(-0.1595, -0.011, -0.1595), (0.1595, 0.011, 0.1595)]
+                double height = 0.022
+                rel material:binding = </Shelves/Green/Looks/Green>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double radius = 0.1595
+                double3 xformOp:translate = (-0.46987951807228917, 0.062, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Cylinder "C2" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                float3[] extent = [(-0.1595, -0.011, -0.1595), (0.1595, 0.011, 0.1595)]
+                double height = 0.022
+                rel material:binding = </Shelves/Green/Looks/Red>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double radius = 0.1595
+                double3 xformOp:translate = (-0.1566265060240964, 0.062, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Cylinder "C3" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                float3[] extent = [(-0.1595, -0.011, -0.1595), (0.1595, 0.011, 0.1595)]
+                double height = 0.022
+                rel material:binding = </Shelves/Green/Looks/Green>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double radius = 0.1595
+                double3 xformOp:translate = (0.1566265060240964, 0.062, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Cylinder "C4" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                float3[] extent = [(-0.1595, -0.011, -0.1595), (0.1595, 0.011, 0.1595)]
+                double height = 0.022
+                rel material:binding = </Shelves/Green/Looks/Green>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double radius = 0.1595
+                double3 xformOp:translate = (0.46987951807228917, 0.062, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "Blue" (
+        kind = "component"
+    )
+    {
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Scope "Looks"
+        {
+            def Material "Green"
+            {
+                token outputs:surface.connect = </Shelves/Blue/Looks/Green/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.1, 0.7, 0.15)
+                    float inputs:roughness = 0.45
+                    token outputs:surface
+                }
+            }
+
+            def Material "Red"
+            {
+                token outputs:surface.connect = </Shelves/Blue/Looks/Red/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.85, 0.08, 0.06)
+                    float inputs:roughness = 0.45
+                    token outputs:surface
+                }
+            }
+
+            def Material "Blue"
+            {
+                token outputs:surface.connect = </Shelves/Blue/Looks/Blue/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.1, 0.25, 0.85)
+                    float inputs:roughness = 0.45
+                    token outputs:surface
+                }
+            }
+
+            def Material "Yellow"
+            {
+                token outputs:surface.connect = </Shelves/Blue/Looks/Yellow/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.95, 0.85, 0.05)
+                    float inputs:roughness = 0.45
+                    token outputs:surface
+                }
+            }
+
+            def Material "Wrong"
+            {
+                token outputs:surface.connect = </Shelves/Blue/Looks/Wrong/Surface.outputs:surface>
+
+                def Shader "St"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    string inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "Tex"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @./textures/jar_wrong.png@
+                    token inputs:sourceColorSpace = "sRGB"
+                    float2 inputs:st.connect = </Shelves/Blue/Looks/Wrong/St.outputs:result>
+                    token inputs:wrapS = "clamp"
+                    token inputs:wrapT = "clamp"
+                    float3 outputs:rgb
+                }
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor.connect = </Shelves/Blue/Looks/Wrong/Tex.outputs:rgb>
+                    float inputs:roughness = 0.45
+                    token outputs:surface
+                }
+            }
+
+            def Material "Wood"
+            {
+                token outputs:surface.connect = </Shelves/Blue/Looks/Wood/Surface.outputs:surface>
+
+                def Shader "Surface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.55, 0.4, 0.22)
+                    float inputs:roughness = 0.7
+                    token outputs:surface
+                }
+            }
+        }
+
+        def Mesh "Plank" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            float3[] extent = [(-0.65, 0, -0.2), (0.65, 0.05, 0.2)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+            rel material:binding = </Shelves/Blue/Looks/Wood>
+            point3f[] points = [(-0.65, 0, 0.2), (0.65, 0, 0.2), (0.65, 0.05, 0.2), (-0.65, 0.05, 0.2), (0.65, 0, -0.2), (-0.65, 0, -0.2), (-0.65, 0.05, -0.2), (0.65, 0.05, -0.2), (-0.65, 0.05, 0.2), (0.65, 0.05, 0.2), (0.65, 0.05, -0.2), (-0.65, 0.05, -0.2), (-0.65, 0, -0.2), (0.65, 0, -0.2), (0.65, 0, 0.2), (-0.65, 0, 0.2), (0.65, 0, 0.2), (0.65, 0, -0.2), (0.65, 0.05, -0.2), (0.65, 0.05, 0.2), (-0.65, 0, -0.2), (-0.65, 0, 0.2), (-0.65, 0.05, 0.2), (-0.65, 0.05, -0.2)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "Back" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            float3[] extent = [(-0.645, 0.04, -0.195), (0.645, 0.66, -0.165)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+            rel material:binding = </Shelves/Blue/Looks/Wood>
+            point3f[] points = [(-0.645, 0.04, -0.165), (0.645, 0.04, -0.165), (0.645, 0.66, -0.165), (-0.645, 0.66, -0.165), (0.645, 0.04, -0.195), (-0.645, 0.04, -0.195), (-0.645, 0.66, -0.195), (0.645, 0.66, -0.195), (-0.645, 0.66, -0.165), (0.645, 0.66, -0.165), (0.645, 0.66, -0.195), (-0.645, 0.66, -0.195), (-0.645, 0.04, -0.195), (0.645, 0.04, -0.195), (0.645, 0.04, -0.165), (-0.645, 0.04, -0.165), (0.645, 0.04, -0.165), (0.645, 0.04, -0.195), (0.645, 0.66, -0.195), (0.645, 0.66, -0.165), (-0.645, 0.04, -0.195), (-0.645, 0.04, -0.165), (-0.645, 0.66, -0.165), (-0.645, 0.66, -0.195)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Xform "Jars" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Shelves/Blue/Looks/Blue> (
+                bindMaterialAs = "strongerThanDescendants"
+            )
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Xform "Jar1"
+            {
+                double3 xformOp:translate = (-0.46987951807228917, 0.07400000000000001, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Cylinder "Body"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.11, -0.24, -0.11), (0.11, 0.24, 0.11)]
+                    double height = 0.48
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.11
+                    double3 xformOp:translate = (0, 0.24, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+
+                def Cylinder "Lid"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.1188, -0.0275, -0.1188), (0.1188, 0.0275, 0.1188)]
+                    double height = 0.055
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.1188
+                    double3 xformOp:translate = (0, 0.5075, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+            }
+
+            def Xform "Jar2" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Shelves/Blue/Looks/Red>
+                double3 xformOp:translate = (-0.1566265060240964, 0.07400000000000001, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Cylinder "Body"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.11, -0.24, -0.11), (0.11, 0.24, 0.11)]
+                    double height = 0.48
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.11
+                    double3 xformOp:translate = (0, 0.24, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+
+                def Cylinder "Lid"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.1188, -0.0275, -0.1188), (0.1188, 0.0275, 0.1188)]
+                    double height = 0.055
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.1188
+                    double3 xformOp:translate = (0, 0.5075, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+            }
+
+            def Xform "Jar3"
+            {
+                double3 xformOp:translate = (0.1566265060240964, 0.07400000000000001, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Cylinder "Body"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.11, -0.24, -0.11), (0.11, 0.24, 0.11)]
+                    double height = 0.48
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.11
+                    double3 xformOp:translate = (0, 0.24, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+
+                def Cylinder "Lid"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.1188, -0.0275, -0.1188), (0.1188, 0.0275, 0.1188)]
+                    double height = 0.055
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.1188
+                    double3 xformOp:translate = (0, 0.5075, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+            }
+
+            def Xform "Jar4" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:full = </Shelves/Blue/Looks/Wrong>
+                rel material:binding:preview = </Shelves/Blue/Looks/Yellow>
+                double3 xformOp:translate = (0.46987951807228917, 0.07400000000000001, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+
+                def Cylinder "Body"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.11, -0.24, -0.11), (0.11, 0.24, 0.11)]
+                    double height = 0.48
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.11
+                    double3 xformOp:translate = (0, 0.24, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+
+                def Cylinder "Lid"
+                {
+                    uniform token axis = "Y"
+                    float3[] extent = [(-0.1188, -0.0275, -0.1188), (0.1188, 0.0275, 0.1188)]
+                    double height = 0.055
+                    color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                    double radius = 0.1188
+                    double3 xformOp:translate = (0, 0.5075, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate"]
+                }
+
+                def Mesh "Label"
+                {
+                    float3[] extent = [(-0.095021635, 0.1795, 0.06653487), (0.095021635, 0.3005, 0.116)]
+                    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+                    int[] faceVertexIndices = [0, 2, 3, 1, 2, 4, 5, 3, 4, 6, 7, 5, 6, 8, 9, 7, 8, 10, 11, 9, 10, 12, 13, 11, 12, 14, 15, 13, 14, 16, 17, 15, 16, 18, 19, 17, 18, 20, 21, 19, 20, 22, 23, 21, 22, 24, 25, 23, 24, 26, 27, 25, 26, 28, 29, 27, 28, 30, 31, 29, 30, 32, 33, 31, 32, 34, 35, 33, 34, 36, 37, 35, 36, 38, 39, 37, 38, 40, 41, 39, 40, 42, 43, 41, 42, 44, 45, 43, 44, 46, 47, 45, 46, 48, 49, 47]
+                    point3f[] points = [(-0.095021635, 0.1795, 0.06653487), (-0.095021635, 0.3005, 0.06653487), (-0.089401044, 0.1795, 0.07391518), (-0.089401044, 0.3005, 0.07391518), (-0.083208665, 0.1795, 0.08082276), (-0.083208665, 0.3005, 0.08082276), (-0.076484114, 0.1795, 0.08721342), (-0.076484114, 0.3005, 0.08721342), (-0.069270395, 0.1795, 0.09304629), (-0.069270395, 0.3005, 0.09304629), (-0.06161365, 0.1795, 0.09828407), (-0.06161365, 0.3005, 0.09828407), (-0.05356284, 0.1795, 0.102893256), (-0.05356284, 0.3005, 0.102893256), (-0.04516946, 0.1795, 0.10684437), (-0.04516946, 0.3005, 0.10684437), (-0.036487192, 0.1795, 0.110112146), (-0.036487192, 0.3005, 0.110112146), (-0.027571563, 0.1795, 0.11267568), (-0.027571563, 0.3005, 0.11267568), (-0.018479597, 0.1795, 0.114518575), (-0.018479597, 0.3005, 0.114518575), (-0.009269441, 0.1795, 0.115629055), (-0.009269441, 0.3005, 0.115629055), (0, 0.1795, 0.116), (0, 0.3005, 0.116), (0.009269441, 0.1795, 0.115629055), (0.009269441, 0.3005, 0.115629055), (0.018479597, 0.1795, 0.114518575), (0.018479597, 0.3005, 0.114518575), (0.027571563, 0.1795, 0.11267568), (0.027571563, 0.3005, 0.11267568), (0.036487192, 0.1795, 0.110112146), (0.036487192, 0.3005, 0.110112146), (0.04516946, 0.1795, 0.10684437), (0.04516946, 0.3005, 0.10684437), (0.05356284, 0.1795, 0.102893256), (0.05356284, 0.3005, 0.102893256), (0.06161365, 0.1795, 0.09828407), (0.06161365, 0.3005, 0.09828407), (0.069270395, 0.1795, 0.09304629), (0.069270395, 0.3005, 0.09304629), (0.076484114, 0.1795, 0.08721342), (0.076484114, 0.3005, 0.08721342), (0.083208665, 0.1795, 0.08082276), (0.083208665, 0.3005, 0.08082276), (0.089401044, 0.1795, 0.07391518), (0.089401044, 0.3005, 0.07391518), (0.095021635, 0.1795, 0.06653487), (0.095021635, 0.3005, 0.06653487)]
+                    color3f[] primvars:displayColor = [(0.95, 0.85, 0.05)]
+                    texCoord2f[] primvars:st = [(0, 0), (0, 1), (0.041666668, 0), (0.041666668, 1), (0.083333336, 0), (0.083333336, 1), (0.125, 0), (0.125, 1), (0.16666667, 0), (0.16666667, 1), (0.20833333, 0), (0.20833333, 1), (0.25, 0), (0.25, 1), (0.29166666, 0), (0.29166666, 1), (0.33333334, 0), (0.33333334, 1), (0.375, 0), (0.375, 1), (0.41666666, 0), (0.41666666, 1), (0.45833334, 0), (0.45833334, 1), (0.5, 0), (0.5, 1), (0.5416667, 0), (0.5416667, 1), (0.5833333, 0), (0.5833333, 1), (0.625, 0), (0.625, 1), (0.6666667, 0), (0.6666667, 1), (0.7083333, 0), (0.7083333, 1), (0.75, 0), (0.75, 1), (0.7916667, 0), (0.7916667, 1), (0.8333333, 0), (0.8333333, 1), (0.875, 0), (0.875, 1), (0.9166667, 0), (0.9166667, 1), (0.9583333, 0), (0.9583333, 1), (1, 0), (1, 1)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
+            }
+        }
+
+        def "Coasters"
+        {
+            def Cylinder "C1" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                float3[] extent = [(-0.1595, -0.011, -0.1595), (0.1595, 0.011, 0.1595)]
+                double height = 0.022
+                rel material:binding = </Shelves/Blue/Looks/Blue>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double radius = 0.1595
+                double3 xformOp:translate = (-0.46987951807228917, 0.062, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Cylinder "C2" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                float3[] extent = [(-0.1595, -0.011, -0.1595), (0.1595, 0.011, 0.1595)]
+                double height = 0.022
+                rel material:binding = </Shelves/Blue/Looks/Blue>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double radius = 0.1595
+                double3 xformOp:translate = (-0.1566265060240964, 0.062, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Cylinder "C3" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                float3[] extent = [(-0.1595, -0.011, -0.1595), (0.1595, 0.011, 0.1595)]
+                double height = 0.022
+                rel material:binding = </Shelves/Blue/Looks/Blue>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double radius = 0.1595
+                double3 xformOp:translate = (0.1566265060240964, 0.062, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Cylinder "C4" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                float3[] extent = [(-0.1595, -0.011, -0.1595), (0.1595, 0.011, 0.1595)]
+                double height = 0.022
+                rel material:binding = </Shelves/Blue/Looks/Yellow>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double radius = 0.1595
+                double3 xformOp:translate = (0.46987951807228917, 0.062, 0.02)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+}
+

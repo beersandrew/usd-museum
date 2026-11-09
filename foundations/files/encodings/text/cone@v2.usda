@@ -1,0 +1,17 @@
+#usda 1.0
+(
+    defaultPrim = "Cone"
+    doc = "foundations.files.encodings: the cone reached through a triple-at quoted path (this file's name holds an @)."
+)
+
+def Xform "Cone"
+{
+    def Cone "Geom"
+    {
+        double radius = 0.13
+        double height = 0.3
+        uniform token axis = "Y"
+        float3[] extent = [(-0.13, -0.15, -0.13), (0.13, 0.15, 0.13)]
+        color3f[] primvars:displayColor = [(0.0100228, 0.318547, 0.380056)]
+    }
+}

@@ -1,0 +1,12 @@
+#usda 1.0
+(
+    doc = "The value clip: the vase's glaze, blue."
+)
+
+over "Holder"
+{
+    color3f[] primvars:displayColor.timeSamples = {
+        1: [(0.028426, 0.212231, 0.630757)],
+        96: [(0.028426, 0.212231, 0.630757)],
+    }
+}
