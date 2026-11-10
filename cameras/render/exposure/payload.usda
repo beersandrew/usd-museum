@@ -250,6 +250,21 @@ def Xform "Exhibit" (
                 token outputs:surface
             }
         }
+
+        def Material "sign_back"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/sign_back/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.021980947, 0.021980947, 0.024515014)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
     }
 
     def Mesh "Board" (
@@ -293,7 +308,7 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Placards_Title.png@
+                asset inputs:file = @./textures/sign_exhibit_placards_title.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Exhibit/Placards/Title_Mat/St.outputs:result>
@@ -326,11 +341,11 @@ def Xform "Exhibit" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            float3[] extent = [(-2.32, 2.05, -1.79), (0.32, 2.53, -1.764)]
+            float3[] extent = [(-2.32, 2.05, -1.79), (0.32, 2.53, -1.766)]
             int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
             int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-            rel material:binding = </Exhibit/Looks/placard_back>
-            point3f[] points = [(-2.32, 2.05, -1.764), (0.32, 2.05, -1.764), (0.32, 2.53, -1.764), (-2.32, 2.53, -1.764), (0.32, 2.05, -1.79), (-2.32, 2.05, -1.79), (-2.32, 2.53, -1.79), (0.32, 2.53, -1.79), (-2.32, 2.53, -1.764), (0.32, 2.53, -1.764), (0.32, 2.53, -1.79), (-2.32, 2.53, -1.79), (-2.32, 2.05, -1.79), (0.32, 2.05, -1.79), (0.32, 2.05, -1.764), (-2.32, 2.05, -1.764), (0.32, 2.05, -1.764), (0.32, 2.05, -1.79), (0.32, 2.53, -1.79), (0.32, 2.53, -1.764), (-2.32, 2.05, -1.79), (-2.32, 2.05, -1.764), (-2.32, 2.53, -1.764), (-2.32, 2.53, -1.79)]
+            rel material:binding = </Exhibit/Looks/sign_back>
+            point3f[] points = [(-2.32, 2.05, -1.766), (0.32, 2.05, -1.766), (0.32, 2.53, -1.766), (-2.32, 2.53, -1.766), (0.32, 2.05, -1.79), (-2.32, 2.05, -1.79), (-2.32, 2.53, -1.79), (0.32, 2.53, -1.79), (-2.32, 2.53, -1.766), (0.32, 2.53, -1.766), (0.32, 2.53, -1.79), (-2.32, 2.53, -1.79), (-2.32, 2.05, -1.79), (0.32, 2.05, -1.79), (0.32, 2.05, -1.766), (-2.32, 2.05, -1.766), (0.32, 2.05, -1.766), (0.32, 2.05, -1.79), (0.32, 2.53, -1.79), (0.32, 2.53, -1.766), (-2.32, 2.05, -1.79), (-2.32, 2.05, -1.766), (-2.32, 2.53, -1.766), (-2.32, 2.53, -1.79)]
             uniform token subdivisionScheme = "none"
         }
     }
