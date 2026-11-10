@@ -22,7 +22,7 @@ This scene was built with the help of Claude Code.
 | **Gallery** | One topic inside a wing (in Composition: arcs, strength, edits...). A subfolder of the wing |
 | **Exhibit** | One USD asset that demonstrates a topic. It opens on its own: `<wing>/<gallery>/<exhibit>/<exhibit>.usda` |
 | **Piece** | One part of an exhibit that shows one rule (in the variants exhibit: default, stronger, fallback, nested) |
-| **Reference** | The marks beside a piece that say what must happen: an outline the object must fill, a plinth in the color that must win, a red outline that must stay empty |
+| **Reference** | The marks beside a piece that say what must happen: an outline the object must fill, a base in the color that must win, a red outline that must stay empty |
 | **Forgery** | A copy of an exhibit with one plausible mistake planted. A small override layer in the exhibit's `forgeries/` folder; it renders visibly wrong against the reference |
 | **Hold** | The moment in the tour when the camera pauses on an exhibit, which is when a forgery shows |
 | **Tour** | `tour.usda`: a camera path through the museum or a wing, with a frame range and a load schedule |

@@ -93,9 +93,9 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "key_plinth"
+        def Material "key_base"
         {
-            token outputs:surface.connect = </Exhibit/Looks/key_plinth/Surface.outputs:surface>
+            token outputs:surface.connect = </Exhibit/Looks/key_base/Surface.outputs:surface>
 
             def Shader "Surface"
             {

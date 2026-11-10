@@ -1,0 +1,39 @@
+#usda 1.0
+(
+    "Cell rules/lo25 bottom: the instancer and its shapes Cone; prototypes not authored."
+    defaultPrim = "Row"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Row" (
+    kind = "component"
+)
+{
+    def PointInstancer "Inst"
+    {
+        float3[] extent = [(-0.0775, 0, -0.0775), (0.0775, 0.155, 0.0775)]
+        point3f[] positions = [(0, 0, 0)]
+        int[] protoIndices = [0]
+
+        def Scope "Protos"
+        {
+            def Xform "Cone"
+            {
+                color3f[] primvars:displayColor = [(0.91309863, 0.22322796, 0.030713445)] (
+                    interpolation = "constant"
+                )
+
+                def "Shape" (
+                    instanceable = true
+                    prepend references = @../../parts/cone.usda@
+                )
+                {
+                }
+            }
+        }
+    }
+}
+

@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "USD Museum exhibit composition.namespace.mapping: seven vases whose material bindings and shader connections were authored inside their assets; brought in through each arc under a new path, each must still reach its own glaze and match its plinth. Built by src/build.py."
+    "USD Museum exhibit composition.namespace.mapping: seven vases whose material bindings and shader connections were authored inside their assets; brought in through each arc under a new path, each must still reach its own glaze and match its base. Built by src/build.py."
     defaultPrim = "Exhibit"
     endTimeCode = 1
     framesPerSecond = 24
@@ -81,9 +81,9 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "plinth_arc_local"
+        def Material "base_arc_local"
         {
-            token outputs:surface.connect = </Exhibit/Looks/plinth_arc_local/Surface.outputs:surface>
+            token outputs:surface.connect = </Exhibit/Looks/base_arc_local/Surface.outputs:surface>
 
             def Shader "Surface"
             {
@@ -96,9 +96,9 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "plinth_arc_inherit"
+        def Material "base_arc_inherit"
         {
-            token outputs:surface.connect = </Exhibit/Looks/plinth_arc_inherit/Surface.outputs:surface>
+            token outputs:surface.connect = </Exhibit/Looks/base_arc_inherit/Surface.outputs:surface>
 
             def Shader "Surface"
             {
@@ -111,9 +111,9 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "plinth_arc_variant"
+        def Material "base_arc_variant"
         {
-            token outputs:surface.connect = </Exhibit/Looks/plinth_arc_variant/Surface.outputs:surface>
+            token outputs:surface.connect = </Exhibit/Looks/base_arc_variant/Surface.outputs:surface>
 
             def Shader "Surface"
             {
@@ -126,9 +126,9 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "plinth_arc_relocate"
+        def Material "base_arc_relocate"
         {
-            token outputs:surface.connect = </Exhibit/Looks/plinth_arc_relocate/Surface.outputs:surface>
+            token outputs:surface.connect = </Exhibit/Looks/base_arc_relocate/Surface.outputs:surface>
 
             def Shader "Surface"
             {
@@ -141,9 +141,9 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "plinth_arc_reference"
+        def Material "base_arc_reference"
         {
-            token outputs:surface.connect = </Exhibit/Looks/plinth_arc_reference/Surface.outputs:surface>
+            token outputs:surface.connect = </Exhibit/Looks/base_arc_reference/Surface.outputs:surface>
 
             def Shader "Surface"
             {
@@ -156,9 +156,9 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "plinth_arc_payload"
+        def Material "base_arc_payload"
         {
-            token outputs:surface.connect = </Exhibit/Looks/plinth_arc_payload/Surface.outputs:surface>
+            token outputs:surface.connect = </Exhibit/Looks/base_arc_payload/Surface.outputs:surface>
 
             def Shader "Surface"
             {
@@ -342,14 +342,14 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Mesh "Plinth" (
+            def Mesh "Base" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
                 float3[] extent = [(-0.2, 0.57, -0.75), (0.2, 0.62, -0.35)]
                 int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                 int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                rel material:binding = </Exhibit/Looks/plinth_arc_local>
+                rel material:binding = </Exhibit/Looks/base_arc_local>
                 point3f[] points = [(-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.62, -0.35), (-0.2, 0.62, -0.35), (0.2, 0.57, -0.75), (-0.2, 0.57, -0.75), (-0.2, 0.62, -0.75), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.35), (0.2, 0.62, -0.35), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.75), (-0.2, 0.57, -0.75), (0.2, 0.57, -0.75), (0.2, 0.57, -0.35), (-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.57, -0.75), (0.2, 0.62, -0.75), (0.2, 0.62, -0.35), (-0.2, 0.57, -0.75), (-0.2, 0.57, -0.35), (-0.2, 0.62, -0.35), (-0.2, 0.62, -0.75)]
                 uniform token subdivisionScheme = "none"
             }
@@ -484,14 +484,14 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Mesh "Plinth" (
+            def Mesh "Base" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
                 float3[] extent = [(-0.2, 0.57, -0.75), (0.2, 0.62, -0.35)]
                 int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                 int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                rel material:binding = </Exhibit/Looks/plinth_arc_inherit>
+                rel material:binding = </Exhibit/Looks/base_arc_inherit>
                 point3f[] points = [(-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.62, -0.35), (-0.2, 0.62, -0.35), (0.2, 0.57, -0.75), (-0.2, 0.57, -0.75), (-0.2, 0.62, -0.75), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.35), (0.2, 0.62, -0.35), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.75), (-0.2, 0.57, -0.75), (0.2, 0.57, -0.75), (0.2, 0.57, -0.35), (-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.57, -0.75), (0.2, 0.62, -0.75), (0.2, 0.62, -0.35), (-0.2, 0.57, -0.75), (-0.2, 0.57, -0.35), (-0.2, 0.62, -0.35), (-0.2, 0.62, -0.75)]
                 uniform token subdivisionScheme = "none"
             }
@@ -626,14 +626,14 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Mesh "Plinth" (
+            def Mesh "Base" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
                 float3[] extent = [(-0.2, 0.57, -0.75), (0.2, 0.62, -0.35)]
                 int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                 int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                rel material:binding = </Exhibit/Looks/plinth_arc_variant>
+                rel material:binding = </Exhibit/Looks/base_arc_variant>
                 point3f[] points = [(-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.62, -0.35), (-0.2, 0.62, -0.35), (0.2, 0.57, -0.75), (-0.2, 0.57, -0.75), (-0.2, 0.62, -0.75), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.35), (0.2, 0.62, -0.35), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.75), (-0.2, 0.57, -0.75), (0.2, 0.57, -0.75), (0.2, 0.57, -0.35), (-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.57, -0.75), (0.2, 0.62, -0.75), (0.2, 0.62, -0.35), (-0.2, 0.57, -0.75), (-0.2, 0.57, -0.35), (-0.2, 0.62, -0.35), (-0.2, 0.62, -0.75)]
                 uniform token subdivisionScheme = "none"
             }
@@ -768,14 +768,14 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Mesh "Plinth" (
+            def Mesh "Base" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
                 float3[] extent = [(-0.2, 0.57, -0.75), (0.2, 0.62, -0.35)]
                 int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                 int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                rel material:binding = </Exhibit/Looks/plinth_arc_relocate>
+                rel material:binding = </Exhibit/Looks/base_arc_relocate>
                 point3f[] points = [(-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.62, -0.35), (-0.2, 0.62, -0.35), (0.2, 0.57, -0.75), (-0.2, 0.57, -0.75), (-0.2, 0.62, -0.75), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.35), (0.2, 0.62, -0.35), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.75), (-0.2, 0.57, -0.75), (0.2, 0.57, -0.75), (0.2, 0.57, -0.35), (-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.57, -0.75), (0.2, 0.62, -0.75), (0.2, 0.62, -0.35), (-0.2, 0.57, -0.75), (-0.2, 0.57, -0.35), (-0.2, 0.62, -0.35), (-0.2, 0.62, -0.75)]
                 uniform token subdivisionScheme = "none"
             }
@@ -910,14 +910,14 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Mesh "Plinth" (
+            def Mesh "Base" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
                 float3[] extent = [(-0.2, 0.57, -0.75), (0.2, 0.62, -0.35)]
                 int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                 int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                rel material:binding = </Exhibit/Looks/plinth_arc_reference>
+                rel material:binding = </Exhibit/Looks/base_arc_reference>
                 point3f[] points = [(-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.62, -0.35), (-0.2, 0.62, -0.35), (0.2, 0.57, -0.75), (-0.2, 0.57, -0.75), (-0.2, 0.62, -0.75), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.35), (0.2, 0.62, -0.35), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.75), (-0.2, 0.57, -0.75), (0.2, 0.57, -0.75), (0.2, 0.57, -0.35), (-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.57, -0.75), (0.2, 0.62, -0.75), (0.2, 0.62, -0.35), (-0.2, 0.57, -0.75), (-0.2, 0.57, -0.35), (-0.2, 0.62, -0.35), (-0.2, 0.62, -0.75)]
                 uniform token subdivisionScheme = "none"
             }
@@ -1052,14 +1052,14 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Mesh "Plinth" (
+            def Mesh "Base" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
                 float3[] extent = [(-0.2, 0.57, -0.75), (0.2, 0.62, -0.35)]
                 int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                 int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                rel material:binding = </Exhibit/Looks/plinth_arc_reference>
+                rel material:binding = </Exhibit/Looks/base_arc_reference>
                 point3f[] points = [(-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.62, -0.35), (-0.2, 0.62, -0.35), (0.2, 0.57, -0.75), (-0.2, 0.57, -0.75), (-0.2, 0.62, -0.75), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.35), (0.2, 0.62, -0.35), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.75), (-0.2, 0.57, -0.75), (0.2, 0.57, -0.75), (0.2, 0.57, -0.35), (-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.57, -0.75), (0.2, 0.62, -0.75), (0.2, 0.62, -0.35), (-0.2, 0.57, -0.75), (-0.2, 0.57, -0.35), (-0.2, 0.62, -0.35), (-0.2, 0.62, -0.75)]
                 uniform token subdivisionScheme = "none"
             }
@@ -1194,14 +1194,14 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Mesh "Plinth" (
+            def Mesh "Base" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
                 float3[] extent = [(-0.2, 0.57, -0.75), (0.2, 0.62, -0.35)]
                 int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                 int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                rel material:binding = </Exhibit/Looks/plinth_arc_payload>
+                rel material:binding = </Exhibit/Looks/base_arc_payload>
                 point3f[] points = [(-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.62, -0.35), (-0.2, 0.62, -0.35), (0.2, 0.57, -0.75), (-0.2, 0.57, -0.75), (-0.2, 0.62, -0.75), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.35), (0.2, 0.62, -0.35), (0.2, 0.62, -0.75), (-0.2, 0.62, -0.75), (-0.2, 0.57, -0.75), (0.2, 0.57, -0.75), (0.2, 0.57, -0.35), (-0.2, 0.57, -0.35), (0.2, 0.57, -0.35), (0.2, 0.57, -0.75), (0.2, 0.62, -0.75), (0.2, 0.62, -0.35), (-0.2, 0.57, -0.75), (-0.2, 0.57, -0.35), (-0.2, 0.62, -0.35), (-0.2, 0.62, -0.75)]
                 uniform token subdivisionScheme = "none"
             }

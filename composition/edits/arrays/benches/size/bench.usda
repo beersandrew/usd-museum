@@ -1,11 +1,11 @@
 #usda 1.0
 (
-    "Bench size: sublayers strongest first (top, mid, base). base says nothing; mid appends O Y G X; top trims to 3, appends T."
+    "Bench size: sublayers strongest first (top, mid, bottom). bottom says nothing; mid appends O Y G X; top trims to 3, appends T."
     defaultPrim = "Bench"
     subLayers = [
         @./top.usda@,
         @./mid.usda@,
-        @./base.usda@
+        @./bottom.usda@
     ]
 )
 

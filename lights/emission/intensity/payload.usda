@@ -93,9 +93,9 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "plinth"
+        def Material "base"
         {
-            token outputs:surface.connect = </Exhibit/Looks/plinth/Surface.outputs:surface>
+            token outputs:surface.connect = </Exhibit/Looks/base/Surface.outputs:surface>
 
             def Shader "Surface"
             {
@@ -290,14 +290,14 @@ def Xform "Exhibit" (
         }
     }
 
-    def Mesh "Plinth" (
+    def Mesh "Base" (
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {
         float3[] extent = [(-2.56, 0, -1.14), (2.56, 0.55, -0.44)]
         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-        rel material:binding = </Exhibit/Looks/plinth>
+        rel material:binding = </Exhibit/Looks/base>
         point3f[] points = [(-2.56, 0, -0.44), (2.56, 0, -0.44), (2.56, 0.55, -0.44), (-2.56, 0.55, -0.44), (2.56, 0, -1.14), (-2.56, 0, -1.14), (-2.56, 0.55, -1.14), (2.56, 0.55, -1.14), (-2.56, 0.55, -0.44), (2.56, 0.55, -0.44), (2.56, 0.55, -1.14), (-2.56, 0.55, -1.14), (-2.56, 0, -1.14), (2.56, 0, -1.14), (2.56, 0, -0.44), (-2.56, 0, -0.44), (2.56, 0, -0.44), (2.56, 0, -1.14), (2.56, 0.55, -1.14), (2.56, 0.55, -0.44), (-2.56, 0, -1.14), (-2.56, 0, -0.44), (-2.56, 0.55, -0.44), (-2.56, 0.55, -1.14)]
         uniform token subdivisionScheme = "none"
     }
@@ -554,14 +554,14 @@ def Xform "Exhibit" (
             )
             {
                 uniform bool doubleSided = 1
-                float3[] extent = [(-2.033861, 0.17930834, -0.434), (-1.7261392, 0.26264167, -0.434)]
+                float3[] extent = [(-2.1244485, 0.17297083, -0.434), (-1.6355515, 0.25630417, -0.434)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
                 rel material:binding = </Exhibit/Pieces/Exposure0/Sub_Mat>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
-                point3f[] points = [(-2.033861, 0.17930834, -0.434), (-1.7261392, 0.17930834, -0.434), (-1.7261392, 0.26264167, -0.434), (-2.033861, 0.26264167, -0.434)]
+                point3f[] points = [(-2.1244485, 0.17297083, -0.434), (-1.6355515, 0.17297083, -0.434), (-1.6355515, 0.25630417, -0.434), (-2.1244485, 0.25630417, -0.434)]
                 color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
                 texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
                     interpolation = "vertex"
@@ -1130,14 +1130,14 @@ def Xform "Exhibit" (
             )
             {
                 uniform bool doubleSided = 1
-                float3[] extent = [(0.3254595, 0.17280833, -0.434), (1.0745405, 0.25614166, -0.434)]
+                float3[] extent = [(0.2348718, 0.17280833, -0.434), (1.1651282, 0.25614166, -0.434)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
                 rel material:binding = </Exhibit/Pieces/NormSmall/Sub_Mat>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
-                point3f[] points = [(0.3254595, 0.17280833, -0.434), (1.0745405, 0.17280833, -0.434), (1.0745405, 0.25614166, -0.434), (0.3254595, 0.25614166, -0.434)]
+                point3f[] points = [(0.2348718, 0.17280833, -0.434), (1.1651282, 0.17280833, -0.434), (1.1651282, 0.25614166, -0.434), (0.2348718, 0.25614166, -0.434)]
                 color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
                 texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
                     interpolation = "vertex"
@@ -1418,14 +1418,14 @@ def Xform "Exhibit" (
             )
             {
                 uniform bool doubleSided = 1
-                float3[] extent = [(1.5054595, 0.17280833, -0.434), (2.2545404, 0.25614166, -0.434)]
+                float3[] extent = [(1.4148718, 0.17280833, -0.434), (2.3451283, 0.25614166, -0.434)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
                 rel material:binding = </Exhibit/Pieces/NormLarge/Sub_Mat>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
-                point3f[] points = [(1.5054595, 0.17280833, -0.434), (2.2545404, 0.17280833, -0.434), (2.2545404, 0.25614166, -0.434), (1.5054595, 0.25614166, -0.434)]
+                point3f[] points = [(1.4148718, 0.17280833, -0.434), (2.3451283, 0.17280833, -0.434), (2.3451283, 0.25614166, -0.434), (1.4148718, 0.25614166, -0.434)]
                 color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
                 texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
                     interpolation = "vertex"

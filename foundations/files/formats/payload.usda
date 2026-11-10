@@ -532,9 +532,9 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Material "PlinthMat"
+            def Material "BaseMat"
             {
-                token outputs:surface.connect = </Exhibit/Pieces/usda/PlinthMat/Surface.outputs:surface>
+                token outputs:surface.connect = </Exhibit/Pieces/usda/BaseMat/Surface.outputs:surface>
 
                 def Shader "Surface"
                 {
@@ -547,14 +547,14 @@ def Xform "Exhibit" (
                 }
             }
 
-            def Mesh "Plinth" (
+            def Mesh "Base" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
                 float3[] extent = [(-0.26, 0.7, -0.83), (0.26, 0.76, -0.41)]
                 int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                 int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                rel material:binding = </Exhibit/Pieces/usda/PlinthMat>
+                rel material:binding = </Exhibit/Pieces/usda/BaseMat>
                 point3f[] points = [(-0.26, 0.7, -0.41), (0.26, 0.7, -0.41), (0.26, 0.76, -0.41), (-0.26, 0.76, -0.41), (0.26, 0.7, -0.83), (-0.26, 0.7, -0.83), (-0.26, 0.76, -0.83), (0.26, 0.76, -0.83), (-0.26, 0.76, -0.41), (0.26, 0.76, -0.41), (0.26, 0.76, -0.83), (-0.26, 0.76, -0.83), (-0.26, 0.7, -0.83), (0.26, 0.7, -0.83), (0.26, 0.7, -0.41), (-0.26, 0.7, -0.41), (0.26, 0.7, -0.41), (0.26, 0.7, -0.83), (0.26, 0.76, -0.83), (0.26, 0.76, -0.41), (-0.26, 0.7, -0.83), (-0.26, 0.7, -0.41), (-0.26, 0.76, -0.41), (-0.26, 0.76, -0.83)]
                 uniform token subdivisionScheme = "none"
             }
@@ -718,9 +718,9 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Material "PlinthMat"
+            def Material "BaseMat"
             {
-                token outputs:surface.connect = </Exhibit/Pieces/default/PlinthMat/Surface.outputs:surface>
+                token outputs:surface.connect = </Exhibit/Pieces/default/BaseMat/Surface.outputs:surface>
 
                 def Shader "Surface"
                 {
@@ -733,14 +733,14 @@ def Xform "Exhibit" (
                 }
             }
 
-            def Mesh "Plinth" (
+            def Mesh "Base" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
                 float3[] extent = [(-0.5185, 0.7, -0.83), (0.0015, 0.76, -0.41)]
                 int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                 int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                rel material:binding = </Exhibit/Pieces/default/PlinthMat>
+                rel material:binding = </Exhibit/Pieces/default/BaseMat>
                 point3f[] points = [(-0.5185, 0.7, -0.41), (0.0015, 0.7, -0.41), (0.0015, 0.76, -0.41), (-0.5185, 0.76, -0.41), (0.0015, 0.7, -0.83), (-0.5185, 0.7, -0.83), (-0.5185, 0.76, -0.83), (0.0015, 0.76, -0.83), (-0.5185, 0.76, -0.41), (0.0015, 0.76, -0.41), (0.0015, 0.76, -0.83), (-0.5185, 0.76, -0.83), (-0.5185, 0.7, -0.83), (0.0015, 0.7, -0.83), (0.0015, 0.7, -0.41), (-0.5185, 0.7, -0.41), (0.0015, 0.7, -0.41), (0.0015, 0.7, -0.83), (0.0015, 0.76, -0.83), (0.0015, 0.76, -0.41), (-0.5185, 0.7, -0.83), (-0.5185, 0.7, -0.41), (-0.5185, 0.76, -0.41), (-0.5185, 0.76, -0.83)]
                 uniform token subdivisionScheme = "none"
             }
@@ -973,9 +973,9 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Material "PlinthMat"
+            def Material "BaseMat"
             {
-                token outputs:surface.connect = </Exhibit/Pieces/usdc/PlinthMat/Surface.outputs:surface>
+                token outputs:surface.connect = </Exhibit/Pieces/usdc/BaseMat/Surface.outputs:surface>
 
                 def Shader "Surface"
                 {
@@ -988,14 +988,14 @@ def Xform "Exhibit" (
                 }
             }
 
-            def Mesh "Plinth" (
+            def Mesh "Base" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
                 float3[] extent = [(-0.26, 0.7, -0.83), (0.26, 0.76, -0.41)]
                 int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                 int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                rel material:binding = </Exhibit/Pieces/usdc/PlinthMat>
+                rel material:binding = </Exhibit/Pieces/usdc/BaseMat>
                 point3f[] points = [(-0.26, 0.7, -0.41), (0.26, 0.7, -0.41), (0.26, 0.76, -0.41), (-0.26, 0.76, -0.41), (0.26, 0.7, -0.83), (-0.26, 0.7, -0.83), (-0.26, 0.76, -0.83), (0.26, 0.76, -0.83), (-0.26, 0.76, -0.41), (0.26, 0.76, -0.41), (0.26, 0.76, -0.83), (-0.26, 0.76, -0.83), (-0.26, 0.7, -0.83), (0.26, 0.7, -0.83), (0.26, 0.7, -0.41), (-0.26, 0.7, -0.41), (0.26, 0.7, -0.41), (0.26, 0.7, -0.83), (0.26, 0.76, -0.83), (0.26, 0.76, -0.41), (-0.26, 0.7, -0.83), (-0.26, 0.7, -0.41), (-0.26, 0.76, -0.41), (-0.26, 0.76, -0.83)]
                 uniform token subdivisionScheme = "none"
             }
@@ -1159,9 +1159,9 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Material "PlinthMat"
+            def Material "BaseMat"
             {
-                token outputs:surface.connect = </Exhibit/Pieces/usdz/PlinthMat/Surface.outputs:surface>
+                token outputs:surface.connect = </Exhibit/Pieces/usdz/BaseMat/Surface.outputs:surface>
 
                 def Shader "Surface"
                 {
@@ -1174,14 +1174,14 @@ def Xform "Exhibit" (
                 }
             }
 
-            def Mesh "Plinth" (
+            def Mesh "Base" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
                 float3[] extent = [(-0.26, 0.7, -0.83), (0.26, 0.76, -0.41)]
                 int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                 int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                rel material:binding = </Exhibit/Pieces/usdz/PlinthMat>
+                rel material:binding = </Exhibit/Pieces/usdz/BaseMat>
                 point3f[] points = [(-0.26, 0.7, -0.41), (0.26, 0.7, -0.41), (0.26, 0.76, -0.41), (-0.26, 0.76, -0.41), (0.26, 0.7, -0.83), (-0.26, 0.7, -0.83), (-0.26, 0.76, -0.83), (0.26, 0.76, -0.83), (-0.26, 0.76, -0.41), (0.26, 0.76, -0.41), (0.26, 0.76, -0.83), (-0.26, 0.76, -0.83), (-0.26, 0.7, -0.83), (0.26, 0.7, -0.83), (0.26, 0.7, -0.41), (-0.26, 0.7, -0.41), (0.26, 0.7, -0.41), (0.26, 0.7, -0.83), (0.26, 0.76, -0.83), (0.26, 0.76, -0.41), (-0.26, 0.7, -0.83), (-0.26, 0.7, -0.41), (-0.26, 0.76, -0.41), (-0.26, 0.76, -0.83)]
                 uniform token subdivisionScheme = "none"
             }

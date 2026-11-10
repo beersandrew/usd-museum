@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "composition.errors.cycles: diamond arm A: references ./base.usda and brings TagA."
+    "composition.errors.cycles: diamond arm A: references ./shared.usda and brings TagA."
     defaultPrim = "Arm"
     framesPerSecond = 24
     metersPerUnit = 1
@@ -10,7 +10,7 @@
 
 def Xform "Arm" (
     kind = "component"
-    prepend references = @./base.usda@
+    prepend references = @./shared.usda@
 )
 {
     def Scope "Looks"

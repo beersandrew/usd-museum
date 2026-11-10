@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "USD Museum exhibit composition.errors.cycles: diamonds and cycles. A diamond composes its base once; a cycling arc contributes nothing and the rest composes. Every ghost and slot filled; the red outlines stay empty. Built by src/build.py."
+    "USD Museum exhibit composition.errors.cycles: diamonds and cycles. A diamond composes its shared layer once; a cycling arc contributes nothing and the rest composes. Every ghost and slot filled; the red outlines stay empty. Built by src/build.py."
     defaultPrim = "Exhibit"
     endTimeCode = 1
     framesPerSecond = 24
@@ -391,14 +391,14 @@ def Xform "Exhibit" (
             )
             {
                 uniform bool doubleSided = 1
-                float3[] extent = [(-0.61, 0.34605977, -0.194), (0.61, 0.42391968, -0.194)]
+                float3[] extent = [(-0.61, 0.35331753, -0.194), (0.61, 0.41787094, -0.194)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
                 rel material:binding = </Exhibit/Pieces/diamond/Sub_Mat>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
-                point3f[] points = [(-0.61, 0.34605977, -0.194), (0.61, 0.34605977, -0.194), (0.61, 0.42391968, -0.194), (-0.61, 0.42391968, -0.194)]
+                point3f[] points = [(-0.61, 0.35331753, -0.194), (0.61, 0.35331753, -0.194), (0.61, 0.41787094, -0.194), (-0.61, 0.41787094, -0.194)]
                 color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
                 texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
                     interpolation = "vertex"

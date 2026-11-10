@@ -1,11 +1,11 @@
 #usda 1.0
 (
-    "Cell rules/lo11-first: sublayers strongest first, the base last. Expected prototypes: Cone, Prism, Sphere, Cube."
+    "Cell rules/lo11-first: sublayers strongest first, the bottom last. Expected prototypes: Cone, Prism, Sphere, Cube."
     defaultPrim = "Row"
     subLayers = [
         @./strong.usda@,
         @./weak.usda@,
-        @./base.usda@
+        @./bottom.usda@
     ]
 )
 

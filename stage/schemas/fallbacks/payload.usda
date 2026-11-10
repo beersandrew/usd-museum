@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "USD Museum exhibit stage.schemas.fallbacks: a Sphere, a Cylinder and a displayColor that author nothing, read as their schema fallbacks; posts, a ghost and a plinth baked from those fallbacks are the references. Built by src/build.py."
+    "USD Museum exhibit stage.schemas.fallbacks: a Sphere, a Cylinder and a displayColor that author nothing, read as their schema fallbacks; posts, a ghost and a base baked from those fallbacks are the references. Built by src/build.py."
     defaultPrim = "Exhibit"
     endTimeCode = 1
     framesPerSecond = 24
@@ -648,7 +648,7 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Mesh "Plinth"
+            def Mesh "Base"
             {
                 uniform bool doubleSided = 1
                 float3[] extent = [(1.25, 0.62, -0.93), (1.85, 0.7, -0.37)]

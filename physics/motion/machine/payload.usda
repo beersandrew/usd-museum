@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "USD Museum exhibit physics.motion.machine: the garage machine as authored UsdPhysics, then its baked run, on one plinth. At rest (frames 1-95): colliders are guides (painted red here: drawn only if guides are drawn), physics materials carry red surfaces (drawn only if the physics binding is used for rendering), brass pins at the joint frames, targets at the centres of mass. From 96 the ghosts show; the run (unit frames 1-96, referenced 108 frames late) fills them at 195. Built by src/build.py."
+    "USD Museum exhibit physics.motion.machine: the garage machine as authored UsdPhysics, then its baked run, on one base. At rest (frames 1-95): colliders are guides (painted red here: drawn only if guides are drawn), physics materials carry red surfaces (drawn only if the physics binding is used for rendering), brass pins at the joint frames, targets at the centres of mass. From 96 the ghosts show; the run (unit frames 1-96, referenced 108 frames late) fills them at 195. Built by src/build.py."
     defaultPrim = "Exhibit"
     endTimeCode = 234
     framesPerSecond = 24
@@ -239,7 +239,7 @@ def Xform "Exhibit" (
         }
     }
 
-    def Mesh "Plinth" (
+    def Mesh "Base" (
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {
@@ -1141,14 +1141,14 @@ def Xform "Exhibit" (
             )
             {
                 uniform bool doubleSided = 1
-                float3[] extent = [(-1.63, 0.17297083, -0.409), (-0.49924636, 0.25630417, -0.409)]
+                float3[] extent = [(-1.63, 0.17297083, -0.409), (-0.53105503, 0.25630417, -0.409)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
                 rel material:binding = </Exhibit/Pieces/Run/Legend0_Mat>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
-                point3f[] points = [(-1.63, 0.17297083, -0.409), (-0.49924636, 0.17297083, -0.409), (-0.49924636, 0.25630417, -0.409), (-1.63, 0.25630417, -0.409)]
+                point3f[] points = [(-1.63, 0.17297083, -0.409), (-0.53105503, 0.17297083, -0.409), (-0.53105503, 0.25630417, -0.409), (-1.63, 0.25630417, -0.409)]
                 color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
                 texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
                     interpolation = "vertex"

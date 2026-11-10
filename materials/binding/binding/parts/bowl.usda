@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "materials.binding.binding: /Bowl binds orange to its collection 'fruit' (includes ./Fruit, expandPrims) strongerThanDescendants; Fruit/Apple2 binds red itself and is orange too. /Bowl/Control binds red outside the collection: red. The orange plinth and the red saucer are the answer key."
+    "materials.binding.binding: /Bowl binds orange to its collection 'fruit' (includes ./Fruit, expandPrims) strongerThanDescendants; Fruit/Apple2 binds red itself and is orange too. /Bowl/Control binds red outside the collection: red. The orange base and the red saucer are the answer key."
     defaultPrim = "Bowl"
     framesPerSecond = 24
     metersPerUnit = 1
@@ -64,7 +64,7 @@ def Xform "Bowl" (
         }
     }
 
-    def Mesh "Plinth" (
+    def Mesh "Base" (
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {

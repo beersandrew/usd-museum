@@ -1,0 +1,82 @@
+#usda 1.0
+(
+    "Cell rules/lo11-plain bottom: the instancer and its shapes Cube, Cone, Prism, Sphere; prototypes explicit [Cube]."
+    defaultPrim = "Row"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Row" (
+    kind = "component"
+)
+{
+    def PointInstancer "Inst"
+    {
+        float3[] extent = [(-0.0775, 0, -0.0775), (0.6055, 0.155, 0.0775)]
+        point3f[] positions = [(0, 0, 0), (0.176, 0, 0), (0.352, 0, 0), (0.528, 0, 0)]
+        int[] protoIndices = [0, 1, 2, 3]
+        rel prototypes = </Row/Inst/Protos/Cube>
+
+        def Scope "Protos"
+        {
+            def Xform "Cube"
+            {
+                color3f[] primvars:displayColor = [(0.04231141, 0.15896083, 0.6866853)] (
+                    interpolation = "constant"
+                )
+
+                def "Shape" (
+                    instanceable = true
+                    prepend references = @../../parts/cube.usda@
+                )
+                {
+                }
+            }
+
+            def Xform "Cone"
+            {
+                color3f[] primvars:displayColor = [(0.91309863, 0.22322796, 0.030713445)] (
+                    interpolation = "constant"
+                )
+
+                def "Shape" (
+                    instanceable = true
+                    prepend references = @../../parts/cone.usda@
+                )
+                {
+                }
+            }
+
+            def Xform "Prism"
+            {
+                color3f[] primvars:displayColor = [(0.010329823, 0.31398872, 0.08021982)] (
+                    interpolation = "constant"
+                )
+
+                def "Shape" (
+                    instanceable = true
+                    prepend references = @../../parts/prism.usda@
+                )
+                {
+                }
+            }
+
+            def Xform "Sphere"
+            {
+                color3f[] primvars:displayColor = [(0.2704978, 0.104616486, 0.67244315)] (
+                    interpolation = "constant"
+                )
+
+                def "Shape" (
+                    instanceable = true
+                    prepend references = @../../parts/sphere.usda@
+                )
+                {
+                }
+            }
+        }
+    }
+}
+

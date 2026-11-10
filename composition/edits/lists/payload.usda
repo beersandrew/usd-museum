@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "USD Museum exhibit composition.edits.lists: list edits across layers, a stepped grid of benches. Tiers: the weaker layer's edit; columns: the stronger layer's edit. Each bench's shapes are a PointInstancer whose prototypes list op composes a base plain list, the weaker edit and the stronger edit; each shape stands over its silhouette, and the red outline stays empty. Built by src/build.py."
+    "USD Museum exhibit composition.edits.lists: list edits across layers, a stepped grid of benches. Tiers: the weaker layer's edit; columns: the stronger layer's edit. Each bench's shapes are a PointInstancer whose prototypes list op composes a bottom plain list, the weaker edit and the stronger edit; each shape stands over its silhouette, and the red outline stays empty. Built by src/build.py."
     defaultPrim = "Exhibit"
     endTimeCode = 1
     framesPerSecond = 24

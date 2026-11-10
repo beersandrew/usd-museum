@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "USD Museum exhibit composition.edits.arrays: array edits across layers, three benches in steps. Each bench's shapes are a PointInstancer whose positions, displayColor and protoIndices compose a base array and two layers of array edits; each shape stands over its silhouette, and every red outline stays empty. Built by src/build.py."
+    "USD Museum exhibit composition.edits.arrays: array edits across layers, three benches in steps. Each bench's shapes are a PointInstancer whose positions, displayColor and protoIndices compose a bottom array and two layers of array edits; each shape stands over its silhouette, and every red outline stays empty. Built by src/build.py."
     defaultPrim = "Exhibit"
     endTimeCode = 1
     framesPerSecond = 24

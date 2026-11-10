@@ -1,11 +1,11 @@
 #usda 1.0
 (
-    "Bench structure: sublayers strongest first (top, mid, base). base Y X T; mid inserts G at [1]; top erases [2], prepends O, appends C."
+    "Bench structure: sublayers strongest first (top, mid, bottom). bottom Y X T; mid inserts G at [1]; top erases [2], prepends O, appends C."
     defaultPrim = "Bench"
     subLayers = [
         @./top.usda@,
         @./mid.usda@,
-        @./base.usda@
+        @./bottom.usda@
     ]
 )
 
