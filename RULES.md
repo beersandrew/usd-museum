@@ -24,6 +24,11 @@ the files.
 ## 2. Folders mirror prim paths
 
 ```
+museum.usda                       the whole museum (an assembly): the exec-off wings, placed, and
+                                  the corridors between them
+tour.usda                         its tour: sublayers museum.usda, adds the camera, the frame range,
+                                  the load schedule and the doors closed between wings
+tour_cam.usdc                     the tour camera's path (heavy data, so binary)
 <wing>/
   <wing>.usda                     the wing (an assembly): its hall and galleries
   tour.usda                       the wing's tour: sublayers <wing>.usda, adds the camera,
