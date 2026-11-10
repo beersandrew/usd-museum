@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "USD Museum exhibit stage.population.order: busts held by two or three collections, each bound to a colour; the first binding in property order wins, so each bust must match its plinth. Built by src/build.py."
+    "USD Museum exhibit stage.population.order: busts held by two or three collections, each bound to a color; the first binding in property order wins, so each bust must match its plinth. Built by src/build.py."
     defaultPrim = "Exhibit"
     endTimeCode = 1
     framesPerSecond = 24

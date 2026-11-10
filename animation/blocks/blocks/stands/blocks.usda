@@ -938,7 +938,7 @@ def Xform "Stand" (
             }
         }
 
-        def Xform "Colour"
+        def Xform "Color"
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 1.1600000000000001, -2.2199999999999998, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1085,7 +1085,7 @@ def Xform "Stand" (
                 uniform token[] xformOpOrder = ["xformOp:transform"]
 
                 def Xform "Cart" (
-                    prepend references = @./rows/colour.usda@
+                    prepend references = @./rows/color.usda@
                 )
                 {
                     matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0.2625, 0, 1) )
@@ -1421,16 +1421,16 @@ def Xform "Stand" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Material "Colour_Mat"
+        def Material "Color_Mat"
         {
-            token outputs:surface.connect = </Stand/Cards/Colour_Mat/Surface.outputs:surface>
+            token outputs:surface.connect = </Stand/Cards/Color_Mat/Surface.outputs:surface>
 
             def Shader "Surface"
             {
                 uniform token info:id = "UsdPreviewSurface"
                 color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Stand/Cards/Colour_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Stand/Cards/Colour_Mat/Tex.outputs:a>
+                color3f inputs:emissiveColor.connect = </Stand/Cards/Color_Mat/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Stand/Cards/Color_Mat/Tex.outputs:a>
                 float inputs:opacityThreshold = 0.5
                 float inputs:roughness = 1
                 color3f inputs:specularColor = (0, 0, 0)
@@ -1448,16 +1448,16 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/blocks_Stand_Cards_Colour.png@
+                asset inputs:file = @./textures/blocks_Stand_Cards_Color.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Stand/Cards/Colour_Mat/St.outputs:result>
+                float2 inputs:st.connect = </Stand/Cards/Color_Mat/St.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
             }
         }
 
-        def Mesh "Colour" (
+        def Mesh "Color" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1465,7 +1465,7 @@ def Xform "Stand" (
             float3[] extent = [(-1.14, 1.172, -1.99), (-0.12, 1.392, -1.99)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Stand/Cards/Colour_Mat>
+            rel material:binding = </Stand/Cards/Color_Mat>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -1477,7 +1477,7 @@ def Xform "Stand" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "Colour_Back" (
+        def Mesh "Color_Back" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {

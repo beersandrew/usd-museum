@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "USD Museum exhibit materials.surfaces.materialx: a .mtlx marble, a USD-authored standard_surface, three colour-space plaques. Built by src/build.py."
+    "USD Museum exhibit materials.surfaces.materialx: a .mtlx marble, a USD-authored standard_surface, three color-space plaques. Built by src/build.py."
     defaultPrim = "Exhibit"
     endTimeCode = 1
     framesPerSecond = 24

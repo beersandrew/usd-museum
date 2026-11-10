@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "materials.color.spaces: six vases on plinths. Each plinth is the colour in linear Rec.709 (its material says so); each vase holds the colour encoded in the space its resolution should find."
+    "materials.color.spaces: six vases on plinths. Each plinth is the color in linear Rec.709 (its material says so); each vase holds the color encoded in the space its resolution should find."
     defaultPrim = "Spaces"
     framesPerSecond = 24
     metersPerUnit = 1

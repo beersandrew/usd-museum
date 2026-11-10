@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "USD Museum exhibit composition.strength.strength: which arc wins, 26 vases on plinths in the colour that should win. Built by src/build.py from the hall experiment."
+    "USD Museum exhibit composition.strength.strength: which arc wins, 26 vases on plinths in the color that should win. Built by src/build.py from the hall experiment."
     defaultPrim = "Exhibit"
     endTimeCode = 1
     framesPerSecond = 24

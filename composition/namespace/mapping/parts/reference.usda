@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "composition.namespace.mapping, the reference asset: the Body binds </Vase/Looks/Glaze>; the glaze's surface output and its colour connection are paths inside the asset."
+    "composition.namespace.mapping, the reference asset: the Body binds </Vase/Looks/Glaze>; the glaze's surface output and its color connection are paths inside the asset."
     defaultPrim = "Vase"
     framesPerSecond = 24
     metersPerUnit = 1

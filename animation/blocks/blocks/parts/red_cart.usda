@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "animation.blocks.blocks: the cart asset, red (its root's displayColor): the weaker colour the colour block discards."
+    "animation.blocks.blocks: the cart asset, red (its root's displayColor): the weaker color the color block discards."
     defaultPrim = "Cart"
     framesPerSecond = 24
     metersPerUnit = 1

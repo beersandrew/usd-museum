@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "instancing.native.native: a stack of two instanced cases lying on their sides (./case.usda). No colour here: it comes from an instance root above."
+    "instancing.native.native: a stack of two instanced cases lying on their sides (./case.usda). No color here: it comes from an instance root above."
     defaultPrim = "Stack"
     framesPerSecond = 24
     metersPerUnit = 1

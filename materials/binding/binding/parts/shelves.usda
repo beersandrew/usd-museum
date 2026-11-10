@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "materials.binding.binding: two shelves of jars. Green: the Jars group binds green, jar 2 binds red itself. Blue: the Jars group binds blue strongerThanDescendants; jar 2 binds red; jar 4 binds yellow for preview and WRONG for full. Each jar's coaster (outside Jars) is the colour it must resolve to."
+    "materials.binding.binding: two shelves of jars. Green: the Jars group binds green, jar 2 binds red itself. Blue: the Jars group binds blue strongerThanDescendants; jar 2 binds red; jar 4 binds yellow for preview and WRONG for full. Each jar's coaster (outside Jars) is the color it must resolve to."
     defaultPrim = "Shelves"
     framesPerSecond = 24
     metersPerUnit = 1

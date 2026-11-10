@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "materials.surfaces.materialx: three colour-space plaques. Each tile pair must match the expected orange bar above it."
+    "materials.surfaces.materialx: three color-space plaques. Each tile pair must match the expected orange bar above it."
     defaultPrim = "Plaques"
     framesPerSecond = 24
     metersPerUnit = 1

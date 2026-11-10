@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "Bench write base: the instancer and its prototypes; plain arrays positions [0, 1, 2, 6, 4, 5]; colours ['arc_local', 'key', 'key', 'arc_relocate', 'arc_reference', 'arc_reference']; protos ['Cone', 'Cube', 'Sphere', 'Cube', 'Cone', 'Cube']."
+    "Bench write base: the instancer and its prototypes; plain arrays positions [0, 1, 2, 6, 4, 5]; colors ['arc_local', 'key', 'key', 'arc_relocate', 'arc_reference', 'arc_reference']; protos ['Cone', 'Cube', 'Sphere', 'Cube', 'Cone', 'Cube']."
     defaultPrim = "Bench"
     framesPerSecond = 24
     metersPerUnit = 1

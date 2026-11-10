@@ -415,14 +415,14 @@ def Xform "Face"
             def Shader "Surface"
             {
                 uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor.connect = </Face/Looks/Skin/Colour.outputs:result>
+                color3f inputs:diffuseColor.connect = </Face/Looks/Skin/Color.outputs:result>
                 float inputs:roughness = 0.62
                 color3f inputs:specularColor = (0.04, 0.04, 0.04)
                 int inputs:useSpecularWorkflow = 1
                 token outputs:surface
             }
 
-            def Shader "Colour"
+            def Shader "Color"
             {
                 uniform token info:id = "UsdPrimvarReader_float3"
                 float3 inputs:fallback = (0.5, 0.5, 0.5)

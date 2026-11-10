@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "composition.loading.payloads: the payload asset: one vase in the payload colour (the colour is authored here, so it arrives through the payload)."
+    "composition.loading.payloads: the payload asset: one vase in the payload color (the color is authored here, so it arrives through the payload)."
     defaultPrim = "Crate"
     framesPerSecond = 24
     metersPerUnit = 1

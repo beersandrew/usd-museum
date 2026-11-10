@@ -53,7 +53,7 @@ def Xform "Paint" (
             {
                 token outputs:surface.connect = </Paint/Rack/Looks/Panels/Surface.outputs:surface>
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0.5, 0.5, 0.5)
@@ -65,7 +65,7 @@ def Xform "Paint" (
                 {
                     uniform token info:id = "UsdPreviewSurface"
                     color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Paint/Rack/Looks/Panels/Colour.outputs:result>
+                    color3f inputs:emissiveColor.connect = </Paint/Rack/Looks/Panels/Color.outputs:result>
                     float inputs:roughness = 1
                     color3f inputs:specularColor = (0, 0, 0)
                     int inputs:useSpecularWorkflow = 1

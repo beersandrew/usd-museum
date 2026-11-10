@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "instancing.native.native: a luggage cart of two instanced stacks (./stack.usda). No colour here."
+    "instancing.native.native: a luggage cart of two instanced stacks (./stack.usda). No color here."
     defaultPrim = "Cart"
     framesPerSecond = 24
     metersPerUnit = 1

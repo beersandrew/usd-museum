@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "USD Museum exhibit stage.meaning.lod: one UsdLod car at three distances from a viewer camera; the pick (made at build time by UsdLod) is authored as visibility; each car must match the colour band it stands on. Built by src/build.py."
+    "USD Museum exhibit stage.meaning.lod: one UsdLod car at three distances from a viewer camera; the pick (made at build time by UsdLod) is authored as visibility; each car must match the color band it stands on. Built by src/build.py."
     defaultPrim = "Exhibit"
     endTimeCode = 1
     framesPerSecond = 24

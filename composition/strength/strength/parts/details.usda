@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "composition.strength.strength: the order details, five fights on a bench, each Case's primvars:displayColor from its two opinions; plinths in the winner's colour. Referenced by exhibit.usda."
+    "composition.strength.strength: the order details, five fights on a bench, each Case's primvars:displayColor from its two opinions; plinths in the winner's color. Referenced by exhibit.usda."
     defaultPrim = "Details"
     framesPerSecond = 24
     metersPerUnit = 1

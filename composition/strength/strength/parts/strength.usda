@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "composition.strength.strength: which arc wins, the 21 pairs on a stepped installation. Each cell's Case gets primvars:displayColor from exactly its two arcs; its plinth is the colour that should win. Referenced by exhibit.usda."
+    "composition.strength.strength: which arc wins, the 21 pairs on a stepped installation. Each cell's Case gets primvars:displayColor from exactly its two arcs; its plinth is the color that should win. Referenced by exhibit.usda."
     defaultPrim = "Strength"
     framesPerSecond = 24
     metersPerUnit = 1

@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "foundations.types.twins: one station per foundational type (twin.usdc is this layer exported as a crate). Every value is exactly representable in half. The stations' colours come from the exhibit's holders (amber for usda, blue for usdc), except the roles, whose colour is the value."
+    "foundations.types.twins: one station per foundational type (twin.usdc is this layer exported as a crate). Every value is exactly representable in half. The stations' colors come from the exhibit's holders (amber for usda, blue for usdc), except the roles, whose color is the value."
     defaultPrim = "Twin"
 )
 
@@ -182,14 +182,14 @@ def Xform "Twin"
                 def Shader "Surface"
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor.connect = </Twin/Role_color3d/Looks/Tile/Colour.outputs:result>
+                    color3f inputs:diffuseColor.connect = </Twin/Role_color3d/Looks/Tile/Color.outputs:result>
                     float inputs:roughness = 0.55
                     color3f inputs:specularColor = (0.04, 0.04, 0.04)
                     int inputs:useSpecularWorkflow = 1
                     token outputs:surface
                 }
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0, 0, 0)
@@ -226,14 +226,14 @@ def Xform "Twin"
                 def Shader "Surface"
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor.connect = </Twin/Role_color3f/Looks/Tile/Colour.outputs:result>
+                    color3f inputs:diffuseColor.connect = </Twin/Role_color3f/Looks/Tile/Color.outputs:result>
                     float inputs:roughness = 0.55
                     color3f inputs:specularColor = (0.04, 0.04, 0.04)
                     int inputs:useSpecularWorkflow = 1
                     token outputs:surface
                 }
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0, 0, 0)
@@ -270,14 +270,14 @@ def Xform "Twin"
                 def Shader "Surface"
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor.connect = </Twin/Role_color3h/Looks/Tile/Colour.outputs:result>
+                    color3f inputs:diffuseColor.connect = </Twin/Role_color3h/Looks/Tile/Color.outputs:result>
                     float inputs:roughness = 0.55
                     color3f inputs:specularColor = (0.04, 0.04, 0.04)
                     int inputs:useSpecularWorkflow = 1
                     token outputs:surface
                 }
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0, 0, 0)
@@ -314,14 +314,14 @@ def Xform "Twin"
                 def Shader "Surface"
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor.connect = </Twin/Role_point3d/Looks/Tile/Colour.outputs:result>
+                    color3f inputs:diffuseColor.connect = </Twin/Role_point3d/Looks/Tile/Color.outputs:result>
                     float inputs:roughness = 0.55
                     color3f inputs:specularColor = (0.04, 0.04, 0.04)
                     int inputs:useSpecularWorkflow = 1
                     token outputs:surface
                 }
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0, 0, 0)
@@ -358,14 +358,14 @@ def Xform "Twin"
                 def Shader "Surface"
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor.connect = </Twin/Role_point3f/Looks/Tile/Colour.outputs:result>
+                    color3f inputs:diffuseColor.connect = </Twin/Role_point3f/Looks/Tile/Color.outputs:result>
                     float inputs:roughness = 0.55
                     color3f inputs:specularColor = (0.04, 0.04, 0.04)
                     int inputs:useSpecularWorkflow = 1
                     token outputs:surface
                 }
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0, 0, 0)
@@ -402,14 +402,14 @@ def Xform "Twin"
                 def Shader "Surface"
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor.connect = </Twin/Role_point3h/Looks/Tile/Colour.outputs:result>
+                    color3f inputs:diffuseColor.connect = </Twin/Role_point3h/Looks/Tile/Color.outputs:result>
                     float inputs:roughness = 0.55
                     color3f inputs:specularColor = (0.04, 0.04, 0.04)
                     int inputs:useSpecularWorkflow = 1
                     token outputs:surface
                 }
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0, 0, 0)
@@ -446,14 +446,14 @@ def Xform "Twin"
                 def Shader "Surface"
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor.connect = </Twin/Role_normal3d/Looks/Tile/Colour.outputs:result>
+                    color3f inputs:diffuseColor.connect = </Twin/Role_normal3d/Looks/Tile/Color.outputs:result>
                     float inputs:roughness = 0.55
                     color3f inputs:specularColor = (0.04, 0.04, 0.04)
                     int inputs:useSpecularWorkflow = 1
                     token outputs:surface
                 }
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0, 0, 0)
@@ -490,14 +490,14 @@ def Xform "Twin"
                 def Shader "Surface"
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor.connect = </Twin/Role_normal3f/Looks/Tile/Colour.outputs:result>
+                    color3f inputs:diffuseColor.connect = </Twin/Role_normal3f/Looks/Tile/Color.outputs:result>
                     float inputs:roughness = 0.55
                     color3f inputs:specularColor = (0.04, 0.04, 0.04)
                     int inputs:useSpecularWorkflow = 1
                     token outputs:surface
                 }
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0, 0, 0)
@@ -534,14 +534,14 @@ def Xform "Twin"
                 def Shader "Surface"
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor.connect = </Twin/Role_normal3h/Looks/Tile/Colour.outputs:result>
+                    color3f inputs:diffuseColor.connect = </Twin/Role_normal3h/Looks/Tile/Color.outputs:result>
                     float inputs:roughness = 0.55
                     color3f inputs:specularColor = (0.04, 0.04, 0.04)
                     int inputs:useSpecularWorkflow = 1
                     token outputs:surface
                 }
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0, 0, 0)
@@ -578,14 +578,14 @@ def Xform "Twin"
                 def Shader "Surface"
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor.connect = </Twin/Role_vector3d/Looks/Tile/Colour.outputs:result>
+                    color3f inputs:diffuseColor.connect = </Twin/Role_vector3d/Looks/Tile/Color.outputs:result>
                     float inputs:roughness = 0.55
                     color3f inputs:specularColor = (0.04, 0.04, 0.04)
                     int inputs:useSpecularWorkflow = 1
                     token outputs:surface
                 }
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0, 0, 0)
@@ -622,14 +622,14 @@ def Xform "Twin"
                 def Shader "Surface"
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor.connect = </Twin/Role_vector3f/Looks/Tile/Colour.outputs:result>
+                    color3f inputs:diffuseColor.connect = </Twin/Role_vector3f/Looks/Tile/Color.outputs:result>
                     float inputs:roughness = 0.55
                     color3f inputs:specularColor = (0.04, 0.04, 0.04)
                     int inputs:useSpecularWorkflow = 1
                     token outputs:surface
                 }
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0, 0, 0)
@@ -666,14 +666,14 @@ def Xform "Twin"
                 def Shader "Surface"
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor.connect = </Twin/Role_vector3h/Looks/Tile/Colour.outputs:result>
+                    color3f inputs:diffuseColor.connect = </Twin/Role_vector3h/Looks/Tile/Color.outputs:result>
                     float inputs:roughness = 0.55
                     color3f inputs:specularColor = (0.04, 0.04, 0.04)
                     int inputs:useSpecularWorkflow = 1
                     token outputs:surface
                 }
 
-                def Shader "Colour"
+                def Shader "Color"
                 {
                     uniform token info:id = "UsdPrimvarReader_float3"
                     float3 inputs:fallback = (0, 0, 0)

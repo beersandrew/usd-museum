@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "Bench write, the strongest layer (array edits): ('write', 'colours', 'arc_inherit', 1); ('write', 'colours', 'arc_payload', -1); ('write', 'protos', 'Sphere', -1); ('write', 'colours', 'arc_specialize', 6)."
+    "Bench write, the strongest layer (array edits): ('write', 'colors', 'arc_inherit', 1); ('write', 'colors', 'arc_payload', -1); ('write', 'protos', 'Sphere', -1); ('write', 'colors', 'arc_specialize', 6)."
     defaultPrim = "Bench"
 )
 

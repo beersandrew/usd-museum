@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "Bench write, the middle layer (array edits): ('write', 'colours', 'arc_specialize', 1); ('write', 'colours', 'arc_variant', 2); ('write', 'positions', 3, 3)."
+    "Bench write, the middle layer (array edits): ('write', 'colors', 'arc_specialize', 1); ('write', 'colors', 'arc_variant', 2); ('write', 'positions', 3, 3)."
     defaultPrim = "Bench"
 )
 

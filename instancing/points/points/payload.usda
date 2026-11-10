@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "USD Museum exhibit instancing.points.points: a bookcase of three point instancers (masks, poses, per-instance colours) with chips, ticks and stays-empty outlines as the references. Built by src/build.py."
+    "USD Museum exhibit instancing.points.points: a bookcase of three point instancers (masks, poses, per-instance colors) with chips, ticks and stays-empty outlines as the references. Built by src/build.py."
     defaultPrim = "Exhibit"
     endTimeCode = 1
     framesPerSecond = 24
@@ -621,7 +621,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "Board_colours" (
+        def Mesh "Board_colors" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -811,8 +811,8 @@ def Xform "Exhibit" (
 
     def "Shelves"
     {
-        def PointInstancer "Colours" (
-            prepend references = @./parts/books.usda@</Books/Colours>
+        def PointInstancer "Colors" (
+            prepend references = @./parts/books.usda@</Books/Colors>
         )
         {
             double3 xformOp:translate = (-1.89, 0.352, -0.8049999999999999)
@@ -838,7 +838,7 @@ def Xform "Exhibit" (
 
     def "Refs"
     {
-        def Mesh "colours_origin" (
+        def Mesh "colors_origin" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1225,7 +1225,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip00" (
+        def Mesh "colors_chip00" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1237,7 +1237,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip01" (
+        def Mesh "colors_chip01" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1249,7 +1249,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip02" (
+        def Mesh "colors_chip02" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1261,7 +1261,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip03" (
+        def Mesh "colors_chip03" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1273,7 +1273,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip04" (
+        def Mesh "colors_chip04" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1285,7 +1285,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip05" (
+        def Mesh "colors_chip05" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1297,7 +1297,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip06" (
+        def Mesh "colors_chip06" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1309,7 +1309,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip07" (
+        def Mesh "colors_chip07" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1321,7 +1321,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip08" (
+        def Mesh "colors_chip08" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1333,7 +1333,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip09" (
+        def Mesh "colors_chip09" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1345,7 +1345,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip10" (
+        def Mesh "colors_chip10" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1357,7 +1357,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip11" (
+        def Mesh "colors_chip11" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1369,7 +1369,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip12" (
+        def Mesh "colors_chip12" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1381,7 +1381,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip13" (
+        def Mesh "colors_chip13" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1393,7 +1393,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip14" (
+        def Mesh "colors_chip14" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1405,7 +1405,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip15" (
+        def Mesh "colors_chip15" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1417,7 +1417,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip16" (
+        def Mesh "colors_chip16" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1429,7 +1429,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip17" (
+        def Mesh "colors_chip17" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1441,7 +1441,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip18" (
+        def Mesh "colors_chip18" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1453,7 +1453,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip19" (
+        def Mesh "colors_chip19" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1465,7 +1465,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip20" (
+        def Mesh "colors_chip20" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1477,7 +1477,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip21" (
+        def Mesh "colors_chip21" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1489,7 +1489,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip22" (
+        def Mesh "colors_chip22" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1501,7 +1501,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip23" (
+        def Mesh "colors_chip23" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1513,7 +1513,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip24" (
+        def Mesh "colors_chip24" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -1525,7 +1525,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "colours_chip25" (
+        def Mesh "colors_chip25" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
@@ -2074,14 +2074,14 @@ def Xform "Exhibit" (
         )
         {
             uniform bool doubleSided = 1
-            float3[] extent = [(-1.1354764, 0.033353206, -0.594), (1.1354764, 0.123096794, -0.594)]
+            float3[] extent = [(-1.111335, 0.033353206, -0.594), (1.111335, 0.123096794, -0.594)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
             rel material:binding = </Exhibit/Labels/Rows2_Mat>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
-            point3f[] points = [(-1.1354764, 0.033353206, -0.594), (1.1354764, 0.033353206, -0.594), (1.1354764, 0.123096794, -0.594), (-1.1354764, 0.123096794, -0.594)]
+            point3f[] points = [(-1.111335, 0.033353206, -0.594), (1.111335, 0.033353206, -0.594), (1.111335, 0.123096794, -0.594), (-1.111335, 0.123096794, -0.594)]
             color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
             texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
                 interpolation = "vertex"

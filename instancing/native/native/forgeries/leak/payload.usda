@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "USD Museum exhibit instancing.native.native: the spec's instancing examples (vases on plinths in the colour they must show) and nested instanced cases on carts (each cart's colour on its instance root; one de-instanced stack). Built by src/build.py."
+    "USD Museum exhibit instancing.native.native: the spec's instancing examples (vases on plinths in the color they must show) and nested instanced cases on carts (each cart's color on its instance root; one de-instanced stack). Built by src/build.py."
     defaultPrim = "Exhibit"
     endTimeCode = 1
     framesPerSecond = 24
@@ -961,14 +961,14 @@ def Xform "Exhibit" (
         )
         {
             uniform bool doubleSided = 1
-            float3[] extent = [(0.49363974, 0.099308334, -0.344), (1.1063603, 0.18264167, -0.344)]
+            float3[] extent = [(0.51605666, 0.099308334, -0.344), (1.0839434, 0.18264167, -0.344)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
             rel material:binding = </Exhibit/Labels/Cart1_s_Mat>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
-            point3f[] points = [(0.49363974, 0.099308334, -0.344), (1.1063603, 0.099308334, -0.344), (1.1063603, 0.18264167, -0.344), (0.49363974, 0.18264167, -0.344)]
+            point3f[] points = [(0.51605666, 0.099308334, -0.344), (1.0839434, 0.099308334, -0.344), (1.0839434, 0.18264167, -0.344), (0.51605666, 0.18264167, -0.344)]
             color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
             texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
                 interpolation = "vertex"
@@ -1073,14 +1073,14 @@ def Xform "Exhibit" (
         )
         {
             uniform bool doubleSided = 1
-            float3[] extent = [(1.7936398, 0.099308334, -0.344), (2.4063604, 0.18264167, -0.344)]
+            float3[] extent = [(1.8160566, 0.099308334, -0.344), (2.3839433, 0.18264167, -0.344)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
             rel material:binding = </Exhibit/Labels/Cart2_s_Mat>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
-            point3f[] points = [(1.7936398, 0.099308334, -0.344), (2.4063604, 0.099308334, -0.344), (2.4063604, 0.18264167, -0.344), (1.7936398, 0.18264167, -0.344)]
+            point3f[] points = [(1.8160566, 0.099308334, -0.344), (2.3839433, 0.099308334, -0.344), (2.3839433, 0.18264167, -0.344), (1.8160566, 0.18264167, -0.344)]
             color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
             texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
                 interpolation = "vertex"
