@@ -33,7 +33,7 @@ This scene was built with the help of Claude Code.
 
 <!-- features: begin -->
 
-The museum shows 117 features of USD, in five areas; the 17 it doesn't show yet are at the end. Each row says what the feature does, then the wings and galleries (`wing/gallery`) where you see it.
+The museum shows 119 features of USD, in five areas; the 17 it doesn't show yet are at the end. Each row says what the feature does, then the wings and galleries (`wing/gallery`) where you see it.
 
 ### 1. Files, layers and assets
 
@@ -163,19 +163,21 @@ The museum shows 117 features of USD, in five areas; the 17 it doesn't show yet 
 | 102 | Collection-based material binding | material:binding:collection:<name> targets a collection and a material, so one relationship assigns a look to many prims. | stage/population, stage/schemas, stage/collections, materials/binding |
 | 103 | UsdPreviewSurface, UsdUVTexture, primvar readers and UsdTransform2d | A small, fixed physically-based material and texture node set that every USD consumer is expected to understand. | materials/surfaces |
 | 104 | MaterialX (.mtlx as a USD layer, ND_ nodes) | A .mtlx document can be referenced like a USD layer and appears as Materials, NodeGraphs and ND_* shaders; MaterialX networks can also be authored directly in USD. | materials/surfaces |
-| 105 | Light types and common light controls (units, exposure, normalize, color temperature, shaping, shadows, light lists) | Sphere, Rect, Disk, Cylinder and Distant lights (and PluginLight) share LightAPI controls: intensity × 2^exposure in nits, normalize, color temperature, ShapingAPI cones and IES, ShadowAPI, and a LightListAPI cache for finding lights. | lights/emission, lights/shaping |
-| 106 | Dome lights (environment maps, texture formats, pole axis, DomeLight_1) | A DomeLight lights the scene from an environment texture at infinity; texture:format and (on DomeLight_1) poleAxis say how the image wraps the sphere. | lights/environment |
-| 107 | Skeletons and joint animation | A Skeleton lists joints as path tokens with bind and rest transforms; a SkelAnimation supplies vectorized translations, quaternion rotations and scales over time; skel:skeleton and skel:animationSource bind them under a SkelRoot. | instancing/crowds, animation/characters |
-| 108 | Skinning (joint influences, geomBindTransform, linear and dual-quaternion) | SkelBindingAPI primvars skel:jointIndices and skel:jointWeights (with elementSize) and skel:geomBindTransform tell how points follow joints, by classicLinear or dualQuaternion skinning. | animation/characters |
-| 109 | Blend shapes and inbetweens | BlendShape prims hold point offsets (optionally sparse by pointIndices, with normalOffsets) and weighted inbetween shapes; the SkelAnimation's blendShapeWeights drive them by name. | animation/characters |
-| 110 | Physics: scenes, rigid bodies, colliders, mass and physics materials | PhysicsScene sets gravity; PhysicsRigidBodyAPI, PhysicsCollisionAPI (+MeshCollisionAPI approximation), PhysicsMassAPI and PhysicsMaterialAPI describe rigid-body simulation, in units set by metersPerUnit and kilogramsPerUnit. | physics/motion |
-| 111 | Physics joints, limits, drives and articulations | Joint prims connect body0 and body1 at local frames (localPos/localRot); revolute, prismatic, spherical, distance and fixed joints take multiple-apply LimitAPI and DriveAPI per axis; ArticulationRootAPI marks reduced-coordinate chains. | physics/motion |
-| 112 | Render settings, products, vars and passes | RenderSettings names a camera, resolution and products; RenderProducts list ordered RenderVars (AOVs); RenderPass ties a settings prim to pass-specific collections (renderVisibility, cameraVisibility, prune, matte) and input passes. | cameras/render |
-| 113 | Spatial audio, asset previews and authorship (UsdMedia) | SpatialAudio places a sound in the scene (spatial or ambient) with playback timing; AssetPreviewsAPI stores thumbnails in assetInfo; AuthorshipAPI (new in 26.11) records who authored what. | animation/characters |
-| 114 | Volumes and particle fields (OpenVDB, Field3D, Gaussian splats) | A Volume prim names its fields through field:<name> relationships to OpenVDBAsset/Field3DAsset prims (file, fieldName, index); ParticleField prims (26.03+) describe particle or Gaussian-splat radiance fields. | geometry/volumes |
-| 115 | Semantic labels (UsdSemantics) | Multiple-apply SemanticsLabelsAPI:<taxonomy> puts token lists of labels on prims; descendants accumulate their ancestors' labels. | stage/meaning |
-| 116 | usdz for AR: anchoring, preliminary schemas and the web/AR-compliant profile | Apple's Preliminary_ schemas (AnchoringAPI, physics, behaviors, text) ride along as API schemas USD doesn't know, and usdchecker --arkit / usdzip --arkitAsset enforce a restricted profile: self-contained package, allowed file types, UsdPreviewSurface only, no nested gprims. | foundations/packages |
-| 117 | Level of detail (UsdLod), new in 26.x | LODRootAPI marks a prim whose children are alternative representations; heuristic prims (distance, screen size) per domain (imaging, physics, audio) tell a renderer which to show; LODOverrideAPI forces a choice. | stage/meaning |
+| 105 | Color temperature | A light's color can be set as a blackbody temperature in kelvin (enableColorTemperature, colorTemperature) instead of an RGB color. | lights/emission |
+| 106 | Intensity, exposure and normalize | A light's brightness is intensity times 2 to the power of exposure; normalize keeps the total light the same whatever the light's size. | lights/emission |
+| 107 | Shaping cones | ShapingAPI narrows a light to a cone (shaping:cone:angle, softness), so it lights a pool instead of everything around it. | lights/shaping |
+| 108 | Dome lights (environment maps, texture formats, pole axis, DomeLight_1) | A DomeLight lights the scene from an environment texture at infinity; texture:format and (on DomeLight_1) poleAxis say how the image wraps the sphere. | lights/environment |
+| 109 | Skeletons and joint animation | A Skeleton lists joints as path tokens with bind and rest transforms; a SkelAnimation supplies vectorized translations, quaternion rotations and scales over time; skel:skeleton and skel:animationSource bind them under a SkelRoot. | instancing/crowds, animation/characters |
+| 110 | Skinning (joint influences, geomBindTransform, linear and dual-quaternion) | SkelBindingAPI primvars skel:jointIndices and skel:jointWeights (with elementSize) and skel:geomBindTransform tell how points follow joints, by classicLinear or dualQuaternion skinning. | animation/characters |
+| 111 | Blend shapes and inbetweens | BlendShape prims hold point offsets (optionally sparse by pointIndices, with normalOffsets) and weighted inbetween shapes; the SkelAnimation's blendShapeWeights drive them by name. | animation/characters |
+| 112 | Physics: scenes, rigid bodies, colliders, mass and physics materials | PhysicsScene sets gravity; PhysicsRigidBodyAPI, PhysicsCollisionAPI (+MeshCollisionAPI approximation), PhysicsMassAPI and PhysicsMaterialAPI describe rigid-body simulation, in units set by metersPerUnit and kilogramsPerUnit. | physics/motion |
+| 113 | Physics joints, limits, drives and articulations | Joint prims connect body0 and body1 at local frames (localPos/localRot); revolute, prismatic, spherical, distance and fixed joints take multiple-apply LimitAPI and DriveAPI per axis; ArticulationRootAPI marks reduced-coordinate chains. | physics/motion |
+| 114 | Render settings, products, vars and passes | RenderSettings names a camera, resolution and products; RenderProducts list ordered RenderVars (AOVs); RenderPass ties a settings prim to pass-specific collections (renderVisibility, cameraVisibility, prune, matte) and input passes. | cameras/render |
+| 115 | Spatial audio, asset previews and authorship (UsdMedia) | SpatialAudio places a sound in the scene (spatial or ambient) with playback timing; AssetPreviewsAPI stores thumbnails in assetInfo; AuthorshipAPI (new in 26.11) records who authored what. | animation/characters |
+| 116 | Volumes and particle fields (OpenVDB, Field3D, Gaussian splats) | A Volume prim names its fields through field:<name> relationships to OpenVDBAsset/Field3DAsset prims (file, fieldName, index); ParticleField prims (26.03+) describe particle or Gaussian-splat radiance fields. | geometry/volumes |
+| 117 | Semantic labels (UsdSemantics) | Multiple-apply SemanticsLabelsAPI:<taxonomy> puts token lists of labels on prims; descendants accumulate their ancestors' labels. | stage/meaning |
+| 118 | usdz for AR: anchoring, preliminary schemas and the web/AR-compliant profile | Apple's Preliminary_ schemas (AnchoringAPI, physics, behaviors, text) ride along as API schemas USD doesn't know, and usdchecker --arkit / usdzip --arkitAsset enforce a restricted profile: self-contained package, allowed file types, UsdPreviewSurface only, no nested gprims. | foundations/packages |
+| 119 | Level of detail (UsdLod), new in 26.x | LODRootAPI marks a prim whose children are alternative representations; heuristic prims (distance, screen size) per domain (imaging, physics, audio) tell a renderer which to show; LODOverrideAPI forces a choice. | stage/meaning |
 
 ### Not in the museum yet
 
@@ -190,7 +192,7 @@ The museum shows 117 features of USD, in five areas; the 17 it doesn't show yet 
 | File | What it is |
 |---|---|
 | [museum.usda](museum.usda) | The museum as one assembly: ten wings, each referenced from `./<wing>/<wing>.usda` and placed and timed along one route, plus the corridors between them |
-| [tour.usda](tour.usda) | The guided tour, 16,665 frames (11.6 minutes): sublayers `museum.usda` and adds the camera, the load schedule and the doors closed between wings |
+| [tour.usda](tour.usda) | The guided tour, 16,542 frames (11.5 minutes): sublayers `museum.usda` and adds the camera, the load schedule and the doors closed between wings |
 | [tour_cam.usdc](tour_cam.usdc) | The tour camera's path, referenced by `tour.usda` (binary: about 16,000 samples) |
 
 The whole tour runs with OpenExec off, so it leaves out the Rigging wing, which is its own
