@@ -116,6 +116,10 @@ USD with the wrong picture in it. Next to the correct exhibit, the difference mu
 
 ## 7. Valid USD
 
+- **At most 16 lights lit at once.** Hydra Storm draws 16 lights and drops the rest, and viewers
+  drop different ones. In a tour, no frame has more than 16 lights both loaded and visible: a hall
+  lamp is visible only while its gallery is on screen, a corridor lamp while the camera passes (the
+  export checks every tour).
 - **Every entry passes `usdchecker`.** Exceptions are exhibits that break USD on purpose
   (for example `composition/errors/cycles`, `foundations/paths/names`). Each one says so in
   `customData["museum"]["expected_errors"]`, and a wing or tour that contains one inherits

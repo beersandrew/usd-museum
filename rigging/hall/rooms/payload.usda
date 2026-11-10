@@ -516,6 +516,12 @@ def Xform "Rooms" (
             color3f inputs:color = (1, 0.93, 0.83)
             float inputs:intensity = 20
             float inputs:radius = 0.6
+            token visibility.timeSamples = {
+                -48: "invisible",
+                -47: "inherited",
+                1026: "inherited",
+                1027: "invisible",
+            }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (6.1000000000000005, 4.7, 2.3625408434327113, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
         }
@@ -525,6 +531,12 @@ def Xform "Rooms" (
             color3f inputs:color = (1, 0.93, 0.83)
             float inputs:intensity = 20
             float inputs:radius = 0.6
+            token visibility.timeSamples = {
+                -48: "invisible",
+                -47: "inherited",
+                1026: "inherited",
+                1027: "invisible",
+            }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (18, 4.7, 2.3625408434327113, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
         }
@@ -534,6 +546,10 @@ def Xform "Rooms" (
             color3f inputs:color = (1, 0.95, 0.88)
             float inputs:intensity = 4
             float inputs:radius = 0.6
+            token visibility.timeSamples = {
+                1026: "inherited",
+                1027: "invisible",
+            }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-2.8800000000000003, 4.6000000000000005, 2.3625408434327113, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
         }
@@ -543,6 +559,10 @@ def Xform "Rooms" (
             color3f inputs:color = (1, 0.95, 0.88)
             float inputs:intensity = 4
             float inputs:radius = 0.6
+            token visibility.timeSamples = {
+                -48: "invisible",
+                -47: "inherited",
+            }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (26.979999999999997, 4.6000000000000005, 2.3625408434327113, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
         }
