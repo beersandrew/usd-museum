@@ -61,41 +61,36 @@ originals exactly.
 - `materials/color/spaces`: the label mesh `/spaces/Dais/Label` sits under the dais mesh;
   gprims can't nest.
 
-`usdchecker` fails on these three, and on their wings and tours. It also fails, on purpose,
+Two pieces depend on usdview's environment, not on the files:
+
+- **Variant fallbacks** (`composition/arcs/variants`, the "fallback" piece): global variant
+  fallbacks come from a plugin (`UsdVariantFallbacks` in a `plugInfo.json`: `wrap` falls back to
+  `checks`), never from a layer. Without that plugin the piece shows its `nofallback` forgery.
+- **Skinned figures** (`animation/characters/skinning`, `instancing/crowds/crowds`): OpenUSD 26.11
+  on Metal drops GPU-skinned meshes over many frames. Set `USDSKELIMAGING_FORCE_CPU_COMPUTE=1`
+  (usd-tools' `view.sh` does) to use the CPU path.
+
+`usdchecker` fails on the three content problems, and on their wings and tours. It also fails, on purpose,
 on the five exhibits whose `customData["museum"]["expected_errors"]` says why.
 
 ## Viewing
 
-The whole museum on its tour, through usd-tour's usdview kit (load schedule, Tour menu):
+Open a file in OpenUSD's usdview and press Play. Tours play through their camera:
 
 ```sh
-USDSKELIMAGING_FORCE_CPU_COMPUTE=1 ~/git/usd-tour/view.sh ~/git/usd-museum/tour.usda \
-    --unloaded --camera /museum/tour/tour_cam --complexity high
+usdview tour.usda --camera /museum/tour/tour_cam                  # the whole museum
+usdview composition/tour.usda --camera /composition/tour/tour_cam # one wing
+usdview composition/arcs/arcs/arcs.usda                           # one exhibit
+usdview composition/arcs/arcs/forgeries/noinherit.usda            # the same exhibit, one planted mistake
 ```
 
-One wing on its tour:
+The Rigging wing needs OpenExec, which usdview reads from the environment:
 
 ```sh
-~/git/usd-tour/view.sh ~/git/usd-museum/<wing>/tour.usda \
-    --unloaded --camera /<wing>/tour/tour_cam --complexity high
+USDIMAGINGGL_ENGINE_ENABLE_EXEC_SCENE_INDEX=1 usdview rigging/tour.usda --camera /rigging/tour/tour_cam
 ```
 
-Two wings need what `view.sh` sets for usd-tour's own museum files. Rigging needs OpenExec on;
-Animation needs UsdSkel's CPU path for its skinned figures:
-
-```sh
-USDIMAGINGGL_ENGINE_ENABLE_EXEC_SCENE_INDEX=1 \
-  ~/git/usd-tour/view.sh ~/git/usd-museum/rigging/tour.usda \
-    --unloaded --camera /rigging/tour/tour_cam --complexity high
-USDSKELIMAGING_FORCE_CPU_COMPUTE=1 \
-  ~/git/usd-tour/view.sh ~/git/usd-museum/animation/tour.usda \
-    --unloaded --camera /animation/tour/tour_cam --complexity high
-```
-
-Plain usdview works too, on anything:
-
-```sh
-usdview composition/composition.usda                          # the wing, every exhibit loaded
-usdview composition/arcs/arcs/arcs.usda                       # one exhibit
-usdview composition/arcs/arcs/forgeries/noinherit.usda        # the same exhibit with one planted mistake
-```
+Stock usdview loads every payload; the whole museum is light enough (about 12,000 prims).
+[usd-tools](https://github.com/beersandrew/usd-tools) `view/view.sh FILE` adds conveniences:
+the tour camera, OpenExec and the workarounds below set from the file, and the load schedule in
+`tour.usda` applied as the camera moves.

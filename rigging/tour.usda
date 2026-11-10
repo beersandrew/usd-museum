@@ -6,7 +6,7 @@
             string wing = "rigging"
         }
         dictionary tourLoad = {
-            string about = "Load each carrier (a group: the hall or a gallery, with descendants) for frames [first, last]; unload it otherwise. usd-tour kit/sync/PROTOCOL.md, Load schedule."
+            string about = "Load each carrier (a group: the hall or a gallery, with descendants) for frames [first, last]; unload it otherwise. usd-tools sync/PROTOCOL.md, Load schedule."
             dictionary carriers = {
                 int2 "/rigging/exec" = (-47, 1026)
                 int2 "/rigging/hall" = (-47, 1026)
