@@ -64,8 +64,9 @@ originals exactly.
 Two pieces depend on usdview's environment, not on the files:
 
 - **Variant fallbacks** (`composition/arcs/variants`, the "fallback" piece): global variant
-  fallbacks come from a plugin (`UsdVariantFallbacks` in a `plugInfo.json`: `wrap` falls back to
-  `checks`), never from a layer. Without that plugin the piece shows its `nofallback` forgery.
+  fallbacks come from a plugin, never from a layer. The museum ships it:
+  [config/variantFallbacks/plugInfo.json](config/variantFallbacks/plugInfo.json) (`wrap` falls back
+  to `checks`). Without it on `PXR_PLUGINPATH_NAME`, the piece shows its `nofallback` forgery.
 - **Skinned figures** (`animation/characters/skinning`, `instancing/crowds/crowds`): OpenUSD 26.11
   on Metal drops GPU-skinned meshes over many frames. Set `USDSKELIMAGING_FORCE_CPU_COMPUTE=1`
   (usd-tools' `view.sh` does) to use the CPU path.
@@ -75,9 +76,11 @@ on the five exhibits whose `customData["museum"]["expected_errors"]` says why.
 
 ## Viewing
 
-Open a file in OpenUSD's usdview and press Play. Tours play through their camera:
+Open a file in OpenUSD's usdview and press Play. Tours play through their camera. Put
+`config/variantFallbacks` on the plugin path first, for the one piece that needs it (below):
 
 ```sh
+export PXR_PLUGINPATH_NAME=$PWD/config/variantFallbacks
 usdview tour.usda --camera /museum/tour/tour_cam                  # the whole museum
 usdview composition/tour.usda --camera /composition/tour/tour_cam # one wing
 usdview composition/arcs/arcs/arcs.usda                           # one exhibit

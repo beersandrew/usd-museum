@@ -11,6 +11,9 @@ the files.
   makes the museum lives in usd-tour.
 - The exporter enforces this: it leaves code, `.json` and `.md` files out of every asset, and
   fails if any other kind of file lands here.
+- One exception, at the root: `config/<name>/plugInfo.json`, USD resource plugins for what USD
+  reads only from plugins, never from layers (the global variant fallbacks). A viewer adds the
+  folder to `PXR_PLUGINPATH_NAME`; usd-tools does it by convention.
 - Anything a reader or viewer needs is in the USD itself:
   - **`doc`** on layers and prims: what it is, in a sentence.
   - **`assetInfo`** on each asset's root prim: `identifier` and `name`.
