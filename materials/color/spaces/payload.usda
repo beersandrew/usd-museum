@@ -14,7 +14,7 @@ def Xform "Exhibit" (
     kind = "assembly"
 )
 {
-    float3[] extentsHint = [(-3.1, 0, -1.5), (3.1, 2.5, -0.39)]
+    float3[] extentsHint = [(-3.1, -0.00064679486, -1.5), (3.1, 2.5, -0.384)]
 
     def Scope "Looks"
     {
@@ -172,62 +172,62 @@ def Xform "Exhibit" (
         rel material:binding = </Exhibit/Looks/board>
         point3f[] points = [(-0.8, 0, -0.39), (2.8, 0, -0.39), (2.8, 0.1, -0.39), (-0.8, 0.1, -0.39), (2.8, 0, -1.19), (-0.8, 0, -1.19), (-0.8, 0.1, -1.19), (2.8, 0.1, -1.19), (-0.8, 0.1, -0.39), (2.8, 0.1, -0.39), (2.8, 0.1, -1.19), (-0.8, 0.1, -1.19), (-0.8, 0, -1.19), (2.8, 0, -1.19), (2.8, 0, -0.39), (-0.8, 0, -0.39), (2.8, 0, -0.39), (2.8, 0, -1.19), (2.8, 0.1, -1.19), (2.8, 0.1, -0.39), (-0.8, 0, -1.19), (-0.8, 0, -0.39), (-0.8, 0.1, -0.39), (-0.8, 0.1, -1.19)]
         uniform token subdivisionScheme = "none"
+    }
 
-        def Material "Label_Mat"
+    def Material "DaisLabel_Mat"
+    {
+        token outputs:surface.connect = </Exhibit/DaisLabel_Mat/Surface.outputs:surface>
+
+        def Shader "Surface"
         {
-            token outputs:surface.connect = </Exhibit/Dais/Label_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Dais/Label_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Dais/Label_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Dais_Label.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Dais/Label_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0, 0, 0)
+            color3f inputs:emissiveColor.connect = </Exhibit/DaisLabel_Mat/Tex.outputs:rgb>
+            float inputs:opacity.connect = </Exhibit/DaisLabel_Mat/Tex.outputs:a>
+            float inputs:opacityThreshold = 0.5
+            float inputs:roughness = 1
+            color3f inputs:specularColor = (0, 0, 0)
+            int inputs:useSpecularWorkflow = 1
+            token outputs:surface
         }
 
-        def Mesh "Label" (
-            prepend apiSchemas = ["MaterialBindingAPI"]
+        def Shader "St"
+        {
+            uniform token info:id = "UsdPrimvarReader_float2"
+            string inputs:varname = "st"
+            float2 outputs:result
+        }
+
+        def Shader "Tex"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @./textures/Exhibit_DaisLabel.png@
+            float4 inputs:scale = (1, 1, 1, 1)
+            token inputs:sourceColorSpace = "sRGB"
+            float2 inputs:st.connect = </Exhibit/DaisLabel_Mat/St.outputs:result>
+            float outputs:a
+            float3 outputs:rgb
+        }
+    }
+
+    def Mesh "DaisLabel" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        float3[] extent = [(0.38844317, -0.00064679486, -0.384), (1.6115569, 0.08909679, -0.384)]
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </Exhibit/DaisLabel_Mat>
+        normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+            interpolation = "vertex"
         )
-        {
-            uniform bool doubleSided = 1
-            float3[] extent = [(0.38844317, -0.00064679486, -0.384), (1.6115569, 0.08909679, -0.384)]
-            int[] faceVertexCounts = [4]
-            int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Dais/Label_Mat>
-            normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                interpolation = "vertex"
-            )
-            point3f[] points = [(0.38844317, -0.00064679486, -0.384), (1.6115569, -0.00064679486, -0.384), (1.6115569, 0.08909679, -0.384), (0.38844317, 0.08909679, -0.384)]
-            color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
-            texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
-                interpolation = "vertex"
-            )
-            uniform token subdivisionScheme = "none"
-        }
+        point3f[] points = [(0.38844317, -0.00064679486, -0.384), (1.6115569, -0.00064679486, -0.384), (1.6115569, 0.08909679, -0.384), (0.38844317, 0.08909679, -0.384)]
+        color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
+        texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
+            interpolation = "vertex"
+        )
+        uniform token subdivisionScheme = "none"
     }
 
     def "Pedestals"

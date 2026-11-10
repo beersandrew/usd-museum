@@ -93,7 +93,7 @@ payloads (through their entries). Loading a carrier loads its exhibits and nothi
 | Format | Use it for |
 |---|---|
 | `.usda` | Entries, wings, tours, forgeries, composition, any layer that exists to be read. The default. |
-| `.usdc` | Heavy data: large meshes, crowds, animation caches. Rough line: over ~1 MB of text, or data nobody reads. |
+| `.usdc` | Heavy data: large meshes, crowds, animation caches. Rough line: over ~1 MB of text, or data nobody reads. A `.usda` that would be over 1 MB keeps its prims and attribute declarations and sublayers `./<name>_data.usdc`, which holds the heavy values (the export does this). |
 | `.usdz` | Only where the exhibit is about packages (packages, file formats). Never as working source. A whole-museum `.usdz` can be built for handing out; it is a release artifact, not the repo. |
 
 ## 6. Forgeries

@@ -52,14 +52,10 @@ Rigging out.
 
 ## Known problems
 
-Each of these is in the usd-tour build, not the export. The exported files match the
-originals exactly.
+One is in the usd-tour build, not the export:
 
-- `instancing/crowds/crowds`: references `textures/sign_crowd_wrongcard.png`, which doesn't exist.
-- `instancing/points/points`: material bindings in the prototypes target `/Books/Looks/...`,
-  outside the referenced prim, so they don't resolve.
-- `materials/color/spaces`: the label mesh `/spaces/Dais/Label` sits under the dais mesh;
-  gprims can't nest.
+- `geometry/volumes`: the `.vdb` files are OpenVDB file version 225; OpenUSD 26.11's OpenVDB reads
+  up to 224, so stock usdview draws no volumes there.
 
 Two pieces depend on usdview's environment, not on the files:
 
@@ -71,8 +67,9 @@ Two pieces depend on usdview's environment, not on the files:
   on Metal drops GPU-skinned meshes over many frames. Set `USDSKELIMAGING_FORCE_CPU_COMPUTE=1`
   (usd-tools' `view.sh` does) to use the CPU path.
 
-`usdchecker` fails on the three content problems, and on their wings and tours. It also fails, on purpose,
-on the five exhibits whose `customData["museum"]["expected_errors"]` says why.
+`usdchecker` passes on every exhibit except the five that break USD on purpose; each one's
+`customData["museum"]["expected_errors"]` says why. The wings and tours that hold them fail with
+exactly those errors.
 
 ## Viewing
 
