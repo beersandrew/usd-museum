@@ -52,11 +52,6 @@ Rigging out.
 
 ## Known problems
 
-One is in the usd-tour build, not the export:
-
-- `geometry/volumes`: the `.vdb` files are OpenVDB file version 225; OpenUSD 26.11's OpenVDB reads
-  up to 224, so stock usdview draws no volumes there.
-
 Two pieces depend on usdview's environment, not on the files:
 
 - **Variant fallbacks** (`composition/arcs/variants`, the "fallback" piece): global variant
