@@ -33,7 +33,7 @@ This scene was built with the help of Claude Code.
 
 <!-- features: begin -->
 
-The museum shows 125 features of USD, in five areas; the 17 it doesn't show yet are at the end. Each row says what the feature does, then the wings and galleries (`wing/gallery`) where you see it.
+The museum shows 128 features of USD, in five areas; the 17 it doesn't show yet are at the end. Each row says what the feature does, then the wings and galleries (`wing/gallery`) where you see it.
 
 ### 1. Files, layers and assets
 
@@ -175,15 +175,18 @@ The museum shows 125 features of USD, in five areas; the 17 it doesn't show yet 
 | 114 | Skeletons and joint animation | A Skeleton lists joints as path tokens with bind and rest transforms; a SkelAnimation supplies vectorized translations, quaternion rotations and scales over time; skel:skeleton and skel:animationSource bind them under a SkelRoot. | instancing/crowds, animation/characters |
 | 115 | Skinning (joint influences, geomBindTransform, linear and dual-quaternion) | SkelBindingAPI primvars skel:jointIndices and skel:jointWeights (with elementSize) and skel:geomBindTransform tell how points follow joints, by classicLinear or dualQuaternion skinning. | animation/characters |
 | 116 | Blend shapes and inbetweens | BlendShape prims hold point offsets (optionally sparse by pointIndices, with normalOffsets) and weighted inbetween shapes; the SkelAnimation's blendShapeWeights drive them by name. | animation/characters |
-| 117 | Physics: scenes, rigid bodies, colliders, mass and physics materials | PhysicsScene sets gravity; PhysicsRigidBodyAPI, PhysicsCollisionAPI (+MeshCollisionAPI approximation), PhysicsMassAPI and PhysicsMaterialAPI describe rigid-body simulation, in units set by metersPerUnit and kilogramsPerUnit. | physics/motion |
-| 118 | Physics joints, limits, drives and articulations | Joint prims connect body0 and body1 at local frames (localPos/localRot); revolute, prismatic, spherical, distance and fixed joints take multiple-apply LimitAPI and DriveAPI per axis; ArticulationRootAPI marks reduced-coordinate chains. | physics/motion |
-| 119 | Render settings | RenderSettings say which camera renders, at what resolution and aspect, and how the picture fits the camera's aperture. | cameras/render |
-| 120 | Render passes | A RenderPass renders a variant of the settings, for example with a collection of prims pruned out. | cameras/render |
-| 121 | Spatial audio, asset previews and authorship (UsdMedia) | SpatialAudio places a sound in the scene (spatial or ambient) with playback timing; AssetPreviewsAPI stores thumbnails in assetInfo; AuthorshipAPI (new in 26.11) records who authored what. | animation/characters |
-| 122 | Volumes and particle fields (OpenVDB, Field3D, Gaussian splats) | A Volume prim names its fields through field:<name> relationships to OpenVDBAsset/Field3DAsset prims (file, fieldName, index); ParticleField prims (26.03+) describe particle or Gaussian-splat radiance fields. | geometry/volumes |
-| 123 | Semantic labels (UsdSemantics) | Multiple-apply SemanticsLabelsAPI:<taxonomy> puts token lists of labels on prims; descendants accumulate their ancestors' labels. | stage/meaning |
-| 124 | usdz for AR: anchoring, preliminary schemas and the web/AR-compliant profile | Apple's Preliminary_ schemas (AnchoringAPI, physics, behaviors, text) ride along as API schemas USD doesn't know, and usdchecker --arkit / usdzip --arkitAsset enforce a restricted profile: self-contained package, allowed file types, UsdPreviewSurface only, no nested gprims. | foundations/packages |
-| 125 | Level of detail (UsdLod), new in 26.x | LODRootAPI marks a prim whose children are alternative representations; heuristic prims (distance, screen size) per domain (imaging, physics, audio) tell a renderer which to show; LODOverrideAPI forces a choice. | stage/meaning |
+| 117 | Colliders | CollisionAPI marks the shapes a body collides with; here each collider is a guide-purpose copy of its body, so it shows only when guides are on. | physics/motion |
+| 118 | Physics materials | Friction, restitution and density come from a physics material, bound with the physics purpose so it never changes how things look. | physics/motion |
+| 119 | Mass and centre of mass | MassAPI gives a body its mass and centre of mass, which decide how it swings and falls. | physics/motion |
+| 120 | Joints, drives and articulations | Joints connect two bodies and let them move only one way (slide, hinge, ball); a drive pushes along a joint, and an articulation root makes a chain one system. | physics/motion |
+| 121 | Joint limits | A joint's limits stop it at a range: a revolute joint limited to -60..60 degrees never turns past its stops. | physics/motion |
+| 122 | Render settings | RenderSettings say which camera renders, at what resolution and aspect, and how the picture fits the camera's aperture. | cameras/render |
+| 123 | Render passes | A RenderPass renders a variant of the settings, for example with a collection of prims pruned out. | cameras/render |
+| 124 | Spatial audio, asset previews and authorship (UsdMedia) | SpatialAudio places a sound in the scene (spatial or ambient) with playback timing; AssetPreviewsAPI stores thumbnails in assetInfo; AuthorshipAPI (new in 26.11) records who authored what. | animation/characters |
+| 125 | Volumes and particle fields (OpenVDB, Field3D, Gaussian splats) | A Volume prim names its fields through field:<name> relationships to OpenVDBAsset/Field3DAsset prims (file, fieldName, index); ParticleField prims (26.03+) describe particle or Gaussian-splat radiance fields. | geometry/volumes |
+| 126 | Semantic labels (UsdSemantics) | Multiple-apply SemanticsLabelsAPI:<taxonomy> puts token lists of labels on prims; descendants accumulate their ancestors' labels. | stage/meaning |
+| 127 | usdz for AR: anchoring, preliminary schemas and the web/AR-compliant profile | Apple's Preliminary_ schemas (AnchoringAPI, physics, behaviors, text) ride along as API schemas USD doesn't know, and usdchecker --arkit / usdzip --arkitAsset enforce a restricted profile: self-contained package, allowed file types, UsdPreviewSurface only, no nested gprims. | foundations/packages |
+| 128 | Level of detail (UsdLod), new in 26.x | LODRootAPI marks a prim whose children are alternative representations; heuristic prims (distance, screen size) per domain (imaging, physics, audio) tell a renderer which to show; LODOverrideAPI forces a choice. | stage/meaning |
 
 ### Not in the museum yet
 
