@@ -48,6 +48,21 @@ def Xform "Exhibit" (
             }
         }
 
+        def Material "sign_back"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/sign_back/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.021980947, 0.021980947, 0.024515014)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
         def Material "bench"
         {
             token outputs:surface.connect = </Exhibit/Looks/bench/Surface.outputs:surface>
@@ -273,16 +288,16 @@ def Xform "Exhibit" (
 
     def "Placards"
     {
-        def Material "Title_Mat"
+        def Material "Sign_Sets_Mat"
         {
-            token outputs:surface.connect = </Exhibit/Placards/Title_Mat/Surface.outputs:surface>
+            token outputs:surface.connect = </Exhibit/Placards/Sign_Sets_Mat/Surface.outputs:surface>
 
             def Shader "Surface"
             {
                 uniform token info:id = "UsdPreviewSurface"
                 color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Title_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Title_Mat/Tex.outputs:a>
+                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Sign_Sets_Mat/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Placards/Sign_Sets_Mat/Tex.outputs:a>
                 float inputs:opacityThreshold = 0.5
                 float inputs:roughness = 1
                 color3f inputs:specularColor = (0, 0, 0)
@@ -300,28 +315,28 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Placards_Title.png@
+                asset inputs:file = @./textures/sign_exhibit_placards_sign_sets.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Title_Mat/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Placards/Sign_Sets_Mat/St.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
             }
         }
 
-        def Mesh "Title" (
+        def Mesh "Sign_Sets" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
             uniform bool doubleSided = 1
-            float3[] extent = [(-2.9, 1.95, -1.43), (-0.1, 2.39, -1.43)]
+            float3[] extent = [(-1.6, 1.99, -1.458), (1.6, 2.43, -1.458)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Title_Mat>
+            rel material:binding = </Exhibit/Placards/Sign_Sets_Mat>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
-            point3f[] points = [(-2.9, 1.95, -1.43), (-0.1, 1.95, -1.43), (-0.1, 2.39, -1.43), (-2.9, 2.39, -1.43)]
+            point3f[] points = [(-1.6, 1.99, -1.458), (1.6, 1.99, -1.458), (1.6, 2.43, -1.458), (-1.6, 2.43, -1.458)]
             color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
             texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
                 interpolation = "vertex"
@@ -329,15 +344,15 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "Title_Back" (
+        def Mesh "Sign_Sets_Back" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            float3[] extent = [(-2.92, 1.93, -1.46), (-0.08, 2.41, -1.434)]
+            float3[] extent = [(-1.62, 1.97, -1.488), (1.62, 2.45, -1.464)]
             int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
             int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-            rel material:binding = </Exhibit/Looks/placard_back>
-            point3f[] points = [(-2.92, 1.93, -1.434), (-0.08, 1.93, -1.434), (-0.08, 2.41, -1.434), (-2.92, 2.41, -1.434), (-0.08, 1.93, -1.46), (-2.92, 1.93, -1.46), (-2.92, 2.41, -1.46), (-0.08, 2.41, -1.46), (-2.92, 2.41, -1.434), (-0.08, 2.41, -1.434), (-0.08, 2.41, -1.46), (-2.92, 2.41, -1.46), (-2.92, 1.93, -1.46), (-0.08, 1.93, -1.46), (-0.08, 1.93, -1.434), (-2.92, 1.93, -1.434), (-0.08, 1.93, -1.434), (-0.08, 1.93, -1.46), (-0.08, 2.41, -1.46), (-0.08, 2.41, -1.434), (-2.92, 1.93, -1.46), (-2.92, 1.93, -1.434), (-2.92, 2.41, -1.434), (-2.92, 2.41, -1.46)]
+            rel material:binding = </Exhibit/Looks/sign_back>
+            point3f[] points = [(-1.62, 1.97, -1.464), (1.62, 1.97, -1.464), (1.62, 2.45, -1.464), (-1.62, 2.45, -1.464), (1.62, 1.97, -1.488), (-1.62, 1.97, -1.488), (-1.62, 2.45, -1.488), (1.62, 2.45, -1.488), (-1.62, 2.45, -1.464), (1.62, 2.45, -1.464), (1.62, 2.45, -1.488), (-1.62, 2.45, -1.488), (-1.62, 1.97, -1.488), (1.62, 1.97, -1.488), (1.62, 1.97, -1.464), (-1.62, 1.97, -1.464), (1.62, 1.97, -1.464), (1.62, 1.97, -1.488), (1.62, 2.45, -1.488), (1.62, 2.45, -1.464), (-1.62, 1.97, -1.488), (-1.62, 1.97, -1.464), (-1.62, 2.45, -1.464), (-1.62, 2.45, -1.488)]
             uniform token subdivisionScheme = "none"
         }
     }
