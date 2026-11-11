@@ -14,7 +14,7 @@ def Xform "Exhibit" (
     kind = "assembly"
 )
 {
-    float3[] extentsHint = [(-2.1100001, 0, -2.96), (2.11, 1.79, -0.032999985)]
+    float3[] extentsHint = [(-2.1100001, 0, -2.96), (2.11, 1.85, -0.032999985)]
 
     def Scope "Looks"
     {

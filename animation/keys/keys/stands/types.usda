@@ -122,6 +122,21 @@ def Xform "Stand" (
             }
         }
 
+        def Material "sign_back"
+        {
+            token outputs:surface.connect = </Stand/Looks/sign_back/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.021980947, 0.021980947, 0.024515014)
+                float inputs:roughness = 0.6
+                color3f inputs:specularColor = (0.04, 0.04, 0.04)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
         def Material "ruler"
         {
             token outputs:surface.connect = </Stand/Looks/ruler/Surface.outputs:surface>
@@ -1044,16 +1059,16 @@ def Xform "Stand" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Material "Title_Mat"
+        def Material "Sign_types_Mat"
         {
-            token outputs:surface.connect = </Stand/Cards/Title_Mat/Surface.outputs:surface>
+            token outputs:surface.connect = </Stand/Cards/Sign_types_Mat/Surface.outputs:surface>
 
             def Shader "Surface"
             {
                 uniform token info:id = "UsdPreviewSurface"
                 color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Stand/Cards/Title_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Stand/Cards/Title_Mat/Tex.outputs:a>
+                color3f inputs:emissiveColor.connect = </Stand/Cards/Sign_types_Mat/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Stand/Cards/Sign_types_Mat/Tex.outputs:a>
                 float inputs:opacityThreshold = 0.5
                 float inputs:roughness = 1
                 color3f inputs:specularColor = (0, 0, 0)
@@ -1071,28 +1086,28 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/types_Stand_Cards_Title.png@
+                asset inputs:file = @./textures/sign_stand_cards_sign_types.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Stand/Cards/Title_Mat/St.outputs:result>
+                float2 inputs:st.connect = </Stand/Cards/Sign_types_Mat/St.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
             }
         }
 
-        def Mesh "Title" (
+        def Mesh "Sign_types" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
             uniform bool doubleSided = 1
-            float3[] extent = [(-1.14, 1.45, -2.44), (-0.12, 1.77, -2.44)]
+            float3[] extent = [(-1.14, 1.43, -2.44), (0.2, 1.83, -2.44)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Stand/Cards/Title_Mat>
+            rel material:binding = </Stand/Cards/Sign_types_Mat>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
-            point3f[] points = [(-1.14, 1.45, -2.44), (-0.12, 1.45, -2.44), (-0.12, 1.77, -2.44), (-1.14, 1.77, -2.44)]
+            point3f[] points = [(-1.14, 1.43, -2.44), (0.2, 1.43, -2.44), (0.2, 1.83, -2.44), (-1.14, 1.83, -2.44)]
             color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
             texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
                 interpolation = "vertex"
@@ -1100,27 +1115,27 @@ def Xform "Stand" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "Title_Back" (
+        def Mesh "Sign_types_Back" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            float3[] extent = [(-1.16, 1.43, -2.47), (-0.1, 1.79, -2.446)]
+            float3[] extent = [(-1.16, 1.41, -2.47), (0.22, 1.85, -2.446)]
             int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
             int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-            rel material:binding = </Stand/Looks/placard_back>
-            point3f[] points = [(-1.16, 1.43, -2.446), (-0.1, 1.43, -2.446), (-0.1, 1.79, -2.446), (-1.16, 1.79, -2.446), (-0.1, 1.43, -2.47), (-1.16, 1.43, -2.47), (-1.16, 1.79, -2.47), (-0.1, 1.79, -2.47), (-1.16, 1.79, -2.446), (-0.1, 1.79, -2.446), (-0.1, 1.79, -2.47), (-1.16, 1.79, -2.47), (-1.16, 1.43, -2.47), (-0.1, 1.43, -2.47), (-0.1, 1.43, -2.446), (-1.16, 1.43, -2.446), (-0.1, 1.43, -2.446), (-0.1, 1.43, -2.47), (-0.1, 1.79, -2.47), (-0.1, 1.79, -2.446), (-1.16, 1.43, -2.47), (-1.16, 1.43, -2.446), (-1.16, 1.79, -2.446), (-1.16, 1.79, -2.47)]
+            rel material:binding = </Stand/Looks/sign_back>
+            point3f[] points = [(-1.16, 1.41, -2.446), (0.22, 1.41, -2.446), (0.22, 1.85, -2.446), (-1.16, 1.85, -2.446), (0.22, 1.41, -2.47), (-1.16, 1.41, -2.47), (-1.16, 1.85, -2.47), (0.22, 1.85, -2.47), (-1.16, 1.85, -2.446), (0.22, 1.85, -2.446), (0.22, 1.85, -2.47), (-1.16, 1.85, -2.47), (-1.16, 1.41, -2.47), (0.22, 1.41, -2.47), (0.22, 1.41, -2.446), (-1.16, 1.41, -2.446), (0.22, 1.41, -2.446), (0.22, 1.41, -2.47), (0.22, 1.85, -2.47), (0.22, 1.85, -2.446), (-1.16, 1.41, -2.47), (-1.16, 1.41, -2.446), (-1.16, 1.85, -2.446), (-1.16, 1.85, -2.47)]
             uniform token subdivisionScheme = "none"
         }
 
-        def Mesh "TitlePost" (
+        def Mesh "Sign_types_Post" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            float3[] extent = [(-0.65, 1.15, -2.49), (-0.61, 1.44, -2.452)]
+            float3[] extent = [(-0.91, 1.15, -2.49), (-0.87, 1.41, -2.47)]
             int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
             int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
             rel material:binding = </Stand/Looks/placard_back>
-            point3f[] points = [(-0.65, 1.15, -2.452), (-0.61, 1.15, -2.452), (-0.61, 1.44, -2.452), (-0.65, 1.44, -2.452), (-0.61, 1.15, -2.49), (-0.65, 1.15, -2.49), (-0.65, 1.44, -2.49), (-0.61, 1.44, -2.49), (-0.65, 1.44, -2.452), (-0.61, 1.44, -2.452), (-0.61, 1.44, -2.49), (-0.65, 1.44, -2.49), (-0.65, 1.15, -2.49), (-0.61, 1.15, -2.49), (-0.61, 1.15, -2.452), (-0.65, 1.15, -2.452), (-0.61, 1.15, -2.452), (-0.61, 1.15, -2.49), (-0.61, 1.44, -2.49), (-0.61, 1.44, -2.452), (-0.65, 1.15, -2.49), (-0.65, 1.15, -2.452), (-0.65, 1.44, -2.452), (-0.65, 1.44, -2.49)]
+            point3f[] points = [(-0.91, 1.15, -2.47), (-0.87, 1.15, -2.47), (-0.87, 1.41, -2.47), (-0.91, 1.41, -2.47), (-0.87, 1.15, -2.49), (-0.91, 1.15, -2.49), (-0.91, 1.41, -2.49), (-0.87, 1.41, -2.49), (-0.91, 1.41, -2.47), (-0.87, 1.41, -2.47), (-0.87, 1.41, -2.49), (-0.91, 1.41, -2.49), (-0.91, 1.15, -2.49), (-0.87, 1.15, -2.49), (-0.87, 1.15, -2.47), (-0.91, 1.15, -2.47), (-0.87, 1.15, -2.47), (-0.87, 1.15, -2.49), (-0.87, 1.41, -2.49), (-0.87, 1.41, -2.47), (-0.91, 1.15, -2.49), (-0.91, 1.15, -2.47), (-0.91, 1.41, -2.47), (-0.91, 1.41, -2.49)]
             uniform token subdivisionScheme = "none"
         }
     }
