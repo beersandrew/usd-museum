@@ -1,0 +1,47 @@
+#usda 1.0
+(
+    "composition.namespace.interact: a rig whose vase sits at OldSpot/Vase; NewSpot is empty."
+    defaultPrim = "Rig"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Rig" (
+    kind = "component"
+)
+{
+    def Scope "Looks"
+    {
+    }
+
+    def Xform "OldSpot"
+    {
+        double3 xformOp:translate = (-0.36, 0.7, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Xform "Vase"
+        {
+            color3f[] primvars:displayColor = [(0.63075715, 0.000607054, 0.010960094)] (
+                interpolation = "constant"
+            )
+            float3 xformOp:scale = (1.5, 1.5, 1.5)
+            uniform token[] xformOpOrder = ["xformOp:scale"]
+
+            def "Body" (
+                instanceable = true
+                prepend references = @./vase.usda@
+            )
+            {
+            }
+        }
+    }
+
+    def Xform "NewSpot"
+    {
+        double3 xformOp:translate = (0.36, 0.82, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+}
+
