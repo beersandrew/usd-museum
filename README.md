@@ -33,7 +33,7 @@ This scene was built with the help of Claude Code.
 
 <!-- features: begin -->
 
-The museum shows 154 features of USD, in five areas; the 24 it doesn't show yet are at the end. Each row says what the feature does, then the wings and galleries (`wing/gallery`) where you see it.
+The museum shows 156 features of USD, in five areas; the 22 it doesn't show yet are at the end. Each row says what the feature does, then the wings and galleries (`wing/gallery`) where you see it.
 
 ### 1. Files, layers and assets
 
@@ -179,44 +179,46 @@ The museum shows 154 features of USD, in five areas; the 24 it doesn't show yet 
 | 118 | Clipping range and clipping planes | A camera draws only between its near and far clipping distances, and only on the kept side of any clipping planes. | cameras/lenses |
 | 119 | Focus distance and f-stop | focusDistance and fStop describe where a camera is sharp and how fast it blurs; a renderer with depth of field uses them. | cameras/lenses |
 | 120 | Camera exposure | A camera's exposure, ISO, shutter and f-stop combine into one brightness scale for what it records. | cameras/render |
-| 121 | Render contexts | A Material can carry a universal outputs:surface and renderer-specific ones such as outputs:mtlx:surface; each renderer picks its own. | materials/surfaces |
-| 122 | Direct and inherited binding | material:binding on a prim binds its material to it and everything below it; a deeper binding wins. | foundations/paths, stage/schemas, materials/binding |
-| 123 | Binding strength | An ancestor's binding marked strongerThanDescendants beats the bindings below it. | materials/binding |
-| 124 | Material purpose | material:binding:preview and material:binding:full bind different materials for preview and final renders; the purpose's own binding beats the all-purpose one. | materials/binding |
-| 125 | Collection-based material binding | material:binding:collection:<name> targets a collection and a material, so one relationship assigns a look to many prims. | stage/population, stage/schemas, stage/collections, materials/binding |
-| 126 | UsdPreviewSurface | One small physically based surface every USD reader is expected to draw: diffuse, metallic, roughness, emission, opacity, ior and a few more inputs. | materials/surfaces |
-| 127 | Texture coordinates (primvar readers, UsdTransform2d) | A primvar reader feeds a texture its st coordinates, and UsdTransform2d can rotate, scale and move them on the way. | materials/textures |
-| 128 | Normal maps | A texture's scale and bias turn a tangent-space normal map's 0..1 values into normals the surface shades with. | materials/textures |
-| 129 | Alpha cutouts | opacityThreshold cuts a surface where its opacity is below the threshold: a leaf, not a square. | materials/textures |
-| 130 | Texture files | UsdUVTexture reads 8- and 16-bit PNGs and half-float EXRs as the same picture. | materials/textures |
-| 131 | UDIM tiles | A texture path with <UDIM> reads one file per unit square of uv: 1001, 1002 and on. | materials/textures |
-| 132 | MaterialX files | A .mtlx document can be referenced like a USD layer; its materials, node graphs and ND_ shaders appear as prims. | materials/surfaces |
-| 133 | MaterialX nodes in USD | MaterialX shaders (ND_ nodes such as ND_standard_surface_surfaceshader) can be authored directly as USD Shader prims. | materials/surfaces |
-| 134 | Color temperature | A light's color can be set as a blackbody temperature in kelvin (enableColorTemperature, colorTemperature) instead of an RGB color. | lights/emission |
-| 135 | Exposure | A light's brightness is its intensity times 2 to the power of its exposure: +1 exposure doubles it. | lights/emission |
-| 136 | Normalize | With normalize on, a light gives the same total light whatever its size: a bigger light is dimmer per square metre. | lights/emission |
-| 137 | Shaping cones | ShapingAPI narrows a light to a cone (shaping:cone:angle, softness), so it lights a pool instead of everything around it. | lights/shaping |
-| 138 | Dome lights (environment maps, texture formats, pole axis, DomeLight_1) | A DomeLight lights the scene from an environment texture at infinity; texture:format and (on DomeLight_1) poleAxis say how the image wraps the sphere. | lights/environment |
-| 139 | Skeletons and joint animation | A Skeleton lists joints as path tokens with bind and rest transforms; a SkelAnimation supplies vectorized translations, quaternion rotations and scales over time; skel:skeleton and skel:animationSource bind them under a SkelRoot. | animation/characters |
-| 140 | Skinning (joint influences, geomBindTransform, linear and dual-quaternion) | SkelBindingAPI primvars skel:jointIndices and skel:jointWeights (with elementSize) and skel:geomBindTransform tell how points follow joints, by classicLinear or dualQuaternion skinning. | instancing/crowds, animation/characters |
-| 141 | Blend shapes and inbetweens | BlendShape prims hold point offsets (optionally sparse by pointIndices, with normalOffsets) and weighted inbetween shapes; the SkelAnimation's blendShapeWeights drive them by name. | animation/characters |
-| 142 | Colliders | CollisionAPI marks the shapes a body collides with; here each collider is a guide-purpose copy of its body, so it shows only when guides are on. | physics/motion |
-| 143 | Physics materials | Friction, restitution and density come from a physics material, bound with the physics purpose so it never changes how things look. | physics/motion |
-| 144 | Mass and centre of mass | MassAPI gives a body its mass and centre of mass, which decide how it swings and falls. | physics/motion |
-| 145 | Joints, drives and articulations | Joints connect two bodies and let them move only one way (slide, hinge, ball); a drive pushes along a joint, and an articulation root makes a chain one system. | physics/motion |
-| 146 | Joint limits | A joint's limits stop it at a range: a revolute joint limited to -60..60 degrees never turns past its stops. | physics/motion |
-| 147 | Render settings | RenderSettings say which camera renders, at what resolution and aspect, and how the picture fits the camera's aperture. | cameras/render |
-| 148 | Render passes | A RenderPass renders a variant of the settings, for example with a collection of prims pruned out. | cameras/render |
-| 149 | Spatial audio, asset previews and authorship (UsdMedia) | SpatialAudio places a sound in the scene (spatial or ambient) with playback timing; AssetPreviewsAPI stores thumbnails in assetInfo; AuthorshipAPI (new in 26.11) records who authored what. | animation/characters |
-| 150 | Volume fields | A Volume names its fields (density, emission) through field:<name> relationships to OpenVDBAsset prims, each a file and a grid name. | geometry/volumes |
-| 151 | Field sequences | A field's filePath can be time-sampled, so a volume plays a sequence of files. | geometry/volumes |
-| 152 | Semantic labels (UsdSemantics) | Multiple-apply SemanticsLabelsAPI:<taxonomy> puts token lists of labels on prims; descendants accumulate their ancestors' labels. | stage/meaning |
-| 153 | usdz for AR: anchoring, preliminary schemas and the web/AR-compliant profile | Apple's Preliminary_ schemas (AnchoringAPI, physics, behaviors, text) ride along as API schemas USD doesn't know, and usdchecker --arkit / usdzip --arkitAsset enforce a restricted profile: self-contained package, allowed file types, UsdPreviewSurface only, no nested gprims. | foundations/packages |
-| 154 | Level of detail (UsdLod), new in 26.x | LODRootAPI marks a prim whose children are alternative representations; heuristic prims (distance, screen size) per domain (imaging, physics, audio) tell a renderer which to show; LODOverrideAPI forces a choice. | stage/meaning |
+| 121 | Materials, shaders, node graphs, connections and interface inputs | Shading networks are prims (Material, NodeGraph, Shader) whose inputs and outputs connect, with public interface inputs on containers that drive inner nodes. | materials/surfaces |
+| 122 | Render contexts | A Material can carry a universal outputs:surface and renderer-specific ones such as outputs:mtlx:surface; each renderer picks its own. | materials/surfaces |
+| 123 | Shader sources (sourceAsset, sourceCode) | A Shader can name what it is by a source file or inline code per source type, instead of a registry id. | materials/surfaces |
+| 124 | Direct and inherited binding | material:binding on a prim binds its material to it and everything below it; a deeper binding wins. | foundations/paths, stage/schemas, materials/binding |
+| 125 | Binding strength | An ancestor's binding marked strongerThanDescendants beats the bindings below it. | materials/binding |
+| 126 | Material purpose | material:binding:preview and material:binding:full bind different materials for preview and final renders; the purpose's own binding beats the all-purpose one. | materials/binding |
+| 127 | Collection-based material binding | material:binding:collection:<name> targets a collection and a material, so one relationship assigns a look to many prims. | stage/population, stage/schemas, stage/collections, materials/binding |
+| 128 | UsdPreviewSurface | One small physically based surface every USD reader is expected to draw: diffuse, metallic, roughness, emission, opacity, ior and a few more inputs. | materials/surfaces |
+| 129 | Texture coordinates (primvar readers, UsdTransform2d) | A primvar reader feeds a texture its st coordinates, and UsdTransform2d can rotate, scale and move them on the way. | materials/textures |
+| 130 | Normal maps | A texture's scale and bias turn a tangent-space normal map's 0..1 values into normals the surface shades with. | materials/textures |
+| 131 | Alpha cutouts | opacityThreshold cuts a surface where its opacity is below the threshold: a leaf, not a square. | materials/textures |
+| 132 | Texture files | UsdUVTexture reads 8- and 16-bit PNGs and half-float EXRs as the same picture. | materials/textures |
+| 133 | UDIM tiles | A texture path with <UDIM> reads one file per unit square of uv: 1001, 1002 and on. | materials/textures |
+| 134 | MaterialX files | A .mtlx document can be referenced like a USD layer; its materials, node graphs and ND_ shaders appear as prims. | materials/surfaces |
+| 135 | MaterialX nodes in USD | MaterialX shaders (ND_ nodes such as ND_standard_surface_surfaceshader) can be authored directly as USD Shader prims. | materials/surfaces |
+| 136 | Color temperature | A light's color can be set as a blackbody temperature in kelvin (enableColorTemperature, colorTemperature) instead of an RGB color. | lights/emission |
+| 137 | Exposure | A light's brightness is its intensity times 2 to the power of its exposure: +1 exposure doubles it. | lights/emission |
+| 138 | Normalize | With normalize on, a light gives the same total light whatever its size: a bigger light is dimmer per square metre. | lights/emission |
+| 139 | Shaping cones | ShapingAPI narrows a light to a cone (shaping:cone:angle, softness), so it lights a pool instead of everything around it. | lights/shaping |
+| 140 | Dome lights (environment maps, texture formats, pole axis, DomeLight_1) | A DomeLight lights the scene from an environment texture at infinity; texture:format and (on DomeLight_1) poleAxis say how the image wraps the sphere. | lights/environment |
+| 141 | Skeletons and joint animation | A Skeleton lists joints as path tokens with bind and rest transforms; a SkelAnimation supplies vectorized translations, quaternion rotations and scales over time; skel:skeleton and skel:animationSource bind them under a SkelRoot. | animation/characters |
+| 142 | Skinning (joint influences, geomBindTransform, linear and dual-quaternion) | SkelBindingAPI primvars skel:jointIndices and skel:jointWeights (with elementSize) and skel:geomBindTransform tell how points follow joints, by classicLinear or dualQuaternion skinning. | instancing/crowds, animation/characters |
+| 143 | Blend shapes and inbetweens | BlendShape prims hold point offsets (optionally sparse by pointIndices, with normalOffsets) and weighted inbetween shapes; the SkelAnimation's blendShapeWeights drive them by name. | animation/characters |
+| 144 | Colliders | CollisionAPI marks the shapes a body collides with; here each collider is a guide-purpose copy of its body, so it shows only when guides are on. | physics/motion |
+| 145 | Physics materials | Friction, restitution and density come from a physics material, bound with the physics purpose so it never changes how things look. | physics/motion |
+| 146 | Mass and centre of mass | MassAPI gives a body its mass and centre of mass, which decide how it swings and falls. | physics/motion |
+| 147 | Joints, drives and articulations | Joints connect two bodies and let them move only one way (slide, hinge, ball); a drive pushes along a joint, and an articulation root makes a chain one system. | physics/motion |
+| 148 | Joint limits | A joint's limits stop it at a range: a revolute joint limited to -60..60 degrees never turns past its stops. | physics/motion |
+| 149 | Render settings | RenderSettings say which camera renders, at what resolution and aspect, and how the picture fits the camera's aperture. | cameras/render |
+| 150 | Render passes | A RenderPass renders a variant of the settings, for example with a collection of prims pruned out. | cameras/render |
+| 151 | Spatial audio, asset previews and authorship (UsdMedia) | SpatialAudio places a sound in the scene (spatial or ambient) with playback timing; AssetPreviewsAPI stores thumbnails in assetInfo; AuthorshipAPI (new in 26.11) records who authored what. | animation/characters |
+| 152 | Volume fields | A Volume names its fields (density, emission) through field:<name> relationships to OpenVDBAsset prims, each a file and a grid name. | geometry/volumes |
+| 153 | Field sequences | A field's filePath can be time-sampled, so a volume plays a sequence of files. | geometry/volumes |
+| 154 | Semantic labels (UsdSemantics) | Multiple-apply SemanticsLabelsAPI:<taxonomy> puts token lists of labels on prims; descendants accumulate their ancestors' labels. | stage/meaning |
+| 155 | usdz for AR: anchoring, preliminary schemas and the web/AR-compliant profile | Apple's Preliminary_ schemas (AnchoringAPI, physics, behaviors, text) ride along as API schemas USD doesn't know, and usdchecker --arkit / usdzip --arkitAsset enforce a restricted profile: self-contained package, allowed file types, UsdPreviewSurface only, no nested gprims. | foundations/packages |
+| 156 | Level of detail (UsdLod), new in 26.x | LODRootAPI marks a prim whose children are alternative representations; heuristic prims (distance, screen size) per domain (imaging, physics, audio) tell a renderer which to show; LODOverrideAPI forces a choice. | stage/meaning |
 
 ### Not in the museum yet
 
-24 features: startTimeCode and endTimeCode; Layer documentation, comment and customLayerData; Default resolver, search paths and resolver contexts; Session layer; Edit targets; Layer muting; Saving and exporting layers; Flattening a stage; Flattening a layer stack; Layer identity, anonymous layers and reload; Relocates combined with classes, variants and payloads; Population masks; Namespace editing (move, rename, delete composed prims); Dynamic payloads (file format arguments from prim metadata); Asset info (assetInfo); resetXformStack (ignore parent transforms); Pattern-based collections (membership expressions and mode); Prim child ordering; NURBS curves; Materials, shaders, node graphs, connections and interface inputs; Shader sources (sourceAsset, sourceCode); Geometry and volume lights (MeshLightAPI, VolumeLightAPI, materialSyncMode); Light linking, shadow linking, light filters and filter linking; Particle fields.
+22 features: startTimeCode and endTimeCode; Layer documentation, comment and customLayerData; Default resolver, search paths and resolver contexts; Session layer; Edit targets; Layer muting; Saving and exporting layers; Flattening a stage; Flattening a layer stack; Layer identity, anonymous layers and reload; Relocates combined with classes, variants and payloads; Population masks; Namespace editing (move, rename, delete composed prims); Dynamic payloads (file format arguments from prim metadata); Asset info (assetInfo); resetXformStack (ignore parent transforms); Pattern-based collections (membership expressions and mode); Prim child ordering; NURBS curves; Geometry and volume lights (MeshLightAPI, VolumeLightAPI, materialSyncMode); Light linking, shadow linking, light filters and filter linking; Particle fields.
 
 Some of these need another renderer: usdview's Storm can't draw them.
 

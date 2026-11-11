@@ -1,0 +1,117 @@
+#usda 1.0
+(
+    "materials.surfaces.networks: a ball whose surface shader is inline glslfx (sourceCode); the base, an unlit preview surface in the same color, is the answer key."
+    defaultPrim = "Code"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "Code" (
+    kind = "component"
+)
+{
+    def Scope "Looks"
+    {
+        def Material "Flat"
+        {
+            token outputs:surface.connect = </Code/Looks/Flat/Flat.outputs:surface>
+
+            def Shader "Flat"
+            {
+                uniform string info:glslfx:sourceCode = '''-- glslfx version 0.1
+-- configuration
+{
+    "parameters" : { "paint" : { "default" : [1.0, 1.0, 1.0], "type" : "vec3" } },
+    "techniques" : { "default" : { "surfaceShader" : { "source" : [ "Museum.Flat" ] } } }
+}
+-- glsl Museum.Flat
+vec4
+surfaceShader(vec4 Peye, vec3 Neye, vec4 color, vec4 patchCoord)
+{
+    return vec4(HdGet_paint().xyz, 1.0);
+}
+'''
+                uniform token info:implementationSource = "sourceCode"
+                color3f inputs:paint = (0.7, 0.08, 0.48)
+                token outputs:surface
+            }
+        }
+
+        def Material "Key"
+        {
+            token outputs:surface.connect = </Code/Looks/Key/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor = (0.7, 0.08, 0.48)
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+    }
+
+    def Mesh "Key" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(-0.3, 0, -0.26), (0.3, 0.05, 0.26)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Code/Looks/Key>
+        point3f[] points = [(-0.3, 0, 0.26), (0.3, 0, 0.26), (0.3, 0.05, 0.26), (-0.3, 0.05, 0.26), (0.3, 0, -0.26), (-0.3, 0, -0.26), (-0.3, 0.05, -0.26), (0.3, 0.05, -0.26), (-0.3, 0.05, 0.26), (0.3, 0.05, 0.26), (0.3, 0.05, -0.26), (-0.3, 0.05, -0.26), (-0.3, 0, -0.26), (0.3, 0, -0.26), (0.3, 0, 0.26), (-0.3, 0, 0.26), (0.3, 0, 0.26), (0.3, 0, -0.26), (0.3, 0.05, -0.26), (0.3, 0.05, 0.26), (-0.3, 0, -0.26), (-0.3, 0, 0.26), (-0.3, 0.05, 0.26), (-0.3, 0.05, -0.26)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Xform "Ball" (
+        prepend references = @./ball.usda@
+    )
+    {
+        float3 xformOp:scale = (0.26291078, 0.26291078, 0.26291078)
+        double3 xformOp:translate = (0, 0.05, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+
+        over "Sphere"
+        {
+            over "Body" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Code/Looks/Flat>
+            }
+
+            over "Ring" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Code/Looks/Flat>
+            }
+        }
+
+        def Material "BaseLook"
+        {
+            token outputs:surface.connect = </Code/Ball/BaseLook/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.08, 0.08, 0.09)
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+
+        over "Base" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Code/Ball/BaseLook>
+        }
+    }
+}
+
