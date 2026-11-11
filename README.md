@@ -217,6 +217,13 @@ The museum shows 153 features of USD, in five areas; the 25 it doesn't show yet 
 
 25 features: startTimeCode and endTimeCode; Layer documentation, comment and customLayerData; Default resolver, search paths and resolver contexts; Session layer; Edit targets; Layer muting; Saving and exporting layers; Flattening a stage; Flattening a layer stack; Layer identity, anonymous layers and reload; Relocates combined with classes, variants and payloads; Population masks; Namespace editing (move, rename, delete composed prims); Dynamic payloads (file format arguments from prim metadata); Asset info (assetInfo); resetXformStack (ignore parent transforms); Pattern-based collections (membership expressions and mode); Prim child ordering; Boundary and face-varying rules; NURBS curves; Materials, shaders, node graphs, connections and interface inputs; Shader sources (sourceAsset, sourceCode); Geometry and volume lights (MeshLightAPI, VolumeLightAPI, materialSyncMode); Light linking, shadow linking, light filters and filter linking; Particle fields.
 
+Some of these need another renderer: usdview's Storm can't draw them.
+
+- **Light linking, shadow linking, light filters and filter linking**: Storm lights every prim, linked or not. Embree's delegate also ignores light linking; RenderMan (hdPrman) supports light and shadow linking.
+- **Geometry and volume lights (MeshLightAPI, VolumeLightAPI, materialSyncMode)**: Storm and Embree emit no light from a mesh or volume; RenderMan (hdPrman) has mesh lights.
+- **NURBS curves**: Storm draws straight lines between the control points, not the curve; a renderer that takes Hydra's nurbsCurves prims could draw the true curve (untested).
+- **Particle fields**: Storm draws nothing for a particle field (UsdVol's adapter publishes it for renderers that support Gaussian splats; untested in RenderMan).
+
 <!-- features: end -->
 
 ## The museum
