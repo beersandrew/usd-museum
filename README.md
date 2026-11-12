@@ -1,5 +1,7 @@
 # usd-museum
 
+![A walk through the museum's ten wings, one stop per second](media/tour.gif)
+
 ## What
 
 A USD scene with a goal to express the features of USD.
