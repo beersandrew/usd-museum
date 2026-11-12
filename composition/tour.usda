@@ -6,7 +6,7 @@
             string wing = "composition"
         }
         dictionary tourLoad = {
-            string about = "Load each carrier (a group: the hall or a gallery, with descendants) for frames [first, last]; unload it otherwise. usd-tools sync/PROTOCOL.md, Load schedule."
+            string about = "Load each carrier (a group: the hall or a gallery, with descendants) for frames [first, last]; unload it otherwise. A viewer opens the stage unloaded and, at each frame, loads the carriers scheduled at it."
             dictionary carriers = {
                 int2 "/composition/arcs" = (-47, 292)
                 int2 "/composition/edits" = (892, 1436)

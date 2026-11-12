@@ -6,7 +6,7 @@
             string[] wings = ["foundations", "composition", "instancing", "animation", "stage", "geometry", "materials", "lights", "cameras", "physics"]
         }
         dictionary tourLoad = {
-            string about = "Load each carrier (a wing's hall or gallery, with descendants) for frames [first, last]; unload it otherwise. usd-tools sync/PROTOCOL.md, Load schedule."
+            string about = "Load each carrier (a wing's hall or gallery, with descendants) for frames [first, last]; unload it otherwise. A viewer opens the stage unloaded and, at each frame, loads the carriers scheduled at it."
             dictionary carriers = {
                 int2 "/museum/animation/blocks" = (5270, 5597)
                 int2 "/museum/animation/characters" = (5492, 5992)
