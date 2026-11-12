@@ -1492,8 +1492,8 @@ def Xform "Rooms" (
             token visibility.timeSamples = {
                 -48: "invisible",
                 -47: "inherited",
-                220: "inherited",
-                221: "invisible",
+                292: "inherited",
+                293: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (4.1000000000000005, 4.9, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1507,8 +1507,8 @@ def Xform "Rooms" (
             token visibility.timeSamples = {
                 -48: "invisible",
                 -47: "inherited",
-                220: "inherited",
-                221: "invisible",
+                292: "inherited",
+                293: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (12.000000000000002, 4.9, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1520,10 +1520,10 @@ def Xform "Rooms" (
             float inputs:intensity = 20
             float inputs:radius = 0.6
             token visibility.timeSamples = {
-                114: "invisible",
-                115: "inherited",
-                340: "inherited",
-                341: "invisible",
+                186: "invisible",
+                187: "inherited",
+                436: "inherited",
+                437: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (18.25, 4.9, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1535,10 +1535,10 @@ def Xform "Rooms" (
             float inputs:intensity = 20
             float inputs:radius = 0.6
             token visibility.timeSamples = {
-                114: "invisible",
-                115: "inherited",
-                340: "inherited",
-                341: "invisible",
+                186: "invisible",
+                187: "inherited",
+                436: "inherited",
+                437: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (22.25, 4.9, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1550,10 +1550,10 @@ def Xform "Rooms" (
             float inputs:intensity = 20
             float inputs:radius = 0.6
             token visibility.timeSamples = {
-                219: "invisible",
-                220: "inherited",
-                493: "inherited",
-                494: "invisible",
+                315: "invisible",
+                316: "inherited",
+                649: "inherited",
+                650: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (28.874999999999996, 4.9, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1565,10 +1565,10 @@ def Xform "Rooms" (
             float inputs:intensity = 20
             float inputs:radius = 0.6
             token visibility.timeSamples = {
-                219: "invisible",
-                220: "inherited",
-                493: "inherited",
-                494: "invisible",
+                315: "invisible",
+                316: "inherited",
+                649: "inherited",
+                650: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (37.52499999999999, 4.9, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1580,10 +1580,10 @@ def Xform "Rooms" (
             float inputs:intensity = 20
             float inputs:radius = 0.6
             token visibility.timeSamples = {
-                396: "invisible",
-                397: "inherited",
-                763: "inherited",
-                764: "invisible",
+                552: "invisible",
+                553: "inherited",
+                991: "inherited",
+                992: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (47.21499999999999, 4.9, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1595,10 +1595,10 @@ def Xform "Rooms" (
             float inputs:intensity = 20
             float inputs:radius = 0.6
             token visibility.timeSamples = {
-                396: "invisible",
-                397: "inherited",
-                763: "inherited",
-                764: "invisible",
+                552: "invisible",
+                553: "inherited",
+                991: "inherited",
+                992: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (57.345, 4.9, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1610,10 +1610,10 @@ def Xform "Rooms" (
             float inputs:intensity = 20
             float inputs:radius = 0.6
             token visibility.timeSamples = {
-                660: "invisible",
-                661: "inherited",
-                1007: "inherited",
-                1008: "invisible",
+                888: "invisible",
+                889: "inherited",
+                1253: "inherited",
+                1254: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (65.741, 4.9, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1625,10 +1625,10 @@ def Xform "Rooms" (
             float inputs:intensity = 20
             float inputs:radius = 0.6
             token visibility.timeSamples = {
-                660: "invisible",
-                661: "inherited",
-                1007: "inherited",
-                1008: "invisible",
+                888: "invisible",
+                889: "inherited",
+                1253: "inherited",
+                1254: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (71.803, 4.9, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1640,10 +1640,10 @@ def Xform "Rooms" (
             float inputs:intensity = 20
             float inputs:radius = 0.6
             token visibility.timeSamples = {
-                909: "invisible",
-                910: "inherited",
-                1054: "inherited",
-                1055: "invisible",
+                1155: "invisible",
+                1156: "inherited",
+                1324: "inherited",
+                1325: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (77.13400000000001, 4.9, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1655,10 +1655,10 @@ def Xform "Rooms" (
             float inputs:intensity = 20
             float inputs:radius = 0.6
             token visibility.timeSamples = {
-                909: "invisible",
-                910: "inherited",
-                1054: "inherited",
-                1055: "invisible",
+                1155: "invisible",
+                1156: "inherited",
+                1324: "inherited",
+                1325: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (81.13400000000001, 4.9, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1670,8 +1670,8 @@ def Xform "Rooms" (
             float inputs:intensity = 4
             float inputs:radius = 0.6
             token visibility.timeSamples = {
-                220: "inherited",
-                221: "invisible",
+                292: "inherited",
+                293: "invisible",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-2.8800000000000003, 4.800000000000001, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
@@ -1683,8 +1683,8 @@ def Xform "Rooms" (
             float inputs:intensity = 4
             float inputs:radius = 0.6
             token visibility.timeSamples = {
-                909: "invisible",
-                910: "inherited",
+                1155: "invisible",
+                1156: "inherited",
             }
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (86.16400000000002, 4.800000000000001, 2.848203768235635, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
