@@ -278,7 +278,7 @@ The museum shows 152 features of USD, by wing in tour order; the 26 it doesn't s
 | File | What it is |
 |---|---|
 | [museum.usda](museum.usda) | The museum as one assembly: ten wings, each referenced from `./<wing>/<wing>.usda` and placed and timed along one route, plus the corridors between them |
-| [tour.usda](tour.usda) | The guided tour, 11,839 frames (8.2 minutes at 24 fps): sublayers `museum.usda` and adds the camera, the load schedule and the doors closed between wings |
+| [tour.usda](tour.usda) | The guided tour, 11,839 frames (8.2 minutes at 24 fps): sublayers `museum.usda` and adds the tour camera, cameras to jump to (below), the load schedule and the doors closed between wings |
 | [tour_cam.usdc](tour_cam.usdc) | The tour camera's path, referenced by `tour.usda` (binary: one sample per frame) |
 
 The whole tour runs with OpenExec off, so it leaves out the Rigging wing, which is its own
@@ -357,6 +357,24 @@ The Rigging wing needs OpenExec, which usdview reads from the environment:
 ```sh
 USDIMAGINGGL_ENGINE_ENABLE_EXEC_SCENE_INDEX=1 usdview rigging/tour.usda --camera /rigging/tour/tour_cam
 ```
+
+### Cameras
+
+`tour.usda` also has cameras to jump to, in usdview's Camera > Select Camera. usdview lists the
+first 20 by name and puts the rest under "More Cameras...", so they come in this order, all under
+`/museum/tour`:
+
+1. `tour_cam`, the guided tour.
+2. One per wing, in tour order (`Foundations_Wing` ... `Physics_Wing`): from the corner beside the
+   wing's entrance, looking into its first gallery.
+3. Nine highlights (`Highlight_FullSizeJar`, `Highlight_Crowd`, `Highlight_Skinning`,
+   `Highlight_DrawModes`, `Highlight_Volumes`, `Highlight_PreviewSurface`, `Highlight_DomeLight`,
+   `Highlight_LensRooms`, `Highlight_Machine`), at most one per wing.
+4. One per exhibit, in tour order (`Stop_<Wing>_<Exhibit>`): the tour's view at that exhibit's stop.
+
+They don't move, and each says in `customData["museum"]["frame"]` which tour frame to go to, so the
+exhibit is loaded and where the tour shows it. They are invisible, so usdview draws no camera
+outline for them. The Cameras wing's own exhibit cameras come after them.
 
 ## License
 
