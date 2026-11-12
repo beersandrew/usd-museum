@@ -1,6 +1,6 @@
 # usd-museum
 
-![A walk through the museum's ten wings, one stop per second](media/tour.gif)
+![A walk through the museum's ten wings, one stop every 1.5 seconds](media/tour.gif)
 
 ## What
 
