@@ -4,7 +4,7 @@
 
 ## What
 
-A USD scene with a goal to express the features of USD.
+A USD scene intended to express the features of USD.
 
 ### Why
 
