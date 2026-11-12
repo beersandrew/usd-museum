@@ -249,7 +249,7 @@ The museum shows 152 features of USD, by wing in tour order; the 26 it doesn't s
 - `LIT-6` **Light linking, shadow linking, light filters and filter linking**: Storm lights every prim, linked or not. Embree's delegate also ignores light linking; RenderMan (hdPrman) supports light and shadow linking.
 - **Geometry and volume lights (MeshLightAPI, VolumeLightAPI, materialSyncMode)**: Storm and Embree emit no light from a mesh or volume; RenderMan (hdPrman) has mesh lights.
 - `GEO-22` **NURBS curves**: Storm draws straight lines between the control points, not the curve; a renderer that takes Hydra's nurbsCurves prims could draw the true curve (untested).
-- `GEO-23` **Particle fields**: Storm draws nothing for a particle field (UsdVol's adapter publishes it for renderers that support Gaussian splats; untested in RenderMan).
+- `GEO-23` **Particle fields (Gaussian splats)**: Storm draws nothing for a particle field (UsdVol's adapter publishes it for renderers that support Gaussian splats; untested in RenderMan).
 - `CAM-4` **Focus distance and f-stop**: Storm and Embree draw no depth of field: every distance is equally sharp. RenderMan (hdPrman) and Karma blur from fStop and focusDistance (untested here).
 - `STG-17` **Level of detail (UsdLod), new in 26.x**: Storm draws every level of detail item; picking one by distance is left to a pipeline or a renderer that reads UsdLod (none tested here).
 - `STG-16` **Semantic labels (UsdSemantics)**: No viewer draws semantic labels; they are data for tools (search, training data, segmentation passes) that read UsdSemantics.
