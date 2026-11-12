@@ -9,21 +9,29 @@ time-sampled data, in [tour_cam.usdc](tour_cam.usdc). In a browser:
 
 ## What
 
-A USD scene intended to express the features of USD.
+A USD scene that shows USD's features, one exhibit at a time, so you can see whether a viewer or
+runtime gets them right.
 
-### Why
+## Why
 
-To attempt a more human-centric specification test, in support of AOUSD.
+USD's behavior is defined mostly by what OpenUSD does. AOUSD is writing it down as a specification,
+and the museum is a test you can look at, in support of that work. Each rule gets a small scene where
+the right answer is visible: every piece sits beside a reference mark (an outline the object must
+fill, a base in the color that must win, a red outline that must stay empty). When a viewer gets the
+rule wrong, you see it, and the exhibit tells you which rule.
 
-### How
+Ways to use it:
 
-Every prim in this museum was built by Claude Opus 5.5 (Anthropic), working in Claude Code: it designed
-the exhibits and wrote the scripts that author them. Each file says so in OpenUSD's own authorship records
-(`AuthorshipAPI`, new in OpenUSD 26.11) on the root prim of the museum, every wing and every exhibit;
-`usdauthors -s tour.usda` lists them.
-
-The museum, every wing and every exhibit also carry a 512 px thumbnail (`thumbnail.jpg` beside the file,
-authored with `AssetPreviewsAPI`), for tools that show an asset before opening it. Rigging has none yet.
+- **Check your viewer, renderer or runtime.** Play the tour, or open one exhibit. Anything that
+  doesn't match its reference is a bug, and the sign beside it names the feature.
+- **Recognize a bug by how it looks.** 436 forgeries each plant one plausible mistake in an exhibit
+  (`composition/arcs/variants/forgeries/nofallback.usda` ignores variant fallbacks;
+  `foundations/paths/names/forgeries/target_off_by_one.usda` resolves a relative path one level off).
+  If your output looks like a forgery, you know which rule you're breaking.
+- **Learn USD one feature at a time.** 152 features across eleven wings, each tagged on the signs
+  and listed under [Features](#features) with the exhibits that show it.
+- **Borrow exhibits as test fixtures.** Every exhibit is a self-contained folder with relative paths
+  that opens on its own, and everything is CC0.
 
 ## Glossary
 
@@ -295,7 +303,7 @@ Eleven wings, in tour order:
 
 | # | Wing | Galleries | Exhibits | Forgeries |
 |---|---|---|---|---|
-| 1 | [foundations](foundations/foundations.usda) | files, packages, types, model, paths | 8 | 54 |
+| 1 | [foundations](foundations/foundations.usda) | files, packages, types, model, paths | 8 | 53 |
 | 2 | [composition](composition/composition.usda) | arcs, loading, strength, namespace, edits, errors | 11 | 104 |
 | 3 | [instancing](instancing/instancing.usda) | native, points, crowds | 3 | 25 |
 | 4 | [animation](animation/animation.usda) | keys, time, splines, clips, blocks, characters, motion | 7 | 74 |
@@ -337,9 +345,9 @@ its `doc` names the bug and what to look for. Open it next to the exhibit's entr
 difference. A few can't be written as overrides (relocates, for example) and are edited copies
 in `forgeries/<key>/`; each says why.
 
-**Broken on purpose.** Every entry passes `usdchecker` except five exhibits that break USD on
-purpose: `composition/errors/cycles`, `animation/time/offsets`, `foundations/paths/names`,
-`foundations/types/twins` and `stage/schemas/applied`. Each declares its errors in
+**Broken on purpose.** Every entry passes `usdchecker` except four exhibits that break USD on
+purpose: `composition/errors/cycles`, `animation/time/offsets`, `foundations/types/twins` and
+`stage/schemas/applied`. Each declares its errors in
 `customData["museum"]["expected_errors"]`, and the wings and tours that contain them inherit only
 those errors.
 
@@ -380,6 +388,16 @@ first 20 by name and puts the rest under "More Cameras...", so they come in this
 They don't move, and each says in `customData["museum"]["frame"]` which tour frame to go to, so the
 exhibit is loaded and where the tour shows it. They are invisible, so usdview draws no camera
 outline for them. The Cameras wing's own exhibit cameras come after them.
+
+## Who built it
+
+Every prim in this museum was built by Claude Opus 5.5 (Anthropic), working in Claude Code: it designed
+the exhibits and wrote the scripts that author them. Each file says so in OpenUSD's own authorship records
+(`AuthorshipAPI`, new in OpenUSD 26.11) on the root prim of the museum, every wing and every exhibit;
+`usdauthors -s tour.usda` lists them.
+
+The museum, every wing and every exhibit also carry a 512 px thumbnail (`thumbnail.jpg` beside the file,
+authored with `AssetPreviewsAPI`), for tools that show an asset before opening it. Rigging has none yet.
 
 ## License
 
