@@ -17,6 +17,9 @@ the exhibits and wrote the scripts that author them. Each file says so in OpenUS
 (`AuthorshipAPI`, new in OpenUSD 26.11) on the root prim of the museum, every wing and every exhibit;
 `usdauthors -s tour.usda` lists them.
 
+The museum, every wing and every exhibit also carry a 512 px thumbnail (`thumbnail.jpg` beside the file,
+authored with `AssetPreviewsAPI`), for tools that show an asset before opening it. Rigging has none yet.
+
 ### License
 
 [CC0 1.0](LICENSE): public domain. Use it for anything; no attribution needed.

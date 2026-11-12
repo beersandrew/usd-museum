@@ -11,10 +11,17 @@
 )
 
 def Xform "depth" (
-    prepend apiSchemas = ["AuthorshipAPI:claude", "AuthorshipAPI:build"]
+    prepend apiSchemas = ["AuthorshipAPI:claude", "AuthorshipAPI:build", "AssetPreviewsAPI"]
     assetInfo = {
         asset identifier = @./depth.usda@
         string name = "depth"
+        dictionary previews = {
+            dictionary thumbnails = {
+                dictionary default = {
+                    asset defaultImage = @./thumbnail.jpg@
+                }
+            }
+        }
     }
     customData = {
         dictionary museum = {

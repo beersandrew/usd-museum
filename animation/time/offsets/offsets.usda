@@ -11,10 +11,17 @@
 )
 
 def Xform "offsets" (
-    prepend apiSchemas = ["AuthorshipAPI:claude", "AuthorshipAPI:build"]
+    prepend apiSchemas = ["AuthorshipAPI:claude", "AuthorshipAPI:build", "AssetPreviewsAPI"]
     assetInfo = {
         asset identifier = @./offsets.usda@
         string name = "offsets"
+        dictionary previews = {
+            dictionary thumbnails = {
+                dictionary default = {
+                    asset defaultImage = @./thumbnail.jpg@
+                }
+            }
+        }
     }
     customData = {
         dictionary museum = {

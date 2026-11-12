@@ -9,10 +9,17 @@
 )
 
 def Xform "geometry" (
-    prepend apiSchemas = ["AuthorshipAPI:claude", "AuthorshipAPI:build"]
+    prepend apiSchemas = ["AuthorshipAPI:claude", "AuthorshipAPI:build", "AssetPreviewsAPI"]
     assetInfo = {
         asset identifier = @./geometry.usda@
         string name = "geometry"
+        dictionary previews = {
+            dictionary thumbnails = {
+                dictionary default = {
+                    asset defaultImage = @./thumbnail.jpg@
+                }
+            }
+        }
     }
     customData = {
         dictionary museum = {

@@ -11,10 +11,17 @@
 )
 
 def Xform "applied" (
-    prepend apiSchemas = ["AuthorshipAPI:claude", "AuthorshipAPI:build"]
+    prepend apiSchemas = ["AuthorshipAPI:claude", "AuthorshipAPI:build", "AssetPreviewsAPI"]
     assetInfo = {
         asset identifier = @./applied.usda@
         string name = "applied"
+        dictionary previews = {
+            dictionary thumbnails = {
+                dictionary default = {
+                    asset defaultImage = @./thumbnail.jpg@
+                }
+            }
+        }
     }
     customData = {
         dictionary museum = {

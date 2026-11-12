@@ -11,10 +11,17 @@
 )
 
 def Xform "splines" (
-    prepend apiSchemas = ["AuthorshipAPI:claude", "AuthorshipAPI:build"]
+    prepend apiSchemas = ["AuthorshipAPI:claude", "AuthorshipAPI:build", "AssetPreviewsAPI"]
     assetInfo = {
         asset identifier = @./splines.usda@
         string name = "splines"
+        dictionary previews = {
+            dictionary thumbnails = {
+                dictionary default = {
+                    asset defaultImage = @./thumbnail.jpg@
+                }
+            }
+        }
     }
     customData = {
         dictionary museum = {
