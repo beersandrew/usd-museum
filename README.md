@@ -270,7 +270,7 @@ The museum shows 152 features of USD, by wing in tour order; the 26 it doesn't s
 | File | What it is |
 |---|---|
 | [museum.usda](museum.usda) | The museum as one assembly: ten wings, each referenced from `./<wing>/<wing>.usda` and placed and timed along one route, plus the corridors between them |
-| [tour.usda](tour.usda) | The guided tour, 11,662 frames (8.1 minutes at 24 fps): sublayers `museum.usda` and adds the camera, the load schedule and the doors closed between wings |
+| [tour.usda](tour.usda) | The guided tour, 11,839 frames (8.2 minutes at 24 fps): sublayers `museum.usda` and adds the camera, the load schedule and the doors closed between wings |
 | [tour_cam.usdc](tour_cam.usdc) | The tour camera's path, referenced by `tour.usda` (binary: one sample per frame) |
 
 The whole tour runs with OpenExec off, so it leaves out the Rigging wing, which is its own
@@ -283,7 +283,7 @@ Eleven wings, in tour order:
 | # | Wing | Galleries | Exhibits | Forgeries |
 |---|---|---|---|---|
 | 1 | [foundations](foundations/foundations.usda) | files, packages, types, model, paths | 8 | 54 |
-| 2 | [composition](composition/composition.usda) | arcs, loading, strength, namespace, edits, errors | 10 | 102 |
+| 2 | [composition](composition/composition.usda) | arcs, loading, strength, namespace, edits, errors | 11 | 104 |
 | 3 | [instancing](instancing/instancing.usda) | native, points, crowds | 3 | 25 |
 | 4 | [animation](animation/animation.usda) | keys, time, splines, clips, blocks, characters, motion | 7 | 74 |
 | 5 | [rigging](rigging/rigging.usda) | exec | 2 | 9 |
@@ -294,7 +294,7 @@ Eleven wings, in tour order:
 | 10 | [cameras](cameras/cameras.usda) | lenses, render | 4 | 21 |
 | 11 | [physics](physics/physics.usda) | motion | 2 | 7 |
 
-63 exhibits and 435 forgeries. 424 forgeries are override layers; 11 are edited copies
+64 exhibits and 437 forgeries. 426 forgeries are override layers; 11 are edited copies
 because overrides can't express them (relocates, MaterialX and a few others; each says why).
 
 Rigging is the one wing that runs with OpenExec on (its `tour.usda` says `exec = 1` in
