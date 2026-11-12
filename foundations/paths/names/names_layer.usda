@@ -156,18 +156,6 @@ over "Exhibit"
                 }
             }
         }
-
-        over "Illegal"
-        {
-            over "Spot"
-            {
-                def "Item" (
-                    references = @./parts/illegal.usda@
-                )
-                {
-                }
-            }
-        }
     }
 
     class "_Lib"

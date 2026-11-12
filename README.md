@@ -2,6 +2,11 @@
 
 ![A walk through the museum's ten wings, 67 stops in 30 seconds](media/tour.gif)
 
+**Take the tour:** open `tour.usda` with the camera `/museum/tour/tour_cam` and press Play. One animated
+camera walks every wing and stops at each exhibit (11,839 frames, about 8 minutes at 24 fps). Its path is
+time-sampled data, in [tour_cam.usdc](tour_cam.usdc). In a browser:
+[andrew.beer/s/usdview](https://andrew.beer/s/usdview/), then Start Museum Tour. See [Viewing](#viewing).
+
 ## What
 
 A USD scene intended to express the features of USD.
@@ -103,7 +108,7 @@ The museum shows 152 features of USD, by wing in tour order; the 26 it doesn't s
 | `CMP‑25` | Array edits (sparse edits to array values) | An array-valued attribute can hold an edit instead of a whole array (write value to index, append, prepend, erase, resize, minsize/maxsize) that applies on top of the next weaker array, including per time sample and in clips. | composition/edits |
 | `CMP‑26` | Diamonds (repeated arcs) | When two arcs bring in the same layer (a diamond), it is composed once, at its strongest place. | composition/errors |
 | `CMP‑27` | Cycles | An arc that would bring in something it is already inside (a reference, inherit or sublayer cycle) is reported and skipped; the rest still composes. | composition/errors |
-| `CMP‑28` | Composition errors and recovery | Bad arcs (missing files, missing target prims, cycles, invalid relocates or targets, conflicting property types) are reported and skipped while the rest of the stage composes. | foundations/paths, composition/errors |
+| `CMP‑28` | Composition errors and recovery | Bad arcs (missing files, missing target prims, cycles, invalid relocates or targets, conflicting property types) are reported and skipped while the rest of the stage composes. | composition/errors |
 | `CMP‑29` | Relocates combined with classes, variants and payloads | A relocated prim keeps the inherits it had at its old place ('spooky inherits'), can be overridden by variants, can come from a payload, and connections pointing at it are remapped. | composition/namespace |
 
 ### 3. Instancing wing
