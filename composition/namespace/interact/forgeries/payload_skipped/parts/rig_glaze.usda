@@ -18,7 +18,7 @@ def Xform "Rig" (
 
     def Xform "OldSpot"
     {
-        double3 xformOp:translate = (-0.36, 0.7, 0)
+        double3 xformOp:translate = (-0.62, 0.7, 0)
         uniform token[] xformOpOrder = ["xformOp:translate"]
 
         def Xform "Vase" (
@@ -62,7 +62,7 @@ def Xform "Rig" (
 
     def Xform "NewSpot"
     {
-        double3 xformOp:translate = (0.36, 0.82, 0)
+        double3 xformOp:translate = (0, 0.82, 0)
         uniform token[] xformOpOrder = ["xformOp:translate"]
     }
 
@@ -73,8 +73,8 @@ def Xform "Rig" (
         rel material:binding = </Rig/OldSpot/Vase/Looks/Glaze> (
             bindMaterialAs = "strongerThanDescendants"
         )
-        float3 xformOp:scale = (0.55, 0.55, 0.55)
-        double3 xformOp:translate = (0.36, 0.82, 0.27)
+        float3 xformOp:scale = (1.725, 1.08, 1.725)
+        double3 xformOp:translate = (0.7, 0.82, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
 
         def "Body" (
