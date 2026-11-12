@@ -11,6 +11,7 @@
 )
 
 def Xform "intensity" (
+    prepend apiSchemas = ["AuthorshipAPI:claude", "AuthorshipAPI:build"]
     assetInfo = {
         asset identifier = @./intensity.usda@
         string name = "intensity"
@@ -28,5 +29,21 @@ def Xform "intensity" (
     prepend payload = @./payload.usda@
 )
 {
+    uniform string authorship:build:created = "2026-11-12T00:01:00-08:00"
+    uniform string[] authorship:build:creator = ["usd-tour museum/src/export.py"]
+    uniform string authorship:build:description = "Written through OpenUSD's Python API by usd-tour's build and export scripts (written by Claude Opus 5.5)."
+    uniform string authorship:build:digitalSourceType = "http://cv.iptc.org/newscodes/digitalsourcetype/algorithmicMedia"
+    uniform string[] authorship:build:inputs = ["source", "usd-tour 135ffaf"]
+    uniform string authorship:build:softwarePackage = "OpenUSD"
+    uniform string authorship:build:softwareVersion = "26.11"
+    uniform string authorship:build:usageTerms = "CC0-1.0"
+    uniform string authorship:claude:created = "2026-11-12T00:01:00-08:00"
+    uniform string[] authorship:claude:creator = ["Claude Opus 5.5 (Anthropic)"]
+    uniform string authorship:claude:description = "Claude Opus 5.5, working in Claude Code, built every prim in this museum: it designed the exhibits and wrote the usd-tour scripts that author them."
+    uniform string authorship:claude:digitalSourceType = "http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia"
+    uniform string[] authorship:claude:inputs = ["source", "usd-tour 135ffaf"]
+    uniform string authorship:claude:softwarePackage = "com.anthropic.claude"
+    uniform string authorship:claude:softwareVersion = "claude-opus-5-5"
+    uniform string authorship:claude:usageTerms = "CC0-1.0"
 }
 

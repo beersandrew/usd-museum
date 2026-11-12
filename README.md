@@ -12,7 +12,14 @@ To attempt a more human-centric specification test, in support of AOUSD.
 
 ### How
 
-This scene was built with the help of Claude Code.
+Every prim in this museum was built by Claude Opus 5.5 (Anthropic), working in Claude Code: it designed
+the exhibits and wrote the scripts that author them. Each file says so in OpenUSD's own authorship records
+(`AuthorshipAPI`, new in OpenUSD 26.11) on the root prim of the museum, every wing and every exhibit;
+`usdauthors -s tour.usda` lists them.
+
+### License
+
+[CC0 1.0](LICENSE): public domain. Use it for anything; no attribution needed.
 
 ## Glossary
 
