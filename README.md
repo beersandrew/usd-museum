@@ -302,11 +302,47 @@ Eleven wings, in tour order:
 | 10 | [cameras](cameras/cameras.usda) | lenses, render | 4 | 21 |
 | 11 | [physics](physics/physics.usda) | motion | 2 | 7 |
 
+## How it's laid out
+
+**Folders mirror prim paths.** The prim `/<wing>/<gallery>/<exhibit>` is the folder
+`<wing>/<gallery>/<exhibit>/`: if you can see a prim in usdview, you can find its files. Each
+wing has `<wing>.usda` (the wing itself, which opens on its own) and `tour.usda` (which adds the
+camera, frame range and load schedule).
+
+**Every asset has the same shape:**
+
+```
+<name>/
+  <name>.usda      entry: small, the file everything else references
+  payload.usda     the contents, behind the entry's payload
+  parts/           further layers the contents compose
+  textures/        images
+  data/            non-USD files (e.g. VDB volumes)
+  forgeries/       exhibits only: one layer per planted mistake
+  thumbnail.jpg    the preview image
+```
+
+Paths are relative and stay inside the asset, so any asset folder still opens when copied
+anywhere. Heavy data lives in `.usdc` (a layer over about 1 MB of text keeps its prims and moves
+the values to `<name>_data.usdc`); everything else is `.usda`.
+
+**Forgeries.** A forgery is a planted mistake: what a viewer with one specific bug would show.
+`<exhibit>/forgeries/<key>.usda` sublayers the exhibit and overrides only what the bug changes;
+its `doc` names the bug and what to look for. Open it next to the exhibit's entry to see the
+difference. A few can't be written as overrides (relocates, for example) and are edited copies
+in `forgeries/<key>/`; each says why.
+
+**Broken on purpose.** Every entry passes `usdchecker` except five exhibits that break USD on
+purpose: `composition/errors/cycles`, `animation/time/offsets`, `foundations/paths/names`,
+`foundations/types/twins` and `stage/schemas/applied`. Each declares its errors in
+`customData["museum"]["expected_errors"]`, and the wings and tours that contain them inherit only
+those errors.
+
 ## Viewing
 
 Open a file in OpenUSD's usdview and press Play. Tours play through their camera. Put
-`config/variantFallbacks` on the plugin path first, for the one piece that needs it (see
-Notes):
+`config/variantFallbacks` on the plugin path first, for the one piece that needs it (the
+variants exhibit's fallback piece; global variant fallbacks come only from a plugin):
 
 ```sh
 export PXR_PLUGINPATH_NAME=$PWD/config/variantFallbacks
