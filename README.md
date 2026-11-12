@@ -33,7 +33,7 @@ This scene was built with the help of Claude Code.
 
 <!-- features: begin -->
 
-The museum shows 152 features of USD, by wing in tour order; the 26 it doesn't show yet are at the end. Each row starts with the feature's tag, the pill on the signs in the museum (`FND-1`: the foundations wing, its first feature), then says what the feature does and the wings and galleries (`wing/gallery`) where you see it.
+The museum shows 152 features of USD, by wing in tour order; the 26 it doesn't show are at the end (those usdview can't show, then those not in the museum yet). Each row starts with the feature's tag, the pill on the signs in the museum (`FND-1`: the foundations wing, its first feature), then says what the feature does and the wings and galleries (`wing/gallery`) where you see it.
 
 ### 1. Foundations wing
 
@@ -242,14 +242,12 @@ The museum shows 152 features of USD, by wing in tour order; the 26 it doesn't s
 | `PHY-1` | Colliders | CollisionAPI marks the shapes a body collides with; here each collider is a guide-purpose copy of its body, so it shows only when guides are on. | physics/motion |
 | `PHY-2` | Physics materials | Friction, restitution and density come from a physics material, bound with the physics purpose so it never changes how things look. | physics/motion |
 
-### Not in the museum yet
+### Not shown: usdview can't show them
 
-26 features: Population masks; Namespace editing (move, rename, delete composed prims); Dynamic payloads (file format arguments from prim metadata); `GEO-22` NURBS curves; `CAM-4` Focus distance and f-stop; Geometry and volume lights (MeshLightAPI, VolumeLightAPI, materialSyncMode); `LIT-6` Light linking, shadow linking, light filters and filter linking; `PHY-3` Mass and centre of mass; `PHY-4` Joints, drives and articulations; `PHY-5` Joint limits; `GEO-23` Particle fields; `STG-16` Semantic labels (UsdSemantics); `STG-17` Level of detail (UsdLod), new in 26.x; `ANI-20` startTimeCode and endTimeCode; Layer documentation, comment and customLayerData; Default resolver, search paths and resolver contexts; Session layer; Edit targets; Layer muting; Saving and exporting layers; Flattening a stage; Flattening a layer stack; Layer identity, anonymous layers and reload; `GEO-20` resetXformStack (ignore parent transforms); Prim child ordering; Asset info (assetInfo).
-
-Some of these need another renderer, a physics engine or a pipeline step: usdview can't show them.
+10 features usdview can't show working: they need another renderer, a physics engine or a pipeline step, so the museum leaves them out.
 
 - `LIT-6` **Light linking, shadow linking, light filters and filter linking**: Storm lights every prim, linked or not. Embree's delegate also ignores light linking; RenderMan (hdPrman) supports light and shadow linking.
--  **Geometry and volume lights (MeshLightAPI, VolumeLightAPI, materialSyncMode)**: Storm and Embree emit no light from a mesh or volume; RenderMan (hdPrman) has mesh lights.
+- **Geometry and volume lights (MeshLightAPI, VolumeLightAPI, materialSyncMode)**: Storm and Embree emit no light from a mesh or volume; RenderMan (hdPrman) has mesh lights.
 - `GEO-22` **NURBS curves**: Storm draws straight lines between the control points, not the curve; a renderer that takes Hydra's nurbsCurves prims could draw the true curve (untested).
 - `GEO-23` **Particle fields**: Storm draws nothing for a particle field (UsdVol's adapter publishes it for renderers that support Gaussian splats; untested in RenderMan).
 - `CAM-4` **Focus distance and f-stop**: Storm and Embree draw no depth of field: every distance is equally sharp. RenderMan (hdPrman) and Karma blur from fStop and focusDistance (untested here).
@@ -258,6 +256,10 @@ Some of these need another renderer, a physics engine or a pipeline step: usdvie
 - `PHY-3` **Mass and centre of mass**: A viewer doesn't simulate: mass and centre of mass change motion only in a physics engine (Omniverse PhysX, Houdini, Isaac Sim).
 - `PHY-4` **Joints, drives and articulations**: Joints, drives and articulations constrain motion only in a physics engine.
 - `PHY-5` **Joint limits**: Joint limits stop motion only in a physics engine; the museum plays a baked swing.
+
+### Not in the museum yet
+
+16 features with no exhibit yet: Population masks; Namespace editing (move, rename, delete composed prims); Dynamic payloads (file format arguments from prim metadata); `ANI-20` startTimeCode and endTimeCode; Layer documentation, comment and customLayerData; Default resolver, search paths and resolver contexts; Session layer; Edit targets; Layer muting; Saving and exporting layers; Flattening a stage; Flattening a layer stack; Layer identity, anonymous layers and reload; `GEO-20` resetXformStack (ignore parent transforms); Prim child ordering; Asset info (assetInfo).
 
 <!-- features: end -->
 
