@@ -20,10 +20,6 @@ the exhibits and wrote the scripts that author them. Each file says so in OpenUS
 The museum, every wing and every exhibit also carry a 512 px thumbnail (`thumbnail.jpg` beside the file,
 authored with `AssetPreviewsAPI`), for tools that show an asset before opening it. Rigging has none yet.
 
-### License
-
-[CC0 1.0](LICENSE): public domain. Use it for anything; no attribution needed.
-
 ## Glossary
 
 | Word | Means |
@@ -306,13 +302,6 @@ Eleven wings, in tour order:
 | 10 | [cameras](cameras/cameras.usda) | lenses, render | 4 | 21 |
 | 11 | [physics](physics/physics.usda) | motion | 2 | 7 |
 
-64 exhibits and 437 forgeries. 426 forgeries are override layers; 11 are edited copies
-because overrides can't express them (relocates, MaterialX and a few others; each says why).
-
-Rigging is the one wing that runs with OpenExec on (its `tour.usda` says `exec = 1` in
-`customLayerData`). It holds OpenExec's two exhibits, split out of Animation on Nov 9, so
-Animation runs with exec off.
-
 ## Viewing
 
 Open a file in OpenUSD's usdview and press Play. Tours play through their camera. Put
@@ -333,24 +322,6 @@ The Rigging wing needs OpenExec, which usdview reads from the environment:
 USDIMAGINGGL_ENGINE_ENABLE_EXEC_SCENE_INDEX=1 usdview rigging/tour.usda --camera /rigging/tour/tour_cam
 ```
 
-Stock usdview loads every payload; the whole museum is light enough (about 12,000 prims).
-[usd-tools](https://github.com/beersandrew/usd-tools) `view/view.sh FILE` adds conveniences:
-the tour camera, OpenExec and the workarounds in Notes set from the file, and the load
-schedule in `tour.usda` applied as the camera moves.
+## License
 
-## Notes
-
-- **Variant fallbacks need a plugin** (`composition/arcs/variants`, the "fallback" piece):
-  global variant fallbacks come from a plugin, never from a layer. The museum ships it:
-  [config/variantFallbacks/plugInfo.json](config/variantFallbacks/plugInfo.json) (`wrap` falls back
-  to `checks`). Without it on `PXR_PLUGINPATH_NAME`, the piece shows its `nofallback` forgery.
-- **Skinned figures on Metal** (`animation/characters/skinning`, `instancing/crowds/crowds`):
-  OpenUSD 26.11 on Metal drops GPU-skinned meshes over many frames. Set
-  `USDSKELIMAGING_FORCE_CPU_COMPUTE=1` (usd-tools' `view.sh` does) to use the CPU path.
-- **OpenExec is a switch in the environment, not in the file.** The Rigging wing only moves with
-  `USDIMAGINGGL_ENGINE_ENABLE_EXEC_SCENE_INDEX=1`; the whole tour leaves Rigging out for that reason.
-- **At most 16 lights.** Storm draws only the first 16 lights by path. Each hall's lamps are lit only
-  while the camera is near, so no frame has more than 16 on.
-- **Five exhibits fail `usdchecker` on purpose.** `usdchecker` passes on every other exhibit; those five
-  break USD to show what happens, and each one's `customData["museum"]["expected_errors"]` says why.
-  The wings and tours that hold them fail with exactly those errors.
+[CC0 1.0](LICENSE): public domain. Use it for anything; no attribution needed.
