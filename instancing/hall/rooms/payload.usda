@@ -934,32 +934,6 @@ def Xform "Rooms" (
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (26.75, 4.7, 3.0064828755712085, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
         }
-
-        def SphereLight "Entry"
-        {
-            color3f inputs:color = (1, 0.95, 0.88)
-            float inputs:intensity = 4
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                273: "inherited",
-                274: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-2.8800000000000003, 4.6000000000000005, 3.0064828755712085, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "Exit"
-        {
-            color3f inputs:color = (1, 0.95, 0.88)
-            float inputs:intensity = 4
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                296: "invisible",
-                297: "inherited",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (31.979999999999997, 4.6000000000000005, 3.0064828755712085, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
     }
 
     def Mesh "ExitDoor" (
