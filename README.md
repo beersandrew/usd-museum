@@ -33,7 +33,7 @@ This scene was built with the help of Claude Code.
 
 <!-- features: begin -->
 
-The museum shows 157 features of USD, in five areas; the 21 it doesn't show yet are at the end. Each row says what the feature does, then the wings and galleries (`wing/gallery`) where you see it.
+The museum shows 152 features of USD, in five areas; the 26 it doesn't show yet are at the end. Each row says what the feature does, then the wings and galleries (`wing/gallery`) where you see it.
 
 ### 1. Files, layers and assets
 
@@ -46,7 +46,7 @@ The museum shows 157 features of USD, in five areas; the 21 it doesn't show yet 
 | 5 | usdz packages | A read-only, uncompressed, 64-byte-aligned zip archive whose first file is the default layer, holding USD layers plus textures and other assets. | foundations/files, foundations/packages |
 | 6 | Sublayers and layer stacks | A layer lists other layers as subLayers; the recursive, ordered result (the layer first and strongest) is a layer stack whose opinions combine by strength. | foundations/files, composition/strength, composition/errors, animation/keys, animation/time |
 | 7 | Layer offsets (time offset and scale) | A sublayer, reference or payload can carry (offset, scale) that remaps the time of everything it brings in; offsets compose down the chain. | foundations/files, animation/time, animation/characters |
-| 8 | timeCodesPerSecond and framesPerSecond | Layer metadata that maps timecodes to real seconds; layers at a different rate are automatically stretched to the stage's rate when composed. | animation/time |
+| 8 | timeCodesPerSecond and framesPerSecond | Layer metadata that maps timecodes to real seconds; layers at a different rate are automatically stretched to the stage's rate when composed. | animation/time, physics/motion |
 | 9 | upAxis | Root-layer metadata declaring whether Y or Z is up for all geometry on the stage. | foundations/files |
 | 10 | metersPerUnit (linear units) | Root-layer metadata giving the length of one scene unit in meters (fallback 0.01, centimeters). | foundations/files, foundations/packages |
 | 11 | defaultPrim | Layer metadata naming the prim that a reference or payload to the layer gets when it gives no prim path. | foundations/files |
@@ -138,7 +138,7 @@ The museum shows 157 features of USD, in five areas; the 21 it doesn't show yet 
 | 82 | Kind and model hierarchy (assembly, group, component, subcomponent) | The kind metadata labels prims as assemblies, groups, components or subcomponents, and the unbroken chain of group-kinds from the root down to components forms the model hierarchy, a cheap table of contents of the scene. | stage/population, stage/imageable |
 | 83 | Model draw modes (origin, bounds, cards) | model:drawMode on a model asks viewers to replace the model's subtree with a stand-in (its axes, its bounding box, or textured cards); it inherits down the model hierarchy and applies at components unless model:applyDrawMode = false. | instancing/crowds, stage/population, stage/imageable |
 | 84 | Purpose (default, render, proxy, guide) | Purpose tags imageable subtrees as always drawn (default), final-render only (render), fast-preview only (proxy) or interactive helpers (guide); an imageable prim's authored purpose wins, otherwise it inherits the nearest imageable ancestor's authored purpose. | stage/imageable |
-| 85 | Visibility and its inheritance | visibility = invisible hides an imageable prim and its whole subtree (pruning); inherited (the fallback) means 'whatever my parent is'; it can be animated. | animation/keys, stage/imageable, stage/meaning |
+| 85 | Visibility and its inheritance | visibility = invisible hides an imageable prim and its whole subtree (pruning); inherited (the fallback) means 'whatever my parent is'; it can be animated. | animation/keys, stage/imageable |
 | 86 | Transform ops | A prim's local transform is built from op attributes: translate, scale, rotateXYZ and the other rotation orders, orient (a quaternion), transform (a matrix). | foundations/types, geometry/xforms |
 | 87 | Op order | xformOpOrder lists the ops in the order they apply; the same ops in another order place the prim differently. | geometry/xforms |
 | 88 | Pivots (!invert! ops) | An !invert! op undoes a named op, so translate:pivot, a rotation, then !invert!translate:pivot turns a prim about a pivot point. | geometry/xforms |
@@ -205,29 +205,29 @@ The museum shows 157 features of USD, in five areas; the 21 it doesn't show yet 
 | 144 | Blend shapes and inbetweens | BlendShape prims hold point offsets (optionally sparse by pointIndices, with normalOffsets) and weighted inbetween shapes; the SkelAnimation's blendShapeWeights drive them by name. | animation/characters |
 | 145 | Colliders | CollisionAPI marks the shapes a body collides with; here each collider is a guide-purpose copy of its body, so it shows only when guides are on. | physics/motion |
 | 146 | Physics materials | Friction, restitution and density come from a physics material, bound with the physics purpose so it never changes how things look. | physics/motion |
-| 147 | Mass and centre of mass | MassAPI gives a body its mass and centre of mass, which decide how it swings and falls. | physics/motion |
-| 148 | Joints, drives and articulations | Joints connect two bodies and let them move only one way (slide, hinge, ball); a drive pushes along a joint, and an articulation root makes a chain one system. | physics/motion |
-| 149 | Joint limits | A joint's limits stop it at a range: a revolute joint limited to -60..60 degrees never turns past its stops. | physics/motion |
-| 150 | Render settings | RenderSettings say which camera renders, at what resolution and aspect, and how the picture fits the camera's aperture. | cameras/render |
-| 151 | Render passes | A RenderPass renders a variant of the settings, for example with a collection of prims pruned out. | cameras/render |
-| 152 | Spatial audio, asset previews and authorship (UsdMedia) | SpatialAudio places a sound in the scene (spatial or ambient) with playback timing; AssetPreviewsAPI stores thumbnails in assetInfo; AuthorshipAPI (new in 26.11) records who authored what. | animation/characters |
-| 153 | Volume fields | A Volume names its fields (density, emission) through field:<name> relationships to OpenVDBAsset prims, each a file and a grid name. | geometry/volumes |
-| 154 | Field sequences | A field's filePath can be time-sampled, so a volume plays a sequence of files. | geometry/volumes |
-| 155 | Semantic labels (UsdSemantics) | Multiple-apply SemanticsLabelsAPI:<taxonomy> puts token lists of labels on prims; descendants accumulate their ancestors' labels. | stage/meaning |
-| 156 | usdz for AR: anchoring, preliminary schemas and the web/AR-compliant profile | Apple's Preliminary_ schemas (AnchoringAPI, physics, behaviors, text) ride along as API schemas USD doesn't know, and usdchecker --arkit / usdzip --arkitAsset enforce a restricted profile: self-contained package, allowed file types, UsdPreviewSurface only, no nested gprims. | foundations/packages |
-| 157 | Level of detail (UsdLod), new in 26.x | LODRootAPI marks a prim whose children are alternative representations; heuristic prims (distance, screen size) per domain (imaging, physics, audio) tell a renderer which to show; LODOverrideAPI forces a choice. | stage/meaning |
+| 147 | Render settings | RenderSettings say which camera renders, at what resolution and aspect, and how the picture fits the camera's aperture. | cameras/render |
+| 148 | Render passes | A RenderPass renders a variant of the settings, for example with a collection of prims pruned out. | cameras/render |
+| 149 | Spatial audio, asset previews and authorship (UsdMedia) | SpatialAudio places a sound in the scene (spatial or ambient) with playback timing; AssetPreviewsAPI stores thumbnails in assetInfo; AuthorshipAPI (new in 26.11) records who authored what. | animation/characters |
+| 150 | Volume fields | A Volume names its fields (density, emission) through field:<name> relationships to OpenVDBAsset prims, each a file and a grid name. | geometry/volumes |
+| 151 | Field sequences | A field's filePath can be time-sampled, so a volume plays a sequence of files. | geometry/volumes |
+| 152 | usdz for AR: anchoring, preliminary schemas and the web/AR-compliant profile | Apple's Preliminary_ schemas (AnchoringAPI, physics, behaviors, text) ride along as API schemas USD doesn't know, and usdchecker --arkit / usdzip --arkitAsset enforce a restricted profile: self-contained package, allowed file types, UsdPreviewSurface only, no nested gprims. | foundations/packages |
 
 ### Not in the museum yet
 
-21 features: startTimeCode and endTimeCode; Layer documentation, comment and customLayerData; Default resolver, search paths and resolver contexts; Session layer; Edit targets; Layer muting; Saving and exporting layers; Flattening a stage; Flattening a layer stack; Layer identity, anonymous layers and reload; Population masks; Namespace editing (move, rename, delete composed prims); Dynamic payloads (file format arguments from prim metadata); Asset info (assetInfo); resetXformStack (ignore parent transforms); Prim child ordering; NURBS curves; Focus distance and f-stop; Geometry and volume lights (MeshLightAPI, VolumeLightAPI, materialSyncMode); Light linking, shadow linking, light filters and filter linking; Particle fields.
+26 features: startTimeCode and endTimeCode; Layer documentation, comment and customLayerData; Default resolver, search paths and resolver contexts; Session layer; Edit targets; Layer muting; Saving and exporting layers; Flattening a stage; Flattening a layer stack; Layer identity, anonymous layers and reload; Population masks; Namespace editing (move, rename, delete composed prims); Dynamic payloads (file format arguments from prim metadata); Asset info (assetInfo); resetXformStack (ignore parent transforms); Prim child ordering; NURBS curves; Focus distance and f-stop; Geometry and volume lights (MeshLightAPI, VolumeLightAPI, materialSyncMode); Light linking, shadow linking, light filters and filter linking; Mass and centre of mass; Joints, drives and articulations; Joint limits; Particle fields; Semantic labels (UsdSemantics); Level of detail (UsdLod), new in 26.x.
 
-Some of these need another renderer: usdview's Storm can't draw them.
+Some of these need another renderer, a physics engine or a pipeline step: usdview can't show them.
 
 - **Light linking, shadow linking, light filters and filter linking**: Storm lights every prim, linked or not. Embree's delegate also ignores light linking; RenderMan (hdPrman) supports light and shadow linking.
 - **Geometry and volume lights (MeshLightAPI, VolumeLightAPI, materialSyncMode)**: Storm and Embree emit no light from a mesh or volume; RenderMan (hdPrman) has mesh lights.
 - **NURBS curves**: Storm draws straight lines between the control points, not the curve; a renderer that takes Hydra's nurbsCurves prims could draw the true curve (untested).
 - **Particle fields**: Storm draws nothing for a particle field (UsdVol's adapter publishes it for renderers that support Gaussian splats; untested in RenderMan).
 - **Focus distance and f-stop**: Storm and Embree draw no depth of field: every distance is equally sharp. RenderMan (hdPrman) and Karma blur from fStop and focusDistance (untested here).
+- **Level of detail (UsdLod), new in 26.x**: Storm draws every level of detail item; picking one by distance is left to a pipeline or a renderer that reads UsdLod (none tested here).
+- **Semantic labels (UsdSemantics)**: No viewer draws semantic labels; they are data for tools (search, training data, segmentation passes) that read UsdSemantics.
+- **Mass and centre of mass**: A viewer doesn't simulate: mass and centre of mass change motion only in a physics engine (Omniverse PhysX, Houdini, Isaac Sim).
+- **Joints, drives and articulations**: Joints, drives and articulations constrain motion only in a physics engine.
+- **Joint limits**: Joint limits stop motion only in a physics engine; the museum plays a baked swing.
 
 <!-- features: end -->
 
