@@ -353,7 +353,9 @@ camera, frame range and light). In the whole museum the same prims sit under `/m
 ```
 
 Paths are relative and stay inside the asset, so any asset folder still opens when copied
-anywhere. Heavy data lives in `.usdc` (a layer over about 1 MB of text keeps its prims and moves
+anywhere. Each entry also carries `extentsHint`, the asset's bounds over its whole frame range, beside
+its payload: a viewer knows where an asset is before loading it, and can load only what is near the
+camera (the browser viewer at andrew.beer/s/usdview does). Heavy data lives in `.usdc` (a layer over about 1 MB of text keeps its prims and moves
 the values to `<name>_data.usdc`); everything else is `.usda`.
 
 **Forgeries.** A forgery is a planted mistake: what a viewer with one specific bug would show.
