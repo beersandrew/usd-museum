@@ -62,6 +62,42 @@ def Xform "Exhibit" (
                 token outputs:surface
             }
         }
+
+        def Material "Sign_Crowd"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Sign_Crowd/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Sign_Crowd/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Sign_Crowd/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/sign_exhibit_placards_sign_crowd.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Sign_Crowd/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
     }
 
     def Xform "Audience" (
@@ -85,44 +121,8 @@ def Xform "Exhibit" (
         uniform token subdivisionScheme = "none"
     }
 
-    def "Placards"
+    def Xform "Placards"
     {
-        def Material "Sign_Crowd_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Placards/Sign_Crowd_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Sign_Crowd_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Sign_Crowd_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/sign_exhibit_placards_sign_crowd.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Sign_Crowd_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Sign_Crowd" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -131,7 +131,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.85, 2.78, -2.32), (-0.15, 3.22, -2.32)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Sign_Crowd_Mat>
+            rel material:binding = </Exhibit/Looks/Sign_Crowd>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )

@@ -140,32 +140,17 @@ def Xform "Exhibit" (
                 token outputs:surface
             }
         }
-    }
 
-    def Mesh "Board" (
-        prepend apiSchemas = ["MaterialBindingAPI"]
-    )
-    {
-        float3[] extent = [(-2.3, 0, -1.55), (2.3, 2.15, -1.47)]
-        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-        rel material:binding = </Exhibit/Looks/board>
-        point3f[] points = [(-2.3, 0, -1.47), (2.3, 0, -1.47), (2.3, 2.15, -1.47), (-2.3, 2.15, -1.47), (2.3, 0, -1.55), (-2.3, 0, -1.55), (-2.3, 2.15, -1.55), (2.3, 2.15, -1.55), (-2.3, 2.15, -1.47), (2.3, 2.15, -1.47), (2.3, 2.15, -1.55), (-2.3, 2.15, -1.55), (-2.3, 0, -1.55), (2.3, 0, -1.55), (2.3, 0, -1.47), (-2.3, 0, -1.47), (2.3, 0, -1.47), (2.3, 0, -1.55), (2.3, 2.15, -1.55), (2.3, 2.15, -1.47), (-2.3, 0, -1.55), (-2.3, 0, -1.47), (-2.3, 2.15, -1.47), (-2.3, 2.15, -1.55)]
-        uniform token subdivisionScheme = "none"
-    }
-
-    def "Placards"
-    {
-        def Material "Sign_Order_Mat"
+        def Material "Sign_Order"
         {
-            token outputs:surface.connect = </Exhibit/Placards/Sign_Order_Mat/Surface.outputs:surface>
+            token outputs:surface.connect = </Exhibit/Looks/Sign_Order/Surface.outputs:surface>
 
             def Shader "Surface"
             {
                 uniform token info:id = "UsdPreviewSurface"
                 color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Sign_Order_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Sign_Order_Mat/Tex.outputs:a>
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Sign_Order/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Sign_Order/Tex.outputs:a>
                 float inputs:opacityThreshold = 0.5
                 float inputs:roughness = 1
                 color3f inputs:specularColor = (0, 0, 0)
@@ -186,12 +171,315 @@ def Xform "Exhibit" (
                 asset inputs:file = @./textures/sign_exhibit_placards_sign_order.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Sign_Order_Mat/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Sign_Order/St.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
             }
         }
 
+        def Material "Pedestals_Numbers_Label"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Pedestals_Numbers_Label/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Pedestals_Numbers_Label/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Pedestals_Numbers_Label/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pedestals_Numbers_Label.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Numbers_Label/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Pedestals_Numbers_Sub"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Pedestals_Numbers_Sub/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Pedestals_Numbers_Sub/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Pedestals_Numbers_Sub/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pedestals_Numbers_Sub.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Numbers_Sub/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Pedestals_Case_Label"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Pedestals_Case_Label/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Pedestals_Case_Label/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Pedestals_Case_Label/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pedestals_Case_Label.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Case_Label/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Pedestals_Case_Sub"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Pedestals_Case_Sub/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Pedestals_Case_Sub/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Pedestals_Case_Sub/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pedestals_Case_Sub.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Case_Sub/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Pedestals_Reorder_Label"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Pedestals_Reorder_Label/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Pedestals_Reorder_Label/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Pedestals_Reorder_Label/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pedestals_Reorder_Label.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Reorder_Label/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Pedestals_Reorder_Sub"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Pedestals_Reorder_Sub/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Pedestals_Reorder_Sub/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Pedestals_Reorder_Sub/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pedestals_Reorder_Sub.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Reorder_Sub/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Pedestals_Strongest_Label"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Pedestals_Strongest_Label/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Pedestals_Strongest_Label/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Pedestals_Strongest_Label/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pedestals_Strongest_Label.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Strongest_Label/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Pedestals_Strongest_Sub"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Pedestals_Strongest_Sub/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Pedestals_Strongest_Sub/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Pedestals_Strongest_Sub/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pedestals_Strongest_Sub.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Strongest_Sub/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+    }
+
+    def Mesh "Board" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(-2.3, 0, -1.55), (2.3, 2.15, -1.47)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Exhibit/Looks/board>
+        point3f[] points = [(-2.3, 0, -1.47), (2.3, 0, -1.47), (2.3, 2.15, -1.47), (-2.3, 2.15, -1.47), (2.3, 0, -1.55), (-2.3, 0, -1.55), (-2.3, 2.15, -1.55), (2.3, 2.15, -1.55), (-2.3, 2.15, -1.47), (2.3, 2.15, -1.47), (2.3, 2.15, -1.55), (-2.3, 2.15, -1.55), (-2.3, 0, -1.55), (2.3, 0, -1.55), (2.3, 0, -1.47), (-2.3, 0, -1.47), (2.3, 0, -1.47), (2.3, 0, -1.55), (2.3, 2.15, -1.55), (2.3, 2.15, -1.47), (-2.3, 0, -1.55), (-2.3, 0, -1.47), (-2.3, 2.15, -1.47), (-2.3, 2.15, -1.55)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Xform "Placards"
+    {
         def Mesh "Sign_Order" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -200,7 +488,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.07, 1.59, -1.458), (2.07, 2.03, -1.458)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Sign_Order_Mat>
+            rel material:binding = </Exhibit/Looks/Sign_Order>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -227,7 +515,7 @@ def Xform "Exhibit" (
 
     def Xform "Pieces"
     {
-        def "Looks"
+        def Xform "Looks"
         {
             def Material "data_a"
             {
@@ -407,9 +695,9 @@ def Xform "Exhibit" (
         }
     }
 
-    def "Pedestals"
+    def Xform "Pedestals"
     {
-        def "Numbers"
+        def Xform "Numbers"
         {
             def Mesh "Pedestal" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -423,42 +711,6 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Material "Label_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Pedestals/Numbers/Label_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Pedestals/Numbers/Label_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Pedestals/Numbers/Label_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Pedestals_Numbers_Label.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Pedestals/Numbers/Label_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Label" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -467,7 +719,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(-1.8382131, 0.30551282, -0.334), (-1.461787, 0.41448718, -0.334)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Pedestals/Numbers/Label_Mat>
+                rel material:binding = </Exhibit/Looks/Pedestals_Numbers_Label>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -479,42 +731,6 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Material "Sub_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Pedestals/Numbers/Sub_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Pedestals/Numbers/Sub_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Pedestals/Numbers/Sub_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Pedestals_Numbers_Sub.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Pedestals/Numbers/Sub_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Sub" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -523,7 +739,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(-1.9773104, 0.22294256, -0.334), (-1.3226895, 0.29473743, -0.334)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Pedestals/Numbers/Sub_Mat>
+                rel material:binding = </Exhibit/Looks/Pedestals_Numbers_Sub>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -548,7 +764,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "Case"
+        def Xform "Case"
         {
             def Mesh "Pedestal" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -562,42 +778,6 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Material "Label_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Pedestals/Case/Label_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Pedestals/Case/Label_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Pedestals/Case/Label_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Pedestals_Case_Label.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Pedestals/Case/Label_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Label" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -606,7 +786,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(-0.8282762, 0.29850033, -0.334), (-0.27172375, 0.40747467, -0.334)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Pedestals/Case/Label_Mat>
+                rel material:binding = </Exhibit/Looks/Pedestals_Case_Label>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -618,42 +798,6 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Material "Sub_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Pedestals/Case/Sub_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Pedestals/Case/Sub_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Pedestals/Case/Sub_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Pedestals_Case_Sub.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Pedestals/Case/Sub_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Sub" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -662,7 +806,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(-0.7300833, 0.22322257, -0.334), (-0.3699167, 0.29501742, -0.334)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Pedestals/Case/Sub_Mat>
+                rel material:binding = </Exhibit/Looks/Pedestals_Case_Sub>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -687,7 +831,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "Reorder"
+        def Xform "Reorder"
         {
             def Mesh "Pedestal" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -701,42 +845,6 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Material "Label_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Pedestals/Reorder/Label_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Pedestals/Reorder/Label_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Pedestals/Reorder/Label_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Pedestals_Reorder_Label.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Pedestals/Reorder/Label_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Label" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -745,7 +853,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(0.26123884, 0.30678782, -0.334), (0.83876115, 0.4157622, -0.334)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Pedestals/Reorder/Label_Mat>
+                rel material:binding = </Exhibit/Looks/Pedestals_Reorder_Label>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -757,42 +865,6 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Material "Sub_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Pedestals/Reorder/Sub_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Pedestals/Reorder/Sub_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Pedestals/Reorder/Sub_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Pedestals_Reorder_Sub.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Pedestals/Reorder/Sub_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Sub" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -801,7 +873,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(0.37394756, 0.22322257, -0.334), (0.72605246, 0.29501742, -0.334)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Pedestals/Reorder/Sub_Mat>
+                rel material:binding = </Exhibit/Looks/Pedestals_Reorder_Sub>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -826,7 +898,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "Strongest"
+        def Xform "Strongest"
         {
             def Mesh "Pedestal" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -840,42 +912,6 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Material "Label_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Pedestals/Strongest/Label_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Pedestals/Strongest/Label_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Pedestals/Strongest/Label_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Pedestals_Strongest_Label.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Pedestals/Strongest/Label_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Label" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -884,7 +920,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(1.3520839, 0.30678782, -0.334), (1.947916, 0.4157622, -0.334)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Pedestals/Strongest/Label_Mat>
+                rel material:binding = </Exhibit/Looks/Pedestals_Strongest_Label>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -896,42 +932,6 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Material "Sub_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Pedestals/Strongest/Sub_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Pedestals/Strongest/Sub_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Pedestals/Strongest/Sub_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Pedestals_Strongest_Sub.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Pedestals/Strongest/Sub_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Sub" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -940,7 +940,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(1.3296297, 0.21734257, -0.334), (1.9703704, 0.28913742, -0.334)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Pedestals/Strongest/Sub_Mat>
+                rel material:binding = </Exhibit/Looks/Pedestals_Strongest_Sub>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )

@@ -20,7 +20,9 @@ def Xform "Exhibit" (
     {
     }
 
-    def "Stands"
+    def Xform "Stands" (
+        kind = "group"
+    )
     {
         def Xform "Offsets" (
             prepend references = @./stands/offsets.usda@
@@ -28,6 +30,91 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-3.295, 0, -0.4, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Pieces" (
+                kind = "group"
+            )
+            {
+                over "Ref" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Scale" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Nested" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Subref" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Zero" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+            }
         }
 
         def Xform "Rates" (
@@ -36,6 +123,123 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.4749999999999994, 0, -0.4, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Pieces" (
+                kind = "group"
+            )
+            {
+                over "Fps24" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Fps30" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Fps60" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Sub48" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Sub12" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Twicea" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Twiceb" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+            }
         }
     }
 }

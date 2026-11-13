@@ -20,7 +20,9 @@ def Xform "Exhibit" (
     {
     }
 
-    def "Stands"
+    def Xform "Stands" (
+        kind = "group"
+    )
     {
         def Xform "Which" (
             prepend references = @./stands/which.usda@
@@ -28,6 +30,91 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-3.295, 0, -0.4, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Pieces" (
+                kind = "group"
+            )
+            {
+                over "Active" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Times" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Loop" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Reversed" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Hold" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+            }
         }
 
         def Xform "Strength" (
@@ -36,6 +123,91 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.4749999999999994, 0, -0.4, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Pieces" (
+                kind = "group"
+            )
+            {
+                over "Local" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Overref" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Manifest" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Sets" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Flip" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+            }
         }
     }
 }

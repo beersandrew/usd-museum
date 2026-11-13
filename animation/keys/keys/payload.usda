@@ -20,7 +20,9 @@ def Xform "Exhibit" (
     {
     }
 
-    def "Stands"
+    def Xform "Stands" (
+        kind = "group"
+    )
     {
         def Xform "Samples" (
             prepend references = @./stands/samples.usda@
@@ -28,6 +30,91 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-5.68, 0, -0.4, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Pieces" (
+                kind = "group"
+            )
+            {
+                over "Linear" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Uniform" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Ends" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "OnKey" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Still" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+            }
         }
 
         def Xform "Layers" (
@@ -36,6 +123,59 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.9100000000000004, 0, -0.4, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Pieces" (
+                kind = "group"
+            )
+            {
+                over "Strongest" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Declared" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Replace" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+            }
         }
 
         def Xform "Types" (
@@ -44,6 +184,27 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (3.8599999999999994, 0, -0.4, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Pieces" (
+                kind = "group"
+            )
+            {
+                over "Token" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+            }
         }
     }
 }

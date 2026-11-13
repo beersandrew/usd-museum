@@ -215,32 +215,17 @@ def Xform "Exhibit" (
                 token outputs:surface
             }
         }
-    }
 
-    def Mesh "Board" (
-        prepend apiSchemas = ["MaterialBindingAPI"]
-    )
-    {
-        float3[] extent = [(-2.95, 0, -2.15), (2.95, 2.65, -2.07)]
-        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-        rel material:binding = </Exhibit/Looks/board>
-        point3f[] points = [(-2.95, 0, -2.07), (2.95, 0, -2.07), (2.95, 2.65, -2.07), (-2.95, 2.65, -2.07), (2.95, 0, -2.15), (-2.95, 0, -2.15), (-2.95, 2.65, -2.15), (2.95, 2.65, -2.15), (-2.95, 2.65, -2.07), (2.95, 2.65, -2.07), (2.95, 2.65, -2.15), (-2.95, 2.65, -2.15), (-2.95, 0, -2.15), (2.95, 0, -2.15), (2.95, 0, -2.07), (-2.95, 0, -2.07), (2.95, 0, -2.07), (2.95, 0, -2.15), (2.95, 2.65, -2.15), (2.95, 2.65, -2.07), (-2.95, 0, -2.15), (-2.95, 0, -2.07), (-2.95, 2.65, -2.07), (-2.95, 2.65, -2.15)]
-        uniform token subdivisionScheme = "none"
-    }
-
-    def "Placards"
-    {
-        def Material "Sign_Lenses_Mat"
+        def Material "Sign_Lenses"
         {
-            token outputs:surface.connect = </Exhibit/Placards/Sign_Lenses_Mat/Surface.outputs:surface>
+            token outputs:surface.connect = </Exhibit/Looks/Sign_Lenses/Surface.outputs:surface>
 
             def Shader "Surface"
             {
                 uniform token info:id = "UsdPreviewSurface"
                 color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Sign_Lenses_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Sign_Lenses_Mat/Tex.outputs:a>
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Sign_Lenses/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Sign_Lenses/Tex.outputs:a>
                 float inputs:opacityThreshold = 0.5
                 float inputs:roughness = 1
                 color3f inputs:specularColor = (0, 0, 0)
@@ -261,12 +246,607 @@ def Xform "Exhibit" (
                 asset inputs:file = @./textures/sign_exhibit_placards_sign_lenses.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Sign_Lenses_Mat/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Sign_Lenses/St.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
             }
         }
 
+        def Material "Sign_Ortho"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Sign_Ortho/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Sign_Ortho/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Sign_Ortho/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/sign_exhibit_placards_sign_ortho.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Sign_Ortho/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "L18_Subject_Band"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L18_Subject_Band/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor = (0.7758222, 0.2541521, 0.013702083)
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "L18_Subject_Red"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L18_Subject_Red/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor = (0.63075715, 0.000607054, 0.010960094)
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "L18_Subject_Sign"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L18_Subject_Sign/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/L18_Subject_Sign/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/L18_Subject_Sign/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pieces_L18_Subject_Sign.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/L18_Subject_Sign/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "L18_Prop_Monitor_Picture"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L18_Prop_Monitor_Picture/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/L18_Prop_Monitor_Picture/Tex.outputs:rgb>
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/screen_L18.png@
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/L18_Prop_Monitor_Picture/St.outputs:result>
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "L18_Prop_Monitor_Label"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L18_Prop_Monitor_Label/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/L18_Prop_Monitor_Label/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/L18_Prop_Monitor_Label/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pieces_L18_Prop_Monitor_Label.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/L18_Prop_Monitor_Label/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "L50_Subject_Band"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L50_Subject_Band/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor = (0.02842604, 0.21223076, 0.63075715)
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "L50_Subject_Red"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L50_Subject_Red/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor = (0.63075715, 0.000607054, 0.010960094)
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "L50_Subject_Sign"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L50_Subject_Sign/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/L50_Subject_Sign/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/L50_Subject_Sign/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pieces_L50_Subject_Sign.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/L50_Subject_Sign/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "L50_Prop_Monitor_Picture"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L50_Prop_Monitor_Picture/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/L50_Prop_Monitor_Picture/Tex.outputs:rgb>
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/screen_L50.png@
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/L50_Prop_Monitor_Picture/St.outputs:result>
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "L50_Prop_Monitor_Label"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L50_Prop_Monitor_Label/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/L50_Prop_Monitor_Label/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/L50_Prop_Monitor_Label/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pieces_L50_Prop_Monitor_Label.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/L50_Prop_Monitor_Label/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "L135_Subject_Band"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L135_Subject_Band/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor = (0.024157632, 0.462077, 0.58407843)
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "L135_Subject_Red"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L135_Subject_Red/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor = (0.63075715, 0.000607054, 0.010960094)
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "L135_Subject_Sign"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L135_Subject_Sign/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/L135_Subject_Sign/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/L135_Subject_Sign/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pieces_L135_Subject_Sign.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/L135_Subject_Sign/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "L135_Prop_Monitor_Picture"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L135_Prop_Monitor_Picture/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/L135_Prop_Monitor_Picture/Tex.outputs:rgb>
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/screen_L135.png@
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/L135_Prop_Monitor_Picture/St.outputs:result>
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "L135_Prop_Monitor_Label"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/L135_Prop_Monitor_Label/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/L135_Prop_Monitor_Label/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/L135_Prop_Monitor_Label/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pieces_L135_Prop_Monitor_Label.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/L135_Prop_Monitor_Label/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Ortho_Subject_Band"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Ortho_Subject_Band/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor = (0.8879231, 0.55201143, 0.0047769533)
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "Ortho_Subject_Red"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Ortho_Subject_Red/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor = (0.63075715, 0.000607054, 0.010960094)
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+        }
+
+        def Material "Ortho_Subject_Sign"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Ortho_Subject_Sign/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Ortho_Subject_Sign/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Ortho_Subject_Sign/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pieces_Ortho_Subject_Sign.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Ortho_Subject_Sign/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Ortho_Prop_Monitor_Picture"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Ortho_Prop_Monitor_Picture/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Ortho_Prop_Monitor_Picture/Tex.outputs:rgb>
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/screen_Ortho.png@
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Ortho_Prop_Monitor_Picture/St.outputs:result>
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Ortho_Prop_Monitor_Label"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Ortho_Prop_Monitor_Label/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Ortho_Prop_Monitor_Label/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Ortho_Prop_Monitor_Label/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Pieces_Ortho_Prop_Monitor_Label.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Ortho_Prop_Monitor_Label/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+    }
+
+    def Mesh "Board" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(-2.95, 0, -2.15), (2.95, 2.65, -2.07)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Exhibit/Looks/board>
+        point3f[] points = [(-2.95, 0, -2.07), (2.95, 0, -2.07), (2.95, 2.65, -2.07), (-2.95, 2.65, -2.07), (2.95, 0, -2.15), (-2.95, 0, -2.15), (-2.95, 2.65, -2.15), (2.95, 2.65, -2.15), (-2.95, 2.65, -2.07), (2.95, 2.65, -2.07), (2.95, 2.65, -2.15), (-2.95, 2.65, -2.15), (-2.95, 0, -2.15), (2.95, 0, -2.15), (2.95, 0, -2.07), (-2.95, 0, -2.07), (2.95, 0, -2.07), (2.95, 0, -2.15), (2.95, 2.65, -2.15), (2.95, 2.65, -2.07), (-2.95, 0, -2.15), (-2.95, 0, -2.07), (-2.95, 2.65, -2.07), (-2.95, 2.65, -2.15)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Xform "Placards"
+    {
         def Mesh "Sign_Lenses" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -275,7 +855,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.8, 2.12, -2.06), (1.37, 2.56, -2.06)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Sign_Lenses_Mat>
+            rel material:binding = </Exhibit/Looks/Sign_Lenses>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -299,42 +879,6 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Material "Sign_Ortho_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Placards/Sign_Ortho_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Sign_Ortho_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Sign_Ortho_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/sign_exhibit_placards_sign_ortho.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Sign_Ortho_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Sign_Ortho" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -343,7 +887,7 @@ def Xform "Exhibit" (
             float3[] extent = [(1.53, 2.12, -2.06), (2.8, 2.56, -2.06)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Sign_Ortho_Mat>
+            rel material:binding = </Exhibit/Looks/Sign_Ortho>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -368,9 +912,13 @@ def Xform "Exhibit" (
         }
     }
 
-    def "Pieces"
+    def Xform "Pieces" (
+        kind = "group"
+    )
     {
-        def "L18"
+        def Xform "L18" (
+            kind = "group"
+        )
         {
             def Camera "Camera"
             {
@@ -383,41 +931,11 @@ def Xform "Exhibit" (
                 uniform token[] xformOpOrder = ["xformOp:translate"]
             }
 
-            def "Subject"
+            def Xform "Subject" (
+                kind = "group"
+            )
             {
-                def Material "BandMat"
-                {
-                    token outputs:surface.connect = </Exhibit/Pieces/L18/Subject/BandMat/Surface.outputs:surface>
-
-                    def Shader "Surface"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (0, 0, 0)
-                        color3f inputs:emissiveColor = (0.7758222, 0.2541521, 0.013702083)
-                        float inputs:roughness = 1
-                        color3f inputs:specularColor = (0, 0, 0)
-                        int inputs:useSpecularWorkflow = 1
-                        token outputs:surface
-                    }
-                }
-
-                def Material "RedMat"
-                {
-                    token outputs:surface.connect = </Exhibit/Pieces/L18/Subject/RedMat/Surface.outputs:surface>
-
-                    def Shader "Surface"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (0, 0, 0)
-                        color3f inputs:emissiveColor = (0.63075715, 0.000607054, 0.010960094)
-                        float inputs:roughness = 1
-                        color3f inputs:specularColor = (0, 0, 0)
-                        int inputs:useSpecularWorkflow = 1
-                        token outputs:surface
-                    }
-                }
-
-                def "Rim"
+                def Xform "Rim"
                 {
                     def Mesh "BandL" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -426,7 +944,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-2.325, 0.915625, -0.404), (-2.3115, 1.084375, -0.4)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L18/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/L18_Subject_Band>
                         point3f[] points = [(-2.325, 0.915625, -0.4), (-2.3115, 0.915625, -0.4), (-2.3115, 1.084375, -0.4), (-2.325, 1.084375, -0.4), (-2.3115, 0.915625, -0.404), (-2.325, 0.915625, -0.404), (-2.325, 1.084375, -0.404), (-2.3115, 1.084375, -0.404), (-2.325, 1.084375, -0.4), (-2.3115, 1.084375, -0.4), (-2.3115, 1.084375, -0.404), (-2.325, 1.084375, -0.404), (-2.325, 0.915625, -0.404), (-2.3115, 0.915625, -0.404), (-2.3115, 0.915625, -0.4), (-2.325, 0.915625, -0.4), (-2.3115, 0.915625, -0.4), (-2.3115, 0.915625, -0.404), (-2.3115, 1.084375, -0.404), (-2.3115, 1.084375, -0.4), (-2.325, 0.915625, -0.404), (-2.325, 0.915625, -0.4), (-2.325, 1.084375, -0.4), (-2.325, 1.084375, -0.404)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -438,7 +956,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-2.0385, 0.915625, -0.404), (-2.025, 1.084375, -0.4)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L18/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/L18_Subject_Band>
                         point3f[] points = [(-2.0385, 0.915625, -0.4), (-2.025, 0.915625, -0.4), (-2.025, 1.084375, -0.4), (-2.0385, 1.084375, -0.4), (-2.025, 0.915625, -0.404), (-2.0385, 0.915625, -0.404), (-2.0385, 1.084375, -0.404), (-2.025, 1.084375, -0.404), (-2.0385, 1.084375, -0.4), (-2.025, 1.084375, -0.4), (-2.025, 1.084375, -0.404), (-2.0385, 1.084375, -0.404), (-2.0385, 0.915625, -0.404), (-2.025, 0.915625, -0.404), (-2.025, 0.915625, -0.4), (-2.0385, 0.915625, -0.4), (-2.025, 0.915625, -0.4), (-2.025, 0.915625, -0.404), (-2.025, 1.084375, -0.404), (-2.025, 1.084375, -0.4), (-2.0385, 0.915625, -0.404), (-2.0385, 0.915625, -0.4), (-2.0385, 1.084375, -0.4), (-2.0385, 1.084375, -0.404)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -450,7 +968,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-2.3115, 0.915625, -0.404), (-2.0385, 0.929125, -0.4)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L18/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/L18_Subject_Band>
                         point3f[] points = [(-2.3115, 0.915625, -0.4), (-2.0385, 0.915625, -0.4), (-2.0385, 0.929125, -0.4), (-2.3115, 0.929125, -0.4), (-2.0385, 0.915625, -0.404), (-2.3115, 0.915625, -0.404), (-2.3115, 0.929125, -0.404), (-2.0385, 0.929125, -0.404), (-2.3115, 0.929125, -0.4), (-2.0385, 0.929125, -0.4), (-2.0385, 0.929125, -0.404), (-2.3115, 0.929125, -0.404), (-2.3115, 0.915625, -0.404), (-2.0385, 0.915625, -0.404), (-2.0385, 0.915625, -0.4), (-2.3115, 0.915625, -0.4), (-2.0385, 0.915625, -0.4), (-2.0385, 0.915625, -0.404), (-2.0385, 0.929125, -0.404), (-2.0385, 0.929125, -0.4), (-2.3115, 0.915625, -0.404), (-2.3115, 0.915625, -0.4), (-2.3115, 0.929125, -0.4), (-2.3115, 0.929125, -0.404)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -462,7 +980,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-2.3115, 1.070875, -0.404), (-2.0385, 1.084375, -0.4)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L18/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/L18_Subject_Band>
                         point3f[] points = [(-2.3115, 1.070875, -0.4), (-2.0385, 1.070875, -0.4), (-2.0385, 1.084375, -0.4), (-2.3115, 1.084375, -0.4), (-2.0385, 1.070875, -0.404), (-2.3115, 1.070875, -0.404), (-2.3115, 1.084375, -0.404), (-2.0385, 1.084375, -0.404), (-2.3115, 1.084375, -0.4), (-2.0385, 1.084375, -0.4), (-2.0385, 1.084375, -0.404), (-2.3115, 1.084375, -0.404), (-2.3115, 1.070875, -0.404), (-2.0385, 1.070875, -0.404), (-2.0385, 1.070875, -0.4), (-2.3115, 1.070875, -0.4), (-2.0385, 1.070875, -0.4), (-2.0385, 1.070875, -0.404), (-2.0385, 1.084375, -0.404), (-2.0385, 1.084375, -0.4), (-2.3115, 1.070875, -0.404), (-2.3115, 1.070875, -0.4), (-2.3115, 1.084375, -0.4), (-2.3115, 1.084375, -0.404)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -474,7 +992,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-2.355, 0.885625, -0.404), (-2.325, 1.114375, -0.4)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L18/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/L18_Subject_Red>
                         point3f[] points = [(-2.355, 0.885625, -0.4), (-2.325, 0.885625, -0.4), (-2.325, 1.114375, -0.4), (-2.355, 1.114375, -0.4), (-2.325, 0.885625, -0.404), (-2.355, 0.885625, -0.404), (-2.355, 1.114375, -0.404), (-2.325, 1.114375, -0.404), (-2.355, 1.114375, -0.4), (-2.325, 1.114375, -0.4), (-2.325, 1.114375, -0.404), (-2.355, 1.114375, -0.404), (-2.355, 0.885625, -0.404), (-2.325, 0.885625, -0.404), (-2.325, 0.885625, -0.4), (-2.355, 0.885625, -0.4), (-2.325, 0.885625, -0.4), (-2.325, 0.885625, -0.404), (-2.325, 1.114375, -0.404), (-2.325, 1.114375, -0.4), (-2.355, 0.885625, -0.404), (-2.355, 0.885625, -0.4), (-2.355, 1.114375, -0.4), (-2.355, 1.114375, -0.404)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -486,7 +1004,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-2.025, 0.885625, -0.404), (-1.995, 1.114375, -0.4)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L18/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/L18_Subject_Red>
                         point3f[] points = [(-2.025, 0.885625, -0.4), (-1.995, 0.885625, -0.4), (-1.995, 1.114375, -0.4), (-2.025, 1.114375, -0.4), (-1.995, 0.885625, -0.404), (-2.025, 0.885625, -0.404), (-2.025, 1.114375, -0.404), (-1.995, 1.114375, -0.404), (-2.025, 1.114375, -0.4), (-1.995, 1.114375, -0.4), (-1.995, 1.114375, -0.404), (-2.025, 1.114375, -0.404), (-2.025, 0.885625, -0.404), (-1.995, 0.885625, -0.404), (-1.995, 0.885625, -0.4), (-2.025, 0.885625, -0.4), (-1.995, 0.885625, -0.4), (-1.995, 0.885625, -0.404), (-1.995, 1.114375, -0.404), (-1.995, 1.114375, -0.4), (-2.025, 0.885625, -0.404), (-2.025, 0.885625, -0.4), (-2.025, 1.114375, -0.4), (-2.025, 1.114375, -0.404)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -498,7 +1016,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-2.325, 0.885625, -0.404), (-2.025, 0.915625, -0.4)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L18/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/L18_Subject_Red>
                         point3f[] points = [(-2.325, 0.885625, -0.4), (-2.025, 0.885625, -0.4), (-2.025, 0.915625, -0.4), (-2.325, 0.915625, -0.4), (-2.025, 0.885625, -0.404), (-2.325, 0.885625, -0.404), (-2.325, 0.915625, -0.404), (-2.025, 0.915625, -0.404), (-2.325, 0.915625, -0.4), (-2.025, 0.915625, -0.4), (-2.025, 0.915625, -0.404), (-2.325, 0.915625, -0.404), (-2.325, 0.885625, -0.404), (-2.025, 0.885625, -0.404), (-2.025, 0.885625, -0.4), (-2.325, 0.885625, -0.4), (-2.025, 0.885625, -0.4), (-2.025, 0.885625, -0.404), (-2.025, 0.915625, -0.404), (-2.025, 0.915625, -0.4), (-2.325, 0.885625, -0.404), (-2.325, 0.885625, -0.4), (-2.325, 0.915625, -0.4), (-2.325, 0.915625, -0.404)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -510,13 +1028,13 @@ def Xform "Exhibit" (
                         float3[] extent = [(-2.325, 1.084375, -0.404), (-2.025, 1.114375, -0.4)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L18/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/L18_Subject_Red>
                         point3f[] points = [(-2.325, 1.084375, -0.4), (-2.025, 1.084375, -0.4), (-2.025, 1.114375, -0.4), (-2.325, 1.114375, -0.4), (-2.025, 1.084375, -0.404), (-2.325, 1.084375, -0.404), (-2.325, 1.114375, -0.404), (-2.025, 1.114375, -0.404), (-2.325, 1.114375, -0.4), (-2.025, 1.114375, -0.4), (-2.025, 1.114375, -0.404), (-2.325, 1.114375, -0.404), (-2.325, 1.084375, -0.404), (-2.025, 1.084375, -0.404), (-2.025, 1.084375, -0.4), (-2.325, 1.084375, -0.4), (-2.025, 1.084375, -0.4), (-2.025, 1.084375, -0.404), (-2.025, 1.114375, -0.404), (-2.025, 1.114375, -0.4), (-2.325, 1.084375, -0.404), (-2.325, 1.084375, -0.4), (-2.325, 1.114375, -0.4), (-2.325, 1.114375, -0.404)]
                         uniform token subdivisionScheme = "none"
                     }
                 }
 
-                def "Face"
+                def Xform "Face"
                 {
                     def Mesh "L" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -627,7 +1145,7 @@ def Xform "Exhibit" (
                     uniform token subdivisionScheme = "none"
                 }
 
-                def "Posts"
+                def Xform "Posts"
                 {
                     def Mesh "L0" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -738,42 +1256,6 @@ def Xform "Exhibit" (
                     uniform token subdivisionScheme = "none"
                 }
 
-                def Material "Sign_Mat"
-                {
-                    token outputs:surface.connect = </Exhibit/Pieces/L18/Subject/Sign_Mat/Surface.outputs:surface>
-
-                    def Shader "Surface"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (0, 0, 0)
-                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/L18/Subject/Sign_Mat/Tex.outputs:rgb>
-                        float inputs:opacity.connect = </Exhibit/Pieces/L18/Subject/Sign_Mat/Tex.outputs:a>
-                        float inputs:opacityThreshold = 0.5
-                        float inputs:roughness = 1
-                        color3f inputs:specularColor = (0, 0, 0)
-                        int inputs:useSpecularWorkflow = 1
-                        token outputs:surface
-                    }
-
-                    def Shader "St"
-                    {
-                        uniform token info:id = "UsdPrimvarReader_float2"
-                        string inputs:varname = "st"
-                        float2 outputs:result
-                    }
-
-                    def Shader "Tex"
-                    {
-                        uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @./textures/Exhibit_Pieces_L18_Subject_Sign.png@
-                        float4 inputs:scale = (1, 1, 1, 1)
-                        token inputs:sourceColorSpace = "sRGB"
-                        float2 inputs:st.connect = </Exhibit/Pieces/L18/Subject/Sign_Mat/St.outputs:result>
-                        float outputs:a
-                        float3 outputs:rgb
-                    }
-                }
-
                 def Mesh "Sign" (
                     prepend apiSchemas = ["MaterialBindingAPI"]
                 )
@@ -782,7 +1264,7 @@ def Xform "Exhibit" (
                     float3[] extent = [(-2.2174094, 0.9348974, -0.407), (-2.1325905, 0.9631026, -0.407)]
                     int[] faceVertexCounts = [4]
                     int[] faceVertexIndices = [0, 1, 2, 3]
-                    rel material:binding = </Exhibit/Pieces/L18/Subject/Sign_Mat>
+                    rel material:binding = </Exhibit/Looks/L18_Subject_Sign>
                     normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                         interpolation = "vertex"
                     )
@@ -819,9 +1301,9 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def "Prop"
+            def Xform "Prop"
             {
-                def "Camera"
+                def Xform "Camera"
                 {
                     def Mesh "Body" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -896,7 +1378,7 @@ def Xform "Exhibit" (
                     }
                 }
 
-                def "Monitor"
+                def Xform "Monitor"
                 {
                     def Mesh "Bezel" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -910,38 +1392,6 @@ def Xform "Exhibit" (
                         uniform token subdivisionScheme = "none"
                     }
 
-                    def Material "PictureMat"
-                    {
-                        token outputs:surface.connect = </Exhibit/Pieces/L18/Prop/Monitor/PictureMat/Surface.outputs:surface>
-
-                        def Shader "Surface"
-                        {
-                            uniform token info:id = "UsdPreviewSurface"
-                            color3f inputs:diffuseColor = (0, 0, 0)
-                            color3f inputs:emissiveColor.connect = </Exhibit/Pieces/L18/Prop/Monitor/PictureMat/Tex.outputs:rgb>
-                            float inputs:roughness = 1
-                            color3f inputs:specularColor = (0, 0, 0)
-                            int inputs:useSpecularWorkflow = 1
-                            token outputs:surface
-                        }
-
-                        def Shader "St"
-                        {
-                            uniform token info:id = "UsdPrimvarReader_float2"
-                            string inputs:varname = "st"
-                            float2 outputs:result
-                        }
-
-                        def Shader "Tex"
-                        {
-                            uniform token info:id = "UsdUVTexture"
-                            asset inputs:file = @./textures/screen_L18.png@
-                            token inputs:sourceColorSpace = "sRGB"
-                            float2 inputs:st.connect = </Exhibit/Pieces/L18/Prop/Monitor/PictureMat/St.outputs:result>
-                            float3 outputs:rgb
-                        }
-                    }
-
                     def Mesh "Picture" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
                     )
@@ -950,7 +1400,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-2.575, 1.52, -1.944), (-1.775, 1.97, -1.944)]
                         int[] faceVertexCounts = [4]
                         int[] faceVertexIndices = [0, 1, 2, 3]
-                        rel material:binding = </Exhibit/Pieces/L18/Prop/Monitor/PictureMat>
+                        rel material:binding = </Exhibit/Looks/L18_Prop_Monitor_Picture>
                         normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                             interpolation = "vertex"
                         )
@@ -961,42 +1411,6 @@ def Xform "Exhibit" (
                         uniform token subdivisionScheme = "none"
                     }
 
-                    def Material "Label_Mat"
-                    {
-                        token outputs:surface.connect = </Exhibit/Pieces/L18/Prop/Monitor/Label_Mat/Surface.outputs:surface>
-
-                        def Shader "Surface"
-                        {
-                            uniform token info:id = "UsdPreviewSurface"
-                            color3f inputs:diffuseColor = (0, 0, 0)
-                            color3f inputs:emissiveColor.connect = </Exhibit/Pieces/L18/Prop/Monitor/Label_Mat/Tex.outputs:rgb>
-                            float inputs:opacity.connect = </Exhibit/Pieces/L18/Prop/Monitor/Label_Mat/Tex.outputs:a>
-                            float inputs:opacityThreshold = 0.5
-                            float inputs:roughness = 1
-                            color3f inputs:specularColor = (0, 0, 0)
-                            int inputs:useSpecularWorkflow = 1
-                            token outputs:surface
-                        }
-
-                        def Shader "St"
-                        {
-                            uniform token info:id = "UsdPrimvarReader_float2"
-                            string inputs:varname = "st"
-                            float2 outputs:result
-                        }
-
-                        def Shader "Tex"
-                        {
-                            uniform token info:id = "UsdUVTexture"
-                            asset inputs:file = @./textures/Exhibit_Pieces_L18_Prop_Monitor_Label.png@
-                            float4 inputs:scale = (1, 1, 1, 1)
-                            token inputs:sourceColorSpace = "sRGB"
-                            float2 inputs:st.connect = </Exhibit/Pieces/L18/Prop/Monitor/Label_Mat/St.outputs:result>
-                            float outputs:a
-                            float3 outputs:rgb
-                        }
-                    }
-
                     def Mesh "Label" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
                     )
@@ -1005,7 +1419,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-2.3099391, 1.4101282, -1.944), (-2.040061, 1.4998719, -1.944)]
                         int[] faceVertexCounts = [4]
                         int[] faceVertexIndices = [0, 1, 2, 3]
-                        rel material:binding = </Exhibit/Pieces/L18/Prop/Monitor/Label_Mat>
+                        rel material:binding = </Exhibit/Looks/L18_Prop_Monitor_Label>
                         normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                             interpolation = "vertex"
                         )
@@ -1020,7 +1434,9 @@ def Xform "Exhibit" (
             }
         }
 
-        def "L50"
+        def Xform "L50" (
+            kind = "group"
+        )
         {
             def Camera "Camera"
             {
@@ -1033,41 +1449,11 @@ def Xform "Exhibit" (
                 uniform token[] xformOpOrder = ["xformOp:translate"]
             }
 
-            def "Subject"
+            def Xform "Subject" (
+                kind = "group"
+            )
             {
-                def Material "BandMat"
-                {
-                    token outputs:surface.connect = </Exhibit/Pieces/L50/Subject/BandMat/Surface.outputs:surface>
-
-                    def Shader "Surface"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (0, 0, 0)
-                        color3f inputs:emissiveColor = (0.02842604, 0.21223076, 0.63075715)
-                        float inputs:roughness = 1
-                        color3f inputs:specularColor = (0, 0, 0)
-                        int inputs:useSpecularWorkflow = 1
-                        token outputs:surface
-                    }
-                }
-
-                def Material "RedMat"
-                {
-                    token outputs:surface.connect = </Exhibit/Pieces/L50/Subject/RedMat/Surface.outputs:surface>
-
-                    def Shader "Surface"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (0, 0, 0)
-                        color3f inputs:emissiveColor = (0.63075715, 0.000607054, 0.010960094)
-                        float inputs:roughness = 1
-                        color3f inputs:specularColor = (0, 0, 0)
-                        int inputs:useSpecularWorkflow = 1
-                        token outputs:surface
-                    }
-                }
-
-                def "Rim"
+                def Xform "Rim"
                 {
                     def Mesh "BandL" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -1076,7 +1462,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-0.875, 0.915625, -0.6706667), (-0.8615, 1.084375, -0.6666667)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L50/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/L50_Subject_Band>
                         point3f[] points = [(-0.875, 0.915625, -0.6666667), (-0.8615, 0.915625, -0.6666667), (-0.8615, 1.084375, -0.6666667), (-0.875, 1.084375, -0.6666667), (-0.8615, 0.915625, -0.6706667), (-0.875, 0.915625, -0.6706667), (-0.875, 1.084375, -0.6706667), (-0.8615, 1.084375, -0.6706667), (-0.875, 1.084375, -0.6666667), (-0.8615, 1.084375, -0.6666667), (-0.8615, 1.084375, -0.6706667), (-0.875, 1.084375, -0.6706667), (-0.875, 0.915625, -0.6706667), (-0.8615, 0.915625, -0.6706667), (-0.8615, 0.915625, -0.6666667), (-0.875, 0.915625, -0.6666667), (-0.8615, 0.915625, -0.6666667), (-0.8615, 0.915625, -0.6706667), (-0.8615, 1.084375, -0.6706667), (-0.8615, 1.084375, -0.6666667), (-0.875, 0.915625, -0.6706667), (-0.875, 0.915625, -0.6666667), (-0.875, 1.084375, -0.6666667), (-0.875, 1.084375, -0.6706667)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1088,7 +1474,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-0.5885, 0.915625, -0.6706667), (-0.575, 1.084375, -0.6666667)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L50/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/L50_Subject_Band>
                         point3f[] points = [(-0.5885, 0.915625, -0.6666667), (-0.575, 0.915625, -0.6666667), (-0.575, 1.084375, -0.6666667), (-0.5885, 1.084375, -0.6666667), (-0.575, 0.915625, -0.6706667), (-0.5885, 0.915625, -0.6706667), (-0.5885, 1.084375, -0.6706667), (-0.575, 1.084375, -0.6706667), (-0.5885, 1.084375, -0.6666667), (-0.575, 1.084375, -0.6666667), (-0.575, 1.084375, -0.6706667), (-0.5885, 1.084375, -0.6706667), (-0.5885, 0.915625, -0.6706667), (-0.575, 0.915625, -0.6706667), (-0.575, 0.915625, -0.6666667), (-0.5885, 0.915625, -0.6666667), (-0.575, 0.915625, -0.6666667), (-0.575, 0.915625, -0.6706667), (-0.575, 1.084375, -0.6706667), (-0.575, 1.084375, -0.6666667), (-0.5885, 0.915625, -0.6706667), (-0.5885, 0.915625, -0.6666667), (-0.5885, 1.084375, -0.6666667), (-0.5885, 1.084375, -0.6706667)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1100,7 +1486,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-0.8615, 0.915625, -0.6706667), (-0.5885, 0.929125, -0.6666667)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L50/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/L50_Subject_Band>
                         point3f[] points = [(-0.8615, 0.915625, -0.6666667), (-0.5885, 0.915625, -0.6666667), (-0.5885, 0.929125, -0.6666667), (-0.8615, 0.929125, -0.6666667), (-0.5885, 0.915625, -0.6706667), (-0.8615, 0.915625, -0.6706667), (-0.8615, 0.929125, -0.6706667), (-0.5885, 0.929125, -0.6706667), (-0.8615, 0.929125, -0.6666667), (-0.5885, 0.929125, -0.6666667), (-0.5885, 0.929125, -0.6706667), (-0.8615, 0.929125, -0.6706667), (-0.8615, 0.915625, -0.6706667), (-0.5885, 0.915625, -0.6706667), (-0.5885, 0.915625, -0.6666667), (-0.8615, 0.915625, -0.6666667), (-0.5885, 0.915625, -0.6666667), (-0.5885, 0.915625, -0.6706667), (-0.5885, 0.929125, -0.6706667), (-0.5885, 0.929125, -0.6666667), (-0.8615, 0.915625, -0.6706667), (-0.8615, 0.915625, -0.6666667), (-0.8615, 0.929125, -0.6666667), (-0.8615, 0.929125, -0.6706667)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1112,7 +1498,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-0.8615, 1.070875, -0.6706667), (-0.5885, 1.084375, -0.6666667)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L50/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/L50_Subject_Band>
                         point3f[] points = [(-0.8615, 1.070875, -0.6666667), (-0.5885, 1.070875, -0.6666667), (-0.5885, 1.084375, -0.6666667), (-0.8615, 1.084375, -0.6666667), (-0.5885, 1.070875, -0.6706667), (-0.8615, 1.070875, -0.6706667), (-0.8615, 1.084375, -0.6706667), (-0.5885, 1.084375, -0.6706667), (-0.8615, 1.084375, -0.6666667), (-0.5885, 1.084375, -0.6666667), (-0.5885, 1.084375, -0.6706667), (-0.8615, 1.084375, -0.6706667), (-0.8615, 1.070875, -0.6706667), (-0.5885, 1.070875, -0.6706667), (-0.5885, 1.070875, -0.6666667), (-0.8615, 1.070875, -0.6666667), (-0.5885, 1.070875, -0.6666667), (-0.5885, 1.070875, -0.6706667), (-0.5885, 1.084375, -0.6706667), (-0.5885, 1.084375, -0.6666667), (-0.8615, 1.070875, -0.6706667), (-0.8615, 1.070875, -0.6666667), (-0.8615, 1.084375, -0.6666667), (-0.8615, 1.084375, -0.6706667)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1124,7 +1510,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-0.905, 0.885625, -0.6706667), (-0.875, 1.114375, -0.6666667)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L50/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/L50_Subject_Red>
                         point3f[] points = [(-0.905, 0.885625, -0.6666667), (-0.875, 0.885625, -0.6666667), (-0.875, 1.114375, -0.6666667), (-0.905, 1.114375, -0.6666667), (-0.875, 0.885625, -0.6706667), (-0.905, 0.885625, -0.6706667), (-0.905, 1.114375, -0.6706667), (-0.875, 1.114375, -0.6706667), (-0.905, 1.114375, -0.6666667), (-0.875, 1.114375, -0.6666667), (-0.875, 1.114375, -0.6706667), (-0.905, 1.114375, -0.6706667), (-0.905, 0.885625, -0.6706667), (-0.875, 0.885625, -0.6706667), (-0.875, 0.885625, -0.6666667), (-0.905, 0.885625, -0.6666667), (-0.875, 0.885625, -0.6666667), (-0.875, 0.885625, -0.6706667), (-0.875, 1.114375, -0.6706667), (-0.875, 1.114375, -0.6666667), (-0.905, 0.885625, -0.6706667), (-0.905, 0.885625, -0.6666667), (-0.905, 1.114375, -0.6666667), (-0.905, 1.114375, -0.6706667)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1136,7 +1522,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-0.575, 0.885625, -0.6706667), (-0.545, 1.114375, -0.6666667)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L50/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/L50_Subject_Red>
                         point3f[] points = [(-0.575, 0.885625, -0.6666667), (-0.545, 0.885625, -0.6666667), (-0.545, 1.114375, -0.6666667), (-0.575, 1.114375, -0.6666667), (-0.545, 0.885625, -0.6706667), (-0.575, 0.885625, -0.6706667), (-0.575, 1.114375, -0.6706667), (-0.545, 1.114375, -0.6706667), (-0.575, 1.114375, -0.6666667), (-0.545, 1.114375, -0.6666667), (-0.545, 1.114375, -0.6706667), (-0.575, 1.114375, -0.6706667), (-0.575, 0.885625, -0.6706667), (-0.545, 0.885625, -0.6706667), (-0.545, 0.885625, -0.6666667), (-0.575, 0.885625, -0.6666667), (-0.545, 0.885625, -0.6666667), (-0.545, 0.885625, -0.6706667), (-0.545, 1.114375, -0.6706667), (-0.545, 1.114375, -0.6666667), (-0.575, 0.885625, -0.6706667), (-0.575, 0.885625, -0.6666667), (-0.575, 1.114375, -0.6666667), (-0.575, 1.114375, -0.6706667)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1148,7 +1534,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-0.875, 0.885625, -0.6706667), (-0.575, 0.915625, -0.6666667)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L50/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/L50_Subject_Red>
                         point3f[] points = [(-0.875, 0.885625, -0.6666667), (-0.575, 0.885625, -0.6666667), (-0.575, 0.915625, -0.6666667), (-0.875, 0.915625, -0.6666667), (-0.575, 0.885625, -0.6706667), (-0.875, 0.885625, -0.6706667), (-0.875, 0.915625, -0.6706667), (-0.575, 0.915625, -0.6706667), (-0.875, 0.915625, -0.6666667), (-0.575, 0.915625, -0.6666667), (-0.575, 0.915625, -0.6706667), (-0.875, 0.915625, -0.6706667), (-0.875, 0.885625, -0.6706667), (-0.575, 0.885625, -0.6706667), (-0.575, 0.885625, -0.6666667), (-0.875, 0.885625, -0.6666667), (-0.575, 0.885625, -0.6666667), (-0.575, 0.885625, -0.6706667), (-0.575, 0.915625, -0.6706667), (-0.575, 0.915625, -0.6666667), (-0.875, 0.885625, -0.6706667), (-0.875, 0.885625, -0.6666667), (-0.875, 0.915625, -0.6666667), (-0.875, 0.915625, -0.6706667)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1160,13 +1546,13 @@ def Xform "Exhibit" (
                         float3[] extent = [(-0.875, 1.084375, -0.6706667), (-0.575, 1.114375, -0.6666667)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L50/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/L50_Subject_Red>
                         point3f[] points = [(-0.875, 1.084375, -0.6666667), (-0.575, 1.084375, -0.6666667), (-0.575, 1.114375, -0.6666667), (-0.875, 1.114375, -0.6666667), (-0.575, 1.084375, -0.6706667), (-0.875, 1.084375, -0.6706667), (-0.875, 1.114375, -0.6706667), (-0.575, 1.114375, -0.6706667), (-0.875, 1.114375, -0.6666667), (-0.575, 1.114375, -0.6666667), (-0.575, 1.114375, -0.6706667), (-0.875, 1.114375, -0.6706667), (-0.875, 1.084375, -0.6706667), (-0.575, 1.084375, -0.6706667), (-0.575, 1.084375, -0.6666667), (-0.875, 1.084375, -0.6666667), (-0.575, 1.084375, -0.6666667), (-0.575, 1.084375, -0.6706667), (-0.575, 1.114375, -0.6706667), (-0.575, 1.114375, -0.6666667), (-0.875, 1.084375, -0.6706667), (-0.875, 1.084375, -0.6666667), (-0.875, 1.114375, -0.6666667), (-0.875, 1.114375, -0.6706667)]
                         uniform token subdivisionScheme = "none"
                     }
                 }
 
-                def "Face"
+                def Xform "Face"
                 {
                     def Mesh "L" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -1277,7 +1663,7 @@ def Xform "Exhibit" (
                     uniform token subdivisionScheme = "none"
                 }
 
-                def "Posts"
+                def Xform "Posts"
                 {
                     def Mesh "L0" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -1388,42 +1774,6 @@ def Xform "Exhibit" (
                     uniform token subdivisionScheme = "none"
                 }
 
-                def Material "Sign_Mat"
-                {
-                    token outputs:surface.connect = </Exhibit/Pieces/L50/Subject/Sign_Mat/Surface.outputs:surface>
-
-                    def Shader "Surface"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (0, 0, 0)
-                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/L50/Subject/Sign_Mat/Tex.outputs:rgb>
-                        float inputs:opacity.connect = </Exhibit/Pieces/L50/Subject/Sign_Mat/Tex.outputs:a>
-                        float inputs:opacityThreshold = 0.5
-                        float inputs:roughness = 1
-                        color3f inputs:specularColor = (0, 0, 0)
-                        int inputs:useSpecularWorkflow = 1
-                        token outputs:surface
-                    }
-
-                    def Shader "St"
-                    {
-                        uniform token info:id = "UsdPrimvarReader_float2"
-                        string inputs:varname = "st"
-                        float2 outputs:result
-                    }
-
-                    def Shader "Tex"
-                    {
-                        uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @./textures/Exhibit_Pieces_L50_Subject_Sign.png@
-                        float4 inputs:scale = (1, 1, 1, 1)
-                        token inputs:sourceColorSpace = "sRGB"
-                        float2 inputs:st.connect = </Exhibit/Pieces/L50/Subject/Sign_Mat/St.outputs:result>
-                        float outputs:a
-                        float3 outputs:rgb
-                    }
-                }
-
                 def Mesh "Sign" (
                     prepend apiSchemas = ["MaterialBindingAPI"]
                 )
@@ -1432,7 +1782,7 @@ def Xform "Exhibit" (
                     float3[] extent = [(-0.76740944, 0.9348974, -0.67366666), (-0.68259054, 0.9631026, -0.67366666)]
                     int[] faceVertexCounts = [4]
                     int[] faceVertexIndices = [0, 1, 2, 3]
-                    rel material:binding = </Exhibit/Pieces/L50/Subject/Sign_Mat>
+                    rel material:binding = </Exhibit/Looks/L50_Subject_Sign>
                     normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                         interpolation = "vertex"
                     )
@@ -1469,9 +1819,9 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def "Prop"
+            def Xform "Prop"
             {
-                def "Camera"
+                def Xform "Camera"
                 {
                     def Mesh "Body" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -1546,7 +1896,7 @@ def Xform "Exhibit" (
                     }
                 }
 
-                def "Monitor"
+                def Xform "Monitor"
                 {
                     def Mesh "Bezel" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -1560,38 +1910,6 @@ def Xform "Exhibit" (
                         uniform token subdivisionScheme = "none"
                     }
 
-                    def Material "PictureMat"
-                    {
-                        token outputs:surface.connect = </Exhibit/Pieces/L50/Prop/Monitor/PictureMat/Surface.outputs:surface>
-
-                        def Shader "Surface"
-                        {
-                            uniform token info:id = "UsdPreviewSurface"
-                            color3f inputs:diffuseColor = (0, 0, 0)
-                            color3f inputs:emissiveColor.connect = </Exhibit/Pieces/L50/Prop/Monitor/PictureMat/Tex.outputs:rgb>
-                            float inputs:roughness = 1
-                            color3f inputs:specularColor = (0, 0, 0)
-                            int inputs:useSpecularWorkflow = 1
-                            token outputs:surface
-                        }
-
-                        def Shader "St"
-                        {
-                            uniform token info:id = "UsdPrimvarReader_float2"
-                            string inputs:varname = "st"
-                            float2 outputs:result
-                        }
-
-                        def Shader "Tex"
-                        {
-                            uniform token info:id = "UsdUVTexture"
-                            asset inputs:file = @./textures/screen_L50.png@
-                            token inputs:sourceColorSpace = "sRGB"
-                            float2 inputs:st.connect = </Exhibit/Pieces/L50/Prop/Monitor/PictureMat/St.outputs:result>
-                            float3 outputs:rgb
-                        }
-                    }
-
                     def Mesh "Picture" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
                     )
@@ -1600,7 +1918,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-1.125, 1.52, -1.944), (-0.325, 1.97, -1.944)]
                         int[] faceVertexCounts = [4]
                         int[] faceVertexIndices = [0, 1, 2, 3]
-                        rel material:binding = </Exhibit/Pieces/L50/Prop/Monitor/PictureMat>
+                        rel material:binding = </Exhibit/Looks/L50_Prop_Monitor_Picture>
                         normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                             interpolation = "vertex"
                         )
@@ -1611,42 +1929,6 @@ def Xform "Exhibit" (
                         uniform token subdivisionScheme = "none"
                     }
 
-                    def Material "Label_Mat"
-                    {
-                        token outputs:surface.connect = </Exhibit/Pieces/L50/Prop/Monitor/Label_Mat/Surface.outputs:surface>
-
-                        def Shader "Surface"
-                        {
-                            uniform token info:id = "UsdPreviewSurface"
-                            color3f inputs:diffuseColor = (0, 0, 0)
-                            color3f inputs:emissiveColor.connect = </Exhibit/Pieces/L50/Prop/Monitor/Label_Mat/Tex.outputs:rgb>
-                            float inputs:opacity.connect = </Exhibit/Pieces/L50/Prop/Monitor/Label_Mat/Tex.outputs:a>
-                            float inputs:opacityThreshold = 0.5
-                            float inputs:roughness = 1
-                            color3f inputs:specularColor = (0, 0, 0)
-                            int inputs:useSpecularWorkflow = 1
-                            token outputs:surface
-                        }
-
-                        def Shader "St"
-                        {
-                            uniform token info:id = "UsdPrimvarReader_float2"
-                            string inputs:varname = "st"
-                            float2 outputs:result
-                        }
-
-                        def Shader "Tex"
-                        {
-                            uniform token info:id = "UsdUVTexture"
-                            asset inputs:file = @./textures/Exhibit_Pieces_L50_Prop_Monitor_Label.png@
-                            float4 inputs:scale = (1, 1, 1, 1)
-                            token inputs:sourceColorSpace = "sRGB"
-                            float2 inputs:st.connect = </Exhibit/Pieces/L50/Prop/Monitor/Label_Mat/St.outputs:result>
-                            float outputs:a
-                            float3 outputs:rgb
-                        }
-                    }
-
                     def Mesh "Label" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
                     )
@@ -1655,7 +1937,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(-0.8599391, 1.4101282, -1.944), (-0.5900609, 1.4998719, -1.944)]
                         int[] faceVertexCounts = [4]
                         int[] faceVertexIndices = [0, 1, 2, 3]
-                        rel material:binding = </Exhibit/Pieces/L50/Prop/Monitor/Label_Mat>
+                        rel material:binding = </Exhibit/Looks/L50_Prop_Monitor_Label>
                         normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                             interpolation = "vertex"
                         )
@@ -1670,7 +1952,9 @@ def Xform "Exhibit" (
             }
         }
 
-        def "L135"
+        def Xform "L135" (
+            kind = "group"
+        )
         {
             def Camera "Camera"
             {
@@ -1683,41 +1967,11 @@ def Xform "Exhibit" (
                 uniform token[] xformOpOrder = ["xformOp:translate"]
             }
 
-            def "Subject"
+            def Xform "Subject" (
+                kind = "group"
+            )
             {
-                def Material "BandMat"
-                {
-                    token outputs:surface.connect = </Exhibit/Pieces/L135/Subject/BandMat/Surface.outputs:surface>
-
-                    def Shader "Surface"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (0, 0, 0)
-                        color3f inputs:emissiveColor = (0.024157632, 0.462077, 0.58407843)
-                        float inputs:roughness = 1
-                        color3f inputs:specularColor = (0, 0, 0)
-                        int inputs:useSpecularWorkflow = 1
-                        token outputs:surface
-                    }
-                }
-
-                def Material "RedMat"
-                {
-                    token outputs:surface.connect = </Exhibit/Pieces/L135/Subject/RedMat/Surface.outputs:surface>
-
-                    def Shader "Surface"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (0, 0, 0)
-                        color3f inputs:emissiveColor = (0.63075715, 0.000607054, 0.010960094)
-                        float inputs:roughness = 1
-                        color3f inputs:specularColor = (0, 0, 0)
-                        int inputs:useSpecularWorkflow = 1
-                        token outputs:surface
-                    }
-                }
-
-                def "Rim"
+                def Xform "Rim"
                 {
                     def Mesh "BandL" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -1726,7 +1980,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(0.575, 0.915625, -1.379), (0.5885, 1.084375, -1.375)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L135/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/L135_Subject_Band>
                         point3f[] points = [(0.575, 0.915625, -1.375), (0.5885, 0.915625, -1.375), (0.5885, 1.084375, -1.375), (0.575, 1.084375, -1.375), (0.5885, 0.915625, -1.379), (0.575, 0.915625, -1.379), (0.575, 1.084375, -1.379), (0.5885, 1.084375, -1.379), (0.575, 1.084375, -1.375), (0.5885, 1.084375, -1.375), (0.5885, 1.084375, -1.379), (0.575, 1.084375, -1.379), (0.575, 0.915625, -1.379), (0.5885, 0.915625, -1.379), (0.5885, 0.915625, -1.375), (0.575, 0.915625, -1.375), (0.5885, 0.915625, -1.375), (0.5885, 0.915625, -1.379), (0.5885, 1.084375, -1.379), (0.5885, 1.084375, -1.375), (0.575, 0.915625, -1.379), (0.575, 0.915625, -1.375), (0.575, 1.084375, -1.375), (0.575, 1.084375, -1.379)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1738,7 +1992,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(0.8615, 0.915625, -1.379), (0.875, 1.084375, -1.375)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L135/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/L135_Subject_Band>
                         point3f[] points = [(0.8615, 0.915625, -1.375), (0.875, 0.915625, -1.375), (0.875, 1.084375, -1.375), (0.8615, 1.084375, -1.375), (0.875, 0.915625, -1.379), (0.8615, 0.915625, -1.379), (0.8615, 1.084375, -1.379), (0.875, 1.084375, -1.379), (0.8615, 1.084375, -1.375), (0.875, 1.084375, -1.375), (0.875, 1.084375, -1.379), (0.8615, 1.084375, -1.379), (0.8615, 0.915625, -1.379), (0.875, 0.915625, -1.379), (0.875, 0.915625, -1.375), (0.8615, 0.915625, -1.375), (0.875, 0.915625, -1.375), (0.875, 0.915625, -1.379), (0.875, 1.084375, -1.379), (0.875, 1.084375, -1.375), (0.8615, 0.915625, -1.379), (0.8615, 0.915625, -1.375), (0.8615, 1.084375, -1.375), (0.8615, 1.084375, -1.379)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1750,7 +2004,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(0.5885, 0.915625, -1.379), (0.8615, 0.929125, -1.375)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L135/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/L135_Subject_Band>
                         point3f[] points = [(0.5885, 0.915625, -1.375), (0.8615, 0.915625, -1.375), (0.8615, 0.929125, -1.375), (0.5885, 0.929125, -1.375), (0.8615, 0.915625, -1.379), (0.5885, 0.915625, -1.379), (0.5885, 0.929125, -1.379), (0.8615, 0.929125, -1.379), (0.5885, 0.929125, -1.375), (0.8615, 0.929125, -1.375), (0.8615, 0.929125, -1.379), (0.5885, 0.929125, -1.379), (0.5885, 0.915625, -1.379), (0.8615, 0.915625, -1.379), (0.8615, 0.915625, -1.375), (0.5885, 0.915625, -1.375), (0.8615, 0.915625, -1.375), (0.8615, 0.915625, -1.379), (0.8615, 0.929125, -1.379), (0.8615, 0.929125, -1.375), (0.5885, 0.915625, -1.379), (0.5885, 0.915625, -1.375), (0.5885, 0.929125, -1.375), (0.5885, 0.929125, -1.379)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1762,7 +2016,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(0.5885, 1.070875, -1.379), (0.8615, 1.084375, -1.375)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L135/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/L135_Subject_Band>
                         point3f[] points = [(0.5885, 1.070875, -1.375), (0.8615, 1.070875, -1.375), (0.8615, 1.084375, -1.375), (0.5885, 1.084375, -1.375), (0.8615, 1.070875, -1.379), (0.5885, 1.070875, -1.379), (0.5885, 1.084375, -1.379), (0.8615, 1.084375, -1.379), (0.5885, 1.084375, -1.375), (0.8615, 1.084375, -1.375), (0.8615, 1.084375, -1.379), (0.5885, 1.084375, -1.379), (0.5885, 1.070875, -1.379), (0.8615, 1.070875, -1.379), (0.8615, 1.070875, -1.375), (0.5885, 1.070875, -1.375), (0.8615, 1.070875, -1.375), (0.8615, 1.070875, -1.379), (0.8615, 1.084375, -1.379), (0.8615, 1.084375, -1.375), (0.5885, 1.070875, -1.379), (0.5885, 1.070875, -1.375), (0.5885, 1.084375, -1.375), (0.5885, 1.084375, -1.379)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1774,7 +2028,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(0.545, 0.885625, -1.379), (0.575, 1.114375, -1.375)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L135/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/L135_Subject_Red>
                         point3f[] points = [(0.545, 0.885625, -1.375), (0.575, 0.885625, -1.375), (0.575, 1.114375, -1.375), (0.545, 1.114375, -1.375), (0.575, 0.885625, -1.379), (0.545, 0.885625, -1.379), (0.545, 1.114375, -1.379), (0.575, 1.114375, -1.379), (0.545, 1.114375, -1.375), (0.575, 1.114375, -1.375), (0.575, 1.114375, -1.379), (0.545, 1.114375, -1.379), (0.545, 0.885625, -1.379), (0.575, 0.885625, -1.379), (0.575, 0.885625, -1.375), (0.545, 0.885625, -1.375), (0.575, 0.885625, -1.375), (0.575, 0.885625, -1.379), (0.575, 1.114375, -1.379), (0.575, 1.114375, -1.375), (0.545, 0.885625, -1.379), (0.545, 0.885625, -1.375), (0.545, 1.114375, -1.375), (0.545, 1.114375, -1.379)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1786,7 +2040,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(0.875, 0.885625, -1.379), (0.905, 1.114375, -1.375)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L135/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/L135_Subject_Red>
                         point3f[] points = [(0.875, 0.885625, -1.375), (0.905, 0.885625, -1.375), (0.905, 1.114375, -1.375), (0.875, 1.114375, -1.375), (0.905, 0.885625, -1.379), (0.875, 0.885625, -1.379), (0.875, 1.114375, -1.379), (0.905, 1.114375, -1.379), (0.875, 1.114375, -1.375), (0.905, 1.114375, -1.375), (0.905, 1.114375, -1.379), (0.875, 1.114375, -1.379), (0.875, 0.885625, -1.379), (0.905, 0.885625, -1.379), (0.905, 0.885625, -1.375), (0.875, 0.885625, -1.375), (0.905, 0.885625, -1.375), (0.905, 0.885625, -1.379), (0.905, 1.114375, -1.379), (0.905, 1.114375, -1.375), (0.875, 0.885625, -1.379), (0.875, 0.885625, -1.375), (0.875, 1.114375, -1.375), (0.875, 1.114375, -1.379)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1798,7 +2052,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(0.575, 0.885625, -1.379), (0.875, 0.915625, -1.375)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L135/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/L135_Subject_Red>
                         point3f[] points = [(0.575, 0.885625, -1.375), (0.875, 0.885625, -1.375), (0.875, 0.915625, -1.375), (0.575, 0.915625, -1.375), (0.875, 0.885625, -1.379), (0.575, 0.885625, -1.379), (0.575, 0.915625, -1.379), (0.875, 0.915625, -1.379), (0.575, 0.915625, -1.375), (0.875, 0.915625, -1.375), (0.875, 0.915625, -1.379), (0.575, 0.915625, -1.379), (0.575, 0.885625, -1.379), (0.875, 0.885625, -1.379), (0.875, 0.885625, -1.375), (0.575, 0.885625, -1.375), (0.875, 0.885625, -1.375), (0.875, 0.885625, -1.379), (0.875, 0.915625, -1.379), (0.875, 0.915625, -1.375), (0.575, 0.885625, -1.379), (0.575, 0.885625, -1.375), (0.575, 0.915625, -1.375), (0.575, 0.915625, -1.379)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -1810,13 +2064,13 @@ def Xform "Exhibit" (
                         float3[] extent = [(0.575, 1.084375, -1.379), (0.875, 1.114375, -1.375)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/L135/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/L135_Subject_Red>
                         point3f[] points = [(0.575, 1.084375, -1.375), (0.875, 1.084375, -1.375), (0.875, 1.114375, -1.375), (0.575, 1.114375, -1.375), (0.875, 1.084375, -1.379), (0.575, 1.084375, -1.379), (0.575, 1.114375, -1.379), (0.875, 1.114375, -1.379), (0.575, 1.114375, -1.375), (0.875, 1.114375, -1.375), (0.875, 1.114375, -1.379), (0.575, 1.114375, -1.379), (0.575, 1.084375, -1.379), (0.875, 1.084375, -1.379), (0.875, 1.084375, -1.375), (0.575, 1.084375, -1.375), (0.875, 1.084375, -1.375), (0.875, 1.084375, -1.379), (0.875, 1.114375, -1.379), (0.875, 1.114375, -1.375), (0.575, 1.084375, -1.379), (0.575, 1.084375, -1.375), (0.575, 1.114375, -1.375), (0.575, 1.114375, -1.379)]
                         uniform token subdivisionScheme = "none"
                     }
                 }
 
-                def "Face"
+                def Xform "Face"
                 {
                     def Mesh "L" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -1927,7 +2181,7 @@ def Xform "Exhibit" (
                     uniform token subdivisionScheme = "none"
                 }
 
-                def "Posts"
+                def Xform "Posts"
                 {
                     def Mesh "L0" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2038,42 +2292,6 @@ def Xform "Exhibit" (
                     uniform token subdivisionScheme = "none"
                 }
 
-                def Material "Sign_Mat"
-                {
-                    token outputs:surface.connect = </Exhibit/Pieces/L135/Subject/Sign_Mat/Surface.outputs:surface>
-
-                    def Shader "Surface"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (0, 0, 0)
-                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/L135/Subject/Sign_Mat/Tex.outputs:rgb>
-                        float inputs:opacity.connect = </Exhibit/Pieces/L135/Subject/Sign_Mat/Tex.outputs:a>
-                        float inputs:opacityThreshold = 0.5
-                        float inputs:roughness = 1
-                        color3f inputs:specularColor = (0, 0, 0)
-                        int inputs:useSpecularWorkflow = 1
-                        token outputs:surface
-                    }
-
-                    def Shader "St"
-                    {
-                        uniform token info:id = "UsdPrimvarReader_float2"
-                        string inputs:varname = "st"
-                        float2 outputs:result
-                    }
-
-                    def Shader "Tex"
-                    {
-                        uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @./textures/Exhibit_Pieces_L135_Subject_Sign.png@
-                        float4 inputs:scale = (1, 1, 1, 1)
-                        token inputs:sourceColorSpace = "sRGB"
-                        float2 inputs:st.connect = </Exhibit/Pieces/L135/Subject/Sign_Mat/St.outputs:result>
-                        float outputs:a
-                        float3 outputs:rgb
-                    }
-                }
-
                 def Mesh "Sign" (
                     prepend apiSchemas = ["MaterialBindingAPI"]
                 )
@@ -2082,7 +2300,7 @@ def Xform "Exhibit" (
                     float3[] extent = [(0.6748116, 0.9348974, -1.382), (0.77518845, 0.9631026, -1.382)]
                     int[] faceVertexCounts = [4]
                     int[] faceVertexIndices = [0, 1, 2, 3]
-                    rel material:binding = </Exhibit/Pieces/L135/Subject/Sign_Mat>
+                    rel material:binding = </Exhibit/Looks/L135_Subject_Sign>
                     normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                         interpolation = "vertex"
                     )
@@ -2119,9 +2337,9 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def "Prop"
+            def Xform "Prop"
             {
-                def "Camera"
+                def Xform "Camera"
                 {
                     def Mesh "Body" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2196,7 +2414,7 @@ def Xform "Exhibit" (
                     }
                 }
 
-                def "Monitor"
+                def Xform "Monitor"
                 {
                     def Mesh "Bezel" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2210,38 +2428,6 @@ def Xform "Exhibit" (
                         uniform token subdivisionScheme = "none"
                     }
 
-                    def Material "PictureMat"
-                    {
-                        token outputs:surface.connect = </Exhibit/Pieces/L135/Prop/Monitor/PictureMat/Surface.outputs:surface>
-
-                        def Shader "Surface"
-                        {
-                            uniform token info:id = "UsdPreviewSurface"
-                            color3f inputs:diffuseColor = (0, 0, 0)
-                            color3f inputs:emissiveColor.connect = </Exhibit/Pieces/L135/Prop/Monitor/PictureMat/Tex.outputs:rgb>
-                            float inputs:roughness = 1
-                            color3f inputs:specularColor = (0, 0, 0)
-                            int inputs:useSpecularWorkflow = 1
-                            token outputs:surface
-                        }
-
-                        def Shader "St"
-                        {
-                            uniform token info:id = "UsdPrimvarReader_float2"
-                            string inputs:varname = "st"
-                            float2 outputs:result
-                        }
-
-                        def Shader "Tex"
-                        {
-                            uniform token info:id = "UsdUVTexture"
-                            asset inputs:file = @./textures/screen_L135.png@
-                            token inputs:sourceColorSpace = "sRGB"
-                            float2 inputs:st.connect = </Exhibit/Pieces/L135/Prop/Monitor/PictureMat/St.outputs:result>
-                            float3 outputs:rgb
-                        }
-                    }
-
                     def Mesh "Picture" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
                     )
@@ -2250,7 +2436,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(0.325, 1.52, -1.944), (1.125, 1.97, -1.944)]
                         int[] faceVertexCounts = [4]
                         int[] faceVertexIndices = [0, 1, 2, 3]
-                        rel material:binding = </Exhibit/Pieces/L135/Prop/Monitor/PictureMat>
+                        rel material:binding = </Exhibit/Looks/L135_Prop_Monitor_Picture>
                         normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                             interpolation = "vertex"
                         )
@@ -2261,42 +2447,6 @@ def Xform "Exhibit" (
                         uniform token subdivisionScheme = "none"
                     }
 
-                    def Material "Label_Mat"
-                    {
-                        token outputs:surface.connect = </Exhibit/Pieces/L135/Prop/Monitor/Label_Mat/Surface.outputs:surface>
-
-                        def Shader "Surface"
-                        {
-                            uniform token info:id = "UsdPreviewSurface"
-                            color3f inputs:diffuseColor = (0, 0, 0)
-                            color3f inputs:emissiveColor.connect = </Exhibit/Pieces/L135/Prop/Monitor/Label_Mat/Tex.outputs:rgb>
-                            float inputs:opacity.connect = </Exhibit/Pieces/L135/Prop/Monitor/Label_Mat/Tex.outputs:a>
-                            float inputs:opacityThreshold = 0.5
-                            float inputs:roughness = 1
-                            color3f inputs:specularColor = (0, 0, 0)
-                            int inputs:useSpecularWorkflow = 1
-                            token outputs:surface
-                        }
-
-                        def Shader "St"
-                        {
-                            uniform token info:id = "UsdPrimvarReader_float2"
-                            string inputs:varname = "st"
-                            float2 outputs:result
-                        }
-
-                        def Shader "Tex"
-                        {
-                            uniform token info:id = "UsdUVTexture"
-                            asset inputs:file = @./textures/Exhibit_Pieces_L135_Prop_Monitor_Label.png@
-                            float4 inputs:scale = (1, 1, 1, 1)
-                            token inputs:sourceColorSpace = "sRGB"
-                            float2 inputs:st.connect = </Exhibit/Pieces/L135/Prop/Monitor/Label_Mat/St.outputs:result>
-                            float outputs:a
-                            float3 outputs:rgb
-                        }
-                    }
-
                     def Mesh "Label" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
                     )
@@ -2305,7 +2455,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(0.5653096, 1.4101282, -1.944), (0.8846904, 1.4998719, -1.944)]
                         int[] faceVertexCounts = [4]
                         int[] faceVertexIndices = [0, 1, 2, 3]
-                        rel material:binding = </Exhibit/Pieces/L135/Prop/Monitor/Label_Mat>
+                        rel material:binding = </Exhibit/Looks/L135_Prop_Monitor_Label>
                         normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                             interpolation = "vertex"
                         )
@@ -2320,7 +2470,9 @@ def Xform "Exhibit" (
             }
         }
 
-        def "Ortho"
+        def Xform "Ortho" (
+            kind = "group"
+        )
         {
             def Camera "Camera"
             {
@@ -2332,41 +2484,11 @@ def Xform "Exhibit" (
                 uniform token[] xformOpOrder = ["xformOp:translate"]
             }
 
-            def "Subject"
+            def Xform "Subject" (
+                kind = "group"
+            )
             {
-                def Material "BandMat"
-                {
-                    token outputs:surface.connect = </Exhibit/Pieces/Ortho/Subject/BandMat/Surface.outputs:surface>
-
-                    def Shader "Surface"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (0, 0, 0)
-                        color3f inputs:emissiveColor = (0.8879231, 0.55201143, 0.0047769533)
-                        float inputs:roughness = 1
-                        color3f inputs:specularColor = (0, 0, 0)
-                        int inputs:useSpecularWorkflow = 1
-                        token outputs:surface
-                    }
-                }
-
-                def Material "RedMat"
-                {
-                    token outputs:surface.connect = </Exhibit/Pieces/Ortho/Subject/RedMat/Surface.outputs:surface>
-
-                    def Shader "Surface"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (0, 0, 0)
-                        color3f inputs:emissiveColor = (0.63075715, 0.000607054, 0.010960094)
-                        float inputs:roughness = 1
-                        color3f inputs:specularColor = (0, 0, 0)
-                        int inputs:useSpecularWorkflow = 1
-                        token outputs:surface
-                    }
-                }
-
-                def "Rim"
+                def Xform "Rim"
                 {
                     def Mesh "BandL" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2375,7 +2497,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(2.025, 0.915625, -0.854), (2.0385, 1.084375, -0.85)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/Ortho/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/Ortho_Subject_Band>
                         point3f[] points = [(2.025, 0.915625, -0.85), (2.0385, 0.915625, -0.85), (2.0385, 1.084375, -0.85), (2.025, 1.084375, -0.85), (2.0385, 0.915625, -0.854), (2.025, 0.915625, -0.854), (2.025, 1.084375, -0.854), (2.0385, 1.084375, -0.854), (2.025, 1.084375, -0.85), (2.0385, 1.084375, -0.85), (2.0385, 1.084375, -0.854), (2.025, 1.084375, -0.854), (2.025, 0.915625, -0.854), (2.0385, 0.915625, -0.854), (2.0385, 0.915625, -0.85), (2.025, 0.915625, -0.85), (2.0385, 0.915625, -0.85), (2.0385, 0.915625, -0.854), (2.0385, 1.084375, -0.854), (2.0385, 1.084375, -0.85), (2.025, 0.915625, -0.854), (2.025, 0.915625, -0.85), (2.025, 1.084375, -0.85), (2.025, 1.084375, -0.854)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -2387,7 +2509,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(2.3115, 0.915625, -0.854), (2.325, 1.084375, -0.85)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/Ortho/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/Ortho_Subject_Band>
                         point3f[] points = [(2.3115, 0.915625, -0.85), (2.325, 0.915625, -0.85), (2.325, 1.084375, -0.85), (2.3115, 1.084375, -0.85), (2.325, 0.915625, -0.854), (2.3115, 0.915625, -0.854), (2.3115, 1.084375, -0.854), (2.325, 1.084375, -0.854), (2.3115, 1.084375, -0.85), (2.325, 1.084375, -0.85), (2.325, 1.084375, -0.854), (2.3115, 1.084375, -0.854), (2.3115, 0.915625, -0.854), (2.325, 0.915625, -0.854), (2.325, 0.915625, -0.85), (2.3115, 0.915625, -0.85), (2.325, 0.915625, -0.85), (2.325, 0.915625, -0.854), (2.325, 1.084375, -0.854), (2.325, 1.084375, -0.85), (2.3115, 0.915625, -0.854), (2.3115, 0.915625, -0.85), (2.3115, 1.084375, -0.85), (2.3115, 1.084375, -0.854)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -2399,7 +2521,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(2.0385, 0.915625, -0.854), (2.3115, 0.929125, -0.85)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/Ortho/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/Ortho_Subject_Band>
                         point3f[] points = [(2.0385, 0.915625, -0.85), (2.3115, 0.915625, -0.85), (2.3115, 0.929125, -0.85), (2.0385, 0.929125, -0.85), (2.3115, 0.915625, -0.854), (2.0385, 0.915625, -0.854), (2.0385, 0.929125, -0.854), (2.3115, 0.929125, -0.854), (2.0385, 0.929125, -0.85), (2.3115, 0.929125, -0.85), (2.3115, 0.929125, -0.854), (2.0385, 0.929125, -0.854), (2.0385, 0.915625, -0.854), (2.3115, 0.915625, -0.854), (2.3115, 0.915625, -0.85), (2.0385, 0.915625, -0.85), (2.3115, 0.915625, -0.85), (2.3115, 0.915625, -0.854), (2.3115, 0.929125, -0.854), (2.3115, 0.929125, -0.85), (2.0385, 0.915625, -0.854), (2.0385, 0.915625, -0.85), (2.0385, 0.929125, -0.85), (2.0385, 0.929125, -0.854)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -2411,7 +2533,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(2.0385, 1.070875, -0.854), (2.3115, 1.084375, -0.85)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/Ortho/Subject/BandMat>
+                        rel material:binding = </Exhibit/Looks/Ortho_Subject_Band>
                         point3f[] points = [(2.0385, 1.070875, -0.85), (2.3115, 1.070875, -0.85), (2.3115, 1.084375, -0.85), (2.0385, 1.084375, -0.85), (2.3115, 1.070875, -0.854), (2.0385, 1.070875, -0.854), (2.0385, 1.084375, -0.854), (2.3115, 1.084375, -0.854), (2.0385, 1.084375, -0.85), (2.3115, 1.084375, -0.85), (2.3115, 1.084375, -0.854), (2.0385, 1.084375, -0.854), (2.0385, 1.070875, -0.854), (2.3115, 1.070875, -0.854), (2.3115, 1.070875, -0.85), (2.0385, 1.070875, -0.85), (2.3115, 1.070875, -0.85), (2.3115, 1.070875, -0.854), (2.3115, 1.084375, -0.854), (2.3115, 1.084375, -0.85), (2.0385, 1.070875, -0.854), (2.0385, 1.070875, -0.85), (2.0385, 1.084375, -0.85), (2.0385, 1.084375, -0.854)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -2423,7 +2545,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(1.995, 0.885625, -0.854), (2.025, 1.114375, -0.85)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/Ortho/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/Ortho_Subject_Red>
                         point3f[] points = [(1.995, 0.885625, -0.85), (2.025, 0.885625, -0.85), (2.025, 1.114375, -0.85), (1.995, 1.114375, -0.85), (2.025, 0.885625, -0.854), (1.995, 0.885625, -0.854), (1.995, 1.114375, -0.854), (2.025, 1.114375, -0.854), (1.995, 1.114375, -0.85), (2.025, 1.114375, -0.85), (2.025, 1.114375, -0.854), (1.995, 1.114375, -0.854), (1.995, 0.885625, -0.854), (2.025, 0.885625, -0.854), (2.025, 0.885625, -0.85), (1.995, 0.885625, -0.85), (2.025, 0.885625, -0.85), (2.025, 0.885625, -0.854), (2.025, 1.114375, -0.854), (2.025, 1.114375, -0.85), (1.995, 0.885625, -0.854), (1.995, 0.885625, -0.85), (1.995, 1.114375, -0.85), (1.995, 1.114375, -0.854)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -2435,7 +2557,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(2.325, 0.885625, -0.854), (2.355, 1.114375, -0.85)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/Ortho/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/Ortho_Subject_Red>
                         point3f[] points = [(2.325, 0.885625, -0.85), (2.355, 0.885625, -0.85), (2.355, 1.114375, -0.85), (2.325, 1.114375, -0.85), (2.355, 0.885625, -0.854), (2.325, 0.885625, -0.854), (2.325, 1.114375, -0.854), (2.355, 1.114375, -0.854), (2.325, 1.114375, -0.85), (2.355, 1.114375, -0.85), (2.355, 1.114375, -0.854), (2.325, 1.114375, -0.854), (2.325, 0.885625, -0.854), (2.355, 0.885625, -0.854), (2.355, 0.885625, -0.85), (2.325, 0.885625, -0.85), (2.355, 0.885625, -0.85), (2.355, 0.885625, -0.854), (2.355, 1.114375, -0.854), (2.355, 1.114375, -0.85), (2.325, 0.885625, -0.854), (2.325, 0.885625, -0.85), (2.325, 1.114375, -0.85), (2.325, 1.114375, -0.854)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -2447,7 +2569,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(2.025, 0.885625, -0.854), (2.325, 0.915625, -0.85)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/Ortho/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/Ortho_Subject_Red>
                         point3f[] points = [(2.025, 0.885625, -0.85), (2.325, 0.885625, -0.85), (2.325, 0.915625, -0.85), (2.025, 0.915625, -0.85), (2.325, 0.885625, -0.854), (2.025, 0.885625, -0.854), (2.025, 0.915625, -0.854), (2.325, 0.915625, -0.854), (2.025, 0.915625, -0.85), (2.325, 0.915625, -0.85), (2.325, 0.915625, -0.854), (2.025, 0.915625, -0.854), (2.025, 0.885625, -0.854), (2.325, 0.885625, -0.854), (2.325, 0.885625, -0.85), (2.025, 0.885625, -0.85), (2.325, 0.885625, -0.85), (2.325, 0.885625, -0.854), (2.325, 0.915625, -0.854), (2.325, 0.915625, -0.85), (2.025, 0.885625, -0.854), (2.025, 0.885625, -0.85), (2.025, 0.915625, -0.85), (2.025, 0.915625, -0.854)]
                         uniform token subdivisionScheme = "none"
                     }
@@ -2459,13 +2581,13 @@ def Xform "Exhibit" (
                         float3[] extent = [(2.025, 1.084375, -0.854), (2.325, 1.114375, -0.85)]
                         int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
                         int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                        rel material:binding = </Exhibit/Pieces/Ortho/Subject/RedMat>
+                        rel material:binding = </Exhibit/Looks/Ortho_Subject_Red>
                         point3f[] points = [(2.025, 1.084375, -0.85), (2.325, 1.084375, -0.85), (2.325, 1.114375, -0.85), (2.025, 1.114375, -0.85), (2.325, 1.084375, -0.854), (2.025, 1.084375, -0.854), (2.025, 1.114375, -0.854), (2.325, 1.114375, -0.854), (2.025, 1.114375, -0.85), (2.325, 1.114375, -0.85), (2.325, 1.114375, -0.854), (2.025, 1.114375, -0.854), (2.025, 1.084375, -0.854), (2.325, 1.084375, -0.854), (2.325, 1.084375, -0.85), (2.025, 1.084375, -0.85), (2.325, 1.084375, -0.85), (2.325, 1.084375, -0.854), (2.325, 1.114375, -0.854), (2.325, 1.114375, -0.85), (2.025, 1.084375, -0.854), (2.025, 1.084375, -0.85), (2.025, 1.114375, -0.85), (2.025, 1.114375, -0.854)]
                         uniform token subdivisionScheme = "none"
                     }
                 }
 
-                def "Face"
+                def Xform "Face"
                 {
                     def Mesh "L" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2576,7 +2698,7 @@ def Xform "Exhibit" (
                     uniform token subdivisionScheme = "none"
                 }
 
-                def "Posts"
+                def Xform "Posts"
                 {
                     def Mesh "L0" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2687,42 +2809,6 @@ def Xform "Exhibit" (
                     uniform token subdivisionScheme = "none"
                 }
 
-                def Material "Sign_Mat"
-                {
-                    token outputs:surface.connect = </Exhibit/Pieces/Ortho/Subject/Sign_Mat/Surface.outputs:surface>
-
-                    def Shader "Surface"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (0, 0, 0)
-                        color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Ortho/Subject/Sign_Mat/Tex.outputs:rgb>
-                        float inputs:opacity.connect = </Exhibit/Pieces/Ortho/Subject/Sign_Mat/Tex.outputs:a>
-                        float inputs:opacityThreshold = 0.5
-                        float inputs:roughness = 1
-                        color3f inputs:specularColor = (0, 0, 0)
-                        int inputs:useSpecularWorkflow = 1
-                        token outputs:surface
-                    }
-
-                    def Shader "St"
-                    {
-                        uniform token info:id = "UsdPrimvarReader_float2"
-                        string inputs:varname = "st"
-                        float2 outputs:result
-                    }
-
-                    def Shader "Tex"
-                    {
-                        uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @./textures/Exhibit_Pieces_Ortho_Subject_Sign.png@
-                        float4 inputs:scale = (1, 1, 1, 1)
-                        token inputs:sourceColorSpace = "sRGB"
-                        float2 inputs:st.connect = </Exhibit/Pieces/Ortho/Subject/Sign_Mat/St.outputs:result>
-                        float outputs:a
-                        float3 outputs:rgb
-                    }
-                }
-
                 def Mesh "Sign" (
                     prepend apiSchemas = ["MaterialBindingAPI"]
                 )
@@ -2731,7 +2817,7 @@ def Xform "Exhibit" (
                     float3[] extent = [(2.142221, 0.93522745, -0.857), (2.207779, 0.96343255, -0.857)]
                     int[] faceVertexCounts = [4]
                     int[] faceVertexIndices = [0, 1, 2, 3]
-                    rel material:binding = </Exhibit/Pieces/Ortho/Subject/Sign_Mat>
+                    rel material:binding = </Exhibit/Looks/Ortho_Subject_Sign>
                     normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                         interpolation = "vertex"
                     )
@@ -2768,9 +2854,9 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def "Prop"
+            def Xform "Prop"
             {
-                def "Camera"
+                def Xform "Camera"
                 {
                     def Mesh "Body" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2845,7 +2931,7 @@ def Xform "Exhibit" (
                     }
                 }
 
-                def "Monitor"
+                def Xform "Monitor"
                 {
                     def Mesh "Bezel" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2859,38 +2945,6 @@ def Xform "Exhibit" (
                         uniform token subdivisionScheme = "none"
                     }
 
-                    def Material "PictureMat"
-                    {
-                        token outputs:surface.connect = </Exhibit/Pieces/Ortho/Prop/Monitor/PictureMat/Surface.outputs:surface>
-
-                        def Shader "Surface"
-                        {
-                            uniform token info:id = "UsdPreviewSurface"
-                            color3f inputs:diffuseColor = (0, 0, 0)
-                            color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Ortho/Prop/Monitor/PictureMat/Tex.outputs:rgb>
-                            float inputs:roughness = 1
-                            color3f inputs:specularColor = (0, 0, 0)
-                            int inputs:useSpecularWorkflow = 1
-                            token outputs:surface
-                        }
-
-                        def Shader "St"
-                        {
-                            uniform token info:id = "UsdPrimvarReader_float2"
-                            string inputs:varname = "st"
-                            float2 outputs:result
-                        }
-
-                        def Shader "Tex"
-                        {
-                            uniform token info:id = "UsdUVTexture"
-                            asset inputs:file = @./textures/screen_Ortho.png@
-                            token inputs:sourceColorSpace = "sRGB"
-                            float2 inputs:st.connect = </Exhibit/Pieces/Ortho/Prop/Monitor/PictureMat/St.outputs:result>
-                            float3 outputs:rgb
-                        }
-                    }
-
                     def Mesh "Picture" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
                     )
@@ -2899,7 +2953,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(1.775, 1.52, -1.944), (2.575, 1.97, -1.944)]
                         int[] faceVertexCounts = [4]
                         int[] faceVertexIndices = [0, 1, 2, 3]
-                        rel material:binding = </Exhibit/Pieces/Ortho/Prop/Monitor/PictureMat>
+                        rel material:binding = </Exhibit/Looks/Ortho_Prop_Monitor_Picture>
                         normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                             interpolation = "vertex"
                         )
@@ -2910,42 +2964,6 @@ def Xform "Exhibit" (
                         uniform token subdivisionScheme = "none"
                     }
 
-                    def Material "Label_Mat"
-                    {
-                        token outputs:surface.connect = </Exhibit/Pieces/Ortho/Prop/Monitor/Label_Mat/Surface.outputs:surface>
-
-                        def Shader "Surface"
-                        {
-                            uniform token info:id = "UsdPreviewSurface"
-                            color3f inputs:diffuseColor = (0, 0, 0)
-                            color3f inputs:emissiveColor.connect = </Exhibit/Pieces/Ortho/Prop/Monitor/Label_Mat/Tex.outputs:rgb>
-                            float inputs:opacity.connect = </Exhibit/Pieces/Ortho/Prop/Monitor/Label_Mat/Tex.outputs:a>
-                            float inputs:opacityThreshold = 0.5
-                            float inputs:roughness = 1
-                            color3f inputs:specularColor = (0, 0, 0)
-                            int inputs:useSpecularWorkflow = 1
-                            token outputs:surface
-                        }
-
-                        def Shader "St"
-                        {
-                            uniform token info:id = "UsdPrimvarReader_float2"
-                            string inputs:varname = "st"
-                            float2 outputs:result
-                        }
-
-                        def Shader "Tex"
-                        {
-                            uniform token info:id = "UsdUVTexture"
-                            asset inputs:file = @./textures/Exhibit_Pieces_Ortho_Prop_Monitor_Label.png@
-                            float4 inputs:scale = (1, 1, 1, 1)
-                            token inputs:sourceColorSpace = "sRGB"
-                            float2 inputs:st.connect = </Exhibit/Pieces/Ortho/Prop/Monitor/Label_Mat/St.outputs:result>
-                            float outputs:a
-                            float3 outputs:rgb
-                        }
-                    }
-
                     def Mesh "Label" (
                         prepend apiSchemas = ["MaterialBindingAPI"]
                     )
@@ -2954,7 +2972,7 @@ def Xform "Exhibit" (
                         float3[] extent = [(1.9254816, 1.4041783, -1.944), (2.4245183, 1.4939218, -1.944)]
                         int[] faceVertexCounts = [4]
                         int[] faceVertexIndices = [0, 1, 2, 3]
-                        rel material:binding = </Exhibit/Pieces/Ortho/Prop/Monitor/Label_Mat>
+                        rel material:binding = </Exhibit/Looks/Ortho_Prop_Monitor_Label>
                         normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                             interpolation = "vertex"
                         )

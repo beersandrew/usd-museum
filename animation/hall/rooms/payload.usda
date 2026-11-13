@@ -1,6 +1,6 @@
 #usda 1.0
 (
-    "The Animation wing's rooms: bays, doorways, gallery placards, stands and lamps (museum/src/wing.py). A payload of the wing."
+    "The Animation wing's rooms: bays, doorways, gallery placards and stands (museum/src/wing.py). A payload of the wing."
     defaultPrim = "Rooms"
     framesPerSecond = 24
     metersPerUnit = 1
@@ -133,6 +133,258 @@ def Xform "Rooms" (
                 token outputs:surface
             }
         }
+
+        def Material "keys_Card"
+        {
+            token outputs:surface.connect = </Rooms/Looks/keys_Card/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Rooms/Looks/keys_Card/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Rooms/Looks/keys_Card/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Rooms_Placards_keys_Card.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Rooms/Looks/keys_Card/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "time_Card"
+        {
+            token outputs:surface.connect = </Rooms/Looks/time_Card/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Rooms/Looks/time_Card/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Rooms/Looks/time_Card/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Rooms_Placards_time_Card.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Rooms/Looks/time_Card/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "splines_Card"
+        {
+            token outputs:surface.connect = </Rooms/Looks/splines_Card/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Rooms/Looks/splines_Card/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Rooms/Looks/splines_Card/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Rooms_Placards_splines_Card.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Rooms/Looks/splines_Card/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "clips_Card"
+        {
+            token outputs:surface.connect = </Rooms/Looks/clips_Card/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Rooms/Looks/clips_Card/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Rooms/Looks/clips_Card/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Rooms_Placards_clips_Card.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Rooms/Looks/clips_Card/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "blocks_Card"
+        {
+            token outputs:surface.connect = </Rooms/Looks/blocks_Card/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Rooms/Looks/blocks_Card/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Rooms/Looks/blocks_Card/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Rooms_Placards_blocks_Card.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Rooms/Looks/blocks_Card/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "characters_Card"
+        {
+            token outputs:surface.connect = </Rooms/Looks/characters_Card/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Rooms/Looks/characters_Card/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Rooms/Looks/characters_Card/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Rooms_Placards_characters_Card.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Rooms/Looks/characters_Card/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "motion_Card"
+        {
+            token outputs:surface.connect = </Rooms/Looks/motion_Card/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Rooms/Looks/motion_Card/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Rooms/Looks/motion_Card/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Rooms_Placards_motion_Card.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Rooms/Looks/motion_Card/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
     }
 
     def Mesh "Floor" (
@@ -207,7 +459,7 @@ def Xform "Rooms" (
         uniform token subdivisionScheme = "none"
     }
 
-    def "Cross0"
+    def Xform "Doorway0"
     {
         def Mesh "Back" (
             prepend apiSchemas = ["MaterialBindingAPI"]
@@ -282,7 +534,7 @@ def Xform "Rooms" (
         }
     }
 
-    def "Cross1"
+    def Xform "Doorway1"
     {
         def Mesh "Back" (
             prepend apiSchemas = ["MaterialBindingAPI"]
@@ -357,7 +609,7 @@ def Xform "Rooms" (
         }
     }
 
-    def "Cross2"
+    def Xform "Doorway2"
     {
         def Mesh "Back" (
             prepend apiSchemas = ["MaterialBindingAPI"]
@@ -432,7 +684,7 @@ def Xform "Rooms" (
         }
     }
 
-    def "Cross3"
+    def Xform "Doorway3"
     {
         def Mesh "Back" (
             prepend apiSchemas = ["MaterialBindingAPI"]
@@ -507,7 +759,7 @@ def Xform "Rooms" (
         }
     }
 
-    def "Cross4"
+    def Xform "Doorway4"
     {
         def Mesh "Back" (
             prepend apiSchemas = ["MaterialBindingAPI"]
@@ -582,7 +834,7 @@ def Xform "Rooms" (
         }
     }
 
-    def "Cross5"
+    def Xform "Doorway5"
     {
         def Mesh "Back" (
             prepend apiSchemas = ["MaterialBindingAPI"]
@@ -657,7 +909,7 @@ def Xform "Rooms" (
         }
     }
 
-    def "Cross6"
+    def Xform "Doorway6"
     {
         def Mesh "Back" (
             prepend apiSchemas = ["MaterialBindingAPI"]
@@ -732,7 +984,7 @@ def Xform "Rooms" (
         }
     }
 
-    def "Cross7"
+    def Xform "Doorway7"
     {
         def Mesh "Back" (
             prepend apiSchemas = ["MaterialBindingAPI"]
@@ -807,7 +1059,7 @@ def Xform "Rooms" (
         }
     }
 
-    def "Pil"
+    def Xform "Pilasters"
     {
         def Mesh "keys_0" (
             prepend apiSchemas = ["MaterialBindingAPI"]
@@ -1110,48 +1362,12 @@ def Xform "Rooms" (
         }
     }
 
-    def "Placards"
+    def Xform "Placards"
     {
         def Xform "keys"
         {
             matrix4d xformOp:transform = ( (2.220446049250313e-16, 0, 1, 0), (0, 1, 0, 0), (-1, 0, 2.220446049250313e-16, 0), (-0.22, 0, 2.49108185756333, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
-
-            def Material "Card_Mat"
-            {
-                token outputs:surface.connect = </Rooms/Placards/keys/Card_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Rooms/Placards/keys/Card_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Rooms/Placards/keys/Card_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Rooms_Placards_keys_Card.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Rooms/Placards/keys/Card_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
 
             def Mesh "Card" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -1161,7 +1377,7 @@ def Xform "Rooms" (
                 float3[] extent = [(-1.45, 3.3, 0), (1.45, 3.8, 0)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Rooms/Placards/keys/Card_Mat>
+                rel material:binding = </Rooms/Looks/keys_Card>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -1191,42 +1407,6 @@ def Xform "Rooms" (
             matrix4d xformOp:transform = ( (2.220446049250313e-16, 0, 1, 0), (0, 1, 0, 0), (-1, 0, 2.220446049250313e-16, 0), (16.84, 0, 2.49108185756333, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
 
-            def Material "Card_Mat"
-            {
-                token outputs:surface.connect = </Rooms/Placards/time/Card_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Rooms/Placards/time/Card_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Rooms/Placards/time/Card_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Rooms_Placards_time_Card.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Rooms/Placards/time/Card_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Card" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -1235,7 +1415,7 @@ def Xform "Rooms" (
                 float3[] extent = [(-1.45, 3.3, 0), (1.45, 3.8, 0)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Rooms/Placards/time/Card_Mat>
+                rel material:binding = </Rooms/Looks/time_Card>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -1265,42 +1445,6 @@ def Xform "Rooms" (
             matrix4d xformOp:transform = ( (2.220446049250313e-16, 0, 1, 0), (0, 1, 0, 0), (-1, 0, 2.220446049250313e-16, 0), (29.129999999999995, 0, 2.49108185756333, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
 
-            def Material "Card_Mat"
-            {
-                token outputs:surface.connect = </Rooms/Placards/splines/Card_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Rooms/Placards/splines/Card_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Rooms/Placards/splines/Card_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Rooms_Placards_splines_Card.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Rooms/Placards/splines/Card_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Card" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -1309,7 +1453,7 @@ def Xform "Rooms" (
                 float3[] extent = [(-1.45, 3.3, 0), (1.45, 3.8, 0)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Rooms/Placards/splines/Card_Mat>
+                rel material:binding = </Rooms/Looks/splines_Card>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -1339,42 +1483,6 @@ def Xform "Rooms" (
             matrix4d xformOp:transform = ( (2.220446049250313e-16, 0, 1, 0), (0, 1, 0, 0), (-1, 0, 2.220446049250313e-16, 0), (46.18999999999999, 0, 2.49108185756333, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
 
-            def Material "Card_Mat"
-            {
-                token outputs:surface.connect = </Rooms/Placards/clips/Card_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Rooms/Placards/clips/Card_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Rooms/Placards/clips/Card_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Rooms_Placards_clips_Card.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Rooms/Placards/clips/Card_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Card" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -1383,7 +1491,7 @@ def Xform "Rooms" (
                 float3[] extent = [(-1.45, 3.3, 0), (1.45, 3.8, 0)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Rooms/Placards/clips/Card_Mat>
+                rel material:binding = </Rooms/Looks/clips_Card>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -1413,42 +1521,6 @@ def Xform "Rooms" (
             matrix4d xformOp:transform = ( (2.220446049250313e-16, 0, 1, 0), (0, 1, 0, 0), (-1, 0, 2.220446049250313e-16, 0), (58.47999999999998, 0, 2.49108185756333, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
 
-            def Material "Card_Mat"
-            {
-                token outputs:surface.connect = </Rooms/Placards/blocks/Card_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Rooms/Placards/blocks/Card_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Rooms/Placards/blocks/Card_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Rooms_Placards_blocks_Card.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Rooms/Placards/blocks/Card_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Card" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -1457,7 +1529,7 @@ def Xform "Rooms" (
                 float3[] extent = [(-1.45, 3.3, 0), (1.45, 3.8, 0)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Rooms/Placards/blocks/Card_Mat>
+                rel material:binding = </Rooms/Looks/blocks_Card>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -1487,42 +1559,6 @@ def Xform "Rooms" (
             matrix4d xformOp:transform = ( (2.220446049250313e-16, 0, 1, 0), (0, 1, 0, 0), (-1, 0, 2.220446049250313e-16, 0), (66.77999999999999, 0, 2.49108185756333, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
 
-            def Material "Card_Mat"
-            {
-                token outputs:surface.connect = </Rooms/Placards/characters/Card_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Rooms/Placards/characters/Card_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Rooms/Placards/characters/Card_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Rooms_Placards_characters_Card.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Rooms/Placards/characters/Card_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Card" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -1531,7 +1567,7 @@ def Xform "Rooms" (
                 float3[] extent = [(-1.45, 3.3, 0), (1.45, 3.8, 0)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Rooms/Placards/characters/Card_Mat>
+                rel material:binding = </Rooms/Looks/characters_Card>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -1561,42 +1597,6 @@ def Xform "Rooms" (
             matrix4d xformOp:transform = ( (2.220446049250313e-16, 0, 1, 0), (0, 1, 0, 0), (-1, 0, 2.220446049250313e-16, 0), (75.88, 0, 2.49108185756333, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
 
-            def Material "Card_Mat"
-            {
-                token outputs:surface.connect = </Rooms/Placards/motion/Card_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Rooms/Placards/motion/Card_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Rooms/Placards/motion/Card_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Rooms_Placards_motion_Card.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Rooms/Placards/motion/Card_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Card" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -1605,7 +1605,7 @@ def Xform "Rooms" (
                 float3[] extent = [(-1.45, 3.3, 0), (1.45, 3.8, 0)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Rooms/Placards/motion/Card_Mat>
+                rel material:binding = </Rooms/Looks/motion_Card>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -1628,219 +1628,6 @@ def Xform "Rooms" (
                 point3f[] points = [(-1.47, 3.28, -0.004), (1.47, 3.28, -0.004), (1.47, 3.82, -0.004), (-1.47, 3.82, -0.004), (1.47, 3.28, -0.03), (-1.47, 3.28, -0.03), (-1.47, 3.82, -0.03), (1.47, 3.82, -0.03), (-1.47, 3.82, -0.004), (1.47, 3.82, -0.004), (1.47, 3.82, -0.03), (-1.47, 3.82, -0.03), (-1.47, 3.28, -0.03), (1.47, 3.28, -0.03), (1.47, 3.28, -0.004), (-1.47, 3.28, -0.004), (1.47, 3.28, -0.004), (1.47, 3.28, -0.03), (1.47, 3.82, -0.03), (1.47, 3.82, -0.004), (-1.47, 3.28, -0.03), (-1.47, 3.28, -0.004), (-1.47, 3.82, -0.004), (-1.47, 3.82, -0.03)]
                 uniform token subdivisionScheme = "none"
             }
-        }
-    }
-
-    def "Lamps"
-    {
-        def SphereLight "keys_0"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                -48: "invisible",
-                -47: "inherited",
-                615: "inherited",
-                616: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (4.340000000000001, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "keys_1"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                -48: "invisible",
-                -47: "inherited",
-                615: "inherited",
-                616: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (12.72, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "time_0"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                514: "invisible",
-                515: "inherited",
-                986: "inherited",
-                987: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (20.207499999999996, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "time_1"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                514: "invisible",
-                515: "inherited",
-                986: "inherited",
-                987: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (26.202499999999997, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "splines_0"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                879: "invisible",
-                880: "inherited",
-                1545: "inherited",
-                1546: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (33.68999999999999, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "splines_1"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                879: "invisible",
-                880: "inherited",
-                1545: "inherited",
-                1546: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (42.06999999999999, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "clips_0"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                1441: "invisible",
-                1442: "inherited",
-                1911: "inherited",
-                1912: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (49.55749999999999, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "clips_1"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                1441: "invisible",
-                1442: "inherited",
-                1911: "inherited",
-                1912: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (55.55249999999998, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "blocks_0"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                1808: "invisible",
-                1809: "inherited",
-                2136: "inherited",
-                2137: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (60.84999999999998, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "blocks_1"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                1808: "invisible",
-                1809: "inherited",
-                2136: "inherited",
-                2137: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (64.84999999999998, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "characters_0"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                2030: "invisible",
-                2031: "inherited",
-                2531: "inherited",
-                2532: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (69.35, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "characters_1"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                2030: "invisible",
-                2031: "inherited",
-                2531: "inherited",
-                2532: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (73.74999999999999, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "motion_0"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                2431: "invisible",
-                2432: "inherited",
-                2626: "inherited",
-                2627: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (78.25, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-        }
-
-        def SphereLight "motion_1"
-        {
-            color3f inputs:color = (1, 0.93, 0.83)
-            float inputs:intensity = 20
-            float inputs:radius = 0.6
-            token visibility.timeSamples = {
-                2431: "invisible",
-                2432: "inherited",
-                2626: "inherited",
-                2627: "invisible",
-            }
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (82.25, 5.196939146090799, 2.49108185756333, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
         }
     }
 

@@ -8,9 +8,7 @@
     upAxis = "Y"
 )
 
-def Xform "ScrollGhost" (
-    kind = "component"
-)
+def Xform "ScrollGhost"
 {
     def Scope "Looks"
     {

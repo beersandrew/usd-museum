@@ -323,32 +323,17 @@ def Xform "Exhibit" (
                 token outputs:surface
             }
         }
-    }
 
-    def Mesh "Board" (
-        prepend apiSchemas = ["MaterialBindingAPI"]
-    )
-    {
-        float3[] extent = [(-2.532, 0, -1.545), (2.532, 2.945, -1.465)]
-        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-        rel material:binding = </Exhibit/Looks/board>
-        point3f[] points = [(-2.532, 0, -1.465), (2.532, 0, -1.465), (2.532, 2.945, -1.465), (-2.532, 2.945, -1.465), (2.532, 0, -1.545), (-2.532, 0, -1.545), (-2.532, 2.945, -1.545), (2.532, 2.945, -1.545), (-2.532, 2.945, -1.465), (2.532, 2.945, -1.465), (2.532, 2.945, -1.545), (-2.532, 2.945, -1.545), (-2.532, 0, -1.545), (2.532, 0, -1.545), (2.532, 0, -1.465), (-2.532, 0, -1.465), (2.532, 0, -1.465), (2.532, 0, -1.545), (2.532, 2.945, -1.545), (2.532, 2.945, -1.465), (-2.532, 0, -1.545), (-2.532, 0, -1.465), (-2.532, 2.945, -1.465), (-2.532, 2.945, -1.545)]
-        uniform token subdivisionScheme = "none"
-    }
-
-    def "Placards"
-    {
-        def Material "Sign_Lists_Mat"
+        def Material "Sign_Lists"
         {
-            token outputs:surface.connect = </Exhibit/Placards/Sign_Lists_Mat/Surface.outputs:surface>
+            token outputs:surface.connect = </Exhibit/Looks/Sign_Lists/Surface.outputs:surface>
 
             def Shader "Surface"
             {
                 uniform token info:id = "UsdPreviewSurface"
                 color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Sign_Lists_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Sign_Lists_Mat/Tex.outputs:a>
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Sign_Lists/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Sign_Lists/Tex.outputs:a>
                 float inputs:opacityThreshold = 0.5
                 float inputs:roughness = 1
                 color3f inputs:specularColor = (0, 0, 0)
@@ -369,12 +354,819 @@ def Xform "Exhibit" (
                 asset inputs:file = @./textures/sign_exhibit_placards_sign_lists.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Sign_Lists_Mat/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Sign_Lists/St.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
             }
         }
 
+        def Material "Col_none"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Col_none/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Col_none/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Col_none/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Placards_Col_none.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Col_none/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Col_explicit"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Col_explicit/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Col_explicit/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Col_explicit/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Placards_Col_explicit.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Col_explicit/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Col_prepend"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Col_prepend/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Col_prepend/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Col_prepend/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Placards_Col_prepend.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Col_prepend/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Col_append"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Col_append/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Col_append/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Col_append/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Placards_Col_append.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Col_append/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Col_delete"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Col_delete/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Col_delete/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Col_delete/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Placards_Col_delete.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Col_delete/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Axes_1"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Axes_1/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Axes_1/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Axes_1/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Placards_Axes_1.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Axes_1/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Axes_2"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Axes_2/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Axes_2/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Axes_2/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Placards_Axes_2.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Axes_2/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_Row_explicit_Name"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_Row_explicit_Name/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_Row_explicit_Name/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_Row_explicit_Name/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_Row_explicit_Name.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_Row_explicit_Name/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_Row_prepend_Name"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_Row_prepend_Name/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_Row_prepend_Name/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_Row_prepend_Name/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_Row_prepend_Name.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_Row_prepend_Name/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_Row_append_Name"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_Row_append_Name/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_Row_append_Name/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_Row_append_Name/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_Row_append_Name.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_Row_append_Name/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_Row_delete_Name"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_Row_delete_Name/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_Row_delete_Name/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_Row_delete_Name/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_Row_delete_Name.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_Row_delete_Name/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_Row_none_Name"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_Row_none_Name/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_Row_none_Name/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_Row_none_Name/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_Row_none_Name.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_Row_none_Name/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_Row_one_Name"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_Row_one_Name/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_Row_one_Name/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_Row_one_Name/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_Row_one_Name.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_Row_one_Name/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_one_plain_Note"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_one_plain_Note/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_one_plain_Note/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_one_plain_Note/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_one_plain_Note.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_one_plain_Note/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_one_first_end_Note"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_one_first_end_Note/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_one_first_end_Note/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_one_first_end_Note/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_one_first_end_Note.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_one_first_end_Note/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_one_both_ends_Note"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_one_both_ends_Note/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_one_both_ends_Note/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_one_both_ends_Note/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_one_both_ends_Note.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_one_both_ends_Note/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_Row_rules_Name"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_Row_rules_Name/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_Row_rules_Name/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_Row_rules_Name/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_Row_rules_Name.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_Row_rules_Name/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_rules_lo25_Note"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_rules_lo25_Note/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_rules_lo25_Note/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_rules_lo25_Note/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_rules_lo25_Note.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_rules_lo25_Note/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_rules_lo11_plain_Note"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_rules_lo11_plain_Note/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_rules_lo11_plain_Note/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_rules_lo11_plain_Note/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_rules_lo11_plain_Note.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_rules_lo11_plain_Note/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_rules_lo11_first_Note"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_rules_lo11_first_Note/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_rules_lo11_first_Note/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_rules_lo11_first_Note/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_rules_lo11_first_Note.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_rules_lo11_first_Note/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_rules_lo27_stack_Note"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_rules_lo27_stack_Note/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_rules_lo27_stack_Note/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_rules_lo27_stack_Note/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_rules_lo27_stack_Note.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_rules_lo27_stack_Note/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+
+        def Material "Marks_rules_lo27_pairwise_Note"
+        {
+            token outputs:surface.connect = </Exhibit/Looks/Marks_rules_lo27_pairwise_Note/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0)
+                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Marks_rules_lo27_pairwise_Note/Tex.outputs:rgb>
+                float inputs:opacity.connect = </Exhibit/Looks/Marks_rules_lo27_pairwise_Note/Tex.outputs:a>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:surface
+            }
+
+            def Shader "St"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "Tex"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @./textures/Exhibit_Marks_rules_lo27_pairwise_Note.png@
+                float4 inputs:scale = (1, 1, 1, 1)
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </Exhibit/Looks/Marks_rules_lo27_pairwise_Note/St.outputs:result>
+                float outputs:a
+                float3 outputs:rgb
+            }
+        }
+    }
+
+    def Mesh "Board" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(-2.532, 0, -1.545), (2.532, 2.945, -1.465)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        rel material:binding = </Exhibit/Looks/board>
+        point3f[] points = [(-2.532, 0, -1.465), (2.532, 0, -1.465), (2.532, 2.945, -1.465), (-2.532, 2.945, -1.465), (2.532, 0, -1.545), (-2.532, 0, -1.545), (-2.532, 2.945, -1.545), (2.532, 2.945, -1.545), (-2.532, 2.945, -1.465), (2.532, 2.945, -1.465), (2.532, 2.945, -1.545), (-2.532, 2.945, -1.545), (-2.532, 0, -1.545), (2.532, 0, -1.545), (2.532, 0, -1.465), (-2.532, 0, -1.465), (2.532, 0, -1.465), (2.532, 0, -1.545), (2.532, 2.945, -1.545), (2.532, 2.945, -1.465), (-2.532, 0, -1.545), (-2.532, 0, -1.465), (-2.532, 2.945, -1.465), (-2.532, 2.945, -1.545)]
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Xform "Placards"
+    {
         def Mesh "Sign_Lists" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -383,7 +1175,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.452, 2.475, -1.431), (0.448, 2.915, -1.431)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Sign_Lists_Mat>
+            rel material:binding = </Exhibit/Looks/Sign_Lists>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -407,42 +1199,6 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Material "Col_none_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Placards/Col_none_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Col_none_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Col_none_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Placards_Col_none.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Col_none_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Col_none" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -451,7 +1207,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-1.8114749, 2.2892077, -1.459), (-1.5645251, 2.4045923, -1.459)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Col_none_Mat>
+            rel material:binding = </Exhibit/Looks/Col_none>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -463,42 +1219,6 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Material "Col_explicit_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Placards/Col_explicit_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Col_explicit_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Col_explicit_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Placards_Col_explicit.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Col_explicit_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Col_explicit" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -507,7 +1227,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-1.013215, 2.2898827, -1.459), (-0.6507851, 2.4052672, -1.459)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Col_explicit_Mat>
+            rel material:binding = </Exhibit/Looks/Col_explicit>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -519,42 +1239,6 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Material "Col_prepend_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Placards/Col_prepend_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Col_prepend_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Col_prepend_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Placards_Col_prepend.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Col_prepend_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Col_prepend" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -563,7 +1247,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-0.09244962, 2.2898827, -1.459), (0.3164496, 2.4052672, -1.459)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Col_prepend_Mat>
+            rel material:binding = </Exhibit/Looks/Col_prepend>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -575,42 +1259,6 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Material "Col_append_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Placards/Col_append_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Col_append_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Col_append_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Placards_Col_append.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Col_append_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Col_append" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -619,7 +1267,7 @@ def Xform "Exhibit" (
             float3[] extent = [(0.87150913, 2.2898827, -1.459), (1.2404908, 2.4052672, -1.459)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Col_append_Mat>
+            rel material:binding = </Exhibit/Looks/Col_append>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -631,42 +1279,6 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Material "Col_delete_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Placards/Col_delete_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Col_delete_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Col_delete_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Placards_Col_delete.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Col_delete_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Col_delete" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -675,7 +1287,7 @@ def Xform "Exhibit" (
             float3[] extent = [(1.8453519, 2.2986577, -1.459), (2.154648, 2.4140422, -1.459)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Col_delete_Mat>
+            rel material:binding = </Exhibit/Looks/Col_delete>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -687,42 +1299,6 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Material "Axes_1_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Placards/Axes_1_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Axes_1_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Axes_1_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Placards_Axes_1.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Axes_1_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Axes_1" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -731,7 +1307,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.5493937, 2.3550687, -1.459), (-1.9946063, 2.4255815, -1.459)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Axes_1_Mat>
+            rel material:binding = </Exhibit/Looks/Axes_1>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -743,42 +1319,6 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def Material "Axes_2_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Placards/Axes_2_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Placards/Axes_2_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Placards/Axes_2_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Placards_Axes_2.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Placards/Axes_2_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Axes_2" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -787,7 +1327,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.473145, 2.2805686, -1.459), (-2.070855, 2.3510814, -1.459)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Placards/Axes_2_Mat>
+            rel material:binding = </Exhibit/Looks/Axes_2>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -1837,42 +2377,6 @@ def Xform "Exhibit" (
 
     def Scope "Marks"
     {
-        def Material "Row_explicit_Name_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Marks/Row_explicit_Name_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Marks/Row_explicit_Name_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Marks/Row_explicit_Name_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Marks_Row_explicit_Name.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Marks/Row_explicit_Name_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Row_explicit_Name" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -1881,7 +2385,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.4230125, 1.9762356, -1.204), (-2.1209877, 2.0723894, -1.204)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Marks/Row_explicit_Name_Mat>
+            rel material:binding = </Exhibit/Looks/Marks_Row_explicit_Name>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -1893,7 +2397,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def "explicit_none"
+        def Xform "explicit_none"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -1974,7 +2478,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "explicit_explicit"
+        def Xform "explicit_explicit"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2055,7 +2559,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "explicit_prepend"
+        def Xform "explicit_prepend"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2116,7 +2620,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "explicit_append"
+        def Xform "explicit_append"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2197,7 +2701,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "explicit_delete"
+        def Xform "explicit_delete"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2278,42 +2782,6 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "Row_prepend_Name_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Marks/Row_prepend_Name_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Marks/Row_prepend_Name_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Marks/Row_prepend_Name_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Marks_Row_prepend_Name.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Marks/Row_prepend_Name_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Row_prepend_Name" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -2322,7 +2790,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.4423747, 1.6762356, -1.009), (-2.1016252, 1.7723894, -1.009)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Marks/Row_prepend_Name_Mat>
+            rel material:binding = </Exhibit/Looks/Marks_Row_prepend_Name>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -2334,7 +2802,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def "prepend_none"
+        def Xform "prepend_none"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2415,7 +2883,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "prepend_explicit"
+        def Xform "prepend_explicit"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2496,7 +2964,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "prepend_prepend"
+        def Xform "prepend_prepend"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2597,7 +3065,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "prepend_append"
+        def Xform "prepend_append"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2698,7 +3166,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "prepend_delete"
+        def Xform "prepend_delete"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2779,42 +3247,6 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "Row_append_Name_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Marks/Row_append_Name_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Marks/Row_append_Name_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Marks/Row_append_Name_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Marks_Row_append_Name.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Marks/Row_append_Name_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Row_append_Name" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -2823,7 +3255,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.4257424, 1.3762356, -0.814), (-2.1182575, 1.4723895, -0.814)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Marks/Row_append_Name_Mat>
+            rel material:binding = </Exhibit/Looks/Marks_Row_append_Name>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -2835,7 +3267,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def "append_none"
+        def Xform "append_none"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2916,7 +3348,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "append_explicit"
+        def Xform "append_explicit"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -2997,7 +3429,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "append_prepend"
+        def Xform "append_prepend"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -3098,7 +3530,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "append_append"
+        def Xform "append_append"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -3199,7 +3631,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "append_delete"
+        def Xform "append_delete"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -3300,42 +3732,6 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "Row_delete_Name_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Marks/Row_delete_Name_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Marks/Row_delete_Name_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Marks/Row_delete_Name_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Marks_Row_delete_Name.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Marks/Row_delete_Name_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Row_delete_Name" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -3344,7 +3740,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.4008734, 1.0835481, -0.619), (-2.1431267, 1.1797019, -0.619)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Marks/Row_delete_Name_Mat>
+            rel material:binding = </Exhibit/Looks/Marks_Row_delete_Name>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -3356,7 +3752,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def "delete_none"
+        def Xform "delete_none"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -3437,7 +3833,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "delete_explicit"
+        def Xform "delete_explicit"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -3518,7 +3914,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "delete_prepend"
+        def Xform "delete_prepend"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -3619,7 +4015,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "delete_append"
+        def Xform "delete_append"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -3720,7 +4116,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "delete_delete"
+        def Xform "delete_delete"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -3801,42 +4197,6 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "Row_none_Name_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Marks/Row_none_Name_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Marks/Row_none_Name_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Marks/Row_none_Name_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Marks_Row_none_Name.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Marks/Row_none_Name_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Row_none_Name" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -3845,7 +4205,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.3748958, 0.7756731, -0.424), (-2.1691043, 0.87182695, -0.424)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Marks/Row_none_Name_Mat>
+            rel material:binding = </Exhibit/Looks/Marks_Row_none_Name>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -3857,7 +4217,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def "none_none"
+        def Xform "none_none"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -3938,7 +4298,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "none_explicit"
+        def Xform "none_explicit"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -4019,7 +4379,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "none_prepend"
+        def Xform "none_prepend"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -4120,7 +4480,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "none_append"
+        def Xform "none_append"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -4221,7 +4581,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "none_delete"
+        def Xform "none_delete"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -4302,42 +4662,6 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "Row_one_Name_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Marks/Row_one_Name_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Marks/Row_one_Name_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Marks/Row_one_Name_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Marks_Row_one_Name.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Marks/Row_one_Name_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Row_one_Name" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -4346,7 +4670,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.4619715, 0.47586057, -0.229), (-2.0820284, 0.57201445, -0.229)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Marks/Row_one_Name_Mat>
+            rel material:binding = </Exhibit/Looks/Marks_Row_one_Name>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -4358,7 +4682,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def "one_plain"
+        def Xform "one_plain"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -4458,42 +4782,6 @@ def Xform "Exhibit" (
                 }
             }
 
-            def Material "Note_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Marks/one_plain/Note_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Marks/one_plain/Note_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Marks/one_plain/Note_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Marks_one_plain_Note.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Marks/one_plain/Note_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Note" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -4502,7 +4790,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(-0.9497382, 0.19432372, -0.254), (-0.71426183, 0.25842628, -0.254)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Marks/one_plain/Note_Mat>
+                rel material:binding = </Exhibit/Looks/Marks_one_plain_Note>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -4515,7 +4803,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "one_first_end"
+        def Xform "one_first_end"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -4615,42 +4903,6 @@ def Xform "Exhibit" (
                 }
             }
 
-            def Material "Note_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Marks/one_first_end/Note_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Marks/one_first_end/Note_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Marks/one_first_end/Note_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Marks_one_first_end_Note.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Marks/one_first_end/Note_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Note" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -4659,7 +4911,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(-0.027693132, 0.19944872, -0.254), (0.25169313, 0.2635513, -0.254)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Marks/one_first_end/Note_Mat>
+                rel material:binding = </Exhibit/Looks/Marks_one_first_end_Note>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -4672,7 +4924,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "one_both_ends"
+        def Xform "one_both_ends"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -4752,42 +5004,6 @@ def Xform "Exhibit" (
                 }
             }
 
-            def Material "Note_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Marks/one_both_ends/Note_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Marks/one_both_ends/Note_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Marks/one_both_ends/Note_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Marks_one_both_ends_Note.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Marks/one_both_ends/Note_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Note" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -4796,7 +5012,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(0.7806171, 0.19944872, -0.254), (1.3313829, 0.2635513, -0.254)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Marks/one_both_ends/Note_Mat>
+                rel material:binding = </Exhibit/Looks/Marks_one_both_ends_Note>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -4809,42 +5025,6 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "Row_rules_Name_Mat"
-        {
-            token outputs:surface.connect = </Exhibit/Marks/Row_rules_Name_Mat/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Marks/Row_rules_Name_Mat/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Marks/Row_rules_Name_Mat/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Marks_Row_rules_Name.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Marks/Row_rules_Name_Mat/St.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-        }
-
         def Mesh "Row_rules_Name" (
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -4853,7 +5033,7 @@ def Xform "Exhibit" (
             float3[] extent = [(-2.3757298, 0.18354808, -0.034), (-2.16827, 0.27970192, -0.034)]
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 2, 3]
-            rel material:binding = </Exhibit/Marks/Row_rules_Name_Mat>
+            rel material:binding = </Exhibit/Looks/Marks_Row_rules_Name>
             normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "vertex"
             )
@@ -4865,7 +5045,7 @@ def Xform "Exhibit" (
             uniform token subdivisionScheme = "none"
         }
 
-        def "rules_lo25"
+        def Xform "rules_lo25"
         {
             def Xform "Empty"
             {
@@ -4885,42 +5065,6 @@ def Xform "Exhibit" (
                 }
             }
 
-            def Material "Note_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Marks/rules_lo25/Note_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Marks/rules_lo25/Note_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Marks/rules_lo25/Note_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Marks_rules_lo25_Note.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Marks/rules_lo25/Note_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Note" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -4929,7 +5073,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(-1.76451, 0.049198717, -0.059), (-1.6114899, 0.113301285, -0.059)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Marks/rules_lo25/Note_Mat>
+                rel material:binding = </Exhibit/Looks/Marks_rules_lo25_Note>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -4942,7 +5086,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "rules_lo11_plain"
+        def Xform "rules_lo11_plain"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -5022,42 +5166,6 @@ def Xform "Exhibit" (
                 }
             }
 
-            def Material "Note_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Marks/rules_lo11_plain/Note_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Marks/rules_lo11_plain/Note_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Marks/rules_lo11_plain/Note_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Marks_rules_lo11_plain_Note.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Marks/rules_lo11_plain/Note_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Note" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -5066,7 +5174,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(-0.9497382, 0.044323716, -0.059), (-0.71426183, 0.10842628, -0.059)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Marks/rules_lo11_plain/Note_Mat>
+                rel material:binding = </Exhibit/Looks/Marks_rules_lo11_plain_Note>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -5079,7 +5187,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "rules_lo11_first"
+        def Xform "rules_lo11_first"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -5179,42 +5287,6 @@ def Xform "Exhibit" (
                 }
             }
 
-            def Material "Note_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Marks/rules_lo11_first/Note_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Marks/rules_lo11_first/Note_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Marks/rules_lo11_first/Note_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Marks_rules_lo11_first_Note.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Marks/rules_lo11_first/Note_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Note" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -5223,7 +5295,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(-0.12056831, 0.045198716, -0.059), (0.3445683, 0.109301284, -0.059)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Marks/rules_lo11_first/Note_Mat>
+                rel material:binding = </Exhibit/Looks/Marks_rules_lo11_first_Note>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -5236,7 +5308,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "rules_lo27_stack"
+        def Xform "rules_lo27_stack"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -5316,42 +5388,6 @@ def Xform "Exhibit" (
                 }
             }
 
-            def Material "Note_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Marks/rules_lo27_stack/Note_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Marks/rules_lo27_stack/Note_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Marks/rules_lo27_stack/Note_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Marks_rules_lo27_stack_Note.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Marks/rules_lo27_stack/Note_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Note" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -5360,7 +5396,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(0.89292675, 0.04407372, -0.059), (1.2190732, 0.10817628, -0.059)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Marks/rules_lo27_stack/Note_Mat>
+                rel material:binding = </Exhibit/Looks/Marks_rules_lo27_stack_Note>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -5373,7 +5409,7 @@ def Xform "Exhibit" (
             }
         }
 
-        def "rules_lo27_pairwise"
+        def Xform "rules_lo27_pairwise"
         {
             def Mesh "S0" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
@@ -5453,42 +5489,6 @@ def Xform "Exhibit" (
                 }
             }
 
-            def Material "Note_Mat"
-            {
-                token outputs:surface.connect = </Exhibit/Marks/rules_lo27_pairwise/Note_Mat/Surface.outputs:surface>
-
-                def Shader "Surface"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0, 0, 0)
-                    color3f inputs:emissiveColor.connect = </Exhibit/Marks/rules_lo27_pairwise/Note_Mat/Tex.outputs:rgb>
-                    float inputs:opacity.connect = </Exhibit/Marks/rules_lo27_pairwise/Note_Mat/Tex.outputs:a>
-                    float inputs:opacityThreshold = 0.5
-                    float inputs:roughness = 1
-                    color3f inputs:specularColor = (0, 0, 0)
-                    int inputs:useSpecularWorkflow = 1
-                    token outputs:surface
-                }
-
-                def Shader "St"
-                {
-                    uniform token info:id = "UsdPrimvarReader_float2"
-                    string inputs:varname = "st"
-                    float2 outputs:result
-                }
-
-                def Shader "Tex"
-                {
-                    uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/Exhibit_Marks_rules_lo27_pairwise_Note.png@
-                    float4 inputs:scale = (1, 1, 1, 1)
-                    token inputs:sourceColorSpace = "sRGB"
-                    float2 inputs:st.connect = </Exhibit/Marks/rules_lo27_pairwise/Note_Mat/St.outputs:result>
-                    float outputs:a
-                    float3 outputs:rgb
-                }
-            }
-
             def Mesh "Note" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
@@ -5497,7 +5497,7 @@ def Xform "Exhibit" (
                 float3[] extent = [(1.7524725, 0.044323716, -0.059), (2.2475276, 0.10842628, -0.059)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Marks/rules_lo27_pairwise/Note_Mat>
+                rel material:binding = </Exhibit/Looks/Marks_rules_lo27_pairwise_Note>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
@@ -5511,7 +5511,9 @@ def Xform "Exhibit" (
         }
     }
 
-    def Scope "Cells"
+    def Scope "Cells" (
+        kind = "group"
+    )
     {
         def Xform "explicit_none" (
             prepend references = @./cells/explicit_none/cell.usda@
@@ -5519,6 +5521,46 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.952, 2.102, -1.302, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Capsule" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "explicit_explicit" (
@@ -5527,6 +5569,52 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.184, 2.102, -1.302, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Star" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Capsule" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "explicit_prepend" (
@@ -5535,6 +5623,46 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.24000000000000007, 2.102, -1.302, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Capsule" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "explicit_append" (
@@ -5543,6 +5671,46 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.7039999999999998, 2.102, -1.302, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Capsule" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "explicit_delete" (
@@ -5551,6 +5719,52 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.648, 2.102, -1.302, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Capsule" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Star" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "prepend_none" (
@@ -5559,6 +5773,34 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.952, 1.8019999999999998, -1.1070000000000002, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "prepend_explicit" (
@@ -5567,6 +5809,46 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.184, 1.8019999999999998, -1.1070000000000002, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Capsule" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "prepend_prepend" (
@@ -5575,6 +5857,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.24000000000000007, 1.8019999999999998, -1.1070000000000002, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "prepend_append" (
@@ -5583,6 +5899,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.7039999999999998, 1.8019999999999998, -1.1070000000000002, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "prepend_delete" (
@@ -5591,6 +5941,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.648, 1.8019999999999998, -1.1070000000000002, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "append_none" (
@@ -5599,6 +5983,34 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.952, 1.502, -0.912, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "append_explicit" (
@@ -5607,6 +6019,46 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.184, 1.502, -0.912, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Capsule" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "append_prepend" (
@@ -5615,6 +6067,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.24000000000000007, 1.502, -0.912, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "append_append" (
@@ -5623,6 +6109,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.7039999999999998, 1.502, -0.912, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "append_delete" (
@@ -5631,6 +6151,46 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.648, 1.502, -0.912, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Capsule" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "delete_none" (
@@ -5639,6 +6199,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.952, 1.202, -0.717, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "delete_explicit" (
@@ -5647,6 +6241,46 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.184, 1.202, -0.717, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Capsule" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "delete_prepend" (
@@ -5655,6 +6289,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.24000000000000007, 1.202, -0.717, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "delete_append" (
@@ -5663,6 +6331,46 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.7039999999999998, 1.202, -0.717, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Capsule" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "delete_delete" (
@@ -5671,6 +6379,46 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.648, 1.202, -0.717, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Capsule" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "none_none" (
@@ -5679,6 +6427,34 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.952, 0.9019999999999999, -0.522, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "none_explicit" (
@@ -5687,6 +6463,46 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.184, 0.9019999999999999, -0.522, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Capsule" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "none_prepend" (
@@ -5695,6 +6511,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.24000000000000007, 0.9019999999999999, -0.522, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "none_append" (
@@ -5703,6 +6553,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.7039999999999998, 0.9019999999999999, -0.522, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "none_delete" (
@@ -5711,6 +6595,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.648, 0.9019999999999999, -0.522, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "one_plain" (
@@ -5719,6 +6637,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.184, 0.602, -0.327, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "one_first_end" (
@@ -5727,6 +6679,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.24000000000000007, 0.602, -0.327, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "one_both_ends" (
@@ -5735,6 +6721,34 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.7039999999999998, 0.602, -0.327, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "rules_lo25" (
@@ -5743,6 +6757,22 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.952, 0.302, -0.132, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "rules_lo11_plain" (
@@ -5751,6 +6781,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-1.184, 0.302, -0.132, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "rules_lo11_first" (
@@ -5759,6 +6823,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.24000000000000007, 0.302, -0.132, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "rules_lo27_stack" (
@@ -5767,6 +6865,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0.7039999999999998, 0.302, -0.132, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
 
         def Xform "rules_lo27_pairwise" (
@@ -5775,6 +6907,40 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.648, 0.302, -0.132, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Inst" (
+                kind = "group"
+            )
+            {
+                over "Protos" (
+                    kind = "group"
+                )
+                {
+                    over "Sphere" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cube" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Prism" (
+                        kind = "group"
+                    )
+                    {
+                    }
+
+                    over "Cone" (
+                        kind = "group"
+                    )
+                    {
+                    }
+                }
+            }
         }
     }
 }

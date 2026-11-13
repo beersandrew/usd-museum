@@ -26,6 +26,242 @@ def Xform "Exhibit" (
     {
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-3.625, 0, -4.35, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
+
+        over "Cells" (
+            kind = "group"
+        )
+        {
+            over "local_inherit" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "local_variant" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "local_relocate" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "local_reference" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "local_payload" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "local_specialize" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "inherit_variant" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "inherit_relocate" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "inherit_reference" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "inherit_payload" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "inherit_specialize" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "variant_relocate" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "variant_reference" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "variant_payload" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "variant_specialize" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "relocate_reference" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "relocate_payload" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "relocate_specialize" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "reference_payload" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "reference_specialize" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "payload_specialize" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+        }
     }
 
     def Xform "Details" (
@@ -34,6 +270,77 @@ def Xform "Exhibit" (
     {
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-3.625, 0, -4.35, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
+
+        over "Cells" (
+            kind = "group"
+        )
+        {
+            over "nested" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "in_ref" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "shot_class" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "implied" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "ancestral" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+
+            over "list_order" (
+                kind = "group"
+            )
+            {
+                over "Case" (
+                    kind = "group"
+                )
+                {
+                }
+            }
+        }
     }
 }
 

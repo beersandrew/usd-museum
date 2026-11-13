@@ -8,9 +8,7 @@
     upAxis = "Y"
 )
 
-def Xform "Ghost" (
-    kind = "component"
-)
+def Xform "Ghost"
 {
     def Scope "Looks"
     {

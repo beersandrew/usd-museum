@@ -2,7 +2,7 @@
 
 ![A walk through the museum's ten wings, 67 stops in 30 seconds](media/tour.gif)
 
-**Take the tour:** open `tour.usda` with the camera `/museum/tour/tour_cam` and press Play. One animated
+**Take the tour:** open `tour.usda` with the camera `/museum/cameras/tour_cam` and press Play. One animated
 camera walks every wing and stops at each exhibit (11,839 frames, about 8 minutes at 24 fps). Its path is
 time-sampled data, in [tour_cam.usdc](tour_cam.usdc). In a browser:
 [andrew.beer/s/usdview](https://andrew.beer/s/usdview/), then Start Museum Tour. See [Viewing](#viewing).
@@ -39,15 +39,14 @@ Ways to use it:
 |---|---|
 | **Museum** | The whole thing: `museum.usda`, every wing placed along one route, joined by corridors |
 | **Wing** | One big area of USD (Composition, Animation, Materials...). A folder here, with its own `tour.usda` |
-| **Hall** | A wing's entrance room: its walls, lamps and signs |
+| **Hall** | A wing's entrance room: its walls and signs |
 | **Gallery** | One topic inside a wing (in Composition: arcs, strength, edits...). A subfolder of the wing |
 | **Exhibit** | One USD asset that demonstrates a topic. It opens on its own: `<wing>/<gallery>/<exhibit>/<exhibit>.usda` |
 | **Piece** | One part of an exhibit that shows one rule (in the variants exhibit: default, stronger, fallback, nested) |
 | **Reference** | The marks beside a piece that say what must happen: an outline the object must fill, a base in the color that must win, a red outline that must stay empty |
 | **Forgery** | A copy of an exhibit with one plausible mistake planted. A small override layer in the exhibit's `forgeries/` folder; it renders visibly wrong against the reference |
 | **Hold** | The moment in the tour when the camera pauses on an exhibit, which is when a forgery shows |
-| **Tour** | `tour.usda`: a camera path through the museum or a wing, with a frame range and a load schedule |
-| **Load schedule** | Which galleries (the **carriers**) are loaded at each frame, so a viewer loads only what is near the camera |
+| **Tour** | `tour.usda`: a camera path through the museum or a wing, with a frame range and the museum's light |
 | **Feature** | Something USD does that a user would name ("payloads", "variant fallbacks"); see below |
 
 ## Features
@@ -291,11 +290,29 @@ The museum shows 152 features of USD, by wing in tour order; the 26 it doesn't s
 | File | What it is |
 |---|---|
 | [museum.usda](museum.usda) | The museum as one assembly: ten wings, each referenced from `./<wing>/<wing>.usda` and placed and timed along one route, plus the corridors between them |
-| [tour.usda](tour.usda) | The guided tour, 11,839 frames (8.2 minutes at 24 fps): sublayers `museum.usda` and adds the tour camera, cameras to jump to (below), the load schedule and the doors closed between wings |
+| [tour.usda](tour.usda) | The guided tour, 11,839 frames (8.2 minutes at 24 fps): sublayers `museum.usda` and adds the tour camera, cameras to jump to (below), the museum's light and the doors closed between wings |
 | [tour_cam.usdc](tour_cam.usdc) | The tour camera's path, referenced by `tour.usda` (binary: one sample per frame) |
 
 The whole tour runs with OpenExec off, so it leaves out the Rigging wing, which is its own
 tour (`rigging/tour.usda`).
+
+### What's in tour.usda
+
+The top of the tour reads like a table of contents. Under `/museum`:
+
+| Prim | What it holds |
+|---|---|
+| `cameras` | `tour_cam` first, then the cameras to jump to ([Cameras](#cameras)) |
+| `lighting` | The museum's light: a warm key and a cool fill `DistantLight`, always on |
+| `wings` | The ten wings in tour order, `wings/foundations` ... `wings/physics` |
+| `corridors` | The corridors that join one wing to the next |
+
+A wing's own `tour.usda` has the same shape: `/<wing>/cameras/tour_cam` and `/<wing>/lighting`.
+Everything is loaded: there is no load schedule, so open the tour as usdview does by default, with
+every payload loaded.
+
+**Lighting.** The 13 lights are the key and fill, plus the Lights wing's exhibits, whose own lights are
+part of what they show; only the dome exhibit's two dome lights switch on and off.
 
 ### Wings
 
@@ -320,7 +337,7 @@ Eleven wings, in tour order:
 **Folders mirror prim paths.** The prim `/<wing>/<gallery>/<exhibit>` is the folder
 `<wing>/<gallery>/<exhibit>/`: if you can see a prim in usdview, you can find its files. Each
 wing has `<wing>.usda` (the wing itself, which opens on its own) and `tour.usda` (which adds the
-camera, frame range and load schedule).
+camera, frame range and light). In the whole museum the same prims sit under `/museum/wings/<wing>/...`.
 
 **Every asset has the same shape:**
 
@@ -359,8 +376,8 @@ variants exhibit's fallback piece; global variant fallbacks come only from a plu
 
 ```sh
 export PXR_PLUGINPATH_NAME=$PWD/config/variantFallbacks
-usdview tour.usda --camera /museum/tour/tour_cam                  # the whole museum
-usdview composition/tour.usda --camera /composition/tour/tour_cam # one wing
+usdview tour.usda --camera /museum/cameras/tour_cam                  # the whole museum
+usdview composition/tour.usda --camera /composition/cameras/tour_cam # one wing
 usdview composition/arcs/arcs/arcs.usda                           # one exhibit
 usdview composition/arcs/arcs/forgeries/noinherit.usda            # the same exhibit, one planted mistake
 ```
@@ -368,14 +385,14 @@ usdview composition/arcs/arcs/forgeries/noinherit.usda            # the same exh
 The Rigging wing needs OpenExec, which usdview reads from the environment:
 
 ```sh
-USDIMAGINGGL_ENGINE_ENABLE_EXEC_SCENE_INDEX=1 usdview rigging/tour.usda --camera /rigging/tour/tour_cam
+USDIMAGINGGL_ENGINE_ENABLE_EXEC_SCENE_INDEX=1 usdview rigging/tour.usda --camera /rigging/cameras/tour_cam
 ```
 
 ### Cameras
 
 `tour.usda` also has cameras to jump to, in usdview's Camera > Select Camera. usdview lists the
 first 20 by name and puts the rest under "More Cameras...", so they come in this order, all under
-`/museum/tour`:
+`/museum/cameras`:
 
 1. `tour_cam`, the guided tour.
 2. One per wing, in tour order (`Foundations_Wing` ... `Physics_Wing`): from the corner beside the
@@ -386,7 +403,7 @@ first 20 by name and puts the rest under "More Cameras...", so they come in this
 4. One per exhibit, in tour order (`Stop_<Wing>_<Exhibit>`): the tour's view at that exhibit's stop.
 
 They don't move, and each says in `customData["museum"]["frame"]` which tour frame to go to, so the
-exhibit is loaded and where the tour shows it. They are invisible, so usdview draws no camera
+exhibit is where the tour shows it. They are invisible, so usdview draws no camera
 outline for them. The Cameras wing's own exhibit cameras come after them.
 
 ## Who built it

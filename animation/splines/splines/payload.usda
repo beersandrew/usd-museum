@@ -20,7 +20,7 @@ def Xform "Exhibit" (
     {
     }
 
-    def "Stands"
+    def Xform "Stands"
     {
         def Xform "Tangents" (
             prepend references = @./stands/tangents.usda@

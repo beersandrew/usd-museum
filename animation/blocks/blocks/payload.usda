@@ -20,7 +20,9 @@ def Xform "Exhibit" (
     {
     }
 
-    def "Stands"
+    def Xform "Stands" (
+        kind = "group"
+    )
     {
         def Xform "Blocks" (
             prepend references = @./stands/blocks.usda@
@@ -28,6 +30,75 @@ def Xform "Exhibit" (
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-0.9099999999999999, 0, -0.4, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            over "Pieces" (
+                kind = "group"
+            )
+            {
+                over "Value" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Sample" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Animation" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "Color" (
+                    kind = "group"
+                )
+                {
+                    over "Ride" (
+                        kind = "group"
+                    )
+                    {
+                        over "Cart" (
+                            kind = "group"
+                        )
+                        {
+                        }
+                    }
+                }
+            }
         }
     }
 }
