@@ -161,12 +161,21 @@ def Xform "Rooms" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Rooms_Placards_population_Card.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Rooms/Looks/population_Card/St.outputs:result>
+                float2 inputs:st.connect = </Rooms/Looks/population_Card/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Rooms/Looks/population_Card/St.outputs:result>
+                float2 inputs:scale = (0.63720703, 0.2414163)
+                float2 inputs:translation = (0.001953125, 0.25429183)
+                float2 outputs:result
             }
         }
 
@@ -197,12 +206,21 @@ def Xform "Rooms" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Rooms_Placards_schemas_Card.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Rooms/Looks/schemas_Card/St.outputs:result>
+                float2 inputs:st.connect = </Rooms/Looks/schemas_Card/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Rooms/Looks/schemas_Card/St.outputs:result>
+                float2 inputs:scale = (0.63720703, 0.2414163)
+                float2 inputs:translation = (0.001953125, 0.0042918455)
+                float2 outputs:result
             }
         }
 
@@ -233,12 +251,21 @@ def Xform "Rooms" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Rooms_Placards_collections_Card.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Rooms/Looks/collections_Card/St.outputs:result>
+                float2 inputs:st.connect = </Rooms/Looks/collections_Card/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Rooms/Looks/collections_Card/St.outputs:result>
+                float2 inputs:scale = (0.63720703, 0.2414163)
+                float2 inputs:translation = (0.001953125, 0.75429183)
+                float2 outputs:result
             }
         }
 
@@ -269,12 +296,21 @@ def Xform "Rooms" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Rooms_Placards_imageable_Card.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Rooms/Looks/imageable_Card/St.outputs:result>
+                float2 inputs:st.connect = </Rooms/Looks/imageable_Card/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Rooms/Looks/imageable_Card/St.outputs:result>
+                float2 inputs:scale = (0.63720703, 0.2414163)
+                float2 inputs:translation = (0.001953125, 0.50429183)
+                float2 outputs:result
             }
         }
     }

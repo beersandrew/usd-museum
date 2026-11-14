@@ -185,12 +185,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/sign_exhibit_cards_sign_skinning.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Cards_Sign_Skinning/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Cards_Sign_Skinning/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Cards_Sign_Skinning/St.outputs:result>
+                float2 inputs:scale = (0.5888672, 0.16157989)
+                float2 inputs:translation = (0.00390625, 0.17534411)
+                float2 outputs:result
             }
         }
 
@@ -221,12 +230,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/sign_exhibit_cards_sign_geombind.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Cards_Sign_GeomBind/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Cards_Sign_GeomBind/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Cards_Sign_GeomBind/St.outputs:result>
+                float2 inputs:scale = (0.5888672, 0.16157989)
+                float2 inputs:translation = (0.00390625, 0.34649912)
+                float2 outputs:result
             }
         }
 
@@ -257,12 +275,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/sign_exhibit_cards_sign_blendshapes.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Cards_Sign_BlendShapes/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Cards_Sign_BlendShapes/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Cards_Sign_BlendShapes/St.outputs:result>
+                float2 inputs:scale = (0.5888672, 0.16157989)
+                float2 inputs:translation = (0.00390625, 0.5176541)
+                float2 outputs:result
             }
         }
 
@@ -293,12 +320,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/sign_exhibit_cards_sign_dualquat.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Cards_Sign_DualQuat/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Cards_Sign_DualQuat/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Cards_Sign_DualQuat/St.outputs:result>
+                float2 inputs:scale = (0.5888672, 0.16098145)
+                float2 inputs:translation = (0.00390625, 0.004787552)
+                float2 outputs:result
             }
         }
 

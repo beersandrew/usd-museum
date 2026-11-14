@@ -215,12 +215,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/sign_exhibit_placards_sign_settings.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Sign_Settings/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Sign_Settings/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Sign_Settings/St.outputs:result>
+                float2 inputs:scale = (0.7536621, 0.48053527)
+                float2 inputs:translation = (0.001953125, 0.50973237)
+                float2 outputs:result
             }
         }
 
@@ -251,12 +260,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/sign_exhibit_placards_sign_pass.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Sign_Pass/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Sign_Pass/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Sign_Pass/St.outputs:result>
+                float2 inputs:scale = (0.2614746, 0.48053527)
+                float2 inputs:translation = (0.001953125, 0.00973236)
+                float2 outputs:result
             }
         }
 
@@ -319,12 +337,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pieces_Set_Prop_MonitorSettings_Label.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Set_Prop_MonitorSettings_Label/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Set_Prop_MonitorSettings_Label/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Set_Prop_MonitorSettings_Label/St.outputs:result>
+                float2 inputs:scale = (0.20800781, 0.097323604)
+                float2 inputs:translation = (0.5048828, 0.39294404)
+                float2 outputs:result
             }
         }
 
@@ -355,12 +382,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pieces_Set_Prop_MonitorPass_Label.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Set_Prop_MonitorPass_Label/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Set_Prop_MonitorPass_Label/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Set_Prop_MonitorPass_Label/St.outputs:result>
+                float2 inputs:scale = (0.23364258, 0.097323604)
+                float2 inputs:translation = (0.26733398, 0.39294404)
+                float2 outputs:result
             }
         }
 

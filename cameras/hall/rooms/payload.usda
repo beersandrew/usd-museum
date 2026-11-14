@@ -161,12 +161,21 @@ def Xform "Rooms" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Rooms_Placards_lenses_Card.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Rooms/Looks/lenses_Card/St.outputs:result>
+                float2 inputs:st.connect = </Rooms/Looks/lenses_Card/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Rooms/Looks/lenses_Card/St.outputs:result>
+                float2 inputs:scale = (0.63720703, 0.4828326)
+                float2 inputs:translation = (0.001953125, 0.50858366)
+                float2 outputs:result
             }
         }
 
@@ -197,12 +206,21 @@ def Xform "Rooms" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Rooms_Placards_render_Card.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Rooms/Looks/render_Card/St.outputs:result>
+                float2 inputs:st.connect = </Rooms/Looks/render_Card/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Rooms/Looks/render_Card/St.outputs:result>
+                float2 inputs:scale = (0.63720703, 0.4828326)
+                float2 inputs:translation = (0.001953125, 0.008583691)
+                float2 outputs:result
             }
         }
     }
