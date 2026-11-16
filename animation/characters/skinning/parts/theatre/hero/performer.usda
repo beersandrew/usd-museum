@@ -117,8 +117,8 @@ def SkelRoot "Performer" (
                 {
                     uniform token info:id = "UsdTransform2d"
                     float2 inputs:in.connect = </Performer/PropTable/Cloth/Mat/St.outputs:result>
-                    float2 inputs:scale = (0.5, 0.30640334)
-                    float2 inputs:translation = (0.00390625, 0.6888091)
+                    float2 inputs:scale = (0.29391503, 0.8951049)
+                    float2 inputs:translation = (0.0022962112, 0.09090909)
                     float2 outputs:result
                 }
             }

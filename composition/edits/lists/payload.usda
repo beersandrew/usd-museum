@@ -33,21 +33,6 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "placard_back"
-        {
-            token outputs:surface.connect = </Exhibit/Looks/placard_back/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.05087609, 0.046964202, 0.043233637)
-                float inputs:roughness = 0.6
-                color3f inputs:specularColor = (0.04, 0.04, 0.04)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-        }
-
         def Material "outline_red"
         {
             token outputs:surface.connect = </Exhibit/Looks/outline_red/Surface.outputs:surface>
@@ -363,8 +348,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Sign_Lists/St.outputs:result>
-                float2 inputs:scale = (0.63720703, 0.745283)
-                float2 inputs:translation = (0.001953125, 0.23962264)
+                float2 inputs:scale = (0.8688415, 0.74248123)
+                float2 inputs:translation = (0.0026631157, 0.2424812)
                 float2 outputs:result
             }
         }
@@ -408,8 +393,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Col_none/St.outputs:result>
-                float2 inputs:scale = (0.05419922, 0.19433962)
-                float2 inputs:translation = (0.001953125, 0.01509434)
+                float2 inputs:scale = (0.07390147, 0.19360903)
+                float2 inputs:translation = (0.7819574, 0.018796992)
                 float2 outputs:result
             }
         }
@@ -453,8 +438,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Col_explicit/St.outputs:result>
-                float2 inputs:scale = (0.079589844, 0.19433962)
-                float2 inputs:translation = (0.82177734, 0.790566)
+                float2 inputs:scale = (0.10852197, 0.19360903)
+                float2 inputs:translation = (0.8768309, 0.2274436)
                 float2 outputs:result
             }
         }
@@ -498,8 +483,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Col_prepend/St.outputs:result>
-                float2 inputs:scale = (0.08984375, 0.19433962)
-                float2 inputs:translation = (0.6430664, 0.790566)
+                float2 inputs:scale = (0.122503325, 0.19360903)
+                float2 inputs:translation = (0.1741012, 0.018796992)
                 float2 outputs:result
             }
         }
@@ -543,8 +528,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Col_append/St.outputs:result>
-                float2 inputs:scale = (0.08105469, 0.19433962)
-                float2 inputs:translation = (0.7368164, 0.790566)
+                float2 inputs:scale = (0.110519305, 0.19360903)
+                float2 inputs:translation = (0.8768309, 0.45112783)
                 float2 outputs:result
             }
         }
@@ -588,8 +573,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Col_delete/St.outputs:result>
-                float2 inputs:scale = (0.067871094, 0.19433962)
-                float2 inputs:translation = (0.90527344, 0.790566)
+                float2 inputs:scale = (0.092543274, 0.19360903)
+                float2 inputs:translation = (0.4091212, 0.018796992)
                 float2 outputs:result
             }
         }
@@ -633,8 +618,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Axes_1/St.outputs:result>
-                float2 inputs:scale = (0.12182617, 0.11886793)
-                float2 inputs:translation = (0.5258789, 0.09056604)
+                float2 inputs:scale = (0.16611186, 0.118421055)
+                float2 inputs:translation = (0.0026631157, 0.09398496)
                 float2 outputs:result
             }
         }
@@ -678,8 +663,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Axes_2/St.outputs:result>
-                float2 inputs:scale = (0.088378906, 0.11886793)
-                float2 inputs:translation = (0.6516113, 0.09056604)
+                float2 inputs:scale = (0.12050599, 0.118421055)
+                float2 inputs:translation = (0.8768309, 0.8665413)
                 float2 outputs:result
             }
         }
@@ -723,8 +708,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Marks_Row_explicit_Name/St.outputs:result>
-                float2 inputs:scale = (0.06616211, 0.16226415)
-                float2 inputs:translation = (0.29711914, 0.047169812)
+                float2 inputs:scale = (0.09021305, 0.16165413)
+                float2 inputs:translation = (0.6041944, 0.05075188)
                 float2 outputs:result
             }
         }
@@ -768,8 +753,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Marks_Row_prepend_Name/St.outputs:result>
-                float2 inputs:scale = (0.07470703, 0.16226415)
-                float2 inputs:translation = (0.1472168, 0.047169812)
+                float2 inputs:scale = (0.10186418, 0.16165413)
+                float2 inputs:translation = (0.30193076, 0.05075188)
                 float2 outputs:result
             }
         }
@@ -813,8 +798,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Marks_Row_append_Name/St.outputs:result>
-                float2 inputs:scale = (0.06738281, 0.16226415)
-                float2 inputs:translation = (0.22583008, 0.047169812)
+                float2 inputs:scale = (0.0918775, 0.16165413)
+                float2 inputs:translation = (0.5069907, 0.05075188)
                 float2 outputs:result
             }
         }
@@ -858,8 +843,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Marks_Row_delete_Name/St.outputs:result>
-                float2 inputs:scale = (0.056396484, 0.16226415)
-                float2 inputs:translation = (0.3671875, 0.047169812)
+                float2 inputs:scale = (0.07689747, 0.16165413)
+                float2 inputs:translation = (0.6997337, 0.05075188)
                 float2 outputs:result
             }
         }
@@ -903,8 +888,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Marks_Row_none_Name/St.outputs:result>
-                float2 inputs:scale = (0.045166016, 0.16226415)
-                float2 inputs:translation = (0.47680664, 0.047169812)
+                float2 inputs:scale = (0.061584555, 0.16165413)
+                float2 inputs:translation = (0.92842877, 0.035714287)
                 float2 outputs:result
             }
         }
@@ -948,8 +933,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Marks_Row_one_Name/St.outputs:result>
-                float2 inputs:scale = (0.08325195, 0.16226415)
-                float2 inputs:translation = (0.060058594, 0.047169812)
+                float2 inputs:scale = (0.11351531, 0.16165413)
+                float2 inputs:translation = (0.8768309, 0.674812)
                 float2 outputs:result
             }
         }
@@ -1101,8 +1086,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Marks_Row_rules_Name/St.outputs:result>
-                float2 inputs:scale = (0.045410156, 0.16226415)
-                float2 inputs:translation = (0.42749023, 0.047169812)
+                float2 inputs:scale = (0.061917443, 0.16165413)
+                float2 inputs:translation = (0.8611851, 0.035714287)
                 float2 outputs:result
             }
         }

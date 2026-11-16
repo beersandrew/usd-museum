@@ -78,21 +78,6 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "placard_back"
-        {
-            token outputs:surface.connect = </Exhibit/Looks/placard_back/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.05087609, 0.046964202, 0.043233637)
-                float inputs:roughness = 0.6
-                color3f inputs:specularColor = (0.04, 0.04, 0.04)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-        }
-
         def Material "base"
         {
             token outputs:surface.connect = </Exhibit/Looks/base/Surface.outputs:surface>
@@ -193,8 +178,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Title/St.outputs:result>
-                float2 inputs:scale = (0.5493164, 0.96107054)
-                float2 inputs:translation = (0.001953125, 0.01946472)
+                float2 inputs:scale = (0.8259912, 0.95873785)
+                float2 inputs:translation = (0.0029368575, 0.02184466)
                 float2 outputs:result
             }
         }
@@ -238,8 +223,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Narrow_Label/St.outputs:result>
-                float2 inputs:scale = (0.092041016, 0.27980536)
-                float2 inputs:translation = (0.6665039, 0.7007299)
+                float2 inputs:scale = (0.1383994, 0.27912623)
+                float2 inputs:translation = (0.83480173, 0.38349515)
                 float2 outputs:result
             }
         }
@@ -283,8 +268,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Wide_Label/St.outputs:result>
-                float2 inputs:scale = (0.107421875, 0.27980536)
-                float2 inputs:translation = (0.5551758, 0.7007299)
+                float2 inputs:scale = (0.16152717, 0.27912623)
+                float2 inputs:translation = (0.83480173, 0.7014563)
                 float2 outputs:result
             }
         }

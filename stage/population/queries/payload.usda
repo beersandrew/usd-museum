@@ -40,21 +40,6 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "placard_back"
-        {
-            token outputs:surface.connect = </Exhibit/Looks/placard_back/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.05087609, 0.046964202, 0.043233637)
-                float inputs:roughness = 0.6
-                color3f inputs:specularColor = (0.04, 0.04, 0.04)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-        }
-
         def Material "sign_back"
         {
             token outputs:surface.connect = </Exhibit/Looks/sign_back/Surface.outputs:surface>
@@ -159,12 +144,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/sign_exhibit_placards_sign_active.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Sign_Active/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Sign_Active/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Sign_Active/St.outputs:result>
+                float2 inputs:scale = (0.99285716, 0.36040145)
+                float2 inputs:translation = (0.0031746032, 0.63229924)
+                float2 outputs:result
             }
         }
 
@@ -195,12 +189,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/sign_exhibit_placards_sign_model.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Sign_Model/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Sign_Model/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Sign_Model/St.outputs:result>
+                float2 inputs:scale = (0.99285716, 0.36040145)
+                float2 inputs:translation = (0.0031746032, 0.25729927)
+                float2 outputs:result
             }
         }
 
@@ -231,12 +234,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_Active_Label.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Active_Label/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Active_Label/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_Active_Label/St.outputs:result>
+                float2 inputs:scale = (0.10079365, 0.08850365)
+                float2 inputs:translation = (0.49285713, 0.05109489)
+                float2 outputs:result
             }
         }
 
@@ -267,12 +279,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_Active_Sub.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Active_Sub/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Active_Sub/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_Active_Sub/St.outputs:result>
+                float2 inputs:scale = (0.06746032, 0.05839416)
+                float2 inputs:translation = (0.2361111, 0.00729927)
+                float2 outputs:result
             }
         }
 
@@ -303,12 +324,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_Inactive_Label.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Inactive_Label/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Inactive_Label/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_Inactive_Label/St.outputs:result>
+                float2 inputs:scale = (0.13174604, 0.08850365)
+                float2 inputs:translation = (0.65992063, 0.15419708)
+                float2 outputs:result
             }
         }
 
@@ -339,12 +369,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_Inactive_Sub.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Inactive_Sub/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Inactive_Sub/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_Inactive_Sub/St.outputs:result>
+                float2 inputs:scale = (0.13412699, 0.05839416)
+                float2 inputs:translation = (0.8063492, 0.008211679)
+                float2 outputs:result
             }
         }
 
@@ -375,12 +414,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_ParentOff_Label.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_ParentOff_Label/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_ParentOff_Label/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_ParentOff_Label/St.outputs:result>
+                float2 inputs:scale = (0.16547619, 0.08941606)
+                float2 inputs:translation = (0.20039682, 0.15328467)
+                float2 outputs:result
             }
         }
 
@@ -411,12 +459,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_ParentOff_Sub.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_ParentOff_Sub/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_ParentOff_Sub/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_ParentOff_Sub/St.outputs:result>
+                float2 inputs:scale = (0.1781746, 0.05839416)
+                float2 inputs:translation = (0.8063492, 0.08120438)
+                float2 outputs:result
             }
         }
 
@@ -447,12 +504,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_OverParent_Label.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_OverParent_Label/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_OverParent_Label/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_OverParent_Label/St.outputs:result>
+                float2 inputs:scale = (0.19087301, 0.08941606)
+                float2 inputs:translation = (0.0031746032, 0.15328467)
+                float2 outputs:result
             }
         }
 
@@ -483,12 +549,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_OverParent_Sub.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_OverParent_Sub/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_OverParent_Sub/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_OverParent_Sub/St.outputs:result>
+                float2 inputs:scale = (0.12539683, 0.05839416)
+                float2 inputs:translation = (0.0031746032, 0.00729927)
+                float2 outputs:result
             }
         }
 
@@ -519,12 +594,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_Assembly_Label.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Assembly_Label/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Assembly_Label/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_Assembly_Label/St.outputs:result>
+                float2 inputs:scale = (0.16071428, 0.08850365)
+                float2 inputs:translation = (0.49285713, 0.15419708)
+                float2 outputs:result
             }
         }
 
@@ -555,12 +639,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_Assembly_Sub.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Assembly_Sub/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Assembly_Sub/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_Assembly_Sub/St.outputs:result>
+                float2 inputs:scale = (0.09484127, 0.05839416)
+                float2 inputs:translation = (0.13492064, 0.00729927)
+                float2 outputs:result
             }
         }
 
@@ -591,12 +684,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_NoKind_Label.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_NoKind_Label/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_NoKind_Label/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_NoKind_Label/St.outputs:result>
+                float2 inputs:scale = (0.12301587, 0.08850365)
+                float2 inputs:translation = (0.7980159, 0.15419708)
+                float2 outputs:result
             }
         }
 
@@ -627,12 +729,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_NoKind_Sub.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_NoKind_Sub/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_NoKind_Sub/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_NoKind_Sub/St.outputs:result>
+                float2 inputs:scale = (0.13571429, 0.05839416)
+                float2 inputs:translation = (0.18055555, 0.08029197)
+                float2 outputs:result
             }
         }
 
@@ -663,12 +774,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_Nested_Label.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Nested_Label/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Nested_Label/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_Nested_Label/St.outputs:result>
+                float2 inputs:scale = (0.114285715, 0.08941606)
+                float2 inputs:translation = (0.37222221, 0.15328467)
+                float2 outputs:result
             }
         }
 
@@ -699,12 +819,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_Nested_Sub.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Nested_Sub/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Nested_Sub/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_Nested_Sub/St.outputs:result>
+                float2 inputs:scale = (0.17103174, 0.05839416)
+                float2 inputs:translation = (0.0031746032, 0.08029197)
+                float2 outputs:result
             }
         }
 
@@ -735,12 +864,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_Subcomp_Label.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Subcomp_Label/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Subcomp_Label/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_Subcomp_Label/St.outputs:result>
+                float2 inputs:scale = (0.2, 0.071167886)
+                float2 inputs:translation = (0.6, 0.068430655)
+                float2 outputs:result
             }
         }
 
@@ -771,12 +909,21 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/Exhibit_Pedestals_Subcomp_Sub.png@
+                asset inputs:file = @./textures/labels_atlas.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Subcomp_Sub/St.outputs:result>
+                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Subcomp_Sub/Tex_Atlas.outputs:result>
                 float outputs:a
                 float3 outputs:rgb
+            }
+
+            def Shader "Tex_Atlas"
+            {
+                uniform token info:id = "UsdTransform2d"
+                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_Subcomp_Sub/St.outputs:result>
+                float2 inputs:scale = (0.13571429, 0.05839416)
+                float2 inputs:translation = (0.32261905, 0.08029197)
+                float2 outputs:result
             }
         }
     }

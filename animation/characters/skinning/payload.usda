@@ -197,8 +197,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Cards_Sign_Skinning/St.outputs:result>
-                float2 inputs:scale = (0.5888672, 0.16157989)
-                float2 inputs:translation = (0.00390625, 0.17534411)
+                float2 inputs:scale = (0.34615386, 0.47202796)
+                float2 inputs:translation = (0.30080366, 0.013986014)
                 float2 outputs:result
             }
         }
@@ -242,8 +242,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Cards_Sign_GeomBind/St.outputs:result>
-                float2 inputs:scale = (0.5888672, 0.16157989)
-                float2 inputs:translation = (0.00390625, 0.34649912)
+                float2 inputs:scale = (0.34615386, 0.47202796)
+                float2 inputs:translation = (0.65154994, 0.513986)
                 float2 outputs:result
             }
         }
@@ -287,8 +287,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Cards_Sign_BlendShapes/St.outputs:result>
-                float2 inputs:scale = (0.5888672, 0.16157989)
-                float2 inputs:translation = (0.00390625, 0.5176541)
+                float2 inputs:scale = (0.34615386, 0.47202796)
+                float2 inputs:translation = (0.30080366, 0.513986)
                 float2 outputs:result
             }
         }
@@ -332,8 +332,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Cards_Sign_DualQuat/St.outputs:result>
-                float2 inputs:scale = (0.5888672, 0.16098145)
-                float2 inputs:translation = (0.00390625, 0.004787552)
+                float2 inputs:scale = (0.34615386, 0.47027972)
+                float2 inputs:translation = (0.65154994, 0.015734266)
                 float2 outputs:result
             }
         }
@@ -869,8 +869,8 @@ def Xform "Exhibit" (
                 int[] faceVertexIndices
                 rel material:binding = </Exhibit/Looks/DemoSkin>
                 point3f[] points
-                color3f[] primvars:displayColor (
-                    interpolation = "uniform"
+                color3f[] primvars:displayColor = [(0.7293471, 0.4064483, 0.25295007)] (
+                    interpolation = "constant"
                 )
                 matrix4d primvars:skel:geomBindTransform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
                 int[] primvars:skel:jointIndices (
@@ -988,8 +988,8 @@ def Xform "Exhibit" (
                 int[] faceVertexIndices
                 rel material:binding = </Exhibit/Looks/DemoSkin>
                 point3f[] points
-                color3f[] primvars:displayColor (
-                    interpolation = "uniform"
+                color3f[] primvars:displayColor = [(0.7293471, 0.4064483, 0.25295007)] (
+                    interpolation = "constant"
                 )
                 matrix4d primvars:skel:geomBindTransform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
                 int[] primvars:skel:jointIndices (

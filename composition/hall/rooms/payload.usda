@@ -74,21 +74,6 @@ def Xform "Rooms" (
             }
         }
 
-        def Material "stand"
-        {
-            token outputs:surface.connect = </Rooms/Looks/stand/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.60382736, 0.58701634, 0.53823555)
-                float inputs:roughness = 0.85
-                color3f inputs:specularColor = (0.04, 0.04, 0.04)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-        }
-
         def Material "ceiling"
         {
             token outputs:surface.connect = </Rooms/Looks/ceiling/Surface.outputs:surface>
@@ -173,8 +158,8 @@ def Xform "Rooms" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Rooms/Looks/arcs_Card/St.outputs:result>
-                float2 inputs:scale = (0.63720703, 0.16094421)
-                float2 inputs:translation = (0.001953125, 0.8361946)
+                float2 inputs:scale = (0.9931507, 0.16094421)
+                float2 inputs:translation = (0.00304414, 0.8361946)
                 float2 outputs:result
             }
         }
@@ -218,8 +203,8 @@ def Xform "Rooms" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Rooms/Looks/loading_Card/St.outputs:result>
-                float2 inputs:scale = (0.63720703, 0.16094421)
-                float2 inputs:translation = (0.001953125, 0.33619457)
+                float2 inputs:scale = (0.9931507, 0.16094421)
+                float2 inputs:translation = (0.00304414, 0.33619457)
                 float2 outputs:result
             }
         }
@@ -263,8 +248,8 @@ def Xform "Rooms" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Rooms/Looks/strength_Card/St.outputs:result>
-                float2 inputs:scale = (0.63720703, 0.16094421)
-                float2 inputs:translation = (0.001953125, 0.0028612304)
+                float2 inputs:scale = (0.9931507, 0.16094421)
+                float2 inputs:translation = (0.00304414, 0.0028612304)
                 float2 outputs:result
             }
         }
@@ -308,8 +293,8 @@ def Xform "Rooms" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Rooms/Looks/namespace_Card/St.outputs:result>
-                float2 inputs:scale = (0.63720703, 0.16094421)
-                float2 inputs:translation = (0.001953125, 0.1695279)
+                float2 inputs:scale = (0.9931507, 0.16094421)
+                float2 inputs:translation = (0.00304414, 0.1695279)
                 float2 outputs:result
             }
         }
@@ -353,8 +338,8 @@ def Xform "Rooms" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Rooms/Looks/edits_Card/St.outputs:result>
-                float2 inputs:scale = (0.63720703, 0.16094421)
-                float2 inputs:translation = (0.001953125, 0.6695279)
+                float2 inputs:scale = (0.9931507, 0.16094421)
+                float2 inputs:translation = (0.00304414, 0.6695279)
                 float2 outputs:result
             }
         }
@@ -398,8 +383,8 @@ def Xform "Rooms" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Rooms/Looks/errors_Card/St.outputs:result>
-                float2 inputs:scale = (0.63720703, 0.16094421)
-                float2 inputs:translation = (0.001953125, 0.5028612)
+                float2 inputs:scale = (0.9931507, 0.16094421)
+                float2 inputs:translation = (0.00304414, 0.5028612)
                 float2 outputs:result
             }
         }

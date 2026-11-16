@@ -81,21 +81,6 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "placard_back"
-        {
-            token outputs:surface.connect = </Exhibit/Looks/placard_back/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.05087609, 0.046964202, 0.043233637)
-                float inputs:roughness = 0.6
-                color3f inputs:specularColor = (0.04, 0.04, 0.04)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-        }
-
         def Material "pole"
         {
             token outputs:surface.connect = </Exhibit/Looks/pole/Surface.outputs:surface>
@@ -320,8 +305,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Sign_Clipping/St.outputs:result>
-                float2 inputs:scale = (0.5053711, 0.96107054)
-                float2 inputs:translation = (0.001953125, 0.01946472)
+                float2 inputs:scale = (0.9913793, 0.77755904)
+                float2 inputs:translation = (0.0038314175, 0.20669292)
                 float2 outputs:result
             }
         }
@@ -397,8 +382,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Clip_Prop_Monitor_Label/St.outputs:result>
-                float2 inputs:scale = (0.34814453, 0.19464721)
-                float2 inputs:translation = (0.51123047, 0.7858881)
+                float2 inputs:scale = (0.6829502, 0.15748031)
+                float2 inputs:translation = (0.0038314175, 0.017716536)
                 float2 outputs:result
             }
         }

@@ -48,21 +48,6 @@ def Xform "Exhibit" (
             }
         }
 
-        def Material "placard_back"
-        {
-            token outputs:surface.connect = </Exhibit/Looks/placard_back/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.05087609, 0.046964202, 0.043233637)
-                float inputs:roughness = 0.6
-                color3f inputs:specularColor = (0.04, 0.04, 0.04)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-        }
-
         def Material "ink"
         {
             token outputs:surface.connect = </Exhibit/Looks/ink/Surface.outputs:surface>
@@ -72,36 +57,6 @@ def Xform "Exhibit" (
                 uniform token info:id = "UsdPreviewSurface"
                 color3f inputs:diffuseColor = (0.015325204, 0.015325204, 0.017389102)
                 float inputs:roughness = 0.6
-                color3f inputs:specularColor = (0.04, 0.04, 0.04)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-        }
-
-        def Material "outline_red"
-        {
-            token outputs:surface.connect = </Exhibit/Looks/outline_red/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.63075715, 0.000607054, 0.010960094)
-                float inputs:roughness = 0.6
-                color3f inputs:specularColor = (0.04, 0.04, 0.04)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-        }
-
-        def Material "key_base"
-        {
-            token outputs:surface.connect = </Exhibit/Looks/key_base/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.31854677, 0.31854677, 0.31854677)
-                float inputs:roughness = 0.8
                 color3f inputs:specularColor = (0.04, 0.04, 0.04)
                 int inputs:useSpecularWorkflow = 1
                 token outputs:surface
@@ -193,8 +148,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Sign_Tets/St.outputs:result>
-                float2 inputs:scale = (0.87890625, 0.7542857)
-                float2 inputs:translation = (0.00390625, 0.23047619)
+                float2 inputs:scale = (0.9911894, 0.75)
+                float2 inputs:translation = (0.004405286, 0.23484848)
                 float2 outputs:result
             }
         }
@@ -238,8 +193,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Jelly_Label/St.outputs:result>
-                float2 inputs:scale = (0.18115234, 0.18476191)
-                float2 inputs:translation = (0.00390625, 0.015238095)
+                float2 inputs:scale = (0.20429516, 0.18371212)
+                float2 inputs:translation = (0.004405286, 0.020833334)
                 float2 outputs:result
             }
         }
@@ -283,8 +238,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Jelly_Sub/St.outputs:result>
-                float2 inputs:scale = (0.25048828, 0.12190476)
-                float2 inputs:translation = (0.1928711, 0.078095235)
+                float2 inputs:scale = (0.28248897, 0.121212125)
+                float2 inputs:translation = (0.21751101, 0.083333336)
                 float2 outputs:result
             }
         }

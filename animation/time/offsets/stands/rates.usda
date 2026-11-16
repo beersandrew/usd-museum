@@ -2028,8 +2028,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Cards/Fps24_Mat/St.outputs:result>
-                float2 inputs:scale = (0.2241211, 0.19408867)
-                float2 inputs:translation = (0.22998047, 0.217734)
+                float2 inputs:scale = (0.4257885, 0.11533958)
+                float2 inputs:translation = (0.0037105752, 0.31557378)
                 float2 outputs:result
             }
         }
@@ -2105,8 +2105,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Cards/Fps30_Mat/St.outputs:result>
-                float2 inputs:scale = (0.2241211, 0.19408867)
-                float2 inputs:translation = (0.4580078, 0.217734)
+                float2 inputs:scale = (0.4257885, 0.11533958)
+                float2 inputs:translation = (0.43692023, 0.25585482)
                 float2 outputs:result
             }
         }
@@ -2182,8 +2182,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Cards/Fps60_Mat/St.outputs:result>
-                float2 inputs:scale = (0.2241211, 0.19408867)
-                float2 inputs:translation = (0.68603516, 0.217734)
+                float2 inputs:scale = (0.4257885, 0.11533958)
+                float2 inputs:translation = (0.0037105752, 0.19086652)
                 float2 outputs:result
             }
         }
@@ -2259,8 +2259,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Cards/Sub48_Mat/St.outputs:result>
-                float2 inputs:scale = (0.2241211, 0.19408867)
-                float2 inputs:translation = (0.22998047, 0.007881774)
+                float2 inputs:scale = (0.4257885, 0.11533958)
+                float2 inputs:translation = (0.0037105752, 0.06615925)
                 float2 outputs:result
             }
         }
@@ -2336,8 +2336,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Cards/Sub12_Mat/St.outputs:result>
-                float2 inputs:scale = (0.2241211, 0.19408867)
-                float2 inputs:translation = (0.001953125, 0.007881774)
+                float2 inputs:scale = (0.4257885, 0.11533958)
+                float2 inputs:translation = (0.43692023, 0.13114753)
                 float2 outputs:result
             }
         }
@@ -2413,8 +2413,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Cards/Twicea_Mat/St.outputs:result>
-                float2 inputs:scale = (0.2241211, 0.19408867)
-                float2 inputs:translation = (0.4580078, 0.007881774)
+                float2 inputs:scale = (0.4257885, 0.11533958)
+                float2 inputs:translation = (0.43692023, 0.006440281)
                 float2 outputs:result
             }
         }
@@ -2490,8 +2490,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Cards/Twiceb_Mat/St.outputs:result>
-                float2 inputs:scale = (0.2241211, 0.19507389)
-                float2 inputs:translation = (0.5986328, 0.79704434)
+                float2 inputs:scale = (0.4257885, 0.11592506)
+                float2 inputs:translation = (0.5705009, 0.8793911)
                 float2 outputs:result
             }
         }
@@ -2567,8 +2567,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Cards/Sign_rates_Mat/St.outputs:result>
-                float2 inputs:scale = (0.2944336, 0.3536946)
-                float2 inputs:translation = (0.30029297, 0.6384236)
+                float2 inputs:scale = (0.5593692, 0.21018736)
+                float2 inputs:translation = (0.0037105752, 0.5649883)
                 float2 outputs:result
             }
         }
@@ -2683,8 +2683,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Ruler/F001_Mat/St.outputs:result>
-                float2 inputs:scale = (0.015625, 0.114285715)
-                float2 inputs:translation = (0.68603516, 0.08768473)
+                float2 inputs:scale = (0.029684601, 0.06791569)
+                float2 inputs:translation = (0.8701299, 0.42798594)
                 float2 outputs:result
             }
         }
@@ -2748,8 +2748,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Ruler/F024_Mat/St.outputs:result>
-                float2 inputs:scale = (0.03100586, 0.113300495)
-                float2 inputs:translation = (0.7055664, 0.08866995)
+                float2 inputs:scale = (0.05890538, 0.06733021)
+                float2 inputs:translation = (0.9072356, 0.42857143)
                 float2 outputs:result
             }
         }
@@ -2813,8 +2813,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Ruler/F048_Mat/St.outputs:result>
-                float2 inputs:scale = (0.03100586, 0.113300495)
-                float2 inputs:translation = (0.7404785, 0.08866995)
+                float2 inputs:scale = (0.05890538, 0.06733021)
+                float2 inputs:translation = (0.9072356, 0.35187355)
                 float2 outputs:result
             }
         }
@@ -2878,8 +2878,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Ruler/F072_Mat/St.outputs:result>
-                float2 inputs:scale = (0.03100586, 0.113300495)
-                float2 inputs:translation = (0.7753906, 0.08866995)
+                float2 inputs:scale = (0.05890538, 0.06733021)
+                float2 inputs:translation = (0.8701299, 0.27517563)
                 float2 outputs:result
             }
         }
@@ -2943,8 +2943,8 @@ def Xform "Stand" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Stand/Ruler/F096_Mat/St.outputs:result>
-                float2 inputs:scale = (0.03100586, 0.113300495)
-                float2 inputs:translation = (0.81030273, 0.08866995)
+                float2 inputs:scale = (0.05890538, 0.06733021)
+                float2 inputs:translation = (0.9364564, 0.27517563)
                 float2 outputs:result
             }
         }

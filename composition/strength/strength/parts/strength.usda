@@ -772,8 +772,8 @@ def Xform "Strength" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Strength/Labels/Col_inherit_Mat/St.outputs:result>
-                float2 inputs:scale = (0.22509766, 0.055582408)
-                float2 inputs:translation = (0.5151367, 0.0038666022)
+                float2 inputs:scale = (0.13156393, 0.12834822)
+                float2 inputs:translation = (0.14497717, 0.050223213)
                 float2 outputs:result
             }
         }
@@ -837,8 +837,8 @@ def Xform "Strength" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Strength/Labels/Col_variant_Mat/St.outputs:result>
-                float2 inputs:scale = (0.23632812, 0.055582408)
-                float2 inputs:translation = (0.2709961, 0.0038666022)
+                float2 inputs:scale = (0.13812785, 0.12834822)
+                float2 inputs:translation = (0.002283105, 0.050223213)
                 float2 outputs:result
             }
         }
@@ -902,8 +902,8 @@ def Xform "Strength" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Strength/Labels/Col_relocate_Mat/St.outputs:result>
-                float2 inputs:scale = (0.26708984, 0.055582408)
-                float2 inputs:translation = (0.63378906, 0.06718221)
+                float2 inputs:scale = (0.1561073, 0.12834822)
+                float2 inputs:translation = (0.002283105, 0.19642857)
                 float2 outputs:result
             }
         }
@@ -967,8 +967,8 @@ def Xform "Strength" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Strength/Labels/Col_reference_Mat/St.outputs:result>
-                float2 inputs:scale = (0.30126953, 0.055582408)
-                float2 inputs:translation = (0.32470703, 0.06718221)
+                float2 inputs:scale = (0.17608447, 0.12834822)
+                float2 inputs:translation = (0.18978311, 0.34263393)
                 float2 outputs:result
             }
         }
@@ -1032,8 +1032,8 @@ def Xform "Strength" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Strength/Labels/Col_payload_Mat/St.outputs:result>
-                float2 inputs:scale = (0.25927734, 0.055582408)
-                float2 inputs:translation = (0.00390625, 0.0038666022)
+                float2 inputs:scale = (0.1515411, 0.12834822)
+                float2 inputs:translation = (0.16295663, 0.19642857)
                 float2 outputs:result
             }
         }
@@ -1097,8 +1097,8 @@ def Xform "Strength" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Strength/Labels/Col_specialize_Mat/St.outputs:result>
-                float2 inputs:scale = (0.31298828, 0.055582408)
-                float2 inputs:translation = (0.00390625, 0.06718221)
+                float2 inputs:scale = (0.18293379, 0.12834822)
+                float2 inputs:translation = (0.002283105, 0.34263393)
                 float2 outputs:result
             }
         }
@@ -1162,8 +1162,8 @@ def Xform "Strength" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Strength/Labels/Sign_Strength_Mat/St.outputs:result>
-                float2 inputs:scale = (0.6591797, 0.21749638)
-                float2 inputs:translation = (0.00390625, 0.77863705)
+                float2 inputs:scale = (0.38527396, 0.50223213)
+                float2 inputs:translation = (0.002283105, 0.4888393)
                 float2 outputs:result
             }
         }
