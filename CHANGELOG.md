@@ -4,6 +4,22 @@ Versions follow [semantic versioning](https://semver.org/): a major version when
 the wings change shape, a minor version for new or reworked content and asset changes, a patch
 version for fixes. Each version is a git tag (`v1.2.0`).
 
+## 1.3.0 — 2026-11-25
+
+- Base labels: each pedestal, bench and base names what stands on it with one printed placard
+  instead of two cut-out text quads. The placard is made the way the wall signs are: a paper card
+  holding the title over the subtitle, sized to its text, on a dark backing board. Its texture is
+  opaque with antialiased text and its material has no opacity or opacityThreshold, so the text
+  edges are no longer stepped. 45 exhibits change; cut-outs that are part of an exhibit (swatches,
+  stickers, the textures leaf) are unchanged.
+- Every placard fits the face it is printed on: a line too long for a narrow pedestal is drawn
+  smaller, and each card stays inside its face.
+- The names exhibit's UTF-8 pedestal shows its name 日本 (it drew two missing-glyph boxes).
+- The dome exhibit's pedestal has one placard per dome ("chrome ball" over the dome's name), shown
+  while that dome lights the ball.
+- Label atlases as RGBA8: 712 MB → 741 MB (the cards' paper margins). Files on disk: 54 MB → 53 MB.
+- Thumbnails of the changed exhibits and wings, and the museum's, are re-rendered.
+
 ## 1.2.0 — 2026-11-16
 
 - Label atlases: each atlas is the smallest sheet that holds its labels, at 900 px per metre (all

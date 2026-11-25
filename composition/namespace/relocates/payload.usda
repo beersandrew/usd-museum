@@ -17,7 +17,7 @@ def Xform "Exhibit" (
     kind = "assembly"
 )
 {
-    float3[] extentsHint = [(-2.3, 0, -1.5), (2.3, 2.55, -0.194)]
+    float3[] extentsHint = [(-2.3, 0, -1.5), (2.3, 2.55, -0.188)]
 
     def Scope "Looks"
     {
@@ -135,8 +135,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Sign_Relocates/St.outputs:result>
-                float2 inputs:scale = (0.9694794, 0.72610295)
-                float2 inputs:translation = (0.0035906644, 0.2591912)
+                float2 inputs:scale = (0.6293706, 0.95873785)
+                float2 inputs:translation = (0.0023310024, 0.02184466)
                 float2 outputs:result
             }
         }
@@ -150,8 +150,6 @@ def Xform "Exhibit" (
                 uniform token info:id = "UsdPreviewSurface"
                 color3f inputs:diffuseColor = (0, 0, 0)
                 color3f inputs:emissiveColor.connect = </Exhibit/Looks/Pedestals_Old_Label/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Looks/Pedestals_Old_Label/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
                 float inputs:roughness = 1
                 color3f inputs:specularColor = (0, 0, 0)
                 int inputs:useSpecularWorkflow = 1
@@ -180,53 +178,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Pedestals_Old_Label/St.outputs:result>
-                float2 inputs:scale = (0.18087971, 0.21139705)
-                float2 inputs:translation = (0.21364452, 0.018382354)
-                float2 outputs:result
-            }
-        }
-
-        def Material "Pedestals_Old_Sub"
-        {
-            token outputs:surface.connect = </Exhibit/Looks/Pedestals_Old_Sub/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Pedestals_Old_Sub/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Looks/Pedestals_Old_Sub/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/labels_atlas.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_Old_Sub/Tex_Atlas.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-
-            def Shader "Tex_Atlas"
-            {
-                uniform token info:id = "UsdTransform2d"
-                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_Old_Sub/St.outputs:result>
-                float2 inputs:scale = (0.29578096, 0.13051471)
-                float2 inputs:translation = (0.40170556, 0.0992647)
+                float2 inputs:scale = (0.17948718, 0.5825243)
+                float2 inputs:translation = (0.6363636, 0.39805827)
                 float2 outputs:result
             }
         }
@@ -240,8 +193,6 @@ def Xform "Exhibit" (
                 uniform token info:id = "UsdPreviewSurface"
                 color3f inputs:diffuseColor = (0, 0, 0)
                 color3f inputs:emissiveColor.connect = </Exhibit/Looks/Pedestals_New_Label/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Looks/Pedestals_New_Label/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
                 float inputs:roughness = 1
                 color3f inputs:specularColor = (0, 0, 0)
                 int inputs:useSpecularWorkflow = 1
@@ -270,53 +221,8 @@ def Xform "Exhibit" (
             {
                 uniform token info:id = "UsdTransform2d"
                 float2 inputs:in.connect = </Exhibit/Looks/Pedestals_New_Label/St.outputs:result>
-                float2 inputs:scale = (0.20287253, 0.21139705)
-                float2 inputs:translation = (0.0035906644, 0.018382354)
-                float2 outputs:result
-            }
-        }
-
-        def Material "Pedestals_New_Sub"
-        {
-            token outputs:surface.connect = </Exhibit/Looks/Pedestals_New_Sub/Surface.outputs:surface>
-
-            def Shader "Surface"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </Exhibit/Looks/Pedestals_New_Sub/Tex.outputs:rgb>
-                float inputs:opacity.connect = </Exhibit/Looks/Pedestals_New_Sub/Tex.outputs:a>
-                float inputs:opacityThreshold = 0.5
-                float inputs:roughness = 1
-                color3f inputs:specularColor = (0, 0, 0)
-                int inputs:useSpecularWorkflow = 1
-                token outputs:surface
-            }
-
-            def Shader "St"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                string inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "Tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/labels_atlas.png@
-                float4 inputs:scale = (1, 1, 1, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </Exhibit/Looks/Pedestals_New_Sub/Tex_Atlas.outputs:result>
-                float outputs:a
-                float3 outputs:rgb
-            }
-
-            def Shader "Tex_Atlas"
-            {
-                uniform token info:id = "UsdTransform2d"
-                float2 inputs:in.connect = </Exhibit/Looks/Pedestals_New_Sub/St.outputs:result>
-                float2 inputs:scale = (0.29039496, 0.13051471)
-                float2 inputs:translation = (0.70466787, 0.0992647)
+                float2 inputs:scale = (0.17628205, 0.5825243)
+                float2 inputs:translation = (0.82051283, 0.39805827)
                 float2 outputs:result
             }
         }
@@ -393,14 +299,14 @@ def Xform "Exhibit" (
             )
             {
                 uniform bool doubleSided = 1
-                float3[] extent = [(-0.22431596, 0.34764743, -0.194), (0.22431596, 0.47585258, -0.194)]
+                float3[] extent = [(-0.34195098, 0.22142, -0.188), (0.34195098, 0.48858, -0.188)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
                 rel material:binding = </Exhibit/Looks/Pedestals_Old_Label>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
-                point3f[] points = [(-0.22431596, 0.34764743, -0.194), (0.22431596, 0.34764743, -0.194), (0.22431596, 0.47585258, -0.194), (-0.22431596, 0.47585258, -0.194)]
+                point3f[] points = [(-0.34195098, 0.22142, -0.188), (0.34195098, 0.22142, -0.188), (0.34195098, 0.48858, -0.188), (-0.34195098, 0.48858, -0.188)]
                 color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
                 texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
                     interpolation = "vertex"
@@ -408,23 +314,15 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Mesh "Sub" (
+            def Mesh "Label_Back" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
-                uniform bool doubleSided = 1
-                float3[] extent = [(-0.36629885, 0.24483141, -0.194), (0.36629885, 0.3243186, -0.194)]
-                int[] faceVertexCounts = [4]
-                int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Looks/Pedestals_Old_Sub>
-                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                    interpolation = "vertex"
-                )
-                point3f[] points = [(-0.36629885, 0.24483141, -0.194), (0.36629885, 0.24483141, -0.194), (0.36629885, 0.3243186, -0.194), (-0.36629885, 0.3243186, -0.194)]
-                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
-                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
-                    interpolation = "vertex"
-                )
+                float3[] extent = [(-0.36195096, 0.20142, -0.204), (0.36195096, 0.50858, -0.194)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Exhibit/Looks/sign_back>
+                point3f[] points = [(-0.36195096, 0.20142, -0.194), (0.36195096, 0.20142, -0.194), (0.36195096, 0.50858, -0.194), (-0.36195096, 0.50858, -0.194), (0.36195096, 0.20142, -0.204), (-0.36195096, 0.20142, -0.204), (-0.36195096, 0.50858, -0.204), (0.36195096, 0.50858, -0.204), (-0.36195096, 0.50858, -0.194), (0.36195096, 0.50858, -0.194), (0.36195096, 0.50858, -0.204), (-0.36195096, 0.50858, -0.204), (-0.36195096, 0.20142, -0.204), (0.36195096, 0.20142, -0.204), (0.36195096, 0.20142, -0.194), (-0.36195096, 0.20142, -0.194), (0.36195096, 0.20142, -0.194), (0.36195096, 0.20142, -0.204), (0.36195096, 0.50858, -0.204), (0.36195096, 0.50858, -0.194), (-0.36195096, 0.20142, -0.204), (-0.36195096, 0.20142, -0.194), (-0.36195096, 0.50858, -0.194), (-0.36195096, 0.50858, -0.204)]
                 uniform token subdivisionScheme = "none"
             }
 
@@ -466,14 +364,14 @@ def Xform "Exhibit" (
             )
             {
                 uniform bool doubleSided = 1
-                float3[] extent = [(-0.25151408, 0.34764743, -0.194), (0.25151408, 0.47585258, -0.194)]
+                float3[] extent = [(-0.33628985, 0.22142, -0.188), (0.33628985, 0.48858, -0.188)]
                 int[] faceVertexCounts = [4]
                 int[] faceVertexIndices = [0, 1, 2, 3]
                 rel material:binding = </Exhibit/Looks/Pedestals_New_Label>
                 normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                     interpolation = "vertex"
                 )
-                point3f[] points = [(-0.25151408, 0.34764743, -0.194), (0.25151408, 0.34764743, -0.194), (0.25151408, 0.47585258, -0.194), (-0.25151408, 0.47585258, -0.194)]
+                point3f[] points = [(-0.33628985, 0.22142, -0.188), (0.33628985, 0.22142, -0.188), (0.33628985, 0.48858, -0.188), (-0.33628985, 0.48858, -0.188)]
                 color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
                 texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
                     interpolation = "vertex"
@@ -481,23 +379,15 @@ def Xform "Exhibit" (
                 uniform token subdivisionScheme = "none"
             }
 
-            def Mesh "Sub" (
+            def Mesh "Label_Back" (
                 prepend apiSchemas = ["MaterialBindingAPI"]
             )
             {
-                uniform bool doubleSided = 1
-                float3[] extent = [(-0.35970178, 0.24514142, -0.194), (0.35970178, 0.3246286, -0.194)]
-                int[] faceVertexCounts = [4]
-                int[] faceVertexIndices = [0, 1, 2, 3]
-                rel material:binding = </Exhibit/Looks/Pedestals_New_Sub>
-                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                    interpolation = "vertex"
-                )
-                point3f[] points = [(-0.35970178, 0.24514142, -0.194), (0.35970178, 0.24514142, -0.194), (0.35970178, 0.3246286, -0.194), (-0.35970178, 0.3246286, -0.194)]
-                color3f[] primvars:displayColor = [(0.9, 0.75, 0.1)]
-                texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)] (
-                    interpolation = "vertex"
-                )
+                float3[] extent = [(-0.35628983, 0.20142, -0.204), (0.35628983, 0.50858, -0.194)]
+                int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+                int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                rel material:binding = </Exhibit/Looks/sign_back>
+                point3f[] points = [(-0.35628983, 0.20142, -0.194), (0.35628983, 0.20142, -0.194), (0.35628983, 0.50858, -0.194), (-0.35628983, 0.50858, -0.194), (0.35628983, 0.20142, -0.204), (-0.35628983, 0.20142, -0.204), (-0.35628983, 0.50858, -0.204), (0.35628983, 0.50858, -0.204), (-0.35628983, 0.50858, -0.194), (0.35628983, 0.50858, -0.194), (0.35628983, 0.50858, -0.204), (-0.35628983, 0.50858, -0.204), (-0.35628983, 0.20142, -0.204), (0.35628983, 0.20142, -0.204), (0.35628983, 0.20142, -0.194), (-0.35628983, 0.20142, -0.194), (0.35628983, 0.20142, -0.194), (0.35628983, 0.20142, -0.204), (0.35628983, 0.50858, -0.204), (0.35628983, 0.50858, -0.194), (-0.35628983, 0.20142, -0.204), (-0.35628983, 0.20142, -0.194), (-0.35628983, 0.50858, -0.194), (-0.35628983, 0.50858, -0.204)]
                 uniform token subdivisionScheme = "none"
             }
 
