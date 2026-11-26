@@ -278,7 +278,7 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/labels_atlas.png@
+                asset inputs:file = @./textures/labels_atlas.bc32ad2a34.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Exhibit/Looks/Title/Tex_Atlas.outputs:result>
@@ -387,7 +387,7 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/labels_atlas.png@
+                asset inputs:file = @./textures/labels_atlas.bc32ad2a34.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Exhibit/Looks/Base_Prop_Monitor_Label/Tex_Atlas.outputs:result>
@@ -608,7 +608,7 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/labels_atlas.png@
+                asset inputs:file = @./textures/labels_atlas.bc32ad2a34.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Exhibit/Looks/Minus1_Prop_Monitor_Label/Tex_Atlas.outputs:result>
@@ -829,7 +829,7 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/labels_atlas.png@
+                asset inputs:file = @./textures/labels_atlas.bc32ad2a34.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Exhibit/Looks/Iso1600_Prop_Monitor_Label/Tex_Atlas.outputs:result>

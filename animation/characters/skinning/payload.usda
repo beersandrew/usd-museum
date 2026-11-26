@@ -185,7 +185,7 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/labels_atlas.png@
+                asset inputs:file = @./textures/labels_atlas.53039cb2cd.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Exhibit/Looks/Cards_Sign_Skinning/Tex_Atlas.outputs:result>
@@ -230,7 +230,7 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/labels_atlas.png@
+                asset inputs:file = @./textures/labels_atlas.53039cb2cd.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Exhibit/Looks/Cards_Sign_GeomBind/Tex_Atlas.outputs:result>
@@ -275,7 +275,7 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/labels_atlas.png@
+                asset inputs:file = @./textures/labels_atlas.53039cb2cd.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Exhibit/Looks/Cards_Sign_BlendShapes/Tex_Atlas.outputs:result>
@@ -320,7 +320,7 @@ def Xform "Exhibit" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./textures/labels_atlas.png@
+                asset inputs:file = @./textures/labels_atlas.53039cb2cd.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Exhibit/Looks/Cards_Sign_DualQuat/Tex_Atlas.outputs:result>

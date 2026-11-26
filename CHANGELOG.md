@@ -4,6 +4,30 @@ Versions follow [semantic versioning](https://semver.org/): a major version when
 the wings change shape, a minor version for new or reworked content and asset changes, a patch
 version for fixes. Each version is a git tag (`v1.2.0`).
 
+## 1.3.0 — 2026-11-25
+
+- Base labels: each pedestal, bench and base names what stands on it with one printed placard
+  instead of two cut-out text quads. The placard is made the way the wall signs are: a paper card
+  holding the title over the subtitle, sized to its text, on a dark backing board. Its texture is
+  opaque with antialiased text and its material has no opacity or opacityThreshold, so the text
+  edges are no longer stepped. 45 exhibits change; cut-outs that are part of an exhibit (swatches,
+  stickers, the textures leaf) are unchanged.
+- Every placard fits the face it is printed on: a line too long for a narrow pedestal is drawn
+  smaller, and each card stays inside its face.
+- The names exhibit's UTF-8 pedestal shows its name 日本 (it drew two missing-glyph boxes).
+- The dome exhibit's pedestal has one placard per dome ("chrome ball" over the dome's name), shown
+  while that dome lights the ball.
+- Label atlases are named for their contents: `textures/labels_atlas.<hash>.png`, the first 10 hex
+  digits of the PNG's SHA-256 (`labels_atlas_1.<hash>.png` for a second sheet). An atlas that changes
+  gets a new URL, so a browser or cache holding an older sheet can't pair it with new cells. A
+  1.3.0 published on Nov 25 and withdrawn the same day kept the name `labels_atlas.png`; a browser
+  holding 1.2.0's sheet drew its placards black.
+- The rigging wing's atlases are repacked as the other wings' were in 1.2.0 (smallest sheet that
+  holds the labels). Its labels are unchanged.
+- Label atlases as RGBA8, all 74: 746 MB → 768 MB (the cards' paper margins). Files on disk:
+  52.4 MB → 52.8 MB.
+- Thumbnails of the changed exhibits and wings, and the museum's, are re-rendered.
+
 ## 1.2.0 — 2026-11-16
 
 - Label atlases: each atlas is the smallest sheet that holds its labels, at 900 px per metre (all

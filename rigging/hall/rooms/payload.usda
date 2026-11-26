@@ -466,7 +466,7 @@ def Xform "Rooms" (
                 def Shader "Tex"
                 {
                     uniform token info:id = "UsdUVTexture"
-                    asset inputs:file = @./textures/labels_atlas.png@
+                    asset inputs:file = @./textures/labels_atlas.acb588ff74.png@
                     float4 inputs:scale = (1, 1, 1, 1)
                     token inputs:sourceColorSpace = "sRGB"
                     float2 inputs:st.connect = </Rooms/Placards/exec/Card_Mat/Tex_Atlas.outputs:result>
@@ -478,8 +478,8 @@ def Xform "Rooms" (
                 {
                     uniform token info:id = "UsdTransform2d"
                     float2 inputs:in.connect = </Rooms/Placards/exec/Card_Mat/St.outputs:result>
-                    float2 inputs:scale = (0.63720703, 0.9656652)
-                    float2 inputs:translation = (0.001953125, 0.017167382)
+                    float2 inputs:scale = (0.9931507, 0.96153843)
+                    float2 inputs:translation = (0.00304414, 0.021367522)
                     float2 outputs:result
                 }
             }

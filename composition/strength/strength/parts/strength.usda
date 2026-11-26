@@ -760,7 +760,7 @@ def Xform "Strength" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.c62c565694.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Strength/Labels/Col_inherit_Mat/Tex_Atlas.outputs:result>
@@ -825,7 +825,7 @@ def Xform "Strength" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.c62c565694.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Strength/Labels/Col_variant_Mat/Tex_Atlas.outputs:result>
@@ -890,7 +890,7 @@ def Xform "Strength" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.c62c565694.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Strength/Labels/Col_relocate_Mat/Tex_Atlas.outputs:result>
@@ -955,7 +955,7 @@ def Xform "Strength" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.c62c565694.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Strength/Labels/Col_reference_Mat/Tex_Atlas.outputs:result>
@@ -1020,7 +1020,7 @@ def Xform "Strength" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.c62c565694.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Strength/Labels/Col_payload_Mat/Tex_Atlas.outputs:result>
@@ -1085,7 +1085,7 @@ def Xform "Strength" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.c62c565694.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Strength/Labels/Col_specialize_Mat/Tex_Atlas.outputs:result>
@@ -1150,7 +1150,7 @@ def Xform "Strength" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.c62c565694.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Strength/Labels/Sign_Strength_Mat/Tex_Atlas.outputs:result>

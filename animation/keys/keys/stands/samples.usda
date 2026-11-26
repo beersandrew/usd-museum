@@ -1428,7 +1428,7 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.e60e9bbf1c.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Stand/Cards/Linear_Mat/Tex_Atlas.outputs:result>
@@ -1505,7 +1505,7 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.e60e9bbf1c.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Stand/Cards/Uniform_Mat/Tex_Atlas.outputs:result>
@@ -1582,7 +1582,7 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.e60e9bbf1c.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Stand/Cards/Ends_Mat/Tex_Atlas.outputs:result>
@@ -1659,7 +1659,7 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.e60e9bbf1c.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Stand/Cards/OnKey_Mat/Tex_Atlas.outputs:result>
@@ -1736,7 +1736,7 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.e60e9bbf1c.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Stand/Cards/Still_Mat/Tex_Atlas.outputs:result>
@@ -1813,7 +1813,7 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.e60e9bbf1c.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Stand/Cards/Sign_samples_Mat/Tex_Atlas.outputs:result>
@@ -1929,7 +1929,7 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.e60e9bbf1c.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Stand/Ruler/F001_Mat/Tex_Atlas.outputs:result>
@@ -1994,7 +1994,7 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.e60e9bbf1c.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Stand/Ruler/F024_Mat/Tex_Atlas.outputs:result>
@@ -2059,7 +2059,7 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.e60e9bbf1c.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Stand/Ruler/F048_Mat/Tex_Atlas.outputs:result>
@@ -2124,7 +2124,7 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.e60e9bbf1c.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Stand/Ruler/F072_Mat/Tex_Atlas.outputs:result>
@@ -2189,7 +2189,7 @@ def Xform "Stand" (
             def Shader "Tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../textures/labels_atlas.png@
+                asset inputs:file = @../textures/labels_atlas.e60e9bbf1c.png@
                 float4 inputs:scale = (1, 1, 1, 1)
                 token inputs:sourceColorSpace = "sRGB"
                 float2 inputs:st.connect = </Stand/Ruler/F096_Mat/Tex_Atlas.outputs:result>
